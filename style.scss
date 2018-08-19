@@ -1,0 +1,9 @@
+$themeColor   : #0088cc;
+$bgHighlight : #0040ff;
+$colDefault  : #ecf0f1;
+$colHighlight: white;
+$hoverBackground : #0040ff;
+
+@import 'navbar';
+@import 'taxPeriodNumberMenu';
+@import 'table';

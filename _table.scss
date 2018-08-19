@@ -1,0 +1,21 @@
+.tableContainer{
+  background-color: yellow;
+  width: 60%;
+  margin-top: 80px;
+  font-size: 18px;
+}
+.tableCaption
+{
+  background-color: $themeColor;
+  color: white;
+}
+.tableRow{
+  height: 30px;
+  vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+	.tableContainer{
+		width: 100%;
+	}
+}
