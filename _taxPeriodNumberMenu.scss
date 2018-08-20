@@ -1,10 +1,9 @@
-.taxPeriodNumberContainer
-{
-	width: 100%;
+.taxPeriodNumberContainer {
 	position: relative;
 	z-index: 3;
+	width: 100%;
 }
-#taxPeriodNumberMenu{
+#taxPeriodNumberMenu {
 	margin-top: 50px;
 	background-color: $themeColor;
 	font-size: 25px;
@@ -14,6 +13,11 @@
 	padding: 0px;
 	position: fixed;
 	width: 100%;
+}
+.tableCaption {
+  background-color: $themeColor;
+  color: white;
+  border-top: 1px solid $bgHighlight;
 }
 
 @media (max-width: 767px) {

@@ -25,7 +25,7 @@
 		<link type="text/css" rel="stylesheet" href="style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="javascript/javaScript.js"></script>
+		<script type="text/javascript" src="javaScript.js"></script>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	</head>
 	<body>
@@ -60,86 +60,30 @@
 			<div class="row" id="taxPeriodNumberMenu">
 				<div class="col-sm-12 col-xs-12" id="tableCaption">
 					<span class="glyphicon glyphicon-triangle-left" id="buttonLeft"> </span>
-					<span id="tableCaption">2018/2019 Tax Period no. 20</span>
+					<span id="tableCaptionTitle">2018/2019 Tax Period no. 20</span>
 					<span class="glyphicon glyphicon-triangle-right" id="buttonRight"> </span>
 				</div>
 			</div>
 		</div>
 
 		<div class="container tableContainer">
-			<div class="row">
-				<div class="col-sm-12 col-xs-12 tableRow tableCaption">
-					<div class="col-sm-3 col-xs-4">Daytype</div>
-					<div class="col-sm-2 col-xs-2">Date</div>
-					<div class="col-sm-2 col-xs-3">Start</div>
+			<div class="row tableRow tableCaption">
+					<div class="col-sm-3 col-xs-4">Day Type</div>
+					<div class="col-sm-2 col-xs-3">Date</div>
+					<div class="col-sm-1 col-xs-2">Start</div>
 					<div class="col-sm-2 col-xs-3">Finish</div>
-					<div class="col-sm-3  hidden-xs">Notes</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow0">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow1">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow2">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow3">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow4">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow5">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-xs-12 tableRow" id="tableRow6">
-						<div class="col-sm-3 col-xs-4">Daytype</div>
-						<div class="col-sm-2 col-xs-2">Date</div>
-						<div class="col-sm-2 col-xs-3">Start</div>
-						<div class="col-sm-2 col-xs-3">Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
-					</div>
-				</div>
+					<div class="col-sm-4  hidden-xs">Notes</div>
 			</div>
+			<div class="row tableRow" id="tableRow0"> </div>
+			<div class="row tableRow" id="tableRow1"> </div>
+			<div class="row tableRow" id="tableRow2"> </div>
+			<div class="row tableRow" id="tableRow3"> </div>
+			<div class="row tableRow" id="tableRow4"> </div>
+			<div class="row tableRow" id="tableRow5"> </div>
+			<div class="row tableRow" id="tableRow6"> </div>
 		</div>
+
+
 
 
 		<p>8</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
@@ -150,5 +94,7 @@
 		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
 		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
 		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
+		<input type="hidden" id="taxPeriodNr" name="taxPeriodNr" value="1">
+		<input type="hidden" id="timeSinceEpochInput" name="timeSinceEpochInput" value="1491004800000">
 	</body>
 </html>

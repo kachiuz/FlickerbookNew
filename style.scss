@@ -1,9 +1,55 @@
+input, select {
+  border-radius: 0;
+-webkit-appearance: none;
+}
+
+
 $themeColor   : #0088cc;
 $bgHighlight : #0040ff;
 $colDefault  : #ecf0f1;
 $colHighlight: white;
 $hoverBackground : #0040ff;
 
+.notSelectedColor	{background: #ffffff; color: black;}
+.dayInColor			{background: #ffff80; color: black;}
+.dayOffColor		{background: #c3c3a2; color: black;}
+.holidayColor		{background: #d5ff80; color: black;}
+.unpaidHolColor		{background: #e6ffe6; color: black;}
+.halfInHalfOffColor	{background: #e6ffb3; color: black;}
+.dayInSickColor		{background: #ffcccc; color: black;}
+.sicknessColor		{background: #ff9999; color: black;}
+.absenceColor		{background: #ccebff; color: black;}
+.familyLeaveColor	{background: #ffcc99; color: black;}
+.bereavementColor	{background: #4d4d4d; color: white;}
+.compassionateColor	{background: #ffe6cc; color: black;}
+
+.startTimeColor		{background: #e1e1d0; color: #000000;}
+.endTimeColor		{background: #c3c3a2; color: #000000;}
+.nextMorning		{background: #6b6b47; color: white;}
+.invalidForm		{background: #ff8080; color: white;}
+
+.notSelectedDiv		{visibility: hidden;}
+.holidayDiv			{visibility: hidden;}
+.sicknessDiv		{visibility: hidden;}
+.dayOffDiv			{visibility: hidden;}
+.absenceDiv			{visibility: hidden;}
+.familyLeaveDiv		{visibility: hidden;display: inline-block;}
+.bereavementDiv		{visibility: hidden;}
+.dayInSickDiv		{visibility: hidden;}
+.unpaidHolDiv		{visibility: hidden;}
+.compassionateDiv	{visibility: hidden;}
+
+.row, .container {
+  padding: 0px;
+}
+.row {
+  width: 100%;
+  margin: 0px;
+}
+.col-sm-3{
+    margin: 0px;
+  padding: 0px;
+}
 @import 'navbar';
 @import 'taxPeriodNumberMenu';
 @import 'table';
