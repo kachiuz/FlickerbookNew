@@ -1,5 +1,4 @@
 let timeSinceEpochOriginal = 1491004800000;
-
 let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",];
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -19,7 +18,7 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 
 	timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStart*86400000
 
-	//keiciame antraste priklausomai nuo tax year.
+	//depending on a year, caption has to be changed
 	if(taxPeriodNumber<=52 && taxPeriodNumber>0 ){
 		tableCaptionTitle.innerHTML = "2017/2018 Tax Period no. " + taxPeriodNumber;
 	}	else if (taxPeriodNumber<=104 && taxPeriodNumber>52 ){
@@ -42,7 +41,7 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		//creating first column
 		let tableRow = document.getElementById("tableRow"+f);
 		let tableData = document.createElement("div");
-		tableData.setAttribute("class", "col-sm-3 col-xs-3 tableData");
+		tableData.setAttribute("class", "col-sm-2 col-xs-3 tableData");
 
 		let dayType = document.createElement("select");
 		dayType.setAttribute("name", "dayType"+taxPeriodStart);
@@ -52,15 +51,11 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 
 		let dayOptionsArray =["Not Selected", "Day In", "Day Off", "Holiday", "Half In/Hol", "Unpaid Hol", "Day In/Sick", "Sickness", "Absence",  "Parental Leave", "Bereavement", "Compassionate" ];
 		let dayOptionsColors = ["notSelectedColor", "dayInColor", "dayOffColor", "holidayColor", "halfInHalfOffColor", "unpaidHolColor", "dayInSickColor", "sicknessColor", "absenceColor", "familyLeaveColor","bereavementColor", "compassionateColor"];
-		//sukuriamas ciklas, kuris i select elementa sutalpina visus galimus pasirinktinu dienu variantus
+		//a loop that inserts day types into select input
 		for(k=0; k<dayOptionsArray.length; k++)	{
-			//sukuriamas option elementas su value atributu ir verte
 			let dayOption = document.createElement("option");
-			//parenkamos spalvos dropdown meniu, kurios yra tokios pat kaip ir select elemento.
 			dayOption.setAttribute("class",dayOptionsColors[k]);
-			//sukuriamas textas, kurio verte paimama is dayOptionsArray masyvo
 			let optionText = document.createTextNode(dayOptionsArray[k]);
-			//tekstas iterpiamas i option elementa, o pastaris i select elementa
 			dayOption.appendChild(optionText);
 			dayType.appendChild(dayOption);
 		}
@@ -70,39 +65,38 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		//dayType.onchange = test;
 
 		//creating second column
-		var dateDiv = document.createElement("div");
+		  dateDiv = document.createElement("div");
 		dateDiv.setAttribute("class", "col-sm-2 col-xs-4 dateDiv tableData tableDataRelative");
 		dateDiv.setAttribute("id", "dateDiv"+f);
 
-		var startDate = new Date(timeSinceEpoch);
-		//var startDateShort = startDate.toDateString();			// suformatuojama data		dn,mn dd yyyy
-		var mm = startDate.getMonth();			// month index
-		var MM = startDate.getMonth() +1;		//+1 nes skaiciuojama nuo 0.
-		var dd = startDate.getDate();			//day of the month number
-		var dy = startDate.getDay();			// day name index
-		var yy = startDate.getFullYear();
+		let startDate = new Date(timeSinceEpoch);
+		//let startDateShort = startDate.toDateString();			// formatting date		dn,mn dd yyyy
+		let mm = startDate.getMonth();			// month index
+		let MM = startDate.getMonth() +1;		//+1 since we start count from 0.
+		let dd = startDate.getDate();			//day of the month number
+		let dy = startDate.getDay();			// day name index
+		let yy = startDate.getFullYear();
 
 		if (dd<10){dd="0"+dd;}
 
 		mm = months[mm]; // mothn names
 		dy = days[dy];  // day names
 
-		var formatedDate = dy + " " + mm + " " + dd;
+		let formatedDate = dy + " " + mm + " " + dd;
 
 		//hidden input is used to send date formatted for back end
 		//regular date is displayed with weekdays named.
-		var dateInput = document.createElement("div");
+		let dateInput = document.createElement("div");
 		dateInput.setAttribute("name","dateInput"+taxPeriodStart);
 		dateInput.setAttribute("class","dateInput");
 		dateInput.setAttribute("id","dateInput"+taxPeriodStart);
 		dateInput.innerHTML = formatedDate;
 		dateDiv.appendChild(dateInput);
 
-		//pridedame 0 menesio priekyje jei maziau uz 10.
 		if (MM<10){MM="0"+MM;}
-		var formatedDateHidden = yy + "-" + MM + "-" + dd; // siuntimui i serveri
+		let formatedDateHidden = yy + "-" + MM + "-" + dd;
 
-		var dateInputHidden = document.createElement("input");
+		let dateInputHidden = document.createElement("input");
 		dateInputHidden.setAttribute("type","text");
 		dateInputHidden.setAttribute("name","dateInputHidden"+taxPeriodStart);
 		dateInputHidden.setAttribute("class","dateInputHidden");
@@ -111,12 +105,12 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		dateInputHidden.setAttribute("readonly","readonly");
 		dateDiv.appendChild(dateInputHidden);
 
-		var dayInSickDiv = document.createElement("div");
+		let dayInSickDiv = document.createElement("div");
 		dayInSickDiv.setAttribute("id","dayInSickDiv"+taxPeriodStart);
 		dayInSickDiv.setAttribute("class","absoluteDiv absoluteDivSick dayInSickDiv dayInSickColor");
-		var dayInSickText = document.createTextNode("Paid");
+		let dayInSickText = document.createTextNode("Paid");
 		dayInSickDiv.appendChild(dayInSickText);
-		var dayInSickButton = document.createElement("input");
+		let dayInSickButton = document.createElement("input");
 		dayInSickButton.setAttribute("id", "dayInSickButton"+taxPeriodStart);
 		dayInSickButton.setAttribute("type", "checkbox");
 		dayInSickButton.setAttribute("name", "dayInSick"+taxPeriodStart);
@@ -125,12 +119,12 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 
 		dateDiv.appendChild(dayInSickDiv);
 
-		var sicknessDiv = document.createElement("div");
+		let sicknessDiv = document.createElement("div");
 		sicknessDiv.setAttribute("id","sicknessDiv"+taxPeriodStart);
 		sicknessDiv.setAttribute("class","absoluteDiv sicknessDiv sicknessColor");
-		var sicknessText = document.createTextNode("Paid");
+		let sicknessText = document.createTextNode("Paid");
 		sicknessDiv.appendChild(sicknessText);
-		var sicknessButton = document.createElement("input");
+		let sicknessButton = document.createElement("input");
 		sicknessButton.setAttribute("id", "sicknessButton"+taxPeriodStart);
 		sicknessButton.setAttribute("type", "checkbox");
 		sicknessButton.setAttribute("name", "sickness"+taxPeriodStart);
@@ -138,13 +132,13 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		sicknessDiv.appendChild(sicknessButton);
 		dateDiv.appendChild(sicknessDiv);
 
-		var familyLeaveDiv = document.createElement("div");
+		let familyLeaveDiv = document.createElement("div");
 		familyLeaveDiv.setAttribute("id","familyLeaveDiv"+taxPeriodStart);
 		familyLeaveDiv.setAttribute("class","absoluteDiv familyLeaveDiv familyLeaveColor");
 
-		var familyLeaveText = document.createTextNode("Paid");
+		let familyLeaveText = document.createTextNode("Paid");
 		familyLeaveDiv.appendChild(familyLeaveText);
-		var familyLeaveButton = document.createElement("input");
+		let familyLeaveButton = document.createElement("input");
 		familyLeaveButton.setAttribute("id", "familyLeaveButton"+taxPeriodStart);
 		familyLeaveButton.setAttribute("type", "checkbox");
 		familyLeaveButton.setAttribute("name", "familyLeave"+taxPeriodStart);
@@ -152,12 +146,12 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		familyLeaveDiv.appendChild(familyLeaveButton);
 		dateDiv.appendChild(familyLeaveDiv);
 
-		var enhancedHolidayDiv = document.createElement("div");
+		let enhancedHolidayDiv = document.createElement("div");
 		enhancedHolidayDiv.setAttribute("id","enhancedHolidayDiv"+taxPeriodStart);
 		enhancedHolidayDiv.setAttribute("class","absoluteDiv absoluteDivSick holidayDiv holidayColor");
-		var enhancedHolidayText = document.createTextNode("Enhanced");
+		let enhancedHolidayText = document.createTextNode("Enhanced");
 		enhancedHolidayDiv.appendChild(enhancedHolidayText);
-		var enhancedHolidayButton = document.createElement("input");
+		let enhancedHolidayButton = document.createElement("input");
 		enhancedHolidayButton.setAttribute("id", "enhancedHolidayButton"+taxPeriodStart);
 		enhancedHolidayButton.setAttribute("type", "checkbox");
 		enhancedHolidayButton.setAttribute("name", "enhancedHoliday"+taxPeriodStart);
@@ -165,12 +159,12 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		enhancedHolidayDiv.appendChild(enhancedHolidayButton);
 		dateDiv.appendChild(enhancedHolidayDiv);
 
-		var bereavementButtonDiv = document.createElement("div");
+		let bereavementButtonDiv = document.createElement("div");
 		bereavementButtonDiv.setAttribute("id","bereavementButtonDiv"+taxPeriodStart);
 		bereavementButtonDiv.setAttribute("class","absoluteDiv absoluteDivSick bereavementDiv bereavementColor");
-		var bereavementButtonText = document.createTextNode("Paid");
+		let bereavementButtonText = document.createTextNode("Paid");
 		bereavementButtonDiv.appendChild(bereavementButtonText);
-		var bereavementButton = document.createElement("input");
+		let bereavementButton = document.createElement("input");
 		bereavementButton.setAttribute("id", "bereavementButton"+taxPeriodStart);
 		bereavementButton.setAttribute("type", "checkbox");
 		bereavementButton.setAttribute("name", "bereavementButton"+taxPeriodStart);
@@ -178,12 +172,12 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		bereavementButtonDiv.appendChild(bereavementButton);
 		dateDiv.appendChild(bereavementButtonDiv);
 
-		var compassionateButtonDiv = document.createElement("div");
+		let compassionateButtonDiv = document.createElement("div");
 		compassionateButtonDiv.setAttribute("id","compassionateButtonDiv"+taxPeriodStart);
 		compassionateButtonDiv.setAttribute("class","absoluteDiv absoluteDivSick compassionateDiv compassionateColor");
-		var compassionateButtonText = document.createTextNode("Paid");
+		let compassionateButtonText = document.createTextNode("Paid");
 		compassionateButtonDiv.appendChild(compassionateButtonText);
-		var compassionateButton = document.createElement("input");
+		let compassionateButton = document.createElement("input");
 		compassionateButton.setAttribute("id", "compassionateButton"+taxPeriodStart);
 		compassionateButton.setAttribute("type", "checkbox");
 		compassionateButton.setAttribute("name", "compassionateButton"+taxPeriodStart);
@@ -194,159 +188,159 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		tableRow.appendChild(dateDiv);
 
 		//creating third column elements
-		var tableData2 = document.createElement("div");
+		let tableData2 = document.createElement("div");
 		tableData2.setAttribute("class", "col-sm-3 col-xs-5 tableData tableDataRelative");
-		var startHours = document.createElement("select");
+		let startHours = document.createElement("select");
 		startHours.setAttribute("name", "startHours"+taxPeriodStart);
 		startHours.setAttribute("id", "startHours"+taxPeriodStart);
 		startHours.setAttribute("class", "hourMinuteSelect startTimeColor");
 
-		var startHourOptionArray = [];
+		let startHourOptionArray = [];
 			for (sh=0;sh<=23;sh++)	{
-				if (sh<10){sh="0"+sh;} //iterpiamas nulis priekyje, jei valanda yra mazesne uz 10
-				startHourOptionArray[sh] = sh; // pildomas valandu masyvas
-				var startHourOption = document.createElement("option");
-				var startHour = document.createTextNode(startHourOptionArray[sh]);
+				if (sh<10){sh="0"+sh;}
+				startHourOptionArray[sh] = sh;
+				let startHourOption = document.createElement("option");
+				let startHour = document.createTextNode(startHourOptionArray[sh]);
 				startHourOption.appendChild(startHour);						//option<---[text]
 				startHours.appendChild(startHourOption);					//select<--[option]
 			}
 		tableData2.appendChild(startHours);
 
-		var startMinutes = document.createElement("select");
+		let startMinutes = document.createElement("select");
 		startMinutes.setAttribute("name", "startMinutes"+taxPeriodStart);
 		startMinutes.setAttribute("id", "startMinutes"+taxPeriodStart);
 		startMinutes.setAttribute("class", "hourMinuteSelect startTimeColor");
-		var startMinuteOptionArray = [];
+		let startMinuteOptionArray = [];
 			for (sm=0;sm<=59;sm++)	{
-				if (sm<10){sm="0"+sm;} //iterpiamas nulis priekyje, jei valanda yra mazesne uz 10
-				startMinuteOptionArray[sm] = sm; // pildomas minuciu masyvas
-				var startMinuteOption = document.createElement("option");
-				var startMinute = document.createTextNode(startMinuteOptionArray[sm]);
+				if (sm<10){sm="0"+sm;}
+				startMinuteOptionArray[sm] = sm;
+				let startMinuteOption = document.createElement("option");
+				let startMinute = document.createTextNode(startMinuteOptionArray[sm]);
 				startMinuteOption.appendChild(startMinute);					//option<--[text]
 				startMinutes.appendChild(startMinuteOption);				//select<--[option]
 			}
 		tableData2.appendChild(startMinutes);
 
-		var endHours = document.createElement("select");
+		let endHours = document.createElement("select");
 		endHours.setAttribute("name", "endHours"+taxPeriodStart);
 		endHours.setAttribute("id", "endHours"+taxPeriodStart);
 		endHours.setAttribute("class", "hourMinuteSelect endTimeColor");
-		var endHourOptionArray = [];
+		let endHourOptionArray = [];
 			for (eh=0;eh<=23;eh++)	{
-				if (eh<10){eh="0"+eh;} //iterpiamas nulis priekyje, jei valanda yra mazesne uz 10
-				endHourOptionArray[eh] = eh; // pildomas valandu masyvas
-				var endHourOption = document.createElement("option");
+				if (eh<10){eh="0"+eh;}
+				endHourOptionArray[eh] = eh;
+				let endHourOption = document.createElement("option");
 				endHourOption.setAttribute("class", "endTimeColor");
-				var endHour = document.createTextNode(endHourOptionArray[eh]);
+				let endHour = document.createTextNode(endHourOptionArray[eh]);
 				endHourOption.appendChild(endHour);							//option<--[text]
 				endHours.appendChild(endHourOption);						//select<--[option]
 			}
-		var endHourNextMorning = [];
+		let endHourNextMorning = [];
 			for(nmh=0;nmh<=11;nmh++)	{
 				if (nmh<10){nmh="0"+nmh;}
 				endHourNextMorning[nmh] = nmh;
-				var endHourOption = document.createElement("option");
+				let endHourOption = document.createElement("option");
 				endHourOption.setAttribute("class","nextMorning");
-				var endHour = document.createTextNode(endHourNextMorning[nmh]);
+				let endHour = document.createTextNode(endHourNextMorning[nmh]);
 				endHourOption.appendChild(endHour);							//option<--[text]
 				endHours.appendChild(endHourOption);						//select<--[option]
 			}
 		tableData2.appendChild(endHours);
 
-		var endMinutes = document.createElement("select");
+		let endMinutes = document.createElement("select");
 		endMinutes.setAttribute("name", "endMinutes"+taxPeriodStart);
 		endMinutes.setAttribute("id", "endMinutes"+taxPeriodStart);
 		endMinutes.setAttribute("class", "hourMinuteSelect endTimeColor");
 
-		var endMinuteOptionArray = [];
+		let endMinuteOptionArray = [];
 		for (em=0;em<=59;em++) {
-			if (em<10){em="0"+em;} //iterpiamas nulis priekyje, jei valanda yra mazesne uz 10
-			endMinuteOptionArray[em] = em; // pildomas masyvas
-			var endMinuteOption = document.createElement("option");
-			var endMinute = document.createTextNode(endMinuteOptionArray[em]);
+			if (em<10){em="0"+em;}
+			endMinuteOptionArray[em] = em;
+			let endMinuteOption = document.createElement("option");
+			let endMinute = document.createTextNode(endMinuteOptionArray[em]);
 			endMinuteOption.appendChild(endMinute);						//option<--[text]
 			endMinutes.appendChild(endMinuteOption);					//select<--[option]
 		}
 		tableData2.appendChild(endMinutes);
 
-		var notSelectedDiv = document.createElement("div");
+		let notSelectedDiv = document.createElement("div");
 		notSelectedDiv.setAttribute("id","notSelectedDiv"+taxPeriodStart);
 		notSelectedDiv.setAttribute("class","absoluteDiv notSelectedColor notSelectedDiv");
-		var notSelectedText = document.createTextNode("Select a Day Type.");
+		let notSelectedText = document.createTextNode("Select a Day Type.");
 		notSelectedDiv.appendChild(notSelectedText);
 		tableData2.appendChild(notSelectedDiv);
 
-		//nenaudojamas
-		var holidayDiv = document.createElement("div");
+		//not in use
+		let holidayDiv = document.createElement("div");
 		holidayDiv.setAttribute("id","holidayDiv"+taxPeriodStart);
 		holidayDiv.setAttribute("class","absoluteDiv holidayColor holidayDiv");
-		var holidayText = document.createTextNode("Holiday Time!");
+		let holidayText = document.createTextNode("Holiday Time!");
 		holidayDiv.appendChild(holidayText);
 		tableData2.appendChild(holidayDiv);
 
-		var dayOffDiv = document.createElement("div");
+		let dayOffDiv = document.createElement("div");
 		dayOffDiv.setAttribute("id","dayOffDiv"+taxPeriodStart);
 		dayOffDiv.setAttribute("class","absoluteDiv dayOffDiv dayOffColor");
-		var dayOffText = document.createTextNode("Enjoy Your Day Off!");
+		let dayOffText = document.createTextNode("Enjoy Your Day Off!");
 		dayOffDiv.appendChild(dayOffText);
 		tableData2.appendChild(dayOffDiv);
 
-		var sicknessTextDiv = document.createElement("div");
+		let sicknessTextDiv = document.createElement("div");
 		sicknessTextDiv.setAttribute("id","sicknessTextDiv"+taxPeriodStart);
 		sicknessTextDiv.setAttribute("class","absoluteDiv sicknessDiv sicknessColor");
-		var sicknessTextDivText = document.createTextNode("Get well soon!");
+		let sicknessTextDivText = document.createTextNode("Get well soon!");
 		sicknessTextDiv.appendChild(sicknessTextDivText);
 		tableData2.appendChild(sicknessTextDiv);
 
-		var dayInSickTextDiv = document.createElement("div");
+		let dayInSickTextDiv = document.createElement("div");
 		dayInSickTextDiv.setAttribute("id","dayInSickTextDiv"+taxPeriodStart);
 		dayInSickTextDiv.setAttribute("class","absoluteDiv dayInSickDiv dayInSickColor");
-		var dayInSickTextDivText = document.createTextNode("Get well soon!");
+		let dayInSickTextDivText = document.createTextNode("Get well soon!");
 		dayInSickTextDiv.appendChild(dayInSickTextDivText);
 		tableData2.appendChild(dayInSickTextDiv);
 
-		var absenceDiv = document.createElement("div");
+		let absenceDiv = document.createElement("div");
 		absenceDiv.setAttribute("id","absenceDiv"+taxPeriodStart);
 		absenceDiv.setAttribute("class","absoluteDiv absenceDiv absenceColor");
-		var absenceDivText = document.createTextNode("Hope It's Authorised!");
+		let absenceDivText = document.createTextNode("Hope It's Authorised!");
 		absenceDiv.appendChild(absenceDivText);
 		tableData2.appendChild(absenceDiv);
 
-		var familyLeaeveTextDiv = document.createElement("div");
+		let familyLeaeveTextDiv = document.createElement("div");
 		familyLeaeveTextDiv.setAttribute("id","familyLeaeveTextDiv"+taxPeriodStart);
 		familyLeaeveTextDiv.setAttribute("class","absoluteDiv familyLeaveDiv familyLeaveColor");
-		var familyLeaeveTextDivText = document.createTextNode("Enjoy Being a Parent!");
+		let familyLeaeveTextDivText = document.createTextNode("Enjoy Being a Parent!");
 		familyLeaeveTextDiv.appendChild(familyLeaeveTextDivText);
 		tableData2.appendChild(familyLeaeveTextDiv);
 
-		var bereavementDiv = document.createElement("div");
+		let bereavementDiv = document.createElement("div");
 		bereavementDiv.setAttribute("id","bereavementDiv"+taxPeriodStart);
 		bereavementDiv.setAttribute("class","absoluteDiv bereavementDiv bereavementColor");
-		var bereavementText = document.createTextNode("Sincere Condolences.");
+		let bereavementText = document.createTextNode("Sincere Condolences.");
 		bereavementDiv.appendChild(bereavementText);
 		tableData2.appendChild(bereavementDiv);
 
-		var compassionateDiv = document.createElement("div");
+		let compassionateDiv = document.createElement("div");
 		compassionateDiv.setAttribute("id","compassionateDiv"+taxPeriodStart);
 		compassionateDiv.setAttribute("class","absoluteDiv compassionateDiv compassionateColor");
-		var compassionateText = document.createTextNode("Take Care!");
+		let compassionateText = document.createTextNode("Take Care!");
 		compassionateDiv.appendChild(compassionateText);
 		tableData2.appendChild(compassionateDiv);
 
-		var unpaidHolDiv = document.createElement("div");
+		let unpaidHolDiv = document.createElement("div");
 		unpaidHolDiv.setAttribute("id","unpaidHolDiv"+taxPeriodStart);
 		unpaidHolDiv.setAttribute("class","absoluteDiv unpaidHolDiv unpaidHolColor");
-		var unpaidHolDivText = document.createTextNode("Enjoy Your Time Off!");
+		let unpaidHolDivText = document.createTextNode("Enjoy Your Time Off!");
 		unpaidHolDiv.appendChild(unpaidHolDivText);
 		tableData2.appendChild(unpaidHolDiv);
 
 		tableRow.appendChild(tableData2);
 
 		//create fourth column elements
-		var noteDiv = document.createElement("div");
-		noteDiv.setAttribute("class", "col-sm-4  hidden-xs tableData tableDataRelative noteDiv");
+		let noteDiv = document.createElement("div");
+		noteDiv.setAttribute("class", "col-sm-5  hidden-xs tableData tableDataRelative noteDiv");
 
-		var noteInput = document.createElement("input");
+		let noteInput = document.createElement("input");
 		noteInput.setAttribute("type","text");
 		noteInput.setAttribute("name","noteInput"+taxPeriodStart);
 		noteInput.setAttribute("class","noteInput");

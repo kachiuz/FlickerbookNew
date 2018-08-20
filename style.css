@@ -138,9 +138,13 @@ input, select {
   padding: 0px;
 }
 
+.glyphicon-triangle-left, .glyphicon-fast-backward, .glyphicon-fast-forward, .glyphicon-triangle-right {
+  font-size: 25px;
+}
+
 .navbar-default {
   background-color: #0088cc;
-  border-color: #0040ff;
+  border-color: #4d4dff;
 }
 .navbar-default .navbar-brand {
   color: #ecf0f1;
@@ -156,21 +160,21 @@ input, select {
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   color: white;
-  background-color: #0040ff;
+  background-color: #4d4dff;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   color: white;
-  background-color: #0040ff;
+  background-color: #4d4dff;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
   color: white;
-  background-color: #0040ff;
+  background-color: #4d4dff;
 }
 .navbar-default .navbar-toggle {
-  border-color: #0040ff;
+  border-color: #4d4dff;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #0040ff;
+  background-color: #4d4dff;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #ecf0f1;
@@ -195,7 +199,7 @@ input, select {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: white;
-    background-color: #0040ff;
+    background-color: #4d4dff;
   }
 }
 .taxPeriodNumberContainer {
@@ -219,7 +223,7 @@ input, select {
 .tableCaption {
   background-color: #0088cc;
   color: white;
-  border-top: 1px solid #0040ff;
+  border-top: 1px solid #4d4dff;
 }
 
 @media (max-width: 767px) {
@@ -265,6 +269,7 @@ input, select {
   border-top: 1px solid white;*/
   font-size: 18px;
   padding-right: 3%;
+  padding-top: 1%;
 }
 
 .dateInput {
@@ -328,6 +333,88 @@ input, select {
 
 @media (max-width: 767px) {
   .tableContainer {
+    width: 100%;
+  }
+}
+.buttonContainer {
+  width: 60%;
+  margin: 0px;
+  margin: auto;
+  font-size: 20px;
+  padding: 0px;
+  margin-top: 10px;
+}
+
+.button {
+  float: right;
+  font-size: 20px;
+  background-color: #0088cc;
+  color: white;
+  font-weight: bold;
+}
+
+.responseDiv {
+  float: left;
+  color: green;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+@media (max-width: 767px) {
+  .buttonContainer {
+    width: 100%;
+  }
+
+  .button {
+    font-size: 18px;
+  }
+}
+.calendarContainer {
+  width: 60%;
+  margin: 0px;
+  margin: auto;
+  font-size: 20px;
+  padding: 0px;
+  margin-top: 10px;
+  border: 1px solid grey;
+  border-bottom: 0px;
+}
+
+.boxTitle {
+  background-color: #0088cc;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  height: 35px;
+}
+
+#calendarCaption {
+  padding: 0px 20px 0px 20px;
+}
+
+.calendar {
+  /*dont think it is neccessary*/
+  display: table;
+}
+
+.currentWeek {
+  /*border-top: 1px solid $currentWeekColor;
+  border-bottom: 1px solid $currentWeekColor;*/
+  position: relative;
+}
+
+.currentWeekFilter {
+  background: #ff3333;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  opacity: 0.2;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .calendarContainer {
     width: 100%;
   }
 }

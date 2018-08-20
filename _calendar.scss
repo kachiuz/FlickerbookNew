@@ -1,0 +1,43 @@
+.calendarContainer{
+  width: $tableWidth;
+  margin: 0px;
+  margin: auto;
+  font-size: 20px;
+  padding: 0px;
+  margin-top: $marginBetweenElements;
+  border: $borderStyle;
+  border-bottom: 0px;
+}
+.boxTitle {
+  background-color: $themeColor;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  height: 35px;
+}
+#calendarCaption {
+  padding: 0px 20px 0px 20px;
+}
+.calendar { /*dont think it is neccessary*/
+  display: table;
+}
+.currentWeek {
+	/*border-top: 1px solid $currentWeekColor;
+	border-bottom: 1px solid $currentWeekColor;*/
+	position: relative;
+}
+.currentWeekFilter {
+	background: $currentWeekColor;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	opacity: 0.2;
+	height: 100%;
+	width: 100%;
+}
+
+@media (max-width: 767px) {
+	.calendarContainer {
+		width: 100%;
+	}
+}

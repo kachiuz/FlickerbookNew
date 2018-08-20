@@ -65,14 +65,13 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="container tableContainer">
 			<div class="row tableRow tableCaption">
-					<div class="col-sm-3 col-xs-4">Day Type</div>
+					<div class="col-sm-2 col-xs-4">Day Type</div>
 					<div class="col-sm-2 col-xs-3">Date</div>
 					<div class="col-sm-1 col-xs-2">Start</div>
 					<div class="col-sm-2 col-xs-3">Finish</div>
-					<div class="col-sm-4  hidden-xs">Notes</div>
+					<div class="col-sm-5  hidden-xs">Notes</div>
 			</div>
 			<div class="row tableRow" id="tableRow0"> </div>
 			<div class="row tableRow" id="tableRow1"> </div>
@@ -82,18 +81,47 @@
 			<div class="row tableRow" id="tableRow5"> </div>
 			<div class="row tableRow" id="tableRow6"> </div>
 		</div>
+		<div class="container buttonContainer">
+			<div class="row">
+				<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain">lololllll
+				</div>
+				<div class="col-sm-2 col-xs-2">
+					<button type="button" class="btn btn-default button" id="form">Generate</button>
+				</div>
+			</div>
+		</div>
+		<div class="container calendarContainer">
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 boxTitle">
+					<span class="glyphicon glyphicon-triangle-left" id="buttonDown"> </span>
+					<span class="glyphicon glyphicon-fast-backward" id="fastBackward"></span>
+					<span id="calendarCaption">Calendar 2018</span>
+					<span class="glyphicon glyphicon-fast-forward" id="fastForward"></span>
+					<span class="glyphicon glyphicon-triangle-right" id="buttonUp"> </span>
+				</div>
+			</div>
+			<div class="row tableRow" id="dayRow">
+				<div class="col-sm-5 col-xs-5 calendarHeading">&nbsp </div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName0">5</div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName1">5</div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName2">5</div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName3">5</div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName4">5</div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName5">5</div>
+				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName6">5</div>
+			</div>
+			<div class="row tableRow" id="calendarRow0">5</div>
+			<div class="row tableRow" id="calendarRow1">5</div>
+			<div class="row tableRow" id="calendarRow2">5</div>
+			<div class="row tableRow currentWeek" id="calendarRow3">5
+				<div class="currentWeekFilter"></div>
+			</div>
+			<div class="row tableRow" id="calendarRow4">5</div>
+			<div class="row tableRow" id="calendarRow5">5</div>
+			<div class="row tableRow" id="calendarRow6">5</div>
+		</div>
 
 
-
-
-		<p>8</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
-		<p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p><p>5</p>
 		<input type="hidden" id="taxPeriodNr" name="taxPeriodNr" value="1">
 		<input type="hidden" id="timeSinceEpochInput" name="timeSinceEpochInput" value="1491004800000">
 	</body>

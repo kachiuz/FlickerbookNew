@@ -1,5 +1,5 @@
 .tableContainer{
-  width: 60%;
+  width: $tableWidth;
   margin: 0px;
   margin: auto;
   margin-top: 85px;
@@ -8,7 +8,7 @@
 }
 .tableRow{
   height: 30px;
-  border-bottom: 1px solid grey;
+  border-bottom: $borderStyle;
 }
 .tableData {
 	float: left;
@@ -21,8 +21,8 @@
   height: 29px;
   outline:none;
   border: 0px;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
+  border-left: $borderStyle;
+  border-right: $borderStyle;
   text-indent: 1px;
 }
 .dateDiv{
@@ -32,6 +32,7 @@
 	border-top: 1px solid white;*/
 	font-size: 18px;
   padding-right: 3%;
+  padding-top: 1%;
 }
 .dateInput {
 	text-align: right;
@@ -51,7 +52,7 @@
   height: 100%;
 	font-size: 20px;
   padding-left: 3%;
-  border-left: 1px solid grey;
+  border-left: $borderStyle;
 }
 .nextMorningSelect {
 	background: #6b6b47;
@@ -71,9 +72,9 @@
 	line-height: 30px;
 }
 .noteDiv {
-	border-left: 1px solid grey;
+	border-left: $borderStyle;
   height: 29px;
-  border-right: 1px solid grey;
+  border-right: $borderStyle;
 }
 .noteInput {
   width: 100%;
