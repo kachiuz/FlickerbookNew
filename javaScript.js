@@ -41,7 +41,7 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		//creating first column
 		let tableRow = document.getElementById("tableRow"+f);
 		let tableData = document.createElement("div");
-		tableData.setAttribute("class", "col-sm-2 col-xs-3 tableData");
+		tableData.setAttribute("class", "col-sm-3 col-xs-3 tableData");
 
 		let dayType = document.createElement("select");
 		dayType.setAttribute("name", "dayType"+taxPeriodStart);
@@ -65,8 +65,8 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 		//dayType.onchange = test;
 
 		//creating second column
-		  dateDiv = document.createElement("div");
-		dateDiv.setAttribute("class", "col-sm-2 col-xs-4 dateDiv tableData tableDataRelative");
+		 dateDiv = document.createElement("div");
+		dateDiv.setAttribute("class", "col-sm-3 col-xs-4 dateDiv tableData tableDataRelative");
 		dateDiv.setAttribute("id", "dateDiv"+f);
 
 		let startDate = new Date(timeSinceEpoch);
@@ -338,7 +338,7 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 
 		//create fourth column elements
 		let noteDiv = document.createElement("div");
-		noteDiv.setAttribute("class", "col-sm-5  hidden-xs tableData tableDataRelative noteDiv");
+		noteDiv.setAttribute("class", "col-sm-3  hidden-xs tableData tableDataRelative noteDiv");
 
 		let noteInput = document.createElement("input");
 		noteInput.setAttribute("type","text");
@@ -360,9 +360,83 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 	//familyLeaveButton.onchange = function(){hideHoursSelect();}
 	}
 }
+
+function generateCalendar (taxPeriodNumber,timeSinceEpoch) {
+	//weekStart = Number(weekStartArray[taxPeriodNumber]);
+	weekstart = 0;
+	var calendarTable = document.getElementById("calendar");
+	var calendarCaption = document.getElementById("calendarCaption");
+
+	timeSinceEpochForDay = timeSinceEpoch;
+	var mSecondsInWeek = 604800000;
+	timeSinceEpoch -= mSecondsInWeek*3;
+
+	var id = 0;
+	for(tr=0;tr<7;tr++)	{
+		//iterpiami dienu pavadinimai i kalendorius
+		var dayName = document.getElementById("dayName"+tr);
+		var startDay = new Date(timeSinceEpochForDay);
+		var dy = startDay.getDay();
+		dy = days[dy];
+		dayName.innerHTML = dy;
+		timeSinceEpochForDay += 86400000;
+
+		var startDate = new Date(timeSinceEpoch);
+		var mm = startDate.getMonth();
+		mm = months[mm];
+		var calendarRow = document.getElementById("calendarRow"+tr);
+
+		//iterpiami menesiu pavadinimai i kalendoriu
+		var monthDiv = document.createElement("div");
+		monthDiv.setAttribute("class", "col-xs-calDN col-sm-calDN dayDiv monthDiv");
+		monthDiv.setAttribute("id", "monthDiv"+tr);
+		var monthName = document.createTextNode(mm);
+		monthDiv.appendChild(monthName);
+		calendarRow.appendChild(monthDiv);
+
+		if (tr==3) {
+			var currentWeekFilter = document.createElement("div");
+			currentWeekFilter.setAttribute("class", "currentWeekFilter");
+			calendarRow.appendChild(currentWeekFilter);
+		}
+
+		var startDatecalendarCaption = new Date(timeSinceEpoch-86400000*21);
+		var yy = startDatecalendarCaption.getFullYear();
+		calendarCaption.innerHTML = "Calendar "+yy;
+
+		//cd = create div
+		for(cd=0;cd<7;cd++) 	{
+			//iterpiami dienu numeriai i kalendoriu
+			var startDate = new Date(timeSinceEpoch);
+			var dd = startDate.getDate();
+			if (dd<10){dd="0"+dd;}
+			var dayDiv = document.createElement("div");
+			dayDiv.setAttribute("class", "col-xs-calD col-sm-calD dayDiv");
+			dayDiv.setAttribute("id", "dayDiv"+id);
+			var dayNumber = document.createTextNode(dd);
+			dayDiv.appendChild(dayNumber);
+			calendarRow.appendChild(dayDiv);
+
+			//paryskiname esama diena kalendoriuje
+			var currentDate = new Date();
+			var currentTime = currentDate.getTime()
+
+			if (currentTime>timeSinceEpoch && currentTime <(timeSinceEpoch + 86400000)) 	{
+				dayDiv.setAttribute("class", "dayDiv currentDay");
+			}	else 	{
+				dayDiv.setAttribute("class", "dayDiv");
+			}
+			timeSinceEpoch += 86400000;
+
+			id++;
+		}
+	}
+	//bankHolidayFilter(timeSinceEpoch);
+}
 const start = () => {
 	let taxPeriodNumber = 20;
 	let timeSinceEpoch = 1491004800000;
 	createFirstColumnElements(taxPeriodNumber, timeSinceEpoch);
+	generateCalendar (taxPeriodNumber,timeSinceEpoch);
 }
 document.addEventListener("DOMContentLoaded",start,false);

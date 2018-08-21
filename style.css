@@ -1,212 +1,191 @@
 input, select {
   border-radius: 0;
-  -webkit-appearance: none;
-}
+  -webkit-appearance: none; }
 
-.notSelectedColor {
-  background: #ffffff;
-  color: black;
-}
-
-.dayInColor {
-  background: #ffff80;
-  color: black;
-}
-
-.dayOffColor {
-  background: #c3c3a2;
-  color: black;
-}
-
-.holidayColor {
-  background: #d5ff80;
-  color: black;
-}
-
-.unpaidHolColor {
-  background: #e6ffe6;
-  color: black;
-}
-
-.halfInHalfOffColor {
-  background: #e6ffb3;
-  color: black;
-}
-
-.dayInSickColor {
-  background: #ffcccc;
-  color: black;
-}
-
-.sicknessColor {
-  background: #ff9999;
-  color: black;
-}
-
-.absenceColor {
-  background: #ccebff;
-  color: black;
-}
-
-.familyLeaveColor {
-  background: #ffcc99;
-  color: black;
-}
-
-.bereavementColor {
-  background: #4d4d4d;
-  color: white;
-}
-
-.compassionateColor {
-  background: #ffe6cc;
-  color: black;
-}
-
-.startTimeColor {
-  background: #e1e1d0;
-  color: #000000;
-}
-
-.endTimeColor {
-  background: #c3c3a2;
-  color: #000000;
-}
-
-.nextMorning {
-  background: #6b6b47;
-  color: white;
-}
-
-.invalidForm {
-  background: #ff8080;
-  color: white;
-}
-
-.notSelectedDiv {
-  visibility: hidden;
-}
-
-.holidayDiv {
-  visibility: hidden;
-}
-
-.sicknessDiv {
-  visibility: hidden;
-}
-
-.dayOffDiv {
-  visibility: hidden;
-}
-
-.absenceDiv {
-  visibility: hidden;
-}
-
-.familyLeaveDiv {
-  visibility: hidden;
-  display: inline-block;
-}
-
-.bereavementDiv {
-  visibility: hidden;
-}
-
-.dayInSickDiv {
-  visibility: hidden;
-}
-
-.unpaidHolDiv {
-  visibility: hidden;
-}
-
-.compassionateDiv {
-  visibility: hidden;
-}
+.col-sm-6, .col-xs-6, .col-sm-4, .col-xs-4, .col-sm-2, .col-xs-2, .col-sm-3, .col-xs-3, .col-sm-5, .col-xs-5,
+.col-sm-10, .col-xs-10, .col-sm-12, .col-xs-12, .col-sm-1, .col-xs-1 {
+  padding: 0px;
+  margin: 0px; }
 
 .row, .container {
-  padding: 0px;
-}
+  padding: 0px; }
 
 .row {
   width: 100%;
-  margin: 0px;
-}
-
-.col-sm-3 {
-  margin: 0px;
-  padding: 0px;
-}
+  margin: 0px; }
 
 .glyphicon-triangle-left, .glyphicon-fast-backward, .glyphicon-fast-forward, .glyphicon-triangle-right {
-  font-size: 25px;
-}
+  font-size: 25px; }
+
+.notSelectedColor {
+  background: #ffffff;
+  color: black; }
+
+.dayInColor {
+  background: #ffff80;
+  color: black; }
+
+.dayOffColor {
+  background: #c3c3a2;
+  color: black; }
+
+.holidayColor {
+  background: #d5ff80;
+  color: black; }
+
+.unpaidHolColor {
+  background: #e6ffe6;
+  color: black; }
+
+.halfInHalfOffColor {
+  background: #e6ffb3;
+  color: black; }
+
+.dayInSickColor {
+  background: #ffcccc;
+  color: black; }
+
+.sicknessColor {
+  background: #ff9999;
+  color: black; }
+
+.absenceColor {
+  background: #ccebff;
+  color: black; }
+
+.familyLeaveColor {
+  background: #ffcc99;
+  color: black; }
+
+.bereavementColor {
+  background: #4d4d4d;
+  color: white; }
+
+.compassionateColor {
+  background: #ffe6cc;
+  color: black; }
+
+.startTimeColor {
+  background: #e1e1d0;
+  color: #000000; }
+
+.endTimeColor {
+  background: #c3c3a2;
+  color: #000000; }
+
+.nextMorning {
+  background: #6b6b47;
+  color: white; }
+
+.invalidForm {
+  background: #ff8080;
+  color: white; }
+
+.notSelectedDiv {
+  visibility: hidden; }
+
+.holidayDiv {
+  visibility: hidden; }
+
+.sicknessDiv {
+  visibility: hidden; }
+
+.dayOffDiv {
+  visibility: hidden; }
+
+.absenceDiv {
+  visibility: hidden; }
+
+.familyLeaveDiv {
+  visibility: hidden;
+  display: inline-block; }
+
+.bereavementDiv {
+  visibility: hidden; }
+
+.dayInSickDiv {
+  visibility: hidden; }
+
+.unpaidHolDiv {
+  visibility: hidden; }
+
+.compassionateDiv {
+  visibility: hidden; }
+
+.smallerContainer {
+  width: 60%;
+  margin: 0px;
+  margin: auto;
+  font-size: 20px;
+  padding: 0px;
+  margin-top: 10px;
+  border-bottom: 0px; }
+
+@media (max-width: 767px) {
+  .smallerContainer {
+    width: 100%; } }
+
+.marginTopMain {
+  margin-top: 85px; }
+
+.marginBetweenElements {
+  margin-top: 10px; }
+
+.squareBorder {
+  border: 1px solid grey; }
+
+.insideBox {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  background: #ffffcc; }
 
 .navbar-default {
   background-color: #0088cc;
-  border-color: #4d4dff;
-}
-.navbar-default .navbar-brand {
-  color: #ecf0f1;
-}
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-  color: white;
-}
-.navbar-default .navbar-text {
-  color: #ecf0f1;
-}
-.navbar-default .navbar-nav > li > a {
-  color: #ecf0f1;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-  color: white;
-  background-color: #4d4dff;
-}
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-  color: white;
-  background-color: #4d4dff;
-}
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  color: white;
-  background-color: #4d4dff;
-}
-.navbar-default .navbar-toggle {
-  border-color: #4d4dff;
-}
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #4d4dff;
-}
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #ecf0f1;
-}
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
-  border-color: #ecf0f1;
-}
-.navbar-default .navbar-link {
-  color: #ecf0f1;
-}
-.navbar-default .navbar-link:hover {
-  color: white;
-}
+  border-color: #4d4dff; }
+  .navbar-default .navbar-brand {
+    color: #ecf0f1; }
+    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+      color: white; }
+  .navbar-default .navbar-text {
+    color: #ecf0f1; }
+  .navbar-default .navbar-nav > li > a {
+    color: #ecf0f1; }
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+      color: white;
+      background-color: #4d4dff; }
+  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: #4d4dff; }
+  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: white;
+    background-color: #4d4dff; }
+  .navbar-default .navbar-toggle {
+    border-color: #4d4dff; }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+      background-color: #4d4dff; }
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: #ecf0f1; }
+  .navbar-default .navbar-collapse,
+  .navbar-default .navbar-form {
+    border-color: #ecf0f1; }
+  .navbar-default .navbar-link {
+    color: #ecf0f1; }
+    .navbar-default .navbar-link:hover {
+      color: white; }
 
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #ecf0f1;
-  }
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: white;
-  }
+    color: #ecf0f1; }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: white; }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: white;
-    background-color: #4d4dff;
-  }
-}
+    background-color: #4d4dff; } }
+
 .taxPeriodNumberContainer {
   position: relative;
   z-index: 3;
-  width: 100%;
-}
+  width: 100%; }
 
 #taxPeriodNumberMenu {
   margin-top: 50px;
@@ -218,75 +197,57 @@ input, select {
   padding: 0px;
   position: fixed;
   width: 100%;
-}
+  border-bottom: 1px solid #4d4dff; }
+
+@media (max-width: 767px) {
+  #taxPeriodNumberMenu {
+    font-size: 22px; } }
 
 .tableCaption {
   background-color: #0088cc;
   color: white;
-  border-top: 1px solid #4d4dff;
-}
-
-@media (max-width: 767px) {
-  #taxPeriodNumberMenu {
-    font-size: 22px;
-  }
-}
-.tableContainer {
-  width: 60%;
-  margin: 0px;
-  margin: auto;
-  margin-top: 85px;
-  font-size: 20px;
-  padding: 0px;
-}
+  text-align: center; }
 
 .tableRow {
   height: 30px;
-  border-bottom: 1px solid grey;
-}
+  border: 1px solid grey;
+  border-top: 0px; }
 
 .tableData {
   float: left;
   font-size: 18px;
   height: 100%;
-  padding: 0px;
-}
+  padding: 0px; }
 
 .typeOfDaySelect {
   width: 100%;
   height: 29px;
   outline: none;
   border: 0px;
-  border-left: 1px solid grey;
   border-right: 1px solid grey;
-  text-indent: 1px;
-}
+  text-indent: 1px; }
 
 .dateDiv {
   height: 100%;
   text-align: right;
   /*border-left: 1px solid white;
-  border-top: 1px solid white;*/
+	border-top: 1px solid white;*/
   font-size: 18px;
   padding-right: 3%;
-  padding-top: 1%;
-}
+  padding-top: 1%; }
 
 .dateInput {
   text-align: right;
   line-height: 100%;
   font-size: 18px;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
 .dateInputHidden {
   visibility: hidden;
-  position: absolute;
-}
+  position: absolute; }
 
 .tableDataRelative {
-  position: relative;
-}
+  position: relative; }
 
 .hourMinuteSelect {
   border: 0px;
@@ -295,16 +256,14 @@ input, select {
   height: 100%;
   font-size: 20px;
   padding-left: 3%;
-  border-left: 1px solid grey;
-}
+  border-left: 1px solid grey; }
 
 .nextMorningSelect {
   background: #6b6b47;
   color: white;
   border: 0px;
   outline: none;
-  margin: 0px;
-}
+  margin: 0px; }
 
 .absoluteDiv {
   width: 100%;
@@ -314,71 +273,102 @@ input, select {
   left: 0;
   text-align: center;
   font-size: 18px;
-  line-height: 30px;
-}
+  line-height: 30px; }
 
 .noteDiv {
   border-left: 1px solid grey;
-  height: 29px;
-  border-right: 1px solid grey;
-}
+  height: 29px; }
 
 .noteInput {
   width: 100%;
   height: 29px;
   outline: none;
   border: 0px;
-  text-indent: 5px;
-}
+  text-indent: 5px; }
 
 @media (max-width: 767px) {
   .tableContainer {
-    width: 100%;
-  }
-}
-.buttonContainer {
-  width: 60%;
-  margin: 0px;
-  margin: auto;
-  font-size: 20px;
-  padding: 0px;
-  margin-top: 10px;
-}
+    width: 100%; } }
 
 .button {
   float: right;
   font-size: 20px;
   background-color: #0088cc;
   color: white;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .responseDiv {
   float: left;
   color: green;
   font-weight: bold;
-  font-size: 22px;
-}
+  font-size: 22px; }
 
-@media (max-width: 767px) {
-  .buttonContainer {
-    width: 100%;
-  }
+/*additional bootsrtap for controls*/
+.col-xs-calD,
+.col-sm-calD,
+.col-md-calD,
+.col-lg-calD {
+  position: relative;
+  min-height: 1px;
+  text-align: center;
+  /*padding-right: 15px;
+    padding-left: 15px;
+	border-right: 2px solid white;
+	border-left: 2px solid white;*/ }
 
-  .button {
-    font-size: 18px;
-  }
-}
-.calendarContainer {
-  width: 60%;
-  margin: 0px;
-  margin: auto;
-  font-size: 20px;
-  padding: 0px;
-  margin-top: 10px;
-  border: 1px solid grey;
-  border-bottom: 0px;
-}
+/*calendar days width*/
+.col-xs-calD {
+  width: 12%;
+  float: left; }
+
+@media (min-width: 768px) {
+  .col-sm-calD {
+    width: 12%;
+    float: left; } }
+
+@media (min-width: 992px) {
+  .col-md-calD {
+    width: 12%;
+    float: left; } }
+
+@media (min-width: 1200px) {
+  .col-lg-calD {
+    width: 12%;
+    float: left; } }
+
+/*bootstrap End*/
+.col-xs-calDN,
+.col-sm-calDN,
+.col-md-calDN,
+.col-lg-calDN {
+  position: relative;
+  min-height: 1px;
+  text-align: center;
+  background-color: red;
+  /*padding-right: 15px;
+    padding-left: 15px;
+	border-right: 2px solid white;
+	border-left: 2px solid white;*/ }
+
+/*calendar days width*/
+.col-xs-calDN {
+  width: 16%;
+  float: left; }
+
+@media (min-width: 768px) {
+  .col-sm-calDN {
+    width: 16%;
+    float: left; } }
+
+@media (min-width: 992px) {
+  .col-md-calDN {
+    width: 16%;
+    float: left; } }
+
+@media (min-width: 1200px) {
+  .col-lg-calDN {
+    width: 16%;
+    float: left; } }
 
 .boxTitle {
   background-color: #0088cc;
@@ -386,22 +376,15 @@ input, select {
   text-align: center;
   font-size: 25px;
   height: 35px;
-}
+  border: 1px solid grey; }
 
 #calendarCaption {
-  padding: 0px 20px 0px 20px;
-}
-
-.calendar {
-  /*dont think it is neccessary*/
-  display: table;
-}
+  padding: 0px 20px 0px 20px; }
 
 .currentWeek {
   /*border-top: 1px solid $currentWeekColor;
-  border-bottom: 1px solid $currentWeekColor;*/
-  position: relative;
-}
+	border-bottom: 1px solid $currentWeekColor;*/
+  position: relative; }
 
 .currentWeekFilter {
   background: #ff3333;
@@ -410,13 +393,69 @@ input, select {
   position: absolute;
   opacity: 0.2;
   height: 100%;
-  width: 100%;
-}
+  width: 100%; }
 
-@media (max-width: 767px) {
-  .calendarContainer {
-    width: 100%;
-  }
-}
+.dayDiv {
+  color: black;
+  font-size: 20px;
+  display: inline-block;
+  text-align: center;
+  height: 100%;
+  width: 12%;
+  background-color: yellow; }
 
-/*# sourceMappingURL=style.css.map */
+.monthDiv {
+  background: #0088cc;
+  color: white;
+  width: 16%;
+  height: 100%; }
+
+/*calendar and payments subheadings*/
+.calendarHeading, .paymentsHeading {
+  background: #0088cc;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  height: 100%; }
+
+.paymentsHeading {
+  text-align: left; }
+
+#totalGrossPaymentsName, #totalGrossPaymentsAmount, .totaDeductionsRow {
+  background: #d7d7c1;
+  font-size: 20px;
+  text-align: left;
+  height: 100%;
+  border-top: 1px solid grey; }
+
+#totalGrossPaymentsAmount {
+  font-weight: bold;
+  padding-right: 5px; }
+
+.totaDeductionsRow {
+  border: 1px solid grey; }
+
+.netPay {
+  background: #ceff99;
+  border-left: 1px solid grey;
+  padding-left: 5px; }
+
+#netPayAmount {
+  text-align: right;
+  padding-right: 5px;
+  font-weight: bold;
+  background: #ceff99; }
+
+.chartStyle {
+  background: #ffffcc;
+  /*height: 250px;
+	width: 510px;*/
+  text-align: center;
+  border-bottom: 1px solid grey; }
+
+.noPremium {
+  font-size: 18px;
+  background: #e6ffcc;
+  text-align: center;
+  color: #cca300;
+  border-bottom: 1px solid grey; }

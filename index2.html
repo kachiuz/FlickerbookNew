@@ -65,13 +65,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="container tableContainer">
+		<div class="container smallerContainer marginTopMain">
 			<div class="row tableRow tableCaption">
-					<div class="col-sm-2 col-xs-4">Day Type</div>
-					<div class="col-sm-2 col-xs-3">Date</div>
-					<div class="col-sm-1 col-xs-2">Start</div>
-					<div class="col-sm-2 col-xs-3">Finish</div>
-					<div class="col-sm-5  hidden-xs">Notes</div>
+					<div class="col-sm-3 col-xs-4">Day Type</div>
+					<div class="col-sm-3 col-xs-3">Date</div>
+					<div class="col-sm-3 col-xs-5">Start / Finish</div>
+					<div class="col-sm-3  hidden-xs">Notes</div>
 			</div>
 			<div class="row tableRow" id="tableRow0"> </div>
 			<div class="row tableRow" id="tableRow1"> </div>
@@ -80,18 +79,16 @@
 			<div class="row tableRow" id="tableRow4"> </div>
 			<div class="row tableRow" id="tableRow5"> </div>
 			<div class="row tableRow" id="tableRow6"> </div>
-		</div>
-		<div class="container buttonContainer">
-			<div class="row">
+			<!---------------------------------------GENERATE BUTTON-------------------------------->
+			<div class="row marginBetweenElements">
 				<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain">lololllll
 				</div>
 				<div class="col-sm-2 col-xs-2">
 					<button type="button" class="btn btn-default button" id="form">Generate</button>
 				</div>
 			</div>
-		</div>
-		<div class="container calendarContainer">
-			<div class="row">
+			<!-----------------------------------CALENDAR-------------------------------------------->
+			<div class="row marginBetweenElements">
 				<div class="col-sm-12 col-xs-12 boxTitle">
 					<span class="glyphicon glyphicon-triangle-left" id="buttonDown"> </span>
 					<span class="glyphicon glyphicon-fast-backward" id="fastBackward"></span>
@@ -101,25 +98,67 @@
 				</div>
 			</div>
 			<div class="row tableRow" id="dayRow">
-				<div class="col-sm-5 col-xs-5 calendarHeading">&nbsp </div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName0">5</div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName1">5</div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName2">5</div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName3">5</div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName4">5</div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName5">5</div>
-				<div class="col-sm-1 col-xs-1 calendarHeading" id ="dayName6">5</div>
+				<div class="col-xs-calDN col-sm-calDN calendarHeading">&nbsp </div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName0"></div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName1"></div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName2"></div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName3"></div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName4"></div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName5"></div>
+				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName6"></div>
 			</div>
-			<div class="row tableRow" id="calendarRow0">5</div>
-			<div class="row tableRow" id="calendarRow1">5</div>
-			<div class="row tableRow" id="calendarRow2">5</div>
-			<div class="row tableRow currentWeek" id="calendarRow3">5
+			<div class="row tableRow" id="calendarRow0"></div>
+			<div class="row tableRow" id="calendarRow1"></div>
+			<div class="row tableRow" id="calendarRow2"></div>
+			<div class="row tableRow currentWeek" id="calendarRow3">
 				<div class="currentWeekFilter"></div>
 			</div>
-			<div class="row tableRow" id="calendarRow4">5</div>
-			<div class="row tableRow" id="calendarRow5">5</div>
-			<div class="row tableRow" id="calendarRow6">5</div>
-		</div>
+			<div class="row tableRow" id="calendarRow4"></div>
+			<div class="row tableRow" id="calendarRow5"></div>
+			<div class="row tableRow" id="calendarRow6"></div>
+		<!-----------------------------------------------------------PAYMENTS----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">Payments</div>
+			<div class="row tableRow">
+				<div class="col-sm-5 col-xs-5 paymentsHeading">Payments</div>
+				<div class="col-sm-2 col-xs-2 paymentsHeading">Units</div>
+				<div class="col-sm-3 col-xs-3 paymentsHeading">Rate</div>
+				<div class="col-sm-2 col-xs-2 paymentsHeading">£.pp</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-5 col-xs-5" id="paymentsNamesDiv">unsocial prem</div>
+				<div class="col-sm-2 col-xs-2" id="paymentsUnitsDiv">37.50</div>
+				<div class="col-sm-3 col-xs-3" id="paymentsRateDiv">11.0098</div>
+				<div class="col-sm-2 col-xs-2" id="paymentsAmountDiv">460.76</div>
+			</div>
+			<div class="row tableRow">
+				<div class="col-sm-10 col-xs-10" id="totalGrossPaymentsName">Total gross payments</div>
+				<div class="col-sm-2 col-xs-2" id="totalGrossPaymentsAmount">0.0</div>
+			</div>
+			<div class="row insideBox">
+				<div id="paymentsPieChart" class="col-sm-12 col-xs-12 chartStyle">	lololo	</div>
+				<div id="paymentsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+					<br>Charts Are Visible to Premium Members.<br><br>
+				</div>
+			</div>
+			<!-----------------------------------------------------DEDUCTIONS------------------------------------------>
+			<div class="row boxTitle marginBetweenElements">Deductions</div>
+			<div class="row insideBox">
+					<div class="col-sm-5 col-xs-5"id="deductionsNamesDiv"> TAX	<br></div>
+					<div class="col-sm-2 col-xs-2" id="deductionsAmountDiv">20.00</div>
+					<div class="col-sm-5 col-xs-5"></div>
+			</div>
+			<div class="row totaDeductionsRow">
+					<div class="col-sm-5 col-xs-5">Total Deductions</div>
+					<div class="col-sm-2 col-xs-2" id="totalDeductionsAmount">120.00</div>
+					<div class="col-sm-2 col-xs-2 netPay">Net Pay</div>
+					<div class="col-sm-3 col-xs-3" id="netPayAmount">0.00</div>
+			</div>
+			<div class="row insideBox">
+				<div id="deductionsPieChart" class="col-sm-12 col-xs-12 chartStyle">lolol</div>
+				<div id="deductionsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+		</div><!--end of container-->
 
 
 		<input type="hidden" id="taxPeriodNr" name="taxPeriodNr" value="1">

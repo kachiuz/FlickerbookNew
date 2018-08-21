@@ -1,0 +1,19 @@
+input, select {
+  border-radius: 0;
+-webkit-appearance: none;
+}
+.col-sm-6, .col-xs-6, .col-sm-4, .col-xs-4, .col-sm-2, .col-xs-2, .col-sm-3, .col-xs-3, .col-sm-5, .col-xs-5,
+.col-sm-10, .col-xs-10, .col-sm-12, .col-xs-12, .col-sm-1, .col-xs-1   {
+  padding: 0px;
+  margin: 0px;
+}
+.row, .container {
+  padding: 0px;
+}
+.row {
+  width: 100%;
+  margin: 0px;
+}
+.glyphicon-triangle-left, .glyphicon-fast-backward, .glyphicon-fast-forward, .glyphicon-triangle-right {
+    font-size: 25px;
+}

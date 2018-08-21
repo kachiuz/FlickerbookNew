@@ -1,14 +1,12 @@
-.tableContainer{
-  width: $tableWidth;
-  margin: 0px;
-  margin: auto;
-  margin-top: 85px;
-  font-size: 20px;
-  padding: 0px;
+.tableCaption {
+  background-color: $themeColor;
+  color: white;
+  text-align: center;
 }
-.tableRow{
+.tableRow {
   height: 30px;
-  border-bottom: $borderStyle;
+  border: $borderStyle;
+  border-top: 0px;
 }
 .tableData {
 	float: left;
@@ -21,7 +19,6 @@
   height: 29px;
   outline:none;
   border: 0px;
-  border-left: $borderStyle;
   border-right: $borderStyle;
   text-indent: 1px;
 }
@@ -74,7 +71,6 @@
 .noteDiv {
 	border-left: $borderStyle;
   height: 29px;
-  border-right: $borderStyle;
 }
 .noteInput {
   width: 100%;

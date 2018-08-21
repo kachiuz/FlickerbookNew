@@ -1,7 +1,4 @@
-input, select {
-  border-radius: 0;
--webkit-appearance: none;
-}
+@import 'undoBootstrap';
 
 $themeColor   : #0088cc;
 $bgHighlight : #4d4dff;
@@ -12,6 +9,7 @@ $tableWidth: 60%;
 $borderStyle: 1px solid grey;
 $marginBetweenElements: 10px;
 $currentWeekColor: #ff3333;
+$insideBoxColor: #ffffcc;
 
 .notSelectedColor	  {background: #ffffff; color: black;}
 .dayInColor		     	{background: #ffff80; color: black;}
@@ -42,22 +40,41 @@ $currentWeekColor: #ff3333;
 .unpaidHolDiv		  {visibility: hidden;}
 .compassionateDiv	{visibility: hidden;}
 
-.row, .container {
-  padding: 0px;
-}
-.row {
-  width: 100%;
-  margin: 0px;
-}
-.col-sm-3{
+.smallerContainer{
+    width: $tableWidth;
     margin: 0px;
-  padding: 0px;
+    margin: auto;
+    font-size: 20px;
+    padding: 0px;
+    margin-top: $marginBetweenElements;
+    border-bottom: 0px;
 }
-.glyphicon-triangle-left, .glyphicon-fast-backward, .glyphicon-fast-forward, .glyphicon-triangle-right {
-    font-size: 25px;
+@media (max-width: 767px) {
+	.smallerContainer {
+		width: 100%;
+	}
 }
+.marginTopMain {
+  margin-top: 85px;
+}
+.marginBetweenElements {
+  margin-top: $marginBetweenElements;
+}
+.squareBorder {
+  border: $borderStyle
+}
+//.insideBoxBackgroundColor {background: $insideBoxColor}
+.insideBox {
+  border-left: $borderStyle;
+  border-right: $borderStyle;
+  background: $insideBoxColor
+}
+
 @import 'navbar';
 @import 'taxPeriodNumberMenu';
 @import 'table';
 @import 'buttonRow';
+@import 'calendarDayGrid';
 @import 'calendar';
+@import 'payments';
+@import 'chart';

@@ -13,11 +13,7 @@
 	padding: 0px;
 	position: fixed;
 	width: 100%;
-}
-.tableCaption {
-  background-color: $themeColor;
-  color: white;
-  border-top: 1px solid $bgHighlight;
+	border-bottom: 1px solid $bgHighlight;
 }
 
 @media (max-width: 767px) {

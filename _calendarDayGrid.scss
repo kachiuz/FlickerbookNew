@@ -1,0 +1,83 @@
+/*additional bootsrtap for controls*/
+$daywidth: 12%;
+$dayNameWidth: 16%;
+
+.col-xs-calD,
+.col-sm-calD,
+.col-md-calD,
+.col-lg-calD {
+    position: relative;
+    min-height: 1px;
+    text-align: center;
+    /*padding-right: 15px;
+    padding-left: 15px;
+	border-right: 2px solid white;
+	border-left: 2px solid white;*/
+}
+/*calendar days width*/
+.col-xs-calD {
+    width: $daywidth;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-calD {
+        width: $daywidth;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-calD {
+        width: $daywidth;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-calD {
+        width: $daywidth;
+        float: left;
+    }
+}
+/*bootstrap End*/
+
+.col-xs-calDN,
+.col-sm-calDN,
+.col-md-calDN,
+.col-lg-calDN {
+    position: relative;
+    min-height: 1px;
+    text-align: center;
+    background-color: red;
+    /*padding-right: 15px;
+    padding-left: 15px;
+	border-right: 2px solid white;
+	border-left: 2px solid white;*/
+}
+/*calendar days width*/
+.col-xs-calDN {
+    width: $dayNameWidth;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-calDN {
+        width: $dayNameWidth;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-calDN {
+        width: $dayNameWidth;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-calDN {
+        width: $dayNameWidth;
+        float: left;
+    }
+}

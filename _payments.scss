@@ -1,0 +1,25 @@
+#totalGrossPaymentsName, #totalGrossPaymentsAmount,.totaDeductionsRow {
+  background: #d7d7c1;
+  font-size: 20px;
+  text-align: left;
+  height: 100%;
+  border-top: $borderStyle;
+}
+#totalGrossPaymentsAmount {
+  font-weight: bold;
+  padding-right: 5px;
+}
+.totaDeductionsRow{
+  border: $borderStyle;
+}
+.netPay{
+  background: #ceff99;
+  border-left: $borderStyle;
+  padding-left: 5px;
+}
+#netPayAmount {
+  text-align: right;
+  padding-right: 5px;
+  font-weight: bold;
+  background: #ceff99;
+}

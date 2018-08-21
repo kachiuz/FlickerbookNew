@@ -1,11 +1,3 @@
-.buttonContainer{
-  width: $tableWidth;
-  margin: 0px;
-  margin: auto;
-  font-size: 20px;
-  padding: 0px;
-  margin-top: $marginBetweenElements;
-}
 .button{
   float: right;
   font-size: 20px;
@@ -18,12 +10,4 @@
   color: green;
   font-weight: bold;
   font-size: 22px;
-}
-@media (max-width: 767px) {
-	.buttonContainer {
-		width: 100%;
-	}
-  .button{
-    font-size: 18px;
-  }
 }
