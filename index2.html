@@ -90,11 +90,11 @@
 			<!-----------------------------------CALENDAR-------------------------------------------->
 			<div class="row marginBetweenElements">
 				<div class="col-sm-12 col-xs-12 boxTitle">
-					<span class="glyphicon glyphicon-triangle-left" id="buttonDown"> </span>
+					<span class="glyphicon glyphicon-triangle-bottom" id="buttonDown"> </span>
 					<span class="glyphicon glyphicon-fast-backward" id="fastBackward"></span>
 					<span id="calendarCaption">Calendar 2018</span>
 					<span class="glyphicon glyphicon-fast-forward" id="fastForward"></span>
-					<span class="glyphicon glyphicon-triangle-right" id="buttonUp"> </span>
+					<span class="glyphicon glyphicon-triangle-top" id="buttonUp"> </span>
 				</div>
 			</div>
 			<div class="row tableRow" id="dayRow">
@@ -150,16 +150,403 @@
 			<div class="row totaDeductionsRow">
 					<div class="col-sm-5 col-xs-5">Total Deductions</div>
 					<div class="col-sm-2 col-xs-2" id="totalDeductionsAmount">120.00</div>
-					<div class="col-sm-2 col-xs-2 netPay">Net Pay</div>
-					<div class="col-sm-3 col-xs-3" id="netPayAmount">0.00</div>
+					<div class="col-sm-3 col-xs-3 netPay">Net Pay</div>
+					<div class="col-sm-2 col-xs-2" id="netPayAmount">500.00</div>
 			</div>
 			<div class="row insideBox">
 				<div id="deductionsPieChart" class="col-sm-12 col-xs-12 chartStyle">lolol</div>
 				<div id="deductionsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
 				Charts Are Visible to Premium Members.<br><br></div>
 			</div>
-		</div><!--end of container-->
+			<!-----------------------------------------------------------Year To Date----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">Year To Date</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="yearToDateNames">TAX</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="yearToDateAmount">12000.00</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="yearToDatePieChart" class="col-sm-12 col-xs-12 chartStyle">lololl</div>
+				<div id="yearToDatePieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+			<!-----------------------------------------------------------Year To Date Pay Structure----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Pay Structure</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDatePayStructureModal">
+					</span>
+					<div id="yearToDatePayStructureModal" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Year To Date Pay Structure Info</h4>
+					      </div>
+					      <div class="modal-body">
+									<p>This section demonstrate a percentage structure of your payments.</p>
+									<p>Basic Pay consists of regular hourly pay and unsocial hours pay.</p>
+									<p>Holiday payments consists of normal, enhanced and unsocial holiday payments.</p>
+									<p>Sickness payments consists of hourly paid sickness leave, unsocial sickness hours and SSP.</p>
+									<p>Overtime payments is a sum, received for doing all overtime rates.</p>
+									<p>Paternity payments consists of paid paternity hours, unsocial paternity hours, SAP and SPP.</p>
+									<p>Bank holiday payments consists of Bank Holiday hours and clock in bonuses.</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="yearToDatePercentageNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="yearToDatePercentageAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="yearToDatePercentageAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="yearToDatePercentagePieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="yearToDatePercentagePieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
 
+
+			<!-----------------------------------------------------------Year To Payments Totals----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Payments</div>
+				<div class="col-sm-1 col-xs-1">
+					<!-- Trigger the modal with a button -->
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDatePaymentsTotalsModal">
+					</span>
+					<div id="yearToDatePaymentsTotalsModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Pay Structure Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>All payments received during the Tax Year are displayed in this table.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="yearToDateNamesII">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="yearToDateAmountII">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="yearToDateAmountIIHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="yearToDateIIPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="yearToDateIIPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+
+			<!-----------------------------------------------------------Year To Date Hours Totals----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Hours</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDateHoursTotalsModal">
+					</span>
+					<div id="yearToDateHoursTotalsModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Hours Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>This table displays total hours amounts done during the Tax Year.</p>
+									<p>Total Paid Hours Spent At Work are equal to the sum of Total Basic Hours and Overtime Hours;</p>
+									<p>Total Hours spent at work include hours you get paid for and unpaid breaks.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="yearToDateNamesHours">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="yearToDateAmountHours">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="yearToDateAmountHoursHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="yearToDateHoursPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="yearToDateHoursPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+
+			<!-----------------------------------------------------------Year To Date Days Totals----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Days</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDateDaysTotalsModal">
+					</span>
+					<div id="yearToDateDaysTotalsModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Hours Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>Here You can find the number of days you worked or had day off's to date. Other type off days are displayed as well.</p>
+									<p>Days since last sick is displayed for current date, which means that even if you skip forward or backward through
+									your payslips, it's value does not change.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="dayStatisticsNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="dayStatisticsAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="dayStatisticsAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="dayStatisticsPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="dayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+		<!-----------------------------------------------------------Holidays----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Holidays</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#holidayStatisticsModal">
+					</span>
+					<div id="holidayStatisticsModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Hours Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>This table displays holiday statistics such as booked, used, earned holiday days. It also shows how many days have passed
+									since your last holidays and how many days left till your next one.</p>
+									<p>Important! Holidays are shown on current date, so even if you skip forwards or backwards through your payslips, values in this section will not change!
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="holidayStatisticsNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="holidayStatisticsAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="holidayStatisticsAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="holidayStatisticsPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="holidayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+		<!-----------------------------------------------------------Year To Date Weekly Averages----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Weekly Averages</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#YTDWeeklyAveragesModal">
+					</span>
+					<div id="YTDWeeklyAveragesModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Weekly Averages Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>In this section you can find out your average earnings and deductions per week during the Tax year.
+									To calculate this Flickerbook uses the Total amounts earned or deducted and divide them by the number of a current Tax Period.
+									For example, if you have worked 37.5 hours on tax period no. 1 and 41.5 hours on tax period  no 2,
+									the result of average hours worked after second Tax period would be (37.5+41.5)/2 = 39.5.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="weeklyAveragesNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="weeklyAveragesAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="weeklyAveragesAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="weeklyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="weeklyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+		<!-----------------------------------------------------------Year To Date Daily Averages----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Daily Averages</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#YTDDailyAveragesModal">
+					</span>
+					<div id="YTDDailyAveragesModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Daily Averages Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>This table displays two types of daily averages statistics. </p>
+									<p>The first one, shows daily averages for every day in:
+									The more payments you have, that do not require you to work, like holiday, sick or paternity pay, the higher the values
+									in this section will be.To simply put, it just takes all your Gross and  Net Pay and divides it by the number of Days In.
+									Same rule applies to deductions.</p>
+									<p>The second one, shows daily averages for all days associated with work, this includes holidays, unpaid holidays, sick, paternity and other
+									leave days. The more leave days you have per year, the smaller average values will be calculated in this section.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="dailyAveragesNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="dailyAveragesAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="dailyAveragesAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="dailyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="dailyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+	<!-----------------------------------------------------------Year To Date Hourly Averages----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Year To Date Hourly Averages</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#YTDHourlyAveragesModal">
+					</span>
+					<div id="YTDHourlyAveragesModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Year To Date Hourly Averages Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>This section displays three types of hourly averages.</p>
+									<p>The first one shows hourly averages rates for All Paid Hours that you spent at work: only day in hours are
+									used for calculation.<p>
+									<p>The second one shows hourly averages rates for All Hours In: it includes unpaid breaks, so if you have
+									unpaid breaks, this rate will be lower the the first one, if you do not, then it will be identical to the first rate.<p>
+									<p>The third one shows hourly averages for All Paid hours, including holiday, sick, and paternity leave hours, so this rate
+									will be the lowest of all three.<p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="hourlyAveragesNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="hourlyAveragesAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="hourlyAveragesAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="hourlyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="hourlyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+			<!-----------------------------------------------------------Last 3 Months Weekly Averages----------------------------------------------------------->
+			<div class="row boxTitle marginBetweenElements">
+				<div class="col-sm-11 col-xs-11">Last 3 Months Weekly Averages</div>
+				<div class="col-sm-1 col-xs-1">
+					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#las12WeeksModal">
+					</span>
+					<div id="las12WeeksModal" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Last 3 Months Weekly Averages Info</h4>
+								</div>
+								<div class="modal-body">
+									<p>Shows the last 13 weeks earnings and deductions. Values in this section are handy for those, who wish to apply for
+									mortgage or a personal loan.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row insideBox">
+				<div class="col-sm-9 col-xs-9" id="yearToDateLast12WeeksNames">5</div>
+				<div class="col-sm-3 col-xs-3 border-left" id="yearToDateLast12WeeksAmount">5</div>
+				<div class="col-sm-3 col-xs-3 border-left hidden" id="yearToDateLast12WeeksAmountHid">5</div>
+			</div>
+			<div class="row insideBox topBorder">
+				<div id="las3MonthsPieChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+				<div id="las3MonthsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
+		</div><!--end of container-->
+		<p>
+			<p>
+
+		<!--teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest-->
+	<!--	<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li>Action</li>
+    <li>Another action</li>
+    <li>Something else here</li>
+    <li role="separator" class="divider"></li>
+    <li>Separated link</li>
+  </ul>
+</div>-->
+
+
+
+<p>
+	<p>
+
+
+
+<!--end test--------------------------------------------------------->
 
 		<input type="hidden" id="taxPeriodNr" name="taxPeriodNr" value="1">
 		<input type="hidden" id="timeSinceEpochInput" name="timeSinceEpochInput" value="1491004800000">

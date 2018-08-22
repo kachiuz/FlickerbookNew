@@ -1,0 +1,17 @@
+.modal-body {
+  color: black;
+  text-align: left;
+  font-size: 18px;
+}
+.modal-header {
+  background: $modalInfoColor;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+.modal-footer {
+  background: $modalInfoColor;
+}
+.clickable {
+  cursor: pointer;
+}

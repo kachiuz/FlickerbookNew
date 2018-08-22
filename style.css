@@ -3,7 +3,7 @@ input, select {
   -webkit-appearance: none; }
 
 .col-sm-6, .col-xs-6, .col-sm-4, .col-xs-4, .col-sm-2, .col-xs-2, .col-sm-3, .col-xs-3, .col-sm-5, .col-xs-5,
-.col-sm-10, .col-xs-10, .col-sm-12, .col-xs-12, .col-sm-1, .col-xs-1 {
+.col-sm-10, .col-xs-10, .col-sm-12, .col-xs-12, .col-sm-1, .col-xs-1, .col-sm-9, .col-xs-9, .col-sm-11, col-xs-11 {
   padding: 0px;
   margin: 0px; }
 
@@ -17,6 +17,9 @@ input, select {
 .glyphicon-triangle-left, .glyphicon-fast-backward, .glyphicon-fast-forward, .glyphicon-triangle-right {
   font-size: 25px; }
 
+/*.glyphicon-info-sign{
+  font-size: 18px;
+}*/
 .notSelectedColor {
   background: #ffffff;
   color: black; }
@@ -446,6 +449,14 @@ input, select {
   font-weight: bold;
   background: #ceff99; }
 
+.border-left {
+  border-left: 1px solid grey;
+  text-align: right;
+  padding-right: 5px; }
+
+.topBorder {
+  border-top: 1px solid grey; }
+
 .chartStyle {
   background: #ffffcc;
   /*height: 250px;
@@ -459,3 +470,20 @@ input, select {
   text-align: center;
   color: #cca300;
   border-bottom: 1px solid grey; }
+
+.modal-body {
+  color: black;
+  text-align: left;
+  font-size: 18px; }
+
+.modal-header {
+  background: #e6f2ff;
+  color: black;
+  text-align: center;
+  font-weight: bold; }
+
+.modal-footer {
+  background: #e6f2ff; }
+
+.clickable {
+  cursor: pointer; }
