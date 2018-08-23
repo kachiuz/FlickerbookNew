@@ -2,20 +2,34 @@ input, select {
   border-radius: 0;
   -webkit-appearance: none; }
 
-.col-sm-6, .col-xs-6, .col-sm-4, .col-xs-4, .col-sm-2, .col-xs-2, .col-sm-3, .col-xs-3, .col-sm-5, .col-xs-5,
-.col-sm-10, .col-xs-10, .col-sm-12, .col-xs-12, .col-sm-1, .col-xs-1, .col-sm-9, .col-xs-9, .col-sm-11, col-xs-11 {
-  padding: 0px;
-  margin: 0px; }
-
-.row, .container {
+.noPadding {
   padding: 0px; }
 
-.row {
-  width: 100%;
+.noMargin {
   margin: 0px; }
 
+/*.col-sm-6, .col-xs-6, .col-sm-4, .col-xs-4, .col-sm-2, .col-xs-2, .col-sm-3, .col-xs-3, .col-sm-5, .col-xs-5,
+.col-sm-10, .col-xs-10, .col-sm-12, .col-xs-12, .col-sm-1, .col-xs-1, .col-sm-9, .col-xs-9, .col-sm-11, col-xs-11   {
+  padding: 0px;
+  margin: 0px;
+}
+.padding-left{
+  padding-left: 10px;
+}
+.row, .container {
+  padding: 0px;
+}
+.row {
+  width: 100%;
+  margin: 0px;
+}*/
 .glyphicon-triangle-left, .glyphicon-fast-backward, .glyphicon-fast-forward, .glyphicon-triangle-right {
-  font-size: 25px; }
+  font-size: 30px; }
+
+.glyphicon-fast-backward, .glyphicon-fast-forward {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg); }
 
 /*.glyphicon-info-sign{
   font-size: 18px;
@@ -116,7 +130,7 @@ input, select {
   visibility: hidden; }
 
 .smallerContainer {
-  width: 60%;
+  width: 95%;
   margin: 0px;
   margin: auto;
   font-size: 20px;
@@ -133,6 +147,9 @@ input, select {
 
 .marginBetweenElements {
   margin-top: 10px; }
+
+.marginBetweenElementsBottom {
+  margin-bottom: 10px; }
 
 .squareBorder {
   border: 1px solid grey; }
@@ -305,6 +322,12 @@ input, select {
   color: green;
   font-weight: bold;
   font-size: 22px; }
+
+.33percentWidth {
+  width: 33.3%; }
+
+.text-align-center {
+  text-align: center; }
 
 /*additional bootsrtap for controls*/
 .col-xs-calD,

@@ -20,19 +20,19 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) =>{
 
 	//depending on a year, caption has to be changed
 	if(taxPeriodNumber<=52 && taxPeriodNumber>0 ){
-		tableCaptionTitle.innerHTML = "2017/2018 Tax Period no. " + taxPeriodNumber;
+		tableCaptionTitle.innerHTML = "2017/2018 Tax Period " + taxPeriodNumber;
 	}	else if (taxPeriodNumber<=104 && taxPeriodNumber>52 ){
 		taxPeriodNumberNew = taxPeriodNumber - 52;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
-		tableCaptionTitle.innerHTML = "2018/2019 Tax Period no. " + taxPeriodNumberNew;
+		tableCaptionTitle.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
 	}	else if (taxPeriodNumber<=156 && taxPeriodNumber>104 ){
 		taxPeriodNumberNew = taxPeriodNumber - 104;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
-		tableCaptionTitle.innerHTML = "2019/2020 Tax Period no. " + taxPeriodNumberNew;
+		tableCaptionTitle.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
 	}	else if (taxPeriodNumber<=208 && taxPeriodNumber>156 ){
 		taxPeriodNumberNew = taxPeriodNumber - 156;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
-		tableCaptionTitle.innerHTML = "2020/2021 Tax Period no. " + taxPeriodNumberNew;
+		tableCaptionTitle.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
 	}	else {
 		alert("Error!");
 	}

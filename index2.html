@@ -56,66 +56,133 @@
 				</div>
 			</div>
 		</nav>
+		<!-----------------------------TAX PERIOD NUMBER MENU LINE----------------------------------------------------->
 		<div class="container taxPeriodNumberContainer">
 			<div class="row" id="taxPeriodNumberMenu">
-				<div class="col-sm-12 col-xs-12" id="tableCaption">
+				<div class="col-sm-12 col-xs-12 noPadding" id="tableCaption">
 					<span class="glyphicon glyphicon-triangle-left" id="buttonLeft"> </span>
-					<span id="tableCaptionTitle">2018/2019 Tax Period no. 20</span>
+					<span id="tableCaptionTitle">2018/2019 Tax Period 20</span>
 					<span class="glyphicon glyphicon-triangle-right" id="buttonRight"> </span>
 				</div>
 			</div>
+			<div class="marginBetweenElementsBottom hidden-xs"></div>
 		</div>
-		<div class="container smallerContainer marginTopMain">
-			<div class="row tableRow tableCaption">
-					<div class="col-sm-3 col-xs-4">Day Type</div>
-					<div class="col-sm-3 col-xs-3">Date</div>
-					<div class="col-sm-3 col-xs-5">Start / Finish</div>
-					<div class="col-sm-3  hidden-xs">Notes</div>
-			</div>
-			<div class="row tableRow" id="tableRow0"> </div>
-			<div class="row tableRow" id="tableRow1"> </div>
-			<div class="row tableRow" id="tableRow2"> </div>
-			<div class="row tableRow" id="tableRow3"> </div>
-			<div class="row tableRow" id="tableRow4"> </div>
-			<div class="row tableRow" id="tableRow5"> </div>
-			<div class="row tableRow" id="tableRow6"> </div>
+
+		<!-------------------------------TABLE AND CALENDAR---------------------------------------------------------->
+		<div class="container smallerContainer marginTopMain"> <!--start of container ddiv-->
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<div class="col-sm-12 hidden-xs boxTitle noPadding">
+						<span id="tableCaption2">2018/2019 Tax Period 20</span>
+					</div>
+					<div class="col-sm-12 col-xs-12 tableRow tableCaption noPadding">
+						<div class="col-sm-3 col-xs-4">Day Type</div>
+						<div class="col-sm-3 col-xs-3">Date</div>
+						<div class="col-sm-3 col-xs-5">Start / Finish</div>
+						<div class="col-sm-3  hidden-xs">Notes</div>
+					</div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow0"> </div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow1"> </div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow2"> </div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow3"> </div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow4"> </div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow5"> </div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow6"> </div>
 			<!---------------------------------------GENERATE BUTTON-------------------------------->
-			<div class="row marginBetweenElements">
-				<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain">lololllll
+					<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
+						<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain">lololllll		</div>
+						<div class="col-sm-2 col-xs-2">
+							<button type="button" class="btn btn-default button" id="form">Generate</button>
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-2 col-xs-2">
-					<button type="button" class="btn btn-default button" id="form">Generate</button>
+				<!-----------------------------------CALENDAR-------------------------------------------->
+				<div class="col-sm-6 col-xs-12">
+					<div class="col-sm-12 col-xs-12 boxTitle noPadding">
+						<span class="glyphicon glyphicon-triangle-bottom" id="buttonDown"> </span>
+						<span class="glyphicon glyphicon-fast-backward" id="fastBackward"></span>
+						<span id="calendarCaption">Calendar 2018</span>
+						<span class="glyphicon glyphicon-fast-forward" id="fastForward"></span>
+						<span class="glyphicon glyphicon-triangle-top" id="buttonUp"> </span>
+					</div>
+					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="dayRow">
+						<div class="col-xs-calDN col-sm-calDN calendarHeading">&nbsp </div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName0"></div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName1"></div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName2"></div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName3"></div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName4"></div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName5"></div>
+						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName6"></div>
+					</div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow0"></div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow1"></div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow2"></div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding currentWeek" id="calendarRow3">
+					<div class="currentWeekFilter"></div>
+				</div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow4"></div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow5"></div>
+				<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow6"></div>
+				<!---------------------------------CALENDAR BUTTONS------------------------------------------------>
+				<div class="col-sm-12 col-xs-12 marginBetweenElements text-align-center noPadding">
+					<div class="btn-group" role="group" aria-label="Basic example">
+					  <button type="button" class="btn btn-default button" data-toggle="modal" data-target="#3monthsCalendar">3 Months</button>
+						<div id="3monthsCalendar" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">3 Months Calendar</h4>
+									</div>
+									<div class="modal-body" id="3monthsCalendarBody">
+										<p>This function is under developement.</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					  <button type="button" class="btn btn-default button" data-toggle="modal" data-target="#6monthsCalendar">6 Months</button>
+						<div id="6monthsCalendar" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">6 Months Calendar</h4>
+									</div>
+									<div class="modal-body" id="6monthsCalendarBody">
+										<p>This function is under developement.</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					  <button type="button" class="btn btn-default button" data-toggle="modal" data-target="#12monthsCalendar">12 Months</button>
+						<div id="12monthsCalendar" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">12 Months Calendar</h4>
+									</div>
+									<div class="modal-body" id="6monthsCalendarBody">
+										<p>This function is under developement.</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<!-----------------------------------CALENDAR-------------------------------------------->
-			<div class="row marginBetweenElements">
-				<div class="col-sm-12 col-xs-12 boxTitle">
-					<span class="glyphicon glyphicon-triangle-bottom" id="buttonDown"> </span>
-					<span class="glyphicon glyphicon-fast-backward" id="fastBackward"></span>
-					<span id="calendarCaption">Calendar 2018</span>
-					<span class="glyphicon glyphicon-fast-forward" id="fastForward"></span>
-					<span class="glyphicon glyphicon-triangle-top" id="buttonUp"> </span>
-				</div>
-			</div>
-			<div class="row tableRow" id="dayRow">
-				<div class="col-xs-calDN col-sm-calDN calendarHeading">&nbsp </div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName0"></div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName1"></div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName2"></div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName3"></div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName4"></div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName5"></div>
-				<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName6"></div>
-			</div>
-			<div class="row tableRow" id="calendarRow0"></div>
-			<div class="row tableRow" id="calendarRow1"></div>
-			<div class="row tableRow" id="calendarRow2"></div>
-			<div class="row tableRow currentWeek" id="calendarRow3">
-				<div class="currentWeekFilter"></div>
-			</div>
-			<div class="row tableRow" id="calendarRow4"></div>
-			<div class="row tableRow" id="calendarRow5"></div>
-			<div class="row tableRow" id="calendarRow6"></div>
+		</div>
+		<div class="clearfix visible-sm"></div>
 		<!-----------------------------------------------------------PAYMENTS----------------------------------------------------------->
 			<div class="row boxTitle marginBetweenElements">Payments</div>
 			<div class="row tableRow">
@@ -508,28 +575,31 @@
 				<div id="las3MonthsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
 				Charts Are Visible to Premium Members.<br><br></div>
 			</div>
-	<!-----------------------------------------------------------Last 10 Weeks Net Pay Chart----------------------------------------------------------->
-			<div class="row boxTitle noBottomBorder marginBetweenElements">
-				<div class="col-sm-12 col-xs-12">Last 10 Weeks Net Pay Chart</div>
+
+	<!-------------ROW FOR 2 ELEMENTS------------------------------------------------------->
+			<!-----------------------------------------------------------Last 10 Weeks Net Pay Chart----------------------------------------------------------->
+			<div class="row marginBetweenElements">
+				<div class="col-sm-6">
+					<div class="col-sm-12 col-xs-12 boxTitle">Last 10 Weeks Net Pay Chart</div>
+					<div id="columnChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+					<div id="columnChartNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
+						Charts Are Visible to Premium Members.<br><br></div>
+					</div>
+
+				<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
+				<div class="col-sm-6">
+					<div class="col-sm-12 col-xs-12 boxTitle ">Last 10 Weeks Paid Hours Chart</div>
+					<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+					<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
+					Charts Are Visible to Premium Members.<br><br></div>
+				</div>
 			</div>
-			<div class="row insideBox topBorder">
-				<div id="columnChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
-				<div id="columnChartNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
-				Charts Are Visible to Premium Members.<br><br></div>
-			</div>
-	<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
-			<div class="row boxTitle noBottomBorder marginBetweenElements">
-				<div class="col-sm-12 col-xs-12">Last 10 Weeks Paid Hours Chart</div>
-			</div>
-			<div class="row insideBox topBorder">
-				<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle">lol</div>
-				<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
-				Charts Are Visible to Premium Members.<br><br></div>
-			</div>
-	<!----------------------------------------------------End of Charts and data----------------------------------------------------->
+			<!----------------------------------------------------End of Charts and data----------------------------------------------------->
 		</div><!--end of container-->
 		<p>
 			<p>
+
+
 
 		<!--teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest-->
 	<!--	<div class="dropdown">

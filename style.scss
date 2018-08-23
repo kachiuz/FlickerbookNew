@@ -5,7 +5,7 @@ $bgHighlight : #4d4dff;
 $colDefault  : #ecf0f1;
 $colHighlight: white;
 $hoverBackground : #4d4dff;
-$tableWidth: 60%;
+$tableWidth: 95%;
 $borderStyle: 1px solid grey;
 $marginBetweenElements: 10px;
 $currentWeekColor: #ff3333;
@@ -60,6 +60,9 @@ $modalInfoColor: #e6f2ff;
 }
 .marginBetweenElements {
   margin-top: $marginBetweenElements;
+}
+.marginBetweenElementsBottom{
+  margin-bottom: $marginBetweenElements;
 }
 .squareBorder {
   border: $borderStyle
