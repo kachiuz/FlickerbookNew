@@ -480,12 +480,16 @@ input, select {
 .topBorder {
   border-top: 1px solid grey; }
 
-.chartStyle {
+.chartStyle, .chartStyleFullBorder {
   background: #ffffcc;
   /*height: 250px;
 	width: 510px;*/
   text-align: center;
-  border-bottom: 1px solid grey; }
+  border: 1px solid grey;
+  border-top: 0px; }
+
+.chartStyleFullBorder {
+  border: 1px solid grey; }
 
 .noPremium {
   font-size: 18px;

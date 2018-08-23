@@ -1,9 +1,13 @@
-.chartStyle {
+.chartStyle, .chartStyleFullBorder {
 	background: $insideBoxColor;
 	/*height: 250px;
 	width: 510px;*/
 	text-align: center;
-  border-bottom: $borderStyle
+  border: $borderStyle;
+	border-top: 0px;
+}
+.chartStyleFullBorder {
+  border: $borderStyle;
 }
 .noPremium {
 	font-size: 18px;
