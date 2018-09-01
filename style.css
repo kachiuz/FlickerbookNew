@@ -1,4 +1,4 @@
-input, select {
+select {
   border-radius: 0;
   -webkit-appearance: none; }
 
@@ -99,7 +99,7 @@ input, select {
   color: white; }
 
 .notSelectedDiv {
-  visibility: hidden; }
+  visibility: visible; }
 
 .holidayDiv {
   visibility: hidden; }
@@ -229,7 +229,7 @@ input, select {
   text-align: center; }
 
 .tableRow {
-  height: 30px;
+  height: 35px;
   border: 1px solid grey;
   border-top: 0px; }
 
@@ -241,7 +241,7 @@ input, select {
 
 .typeOfDaySelect {
   width: 100%;
-  height: 29px;
+  height: 34px;
   outline: none;
   border: 0px;
   border-right: 1px solid grey;
@@ -293,18 +293,21 @@ input, select {
   left: 0;
   text-align: center;
   font-size: 18px;
-  line-height: 30px; }
+  line-height: 35px; }
 
 .noteDiv {
   border-left: 1px solid grey;
-  height: 29px; }
+  height: 34px; }
 
 .noteInput {
   width: 100%;
-  height: 29px;
+  height: 34px;
   outline: none;
   border: 0px;
   text-indent: 5px; }
+
+.border-left-message {
+  border-left: 1px solid grey; }
 
 @media (max-width: 767px) {
   .tableContainer {

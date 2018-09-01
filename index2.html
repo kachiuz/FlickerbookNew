@@ -78,8 +78,8 @@
 					<div class="col-sm-12 col-xs-12 tableRow tableCaption noPadding">
 						<div class="col-sm-3 col-xs-4">Day Type</div>
 						<div class="col-sm-3 col-xs-3">Date</div>
-						<div class="col-sm-3 col-xs-5">Start / Finish</div>
-						<div class="col-sm-3  hidden-xs">Notes</div>
+						<div class="col-sm-4 col-xs-5">Start/Finish</div>
+						<div class="col-sm-2  hidden-xs">Notes</div>
 					</div>
 					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow0"> </div>
 					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow1"> </div>
@@ -598,26 +598,32 @@
 		</div>
 	</div>
 	<div class="clearfix visible-sm"></div>
-	<!-------------ROW FOR 2 ELEMENTS------------------------------------------------------->
-			<!-----------------------------------------------------------Last 10 Weeks Net Pay Chart----------------------------------------------------------->
-				<div class="row">
-				<div class="col-sm-6 col-xs-12">
-					<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Net Pay Chart</div>
-					<div id="columnChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
-					<div id="columnChartNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
-						Charts Are Visible to Premium Members.<br><br></div>
-					</div>
+	<!-----------------------------------------------------------Last 10 Weeks Net Pay Chart----------------------------------------------------------->
+		<div class="row">
+		<div class="col-sm-6 col-xs-12">
+			<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Net Pay Chart</div>
+			<div id="columnChart" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+			<div id="columnChartNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
 
-				<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
-				<div class="col-sm-6 col-xs-12">
-					<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Paid Hours Chart</div>
-					<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle">lol</div>
-					<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
-					Charts Are Visible to Premium Members.<br><br></div>
+		<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
+		<div class="col-sm-6 col-xs-12">
+			<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Paid Hours Chart</div>
+			<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle">lol</div>
+			<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
+			Charts Are Visible to Premium Members.<br><br></div>
+		</div>
+	</div>
+	<div class="clearfix visible-sm"></div>
+			<!----------------------------------------------------End of Charts and data----------------------------------------------------->
+
+			<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
+				<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain2">lol		</div>
+				<div class="col-sm-2 col-xs-2">
+					<button type="button" class="btn btn-default button" id="delete">Delete Payslip</button>
 				</div>
 			</div>
-			<div class="clearfix visible-sm"></div>
-			<!----------------------------------------------------End of Charts and data----------------------------------------------------->
 		</div><!--end of container-->
 		<p>
 			<p>
@@ -662,5 +668,38 @@
 
 		<input type="hidden" id="taxPeriodNr" name="taxPeriodNr" value="1">
 		<input type="hidden" id="timeSinceEpochInput" name="timeSinceEpochInput" value="1491004800000">
+
+
+
+		<!----putting other elements with id from previuos index file, so that javascript would work---->
+	<!--<div id="tableCaptionHidden">
+		<div class="leftButton" id="buttonLeftHidden"> ◄ </div>
+		<div class="leftButton" id="buttonLeftFakeHidden"> ◄ </div>
+		<div id="tableCaptionTitleHidden">Tax Period no.</div>
+		<div class="rightButton" id="buttonRightHidden"> ► </div>
+		<div class="rightButton" id="buttonRightFakeHidden"> ► </div>
+	</div>
+	<div class="leftButton" id="buttonLeftFake"> ◄ </div>
+	<div id="tableCaptionTitle">Tax Period no.</div>
+	<div class="rightButton" id="buttonRightFake"> ► </div>
+
+	<div id="fastBackwardFake">
+		<span class="bottom">▲</span>
+		<span class="top">▲</span>
+	</div>
+	<div id="fastForwardFake">
+		<span class="bottom">▼</span>
+		<span class="top">▼</span>
+	</div>
+	<div class="rightButton" id="buttonDownFake"> ▼ </div>
+
+	<div class="leftButton" id="buttonUpFake"> ▲ </div>
+
+	<div id="paySavingsDiv" class="nodisplay">
+		<div id="payChristmasSavings" class="nodisplay"></div>
+		<div id="paySummerSavings" class="nodisplay"></div>
+	</div>-->
+
+
 	</body>
 </html>
