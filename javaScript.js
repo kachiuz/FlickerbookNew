@@ -15,7 +15,7 @@ let unsHCheckCurrent = 1;
 let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStart*86400000
 //END OF GLOBAL VAIRABLES------------------------------------------------------------------------//
 
-const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) => {
+const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 
@@ -362,7 +362,7 @@ const createFirstColumnElements = (taxPeriodNumber, timeSinceEpoch) => {
 		taxPeriodStart++;
 
 	//dayType.onchange = function (){changeSelectBackground(), calendarBackgroundChangeOnSelect(), hideHoursSelect(), bankHolidayFilter(timeSinceEpoch)};
-	dayType.onchange = function (){changeSelectBackground(taxPeriodNumber),hideHoursSelect(taxPeriodNumber); }
+	dayType.onchange = function (){changeSelectBackground(taxPeriodNumber),calendarBackgroundChangeOnSelect(taxPeriodNumber),hideHoursSelect(taxPeriodNumber); }
 
 	//endHours.onchange = function(){finishNextMorningBColor(weekStart);};
 	sicknessButton.onchange = function (){hideHoursSelect(taxPeriodNumber);}
@@ -445,19 +445,14 @@ function generateCalendar (taxPeriodNumber,timeSinceEpoch) {
 }
 
 //function that changes main table background colors and the visibility of its components
-function changeSelectBackground(){
+const changeSelectBackground =(taxPeriodNumber) => {
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
-
 	for(let b=0;b<7;b++)	{
 		let index = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
-
-		let dayType = document.getElementById("dayType"+taxPeriodStart);				//select meniu, kuriame pasirenkamas dienos tipas
-		let dateInput = document.getElementById("dateInput"+taxPeriodStart); 				//datos laukelis
+		let dayType = document.getElementById("dayType"+taxPeriodStart);				//select meniu, where we select day type
+		let dateInput = document.getElementById("dateInput"+taxPeriodStart); 				//date field
 		let noteInput = document.getElementById("noteInput"+taxPeriodStart);
-		//let tableRow = document.getElementById("tableRow"+b);
-		let dateDiv = document.getElementById("dateDiv"+b);							//div i kuri iterpiamas datos laukelis
-		//var endTime = document.getElementById("endTime"+taxPeriodStart);					//div i kuri iterpiami valandu ir minuciu drop down meniu
-		//console.log(tableRow);
+		let dateDiv = document.getElementById("dateDiv"+b);
 		let startHours = document.getElementById("startHours"+taxPeriodStart);
 		let startMinutes = document.getElementById("startMinutes"+taxPeriodStart);
 		let endHours = document.getElementById("endHours"+taxPeriodStart);
@@ -481,7 +476,8 @@ function changeSelectBackground(){
 		let compassionateDiv = document.getElementById("compassionateDiv"+taxPeriodStart);
 		let compassionateButtonDiv = document.getElementById("compassionateButtonDiv"+taxPeriodStart);
 
-		//using a classname method as it is easer to change the whole class name string then keep adding or removing additional classes
+		//using a classname method as it is easer to change the whole class name string
+		//then keep adding or removing additional classes
 		switch (index){
 			case 0: //not selected
 				dayType.className="typeOfDaySelect notSelectedColor";
@@ -588,7 +584,6 @@ function changeSelectBackground(){
 					endHours.style.visibility = "hidden";
 					endMinutes.style.visibility = "hidden";
 				}
-
 				unpaidHolDiv.style.visibility = "hidden";
 				sicknessDiv.style.visibility = "hidden";
 				dayOffDiv.style.visibility = "hidden";
@@ -844,6 +839,110 @@ function changeSelectBackground(){
 	//finishNextMorningBColor (weekStart);
 }
 
+// a function that changes the colors of calendar day background depending on selection
+//it also marks a current day on a calendar
+const calendarBackgroundChangeOnSelect = (taxPeriodNumber) => {
+	//weekStart = 0;
+	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
+
+	let currentDate = new Date();
+	let currentTime = currentDate.getTime()
+	let timeSinceEpochCurrentDay = timeSinceEpoch;
+	for(i=21;i<28;i++)	{
+		let index = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
+		let dayDiv = document.getElementById("dayDiv"+i);
+		switch(index){
+			case 0:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv notSelectedColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv notSelectedColor";
+				}
+				break;
+			case 1:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv dayInColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv dayInColor";
+				}
+				break;
+			case 2:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv dayOffColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv dayOffColor";
+				}
+				break;
+			case 3:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv holidayColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv holidayColor";
+				}
+				break;
+			case 4:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv halfInHalfOffColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv halfInHalfOffColor";
+				}
+				break;
+			case 5:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv unpaidHolColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv unpaidHolColor";
+				}
+				break;
+			case 6:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv dayInSickColor currentDay");
+				}	else	{
+					dayDiv.className="dayDiv dayInSickColor";
+				}
+				break;
+			case 7:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000)) {
+					dayDiv.setAttribute("class", "dayDiv sicknessColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv sicknessColor";
+				}
+				break;
+			case 8:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv absenceColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv absenceColor";
+				}
+				break;
+			case 9:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv familyLeaveColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv familyLeaveColor";
+				}
+				break;
+			case 10:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv bereavementColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv bereavementColor";
+				}
+				break;
+			case 11:
+				if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+					dayDiv.setAttribute("class", "dayDiv compassionateColor currentDay");
+				}	else {
+					dayDiv.className="dayDiv compassionateColor";
+				}
+				break;
+			default:
+				dayDiv.className = "dayDiv notSelectedColor";
+		}
+		taxPeriodStart++;
+		timeSinceEpochCurrentDay += 86400000;
+	}
+}
 //if a "paid", button is checked, this function shows start-finish time dropdown menus, if it
 //is uncheck, it hides them.
 const hideHoursSelect = (taxPeriodNumber) => {
@@ -871,81 +970,81 @@ const hideHoursSelect = (taxPeriodNumber) => {
 
 		switch (index){
 			case 7:
-			if (unsHCheckCurrent === 1){
-				if (sicknessCheck === false) {
-					startHours.style.visibility = "hidden";
-					startMinutes.style.visibility = "hidden";
-					endHours.style.visibility = "hidden";
-					endMinutes.style.visibility = "hidden";
-					sicknessTextDiv.style.visibility = "visible";
-				} else if (sicknessCheck === true){
-					startHours.style.visibility = "visible";
-					startMinutes.style.visibility = "visible";
-					endHours.style.visibility = "visible";
-					endMinutes.style.visibility = "visible";
-					sicknessTextDiv.style.visibility = "hidden";
-				} else {
-					alert("Error");
+				if (unsHCheckCurrent === 1){
+					if (sicknessCheck === false) {
+						startHours.style.visibility = "hidden";
+						startMinutes.style.visibility = "hidden";
+						endHours.style.visibility = "hidden";
+						endMinutes.style.visibility = "hidden";
+						sicknessTextDiv.style.visibility = "visible";
+					} else if (sicknessCheck === true){
+						startHours.style.visibility = "visible";
+						startMinutes.style.visibility = "visible";
+						endHours.style.visibility = "visible";
+						endMinutes.style.visibility = "visible";
+						sicknessTextDiv.style.visibility = "hidden";
+					} else {
+						alert("Error");
+					}
 				}
-			}
-			break;
+				break;
 			case 9:
-			if (unsHCheckCurrent === 1){
-				if (familyCheck === false){
-					startHours.style.visibility = "hidden";
-					startMinutes.style.visibility = "hidden";
-					endHours.style.visibility = "hidden";
-					endMinutes.style.visibility = "hidden";
-					familyLeaeveTextDiv.style.visibility = "visible";
-				} else if (familyCheck === true){
-					startHours.style.visibility = "visible";
-					startMinutes.style.visibility = "visible";
-					endHours.style.visibility = "visible";
-					endMinutes.style.visibility = "visible";
-					familyLeaeveTextDiv.style.visibility = "hidden";
-				} else {
-					alert("Error");
+				if (unsHCheckCurrent === 1){
+					if (familyCheck === false){
+						startHours.style.visibility = "hidden";
+						startMinutes.style.visibility = "hidden";
+						endHours.style.visibility = "hidden";
+						endMinutes.style.visibility = "hidden";
+						familyLeaeveTextDiv.style.visibility = "visible";
+					} else if (familyCheck === true){
+						startHours.style.visibility = "visible";
+						startMinutes.style.visibility = "visible";
+						endHours.style.visibility = "visible";
+						endMinutes.style.visibility = "visible";
+						familyLeaeveTextDiv.style.visibility = "hidden";
+					} else {
+						alert("Error");
+					}
 				}
-			}
-			break;
+				break;
 			case 10:
-			if (unsHCheckCurrent === 1){
-				if (bereavementCheck === false){
-					startHours.style.visibility = "hidden";
-					startMinutes.style.visibility = "hidden";
-					endHours.style.visibility = "hidden";
-					endMinutes.style.visibility = "hidden";
-					bereavementDiv.style.visibility = "visible"
-				} else if (bereavementCheck === true){
-					startHours.style.visibility = "visible";
-					startMinutes.style.visibility = "visible";
-					endHours.style.visibility = "visible";
-					endMinutes.style.visibility = "visible";
-					bereavementDiv.style.visibility = "hidden"
-				} else {
-					alert("Error");
+				if (unsHCheckCurrent === 1){
+					if (bereavementCheck === false){
+						startHours.style.visibility = "hidden";
+						startMinutes.style.visibility = "hidden";
+						endHours.style.visibility = "hidden";
+						endMinutes.style.visibility = "hidden";
+						bereavementDiv.style.visibility = "visible"
+					} else if (bereavementCheck === true){
+						startHours.style.visibility = "visible";
+						startMinutes.style.visibility = "visible";
+						endHours.style.visibility = "visible";
+						endMinutes.style.visibility = "visible";
+						bereavementDiv.style.visibility = "hidden"
+					} else {
+						alert("Error");
+					}
 				}
-			}
-			break;
+				break;
 			case 11:
-			if (unsHCheckCurrent === 1){
-				if (compassionateCheck === false){
-					startHours.style.visibility = "hidden";
-					startMinutes.style.visibility = "hidden";
-					endHours.style.visibility = "hidden";
-					endMinutes.style.visibility = "hidden";
-					compassionateDiv.style.visibility = "visible"
-				} else if (compassionateCheck === true){
-					startHours.style.visibility = "visible";
-					startMinutes.style.visibility = "visible";
-					endHours.style.visibility = "visible";
-					endMinutes.style.visibility = "visible";
-					compassionateDiv.style.visibility = "hidden"
-				} else {
-					alert("Error");
+				if (unsHCheckCurrent === 1){
+					if (compassionateCheck === false){
+						startHours.style.visibility = "hidden";
+						startMinutes.style.visibility = "hidden";
+						endHours.style.visibility = "hidden";
+						endMinutes.style.visibility = "hidden";
+						compassionateDiv.style.visibility = "visible"
+					} else if (compassionateCheck === true){
+						startHours.style.visibility = "visible";
+						startMinutes.style.visibility = "visible";
+						endHours.style.visibility = "visible";
+						endMinutes.style.visibility = "visible";
+						compassionateDiv.style.visibility = "hidden"
+					} else {
+						alert("Error");
+					}
 				}
-			}
-			break;
+				break;
 			default:
 				startHours.style.visibility = "visible";
 				startMinutes.style.visibility = "visible";
@@ -955,13 +1054,12 @@ const hideHoursSelect = (taxPeriodNumber) => {
 				familyLeaeveTextDiv.style.visibility = "hidden";
 				bereavementDiv.style.visibility = "hidden";
 				compassionateDiv.style.visibility = "hidden";
-			break;
 		}
 	taxPeriodStart++;
 	}
 };
 const start = () => {
-	createFirstColumnElements(taxPeriodNumber, timeSinceEpoch);
+	createTableElements(taxPeriodNumber, timeSinceEpoch);
 	generateCalendar (taxPeriodNumber,timeSinceEpoch);
 }
 document.addEventListener("DOMContentLoaded",start,false);

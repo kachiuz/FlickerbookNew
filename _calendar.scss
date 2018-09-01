@@ -19,7 +19,7 @@
 	top: 0px;
 	left: 0px;
 	position: absolute;
-	opacity: 0.2;
+	opacity: 0.1;
 	height: 100%;
 	width: 100%;
 }
@@ -30,7 +30,6 @@
 	text-align: center;
 	height: 100%;
   width: 12%;
-  background-color: yellow;
 }
 .monthDiv {
 	background: $themeColor;
@@ -48,4 +47,7 @@
 }
 .paymentsHeading {
   text-align: left;
+}
+.currentDay {
+	box-shadow: 0px 0px 0px 4px green inset;
 }
