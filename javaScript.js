@@ -27,13 +27,15 @@ let mSecondsInWeek = 604800000;
 let taxPeriodNumber = Math.ceil((currentTime - timeSinceEpochOriginal)/mSecondsInWeek);
 
 //weekStart and unsHCheckCurrent will be arrays fiiled from back end
-let weekStart = 0;
-let unsHCheckCurrent = 1;
-let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStart*86400000
+let weekStartArray = [];
+let unsHCheck = [];
+
+var timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+0*86400000;
 //END OF GLOBAL VAIRABLES------------------------------------------------------------------------//
 
 //function that changes main table background colors and the visibility of its components
 const changeSelectBackground =(taxPeriodNumber) => {
+	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	for(let b=0;b<7;b++)	{
 		let index = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
@@ -159,7 +161,7 @@ const changeSelectBackground =(taxPeriodNumber) => {
 
 				notSelectedDiv.style.visibility = "hidden";
 				//show or hide holiday div depending if there are unsocial hours
-				if (unsHCheckCurrent === 1) {
+				if (unsHCheck[taxPeriodNumber] === 1) {
 					holidayDiv.style.visibility = "hidden";
 					startHours.style.visibility = "visible";
 					startMinutes.style.visibility = "visible";
@@ -430,7 +432,7 @@ const changeSelectBackground =(taxPeriodNumber) => {
 // a function that changes the colors of calendar day background depending on selection
 //it also marks a current day on a calendar
 const calendarBackgroundChangeOnSelect = (taxPeriodNumber) => {
-	//weekStart = 0;
+	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 
 	let currentDate = new Date();
@@ -533,7 +535,7 @@ const calendarBackgroundChangeOnSelect = (taxPeriodNumber) => {
 }
 //function that marks bank holiday inside main table
 const markBankHoliday=(taxPeriodNumber) => {
-	//weekStart = 0;
+	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	timeSinceEpochMBH = timeSinceEpochOriginal+(taxPeriodNumber-1)*604800000+weekStart*86400000;
 	for(let b=0;b<7;b++) {
@@ -545,8 +547,9 @@ const markBankHoliday=(taxPeriodNumber) => {
 		timeSinceEpochMBH+=86400000;
 	}
 }
+//marks current day inside the main table
 const markCurrentDay = (taxPeriodNumber) => {
-	weekStart = 0;
+	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	let currentDate = new Date();
 	let currentYear = currentDate.getFullYear();
@@ -571,11 +574,9 @@ const markCurrentDay = (taxPeriodNumber) => {
 		let dayOffDiv = document.getElementById("dayOffDiv"+taxPeriodStart);
 		let absenceDiv = document.getElementById("absenceDiv"+taxPeriodStart);
 		let familyLeaveDiv = document.getElementById("familyLeaveDiv"+taxPeriodStart);
-		//var bereavementDiv = document.getElementById("bereavementDiv"+taxPeriodStart);
 		let dayInSickDiv = document.getElementById("dayInSickDiv"+taxPeriodStart);
 		let enhancedHolidayDiv = document.getElementById("enhancedHolidayDiv"+taxPeriodStart)
 		let unpaidHolDiv = document.getElementById("unpaidHolDiv"+taxPeriodStart);
-		//var bereavementButtonDiv = document.getElementById("bereavementButtonDiv"+taxPeriodStart);
 		let compassionateDiv = document.getElementById("compassionateDiv"+taxPeriodStart);
 
 		let sicknessTextDiv = document.getElementById("sicknessTextDiv"+taxPeriodStart);
@@ -603,10 +604,8 @@ const markCurrentDay = (taxPeriodNumber) => {
 			dayOffDiv.className +=" currentDateInput";
 			absenceDiv.className +=" currentDateInput";
 			familyLeaveDiv.className +=" currentDateInput";
-			//bereavementDiv.className +=" currentDateInput";
 			dayInSickDiv.className +=" currentDateInput";
 			enhancedHolidayDiv.className +=" currentDateInput";
-			//bereavementButtonDiv.className +=" currentDateInput";
 			sicknessTextDiv.className +=" currentDateInput";
 			dayInSickTextDiv.className +=" currentDateInput";
 			familyLeaeveTextDiv.className +=" currentDateInput";
@@ -676,8 +675,8 @@ const bankHolidayFilter = (timeSinceEpoch) => {
 }
 //chnages the background of hours select, in case you finish next day then you started
 const finishNextMorningBColor= (taxPeriodNumber) => {
-	//weekStart = 0;
-	var taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
+	let weekStart = weekStartArray[taxPeriodNumber];
+	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	for(let b=0;b<7;b++) {
 		let index = document.getElementById("endHours"+taxPeriodStart).options.selectedIndex;
 		let endHours = document.getElementById("endHours"+taxPeriodStart);
@@ -692,11 +691,13 @@ const finishNextMorningBColor= (taxPeriodNumber) => {
 		}
 		taxPeriodStart++;
 	}
-	markCurrentDay (taxPeriodNumber);
+	markCurrentDay (taxPeriodNumber); // if i do not add this functio hear, the green color of the current day dissapears after on change event
 }
 //if a "paid", button is checked, this function shows start-finish time dropdown menus, if it
 //is uncheck, it hides them.
 const hideHoursSelect = (taxPeriodNumber) => {
+	let weekStart = weekStartArray[taxPeriodNumber];
+	let unsHCheckCurrent = Number(unsHCheck[taxPeriodNumber]);
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	for(let b=0;b<7;b++) {
 		//day type value
@@ -718,7 +719,6 @@ const hideHoursSelect = (taxPeriodNumber) => {
 		let bereavementCheck = document.getElementById("bereavementButton"+taxPeriodStart).checked;
 		let familyCheck = document.getElementById("familyLeaveButton"+taxPeriodStart).checked;
 		let compassionateCheck = document.getElementById("compassionateButton"+taxPeriodStart).checked;
-
 		switch (index){
 			case 7:
 				if (unsHCheckCurrent === 1){
@@ -737,6 +737,13 @@ const hideHoursSelect = (taxPeriodNumber) => {
 					} else {
 						alert("Error");
 					}
+				}	else {
+					startHours.style.visibility = "hidden";
+					startMinutes.style.visibility = "hidden";
+					endHours.style.visibility = "hidden";
+					endMinutes.style.visibility = "hidden";
+
+					sicknessTextDiv.style.visibility = "visible";
 				}
 				break;
 			case 9:
@@ -756,6 +763,12 @@ const hideHoursSelect = (taxPeriodNumber) => {
 					} else {
 						alert("Error");
 					}
+				}	else {
+					startHours.style.visibility = "hidden";
+					startMinutes.style.visibility = "hidden";
+					endHours.style.visibility = "hidden";
+					endMinutes.style.visibility = "hidden";
+					familyLeaeveTextDiv.style.visibility = "visible";
 				}
 				break;
 			case 10:
@@ -775,6 +788,12 @@ const hideHoursSelect = (taxPeriodNumber) => {
 					} else {
 						alert("Error");
 					}
+				}	else {
+					startHours.style.visibility = "hidden";
+					startMinutes.style.visibility = "hidden";
+					endHours.style.visibility = "hidden";
+					endMinutes.style.visibility = "hidden";
+					bereavementDiv.style.visibility = "visible";
 				}
 				break;
 			case 11:
@@ -794,6 +813,12 @@ const hideHoursSelect = (taxPeriodNumber) => {
 					} else {
 						alert("Error");
 					}
+				}	else {
+					startHours.style.visibility = "hidden";
+					startMinutes.style.visibility = "hidden";
+					endHours.style.visibility = "hidden";
+					endMinutes.style.visibility = "hidden";
+					compassionateDiv.style.visibility = "visible";
 				}
 				break;
 			default:
@@ -809,8 +834,9 @@ const hideHoursSelect = (taxPeriodNumber) => {
 	taxPeriodStart++;
 	}
 };
+//function that creates all main table elements
 const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
-
+	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 
 	let timeSinceEpochInput = document.getElementById("timeSinceEpochInput");
@@ -819,7 +845,6 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	taxPeriodNumberN = Number(taxPeriodNumber); // pridedame weekstart
 	timeSinceEpochInputValue += 604800000*(taxPeriodNumberN-1)+weekStart*86400000;
 	timeSinceEpochInput.setAttribute("value",timeSinceEpochInputValue);
-
 
 	//depending on a year, caption has to be changed
 	if(taxPeriodNumber<=52 && taxPeriodNumber>0 ){
@@ -1158,7 +1183,7 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	//dayType.onchange = function (){changeSelectBackground(), calendarBackgroundChangeOnSelect(), hideHoursSelect(), bankHolidayFilter(timeSinceEpoch)};
 	dayType.onchange = function (){
 		changeSelectBackground(taxPeriodNumber),calendarBackgroundChangeOnSelect(taxPeriodNumber),
-		hideHoursSelect(taxPeriodNumber), bankHolidayFilter(timeSinceEpoch-86400000*7);
+		hideHoursSelect(taxPeriodNumber);
 	 }
 	endHours.onchange = function(){finishNextMorningBColor(taxPeriodNumber);};
 	sicknessButton.onchange = function (){hideHoursSelect(taxPeriodNumber);}
@@ -1167,6 +1192,7 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	compassionateButton.onchange = function(){hideHoursSelect(taxPeriodNumber);}
 	familyLeaveButton.onchange = function(){hideHoursSelect(taxPeriodNumber);}
 	}
+	markCurrentDay (taxPeriodNumber);
 }
 
 const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
@@ -1237,14 +1263,33 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 			id++;
 		}
 	}
-	//before calling function bankHolidayFilter we need to deduct 1 week worth of miliseconds
-	//as they were addede to timeSinceEpoch variable inside the for loop
-	timeSinceEpoch -=86400000*7
+	//before calling function bankHolidayFilter we need to deduct 4 weeks worth of miliseconds
+	//as they were added to timeSinceEpoch variable inside the for loop
+	timeSinceEpoch -= mSecondsInWeek*4;
 	bankHolidayFilter(timeSinceEpoch);
 }
 const start = () => {
+	//pick data from backend
+	fetch('data.php')
+	.then(function(response) {
+	return response.json();
+	})
+	.then(function(myJson) {
+		let taxPeriodLimit = myJson.taxPeriodLimit;
+		console.log(myJson);
+		//fill the arrays of weekstart and unsHCheck
+		for (let a=0; a<taxPeriodLimit; a++){ //a<66 turi sutapti su backend faile esanciau apribojimu
+			let weekStartAr = myJson.weekStartArray[a];
+			weekStartArray[a]= weekStartAr;
+
+			let unsHCheckArray = myJson.unsHCheckArray[a];
+			unsHCheck[a] = unsHCheckArray;
+	}
+
+	//when we fetch the data from the server start creating elements
+	timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStartArray[taxPeriodNumber]*86400000;
 	createTableElements(taxPeriodNumber, timeSinceEpoch);
 	generateCalendar (taxPeriodNumber,timeSinceEpoch);
-	bankHolidayFilter(timeSinceEpoch); //this way the function is called twice during the execution, but the order of calls is messy, need more investigation.. :(
+	})
 }
 document.addEventListener("DOMContentLoaded",start,false);
