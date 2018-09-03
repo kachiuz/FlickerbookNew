@@ -1512,6 +1512,7 @@ const deselectValuesValidateForm = (taxPeriodNumber) => {
 	deselectValuesValidateForm2(taxPeriodNumber);
 }
 //-------------------------END OF FORM VALIDATION FUNCTIONS------------------------------------------//
+
 //----------------------------GET FORM VALUES FUNCTION---------------------------------------------//
 const getFormValues = (taxPeriodNumber)=>{
 	let str = '';
@@ -1600,8 +1601,152 @@ const getFormValues = (taxPeriodNumber)=>{
 }
 //-----------------------------------------------------------------------------------------------------------//
 const loadResponseData = (response) => {
-	//let response = response;
-	console.log(response.holiday_units);
+	//this function will need an additional parameter, depending from where it is called
+	//if it is called from load indexes function, the response object will be larger, as more data needs to be loaded,
+	//but if its called from postdata, then that object will not have additional parameters and that my cause errors.
+
+	//destructuring object
+	let {summerSavingsPaymentCollected, christmasSavingsPaymentCollected, saturdayHours, NISum} = response;
+	let {sundayHours, saturdayExtraPay, sundayExtraPay, saturdayExtraRate, sundayExtraRate} = response;
+	let {basicHoursPay, unsocial_prem, unsocial_prem_hol, unsocial_prem_sick, unsocial_prem_family } = response;
+	let {OT1Pay, OT2Pay, enhancedHolidayPay, holidayPay, sicknessPay, familyPay, bankHolidayHoursPay} = response;
+	let {bankHolidayClockInBonus, payBack, additionalPayment, christmasSavingsPayment, totalGrossPayments} = response;
+	let {taxAmount, NIAmount, pensionAmount, unionDeduction, christmasSavingsDeduction, totalDeductions} = response;
+	let {otherDeduction, netPay, unsocial_prem_rate, hourlyRate, overtime1_rate, otherDeductionName, enhancedHolidayRate} = response;
+	let {additionalPaymentName, overtime2_rate, unsocial_prem_units, basic_hours, unsocial_prem_hol_units} = response;
+	let {unsocial_prem_sick_units, unsocial_prem_family_units, overtime1_units, overtime2_units, holiday_units} = response;
+	let {enhanced_holiday_units, sick_units, family_units, bhol_units, unsocial_prem_bereavement, ber_units} = response;
+	let {bereavementPay, uns_ber_units, unsocial_prem_compassionate, comp_units, compassionatePay, uns_comp_units} = response;
+	let {pensionBeforeTax, pensionRate, pensionRateEmp, pensionAmountEmp, companyLoan, studentLoanDeduction} = response;
+	let {summerSavingsDeduction, summerSavingsPayment, paySummerSavingsCheck, payChristmasSavingsCheck, SSP} = response;
+	let {SPP, bHolPayTimes, additionalPayment2, additionalPayment2Name, additionalPayment3, SAP, salary, bonus} = response;
+	let {additionalPayment3Name, otherDeduction2, otherDeduction2Name, otherDeduction3, otherDeduction3Name, taxSum} = response;
+	let {commissions, pieceWork, part_sick, part_pater, part_ber, part_comp, union_deSum, pensionSum, other_de} = response;
+	let {chris_savSum, netPaySum, pensionEmpSum, companyLoanSum, studentLoanDeductionSum, summer_savSum, add_deSum2} = response;
+	let {add_deSum3, gross_paySum, basicPaySum, ot1_paySum, ot2_paySum, hol_paySum, enhol_paySum, bhol_paySum} = response;
+	let {bhol_bonusSum, sick_paySum, fam_paySum, ber_paySum, comp_paySum, basicHoursSum, ot1_unitsSum, ot2_unitsSum} = response;
+	let {hol_unitsSum, enhol_unitsSum, bhol_unitsSum, sick_unitsSum, fam_unitsSum, ber_unitsSum, comp_unitsSum} = response;
+	let {saturdayHoursSum, sundayHoursSum, uns_premSum, uns_prem_unSum, uns_holSum, uns_hol_unSum, uns_sickSum} = response;
+	let {uns_sick_unSum, uns_familySum, uns_family_unSum, uns_berSum, uns_ber_unSum, uns_compSum, uns_comp_unSum} = response;
+	let {SSP_Sum, SPP_Sum, pieceWorkSum, paybackSum, sundayExtraPaySum, saturdayExtraPaySum, add_pay2Sum, add_pay3Sum} = response;
+	let {add_paySum, SAPSum, salarySum, bonusSum, commissionsSum, daysNotOff, totalHours, taxSumLast12Weeks, } = response;
+	let {NISumLast12Weeks, union_deSumLast12Weeks, pensionSumLast12Weeks, chris_savSumLast12Weeks, overtimePercentage} = response;
+	let {other_deLast12Weeks, netPaySumLast12Weeks, pensionEmpSumLast12Weeks, companyLoanSumLast12Weeks} = response;
+	let {studentLoanDeductionSumLast12Weeks, summer_savSumLast12Weeks, add_deSum2Last12Weeks, add_deSum3Last12Weeks} = response;
+	let {gross_paySumLast12Weeks, holidaysPercentage, bankHolidayPercentge, sicknessPercentage, parentalPercentage} = response;
+	let {otherPercentage, basicPaymentsPercentage, dailyNetPay, dailytaxSum, dailyNISum, dailyHoursAtWork, dailyPaidHours} = response;
+	let {dailyGrossPay, dailyGrossPayAllDays, dailyNetPayAllDays, dailytaxSumAllDays, dailyNISumAllDays} = response;
+	let {dailyHoursAtWorkAllDays, dailyPaidHoursAllDays, hourlyGrossPay, hourlyNetPay, hourlytaxSum, hourlyNISum } = response;
+	let {hourlyGrossPayTotalH, hourlyNetPayTotalH, hourlytaxSumTotalH, hourlyNISumTotalH, hourlyGrossPayAllH} = response;
+	let {hourlyNetPayAllH, hourlytaxSumAllH, hourlyNISumAllH, holidaysEarned, totalHolidaysUsed, totalHolidaysBooked} = response;
+	let {holidaysNotUsed, daysSinceLastHoliday, nextFullHoliday, daysSinceLastSick, premium, errors} = response;
+	let {daySum0, daySum1, daySum2, daySum3, daySum4, daySum5, daySum6, daySum7, daySum8, daySum9, daySum10, daySum11} = response;
+	let {last10NetPayArray, last10DeductionsArray, last10WorkingHoursArray, last10SickHoursArray, last10AllHolidayHoursArray } = response;
+	let {last10FamHoursArray, last10BerHoursArray, last10CompHoursArray} = response;
+
+	//since some of the values from object are string elements, i need to convert them to number
+	//some small calculation will need to be done on the fron end, and also to keep the results in two or sometimes
+	//4 digit long on the decimals (f.e 4.20 instead of 4.2), as it looks better
+	//pain in the a** I know :(
+
+	hourlyRate = Number(hourlyRate);										unsocial_prem_rate = Number(unsocial_prem_rate);
+	overtime1_rate = Number(overtime1_rate);						overtime2_rate = Number(overtime2_rate);
+	enhancedHolidayRate = Number(enhancedHolidayRate);	part_sick = Number(part_sick);
+	part_pater = Number(part_pater);										part_ber = Number(part_ber);
+	part_comp = Number(part_comp);											basicHoursUnits = Number(basic_hours);
+	unsocial_prem_units = Number(unsocial_prem_units);	unsocial_prem_hol_units = Number(unsocial_prem_hol_units);
+	unsocial_prem_sick_units = Number(unsocial_prem_sick_units);
+	unsocial_prem_family_units = Number(unsocial_prem_family_units);
+	uns_ber_units = Number(uns_ber_units);							uns_comp_units = Number(uns_comp_units);
+	overtime1_units = Number(overtime1_units);					overtime2_units = Number(overtime2_units);
+	enhanced_holiday_units = Number(enhanced_holiday_units);
+	holiday_units = Number(holiday_units);							sick_units = Number(sick_units);
+	family_units =Number(family_units);									ber_units =Number(ber_units);
+	comp_units =Number(comp_units);											bhol_units = Number(bhol_units);
+	basicHoursPay = Number(basicHoursPay);							unsocial_prem = Number(unsocial_prem);
+	unsocial_prem_hol = Number(unsocial_prem_hol);			unsocial_prem_sick = Number(unsocial_prem_sick);
+	unsocial_prem_family = Number(unsocial_prem_family); unsocial_prem_bereavement = Number(unsocial_prem_bereavement);
+	unsocial_prem_compassionate = Number(unsocial_prem_compassionate);
+	OT1Pay = Number(OT1Pay);														OT2Pay = Number(OT2Pay);
+	enhancedHolidayPay = Number(enhancedHolidayPay);		holidayPay = Number(holidayPay);
+	sicknessPay = Number(sicknessPay);									familyPay = Number(familyPay);
+	bereavementPay = Number(bereavementPay);						compassionatePay = Number(compassionatePay);
+	bHolPayTimes = Number(bHolPayTimes);								bankHolidayHoursPay = Number(bankHolidayHoursPay);
+	bankHolidayClockInBonus = Number(bankHolidayClockInBonus);
+	payBack = Number(payBack);													pieceWork = Number(pieceWork);
+	SSP = Number(SSP);																	SPP = Number(SPP);
+	additionalPayment = Number(additionalPayment);			additionalPayment2 = Number(additionalPayment2);
+	additionalPayment3 = Number(additionalPayment3);		christmasSavingsPayment = Number(christmasSavingsPayment);
+	summerSavingsPayment = Number(summerSavingsPayment);
+	pensionBeforeTax = Number(pensionBeforeTax);				pensionAmount = Number(pensionAmount);
+	pensionRate = Number(pensionRate);									saturdayHours = Number(saturdayHours);
+	sundayHours = Number(sundayHours);									saturdayExtraPay = Number(saturdayExtraPay);
+	sundayExtraPay = Number(sundayExtraPay);						saturdayExtraRate = Number(saturdayExtraRate);
+	sundayExtraRate = Number(sundayExtraRate);					SAP = Number(SAP);
+	salary = Number(salary);														bonus = Number(bonus);
+	commissions = Number(commissions);									NISum = Number(NISum);
+
+	console.log(bHolPayTimes.toFixed(2), typeof bHolPayTimes);
+	//get all elements from the dom that will be used to load data into them
+	//payments table
+	let paymentsAmountDiv = document.getElementById("paymentsAmountDiv");
+	let paymentsNamesDiv = document.getElementById("paymentsNamesDiv");
+	let paymentsUnitsDiv = document.getElementById("paymentsUnitsDiv");
+	let paymentsRateDiv = document.getElementById("paymentsRateDiv");
+	let totalGrossPaymentsAmountDiv = document.getElementById("totalGrossPaymentsAmount");
+	//deductions table
+	let deductionsAmountDiv = document.getElementById("deductionsAmountDiv");
+	let deductionsNamesDiv = document.getElementById("deductionsNamesDiv");
+	let totalDeductionsDiv = document.getElementById("totalDeductionsAmount");
+	let netPayAmountDiv = document.getElementById("netPayAmount");
+	//savings buttons
+	let payChristmasSavings = document.getElementById("payChristmasSavings");
+	let paySummerSavings = document.getElementById("paySummerSavings");
+	let paySavingsDiv = document.getElementById("paySavingsDiv");
+	//var calendar = document.getElementById("calendar");
+	//var generateButton = document.getElementById("form");
+	//year to date
+	let yearToDateAmount = document.getElementById("yearToDateAmount");
+	let yearToDateNames = document.getElementById("yearToDateNames");
+	//year to date structure
+	let yearToDatePercentageAmount = document.getElementById("yearToDatePercentageAmount");
+	let yearToDatePercentageAmountHid = document.getElementById("yearToDatePercentageAmountHid");
+	let yearToDatePercentageNames = document.getElementById("yearToDatePercentageNames");
+	//holiday
+	let holidayStatisticsAmount = document.getElementById("holidayStatisticsAmount");
+	let holidayStatisticsNames = document.getElementById("holidayStatisticsNames");
+	//last 3 months
+	let yearToDateLast12WeeksAmount = document.getElementById("yearToDateLast12WeeksAmount");
+	let yearToDateLast12WeeksNames = document.getElementById("yearToDateLast12WeeksNames");
+	let yearToDateLast12WeeksAmountHid = document.getElementById("yearToDateLast12WeeksAmountHid");
+	//year to date totals
+	let yearToDateAmountII = document.getElementById("yearToDateAmountII");
+	let yearToDateNamesII = document.getElementById("yearToDateNamesII");
+	let yearToDateAmountIIHid = document.getElementById("yearToDateAmountIIHid");
+	//year to date hours
+	let yearToDateAmountHours = document.getElementById("yearToDateAmountHours");
+	let yearToDateNamesHours = document.getElementById("yearToDateNamesHours");
+	let yearToDateAmountHoursHid = document.getElementById("yearToDateAmountHoursHid");
+	//weeklyAverages amounts
+	let weeklyAveragesAmount = document.getElementById("weeklyAveragesAmount");
+	let weeklyAveragesNames = document.getElementById("weeklyAveragesNames");
+	let weeklyAveragesAmountHid = document.getElementById("weeklyAveragesAmountHid");
+	//year to date days
+	let dayStatisticsAmount = document.getElementById("dayStatisticsAmount");
+	let dayStatisticsNames = document.getElementById("dayStatisticsNames");
+	let dayStatisticsAmountHid = document.getElementById("dayStatisticsAmountHid");
+	//daylyaverages amounts
+	let dailyAveragesAmount = document.getElementById("dailyAveragesAmount");
+	let dailyAveragesNames = document.getElementById("dailyAveragesNames");
+	let dailyAveragesAmountHid = document.getElementById("dailyAveragesAmountHid");
+	//hourly averages
+	let hourlyAveragesAmount = document.getElementById("hourlyAveragesAmount");
+	let hourlyAveragesAmountHid = document.getElementById("hourlyAveragesAmountHid");
+	let hourlyAveragesNames = document.getElementById("hourlyAveragesNames");
+
+	hourlyAveragesAmount.innerHTML = response.holiday_units;
+	hourlyAveragesNames.innerHTML = response.holiday_units;
+	//still ne to pick elements for charts
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
@@ -1668,8 +1813,6 @@ const start = () => {
 
 	let generateButton = document.getElementById("generateButton");
 	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
-
-	triggerErrorModal(false);
 	})
 }
 document.addEventListener("DOMContentLoaded",start,false);
