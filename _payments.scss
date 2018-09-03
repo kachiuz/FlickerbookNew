@@ -3,11 +3,13 @@
   font-size: 20px;
   text-align: left;
   height: 100%;
+  line-height: 35px;
   border-top: $borderStyle;
 }
 #totalGrossPaymentsAmount {
   font-weight: bold;
-  padding-right: 5px;
+  text-align: right;
+  padding-right: 2px;
 }
 .totaDeductionsRow{
   border: $borderStyle;
@@ -30,4 +32,12 @@
 }
 .topBorder {
   border-top: $borderStyle;
+}
+.align-right{
+  text-align: right;
+  padding-right: 2px;
+}
+.green {
+  font-weight: bold;
+  color: green;
 }

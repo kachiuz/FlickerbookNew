@@ -1685,8 +1685,15 @@ const loadResponseData = (response) => {
 	sundayExtraRate = Number(sundayExtraRate);					SAP = Number(SAP);
 	salary = Number(salary);														bonus = Number(bonus);
 	commissions = Number(commissions);									NISum = Number(NISum);
+	unionDeduction = Number(unionDeduction);						taxSum = Number(taxSum);
+	union_deSum = Number(union_deSum);									pensionSum = Number(pensionSum);
+	pensionEmpSum = Number(pensionEmpSum);							netPaySum = Number(netPaySum);
+	gross_paySum = Number(gross_paySum);								holidaysPercentage = Number(holidaysPercentage);
+	sicknessPercentage = Number(sicknessPercentage);		overtimePercentage = Number(overtimePercentage);
+	parentalPercentage = Number(parentalPercentage);		otherPercentage = Number(otherPercentage);
+	bankHolidayPercentge = Number(bankHolidayPercentge);holidaysEarned = Number(holidaysEarned);
 
-	console.log(bHolPayTimes.toFixed(2), typeof bHolPayTimes);
+	//console.log(bHolPayTimes.toFixed(2), typeof bHolPayTimes);
 	//get all elements from the dom that will be used to load data into them
 	//payments table
 	let paymentsAmountDiv = document.getElementById("paymentsAmountDiv");
@@ -1744,8 +1751,297 @@ const loadResponseData = (response) => {
 	let hourlyAveragesAmountHid = document.getElementById("hourlyAveragesAmountHid");
 	let hourlyAveragesNames = document.getElementById("hourlyAveragesNames");
 
-	hourlyAveragesAmount.innerHTML = response.holiday_units;
-	hourlyAveragesNames.innerHTML = response.holiday_units;
+  //----------------------------fill elements with data-------------------//
+	//payments values
+	paymentsAmountDiv.innerHTML = basicHoursPay.toFixed(2);
+	if (unsocial_prem>0) {paymentsAmountDiv.innerHTML += '<br>'+unsocial_prem.toFixed(2);}
+	if (unsocial_prem_hol>0) {paymentsAmountDiv.innerHTML += '<br>'+unsocial_prem_hol.toFixed(2);}
+	if (unsocial_prem_sick>0) {paymentsAmountDiv.innerHTML += '<br>'+unsocial_prem_sick.toFixed(2);}
+	if (unsocial_prem_family>0) {paymentsAmountDiv.innerHTML += '<br>'+unsocial_prem_family.toFixed(2);}
+	if (unsocial_prem_bereavement>0) {paymentsAmountDiv.innerHTML += '<br>'+unsocial_prem_bereavement.toFixed(2);}
+	if (unsocial_prem_compassionate>0) {paymentsAmountDiv.innerHTML += '<br>'+unsocial_prem_compassionate.toFixed(2);}
+	if (OT1Pay>0) {paymentsAmountDiv.innerHTML += '<br>'+OT1Pay.toFixed(2);}
+	if (OT2Pay>0) {paymentsAmountDiv.innerHTML += '<br>'+OT2Pay.toFixed(2);}
+	if (enhancedHolidayPay>0) {paymentsAmountDiv.innerHTML += '<br>'+enhancedHolidayPay.toFixed(2);}
+	if (holidayPay>0) {paymentsAmountDiv.innerHTML += '<br>'+holidayPay.toFixed(2);}
+	if (saturdayExtraPay>0) {paymentsAmountDiv.innerHTML += '<br>'+saturdayExtraPay.toFixed(2);}
+	if (sundayExtraPay>0) {paymentsAmountDiv.innerHTML += '<br>'+sundayExtraPay.toFixed(2);}
+	if (sicknessPay>0) {paymentsAmountDiv.innerHTML += '<br>'+sicknessPay.toFixed(2);}
+	if (familyPay>0) {paymentsAmountDiv.innerHTML += '<br>'+familyPay.toFixed(2);}
+	if (bereavementPay>0) {paymentsAmountDiv.innerHTML += '<br>'+bereavementPay.toFixed(2);}
+	if (compassionatePay>0) {paymentsAmountDiv.innerHTML += '<br>'+compassionatePay.toFixed(2);}
+	if (bankHolidayHoursPay>0) {paymentsAmountDiv.innerHTML += '<br>'+bankHolidayHoursPay.toFixed(2);}
+	if (bankHolidayClockInBonus>0) {paymentsAmountDiv.innerHTML += '<br>'+bankHolidayClockInBonus.toFixed(2);}
+	if (payBack>0) {paymentsAmountDiv.innerHTML += '<br>'+payBack.toFixed(2);}
+	if (pieceWork>0) {paymentsAmountDiv.innerHTML += '<br>'+pieceWork.toFixed(2);}
+	if (SSP>0) {paymentsAmountDiv.innerHTML += '<br>'+SSP.toFixed(2);}
+	if (SPP>0) {paymentsAmountDiv.innerHTML += '<br>'+SPP.toFixed(2);}
+	if (SAP>0) {paymentsAmountDiv.innerHTML += '<br>'+SAP.toFixed(2);}
+	if (salary>0) {paymentsAmountDiv.innerHTML += '<br>'+salary.toFixed(2);}
+	if (bonus>0) {paymentsAmountDiv.innerHTML += '<br>'+bonus.toFixed(2);}
+	if (commissions>0) {paymentsAmountDiv.innerHTML += '<br>'+commissions.toFixed(2);}
+	if (additionalPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment.toFixed(2);}
+	if (additionalPayment2>0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment2.toFixed(2);}
+	if (additionalPayment3>0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment3.toFixed(2);}
+	if (christmasSavingsPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+christmasSavingsPayment.toFixed(2);}
+	if (summerSavingsPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+summerSavingsPayment.toFixed(2);}
+	if (pensionAmount>0 && pensionBeforeTax === 1){paymentsAmountDiv.innerHTML += '<br>- '+pensionAmount.toFixed(2);}
+	paymentsNamesDiv.innerHTML = 'Basic Hours';
+	if (unsocial_prem>0) {paymentsNamesDiv.innerHTML += '<br>Unsoc Prem';}
+	if (unsocial_prem_hol>0) {paymentsNamesDiv.innerHTML += '<br>Unsoc Prem H';}
+	if (unsocial_prem_sick>0) {paymentsNamesDiv.innerHTML += '<br>Unsoc Prem S';}
+	if (unsocial_prem_family>0) {paymentsNamesDiv.innerHTML += '<br>Unsoc Prem P';}
+	if (unsocial_prem_bereavement>0) {paymentsNamesDiv.innerHTML += '<br>Unsoc Prem B';}
+	if (unsocial_prem_compassionate>0) {paymentsNamesDiv.innerHTML += '<br>Unsoc Prem C';}
+	if (OT1Pay>0) {paymentsNamesDiv.innerHTML += '<br>Overtime 1';}
+	if (OT2Pay>0) {paymentsNamesDiv.innerHTML += '<br>Overtime 2';}
+	if (enhancedHolidayPay>0) {paymentsNamesDiv.innerHTML += '<br>En. Hol';}
+	if (holidayPay>0) {paymentsNamesDiv.innerHTML += '<br>Holiday';}
+	if (saturdayExtraPay>0) {paymentsNamesDiv.innerHTML += '<br>Saturday B';}
+	if (sundayExtraPay>0) {paymentsNamesDiv.innerHTML += '<br>Sunday B';}
+	if (sicknessPay>0) {paymentsNamesDiv.innerHTML += '<br>Sick Pay';}
+	if (familyPay>0) {paymentsNamesDiv.innerHTML += '<br>Parental Pay';}
+	if (bereavementPay>0) {paymentsNamesDiv.innerHTML += '<br>Bereavement';}
+	if (compassionatePay>0) {paymentsNamesDiv.innerHTML += '<br>Compassionate';}
+	if (bankHolidayHoursPay>0) {paymentsNamesDiv.innerHTML += '<br>B. Hol';}
+	if (bankHolidayClockInBonus>0) {paymentsNamesDiv.innerHTML += '<br>B. Hol Bonus';}
+	if (payBack>0) {paymentsNamesDiv.innerHTML += '<br> Back Pay';}
+	if (pieceWork>0) {paymentsNamesDiv.innerHTML += '<br> Piece Work';}
+	if (SSP>0) {paymentsNamesDiv.innerHTML += '<br> SSP';}
+	if (SPP>0) {paymentsNamesDiv.innerHTML += '<br> SPP';}
+	if (SAP>0) {paymentsNamesDiv.innerHTML += '<br> SAP';}
+	if (salary>0) {paymentsNamesDiv.innerHTML += '<br> Salary';}
+	if (bonus>0) {paymentsNamesDiv.innerHTML += '<br> Bonus';}
+	if (commissions>0) {paymentsNamesDiv.innerHTML += '<br> Commissions';}
+	if (additionalPayment>0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPaymentName;}
+	if (additionalPayment2>0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPayment2Name;}
+	if (additionalPayment3>0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPayment3Name;}
+	if (christmasSavingsPayment>0) {paymentsNamesDiv.innerHTML += '<br> Chris. Sav';}
+	if (summerSavingsPayment>0) {paymentsNamesDiv.innerHTML += '<br> Summer Sav.';}
+	if (pensionAmount>0 && pensionBeforeTax === 1){paymentsNamesDiv.innerHTML += '<br> Pension';}
+	//payments units
+	paymentsUnitsDiv.innerHTML = basicHoursUnits.toFixed(2);
+	if (unsocial_prem>0) {paymentsUnitsDiv.innerHTML += '<br>'+unsocial_prem_units.toFixed(2);}
+	if (unsocial_prem_hol>0) {paymentsUnitsDiv.innerHTML += '<br>'+unsocial_prem_hol_units.toFixed(2);}
+	if (unsocial_prem_sick>0) {paymentsUnitsDiv.innerHTML += '<br>'+unsocial_prem_sick_units.toFixed(2);}
+	if (unsocial_prem_family>0) {paymentsUnitsDiv.innerHTML += '<br>'+unsocial_prem_family_units.toFixed(2);}
+	if (unsocial_prem_bereavement>0) {paymentsUnitsDiv.innerHTML += '<br>'+uns_ber_units.toFixed(2);}
+	if (unsocial_prem_compassionate>0) {paymentsUnitsDiv.innerHTML += '<br>'+uns_comp_units.toFixed(2);}
+	if (OT1Pay>0) {paymentsUnitsDiv.innerHTML += '<br>'+overtime1_units.toFixed(2);}
+	if (OT2Pay>0) {paymentsUnitsDiv.innerHTML += '<br>'+overtime2_units.toFixed(2);}
+	if (enhancedHolidayPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+enhanced_holiday_units.toFixed(2);}
+	if (holidayPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+holiday_units.toFixed(2);}
+	if (saturdayExtraPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+saturdayHours.toFixed(2);}
+	if (sundayExtraPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+sundayHours.toFixed(2);}
+	if (sicknessPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+sick_units.toFixed(2);}
+	if (familyPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+family_units.toFixed(2);}
+	if (bereavementPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+ber_units.toFixed(2);}
+	if (compassionatePay>0) {paymentsUnitsDiv.innerHTML += '<br>'+comp_units.toFixed(2);}
+	if (bankHolidayHoursPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+bhol_units.toFixed(2);}
+	if (bankHolidayClockInBonus>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (payBack>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (pieceWork>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (SSP>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (SPP>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (SAP>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (salary>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (bonus>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (commissions>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (additionalPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (additionalPayment2>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (additionalPayment3>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (christmasSavingsPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (summerSavingsPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (pensionAmount>0 && pensionBeforeTax === 1){paymentsUnitsDiv.innerHTML += '<br>-';}
+	//payments rates
+	paymentsRateDiv.innerHTML = hourlyRate.toFixed(4);
+	if (unsocial_prem>0){paymentsRateDiv.innerHTML += '<br>'+unsocial_prem_rate.toFixed(4);}
+	if (unsocial_prem_hol>0){paymentsRateDiv.innerHTML += '<br>'+unsocial_prem_rate.toFixed(4);}
+	if (unsocial_prem_sick>0){paymentsRateDiv.innerHTML += '<br>'+(unsocial_prem_rate*part_sick).toFixed(4);}
+	if (unsocial_prem_family>0){paymentsRateDiv.innerHTML += '<br>'+(unsocial_prem_rate*part_pater).toFixed(4);}
+	if (unsocial_prem_bereavement>0){paymentsRateDiv.innerHTML += '<br>'+(unsocial_prem_rate*part_ber).toFixed(4);}
+	if (unsocial_prem_compassionate>0){paymentsRateDiv.innerHTML += '<br>'+(unsocial_prem_rate*part_comp).toFixed(4);}
+	if (OT1Pay>0){paymentsRateDiv.innerHTML += '<br>'+overtime1_rate.toFixed(4);}
+	if (OT2Pay>0){paymentsRateDiv.innerHTML += '<br>'+overtime2_rate.toFixed(4);}
+	if (enhancedHolidayPay>0) {paymentsRateDiv.innerHTML += '<br>'+enhancedHolidayRate;}
+	if (holidayPay>0) {paymentsRateDiv.innerHTML += '<br>'+hourlyRate.toFixed(4);}
+	if (saturdayExtraPay>0) {paymentsRateDiv.innerHTML += '<br>*'+saturdayExtraRate.toFixed(4);}
+	if (sundayExtraPay>0) {paymentsRateDiv.innerHTML += '<br>*'+sundayExtraRate.toFixed(4);}
+	if (sicknessPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_sick).toFixed(4);}
+	if (familyPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_pater).toFixed(4);}
+	if (bereavementPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_ber).toFixed(4);}
+	if (compassionatePay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_comp).toFixed(4);}
+	if (bankHolidayHoursPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*(bHolPayTimes-1)).toFixed(4);}
+	if (bankHolidayClockInBonus>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (payBack>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (pieceWork>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (SSP>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (SPP>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (SAP>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (salary>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (bonus>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (commissions>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (additionalPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (additionalPayment2>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (additionalPayment3>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (christmasSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (summerSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if ((pensionAmount>0) && (pensionBeforeTax === 1)){paymentsRateDiv.innerHTML += '<br> '+pensionRate.toFixed(2)+'%';}
+	//total gross payments
+	totalGrossPaymentsAmountDiv.innerHTML = totalGrossPayments.toFixed(2);
+	//---------deductions table-------------------------------------//
+	deductionsAmountDiv.innerHTML = taxAmount.toFixed(2);
+	deductionsAmountDiv.innerHTML += '<br>'+NIAmount.toFixed(2);
+	if (pensionAmount>0  && pensionBeforeTax === 0){deductionsAmountDiv.innerHTML += '<br>'+pensionAmount.toFixed(2);}
+	if (unionDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+unionDeduction.toFixed(2);}
+	if (christmasSavingsDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+christmasSavingsDeduction.toFixed(2);}
+	if (summerSavingsDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+summerSavingsDeduction.toFixed(2);}
+	if (otherDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+otherDeduction.toFixed(2);}
+	if (otherDeduction2>0){deductionsAmountDiv.innerHTML += '<br>'+otherDeduction2.toFixed(2);}
+	if (otherDeduction3>0){deductionsAmountDiv.innerHTML += '<br>'+otherDeduction3.toFixed(2);}
+	if (companyLoan>0){deductionsAmountDiv.innerHTML += '<br>'+companyLoan.toFixed(2);}
+	if (studentLoanDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+studentLoanDeduction.toFixed(2);}
+	//deductions names
+	deductionsNamesDiv.innerHTML = 'TAX';
+	deductionsNamesDiv.innerHTML += '<br>National Insurance';
+	if (pensionAmount>0  && pensionBeforeTax === 0)deductionsNamesDiv.innerHTML += '<br>Pension '+pensionRate.toFixed(2)+'%';
+	if (unionDeduction>0)deductionsNamesDiv.innerHTML += '<br>Union';
+	if (christmasSavingsDeduction>0)deductionsNamesDiv.innerHTML += '<br>Christmas sav.';
+	if (summerSavingsDeduction>0)deductionsNamesDiv.innerHTML += '<br>Summer sav.';
+	if (otherDeduction>0)deductionsNamesDiv.innerHTML += '<br>' + otherDeductionName;
+	if (otherDeduction2>0)deductionsNamesDiv.innerHTML += '<br>' + otherDeduction2Name;
+	if (otherDeduction3>0)deductionsNamesDiv.innerHTML += '<br>' + otherDeduction3Name;
+	if (companyLoan>0)deductionsNamesDiv.innerHTML += '<br>Loan Deduction';
+	if (studentLoanDeduction>0)deductionsNamesDiv.innerHTML += '<br>Student Loan';
+	//total deductions
+	totalDeductionsDiv.innerHTML = totalDeductions.toFixed(2);
+	//net Pay
+	netPayAmountDiv.innerHTML = netPay.toFixed(2);
+	//year to date table
+	yearToDateAmount.innerHTML = taxSum.toFixed(2)+' £<br>'+NISum.toFixed(2)+' £<hr>';
+	if (union_deSum>0){yearToDateAmount.innerHTML+= union_deSum.toFixed(2)+' £<br>';}
+	if (companyLoanSum >0){yearToDateAmount.innerHTML+= companyLoanSum.toFixed(2)+' £<br>';}
+	if (studentLoanDeductionSum >0){yearToDateAmount.innerHTML+= studentLoanDeductionSum.toFixed(2)+' £<br>';}
+	if (christmasSavingsPaymentCollected>0) {yearToDateAmount.innerHTML+= chris_savSum.toFixed(2)+' £<br>';}
+	if (christmasSavingsPaymentCollected>chris_savSum) {yearToDateAmount.innerHTML+= christmasSavingsPaymentCollected.toFixed(2)+' £<br>';}
+	if (summerSavingsPaymentCollected>0) {yearToDateAmount.innerHTML+= summer_savSum.toFixed(2)+' £<br>';}
+	if (summerSavingsPaymentCollected>summer_savSum) {yearToDateAmount.innerHTML+= summerSavingsPaymentCollected.toFixed(2)+'<br>';}
+	if (other_de>0) {yearToDateAmount.innerHTML+= other_de.toFixed(2)+' £<br>';}
+	if (add_deSum2>0) {yearToDateAmount.innerHTML+= add_deSum2.toFixed(2)+' £<br>';}
+	if (add_deSum3>0) {yearToDateAmount.innerHTML+= add_deSum3.toFixed(2)+' £<br>';}
+	if (companyLoanSum >0 || studentLoanDeductionSum>0 || union_deSum >0 || chris_savSum>0 ||
+	christmasSavingsPaymentCollected>chris_savSum||other_de>0||summerSavingsPaymentCollected>summer_savSum||
+	add_deSum2>0||add_deSum3>0){yearToDateAmount.innerHTML+= '<hr>';}
+	if (pensionSum>0) {yearToDateAmount.innerHTML+= pensionSum.toFixed(2)+' £<br>';}
+	if (pensionEmpSum >0) {yearToDateAmount.innerHTML+= pensionEmpSum.toFixed(2) +' £<br>';}
+	let totalPension = pensionSum + pensionEmpSum;
+	if (totalPension>0){yearToDateAmount.innerHTML+= totalPension.toFixed(2)+' £<hr>';}
+	yearToDateAmount.innerHTML+= netPaySum.toFixed(2)+' £<br>';
+	yearToDateAmount.innerHTML+= '<b>'+gross_paySum.toFixed(2)+' £</b>';
+	//year to date names
+	yearToDateNames.innerHTML = 'Tax<br> National Insurance<hr>' ;
+	if (union_deSum>0){yearToDateNames.innerHTML+= 'Union<br>';}
+	if (companyLoanSum>0){yearToDateNames.innerHTML+= 'Loan Deduction<br>';}
+	if (studentLoanDeductionSum>0){yearToDateNames.innerHTML+= 'Student Loan<br>';}
+	if (christmasSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Christmas Savings Deductions<br>';}
+	if (christmasSavingsPaymentCollected>chris_savSum){yearToDateNames.innerHTML+= 'Christmas Savings Total Ded.<br>';}
+	if (summerSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Summer Savings Deductions<br>';}
+	if (summerSavingsPaymentCollected>summer_savSum){yearToDateNames.innerHTML+= 'Summer Savings Total Ded.<br>';}
+	if (other_de>0){yearToDateNames.innerHTML+= otherDeductionName+'<br>';}
+	if (add_deSum2>0){yearToDateNames.innerHTML+= otherDeduction2Name+'<br>';}
+	if (add_deSum3>0){yearToDateNames.innerHTML+= otherDeduction3Name+'<br>';}
+	if (companyLoanSum >0 || studentLoanDeductionSum>0 || union_deSum >0 || christmasSavingsPaymentCollected>0||
+	other_de>0||summerSavingsPaymentCollected>summer_savSum ||add_deSum2>0||add_deSum3>0){yearToDateNames.innerHTML+= '<hr>';}
+	if (pensionSum>0){yearToDateNames.innerHTML+= 'Employee Pension<br>';}
+	if (pensionEmpSum>0){yearToDateNames.innerHTML+= 'Employer Pension<br>';}
+	if (totalPension>0){yearToDateNames.innerHTML+= 'Total Pension<hr>';}
+	yearToDateNames.innerHTML+= 'Total Net Pay<br>';
+	yearToDateNames.innerHTML+= 'Total Gross Pay<br>';
+	//pay structure table
+	//percentage amounts
+	yearToDatePercentageAmount.innerHTML= basicPaymentsPercentage.toFixed(2)+' %<br>';
+	if (holidaysPercentage>0){yearToDatePercentageAmount.innerHTML+= holidaysPercentage.toFixed(2)+' %<br>';}
+	if (sicknessPercentage>0){yearToDatePercentageAmount.innerHTML+= sicknessPercentage.toFixed(2)+' %<br>';}
+	if (overtimePercentage>0){yearToDatePercentageAmount.innerHTML+= overtimePercentage.toFixed(2)+' %<br>';}
+	if (parentalPercentage>0){yearToDatePercentageAmount.innerHTML+= parentalPercentage.toFixed(2)+' %<br>';}
+	if (otherPercentage>0){yearToDatePercentageAmount.innerHTML+= otherPercentage.toFixed(2)+' %<br>';}
+	if (bankHolidayPercentge>0){yearToDatePercentageAmount.innerHTML+= bankHolidayPercentge.toFixed(2)+' %<br>';}
+	//percentage amounts hidden
+	yearToDatePercentageAmountHid.innerHTML= 'Premium<br>';
+	if (holidaysPercentage>0){yearToDatePercentageAmountHid.innerHTML+= 'Premium<br>';}
+	if (sicknessPercentage>0){yearToDatePercentageAmountHid.innerHTML+= 'Premium<br>';}
+	if (overtimePercentage>0){yearToDatePercentageAmountHid.innerHTML+='Premium<br>';}
+	if (parentalPercentage>0){yearToDatePercentageAmountHid.innerHTML+= 'Premium<br>';}
+	if (otherPercentage>0){yearToDatePercentageAmountHid.innerHTML+= 'Premium<br>';}
+	if (bankHolidayPercentge>0){yearToDatePercentageAmountHid.innerHTML+= 'Premium<br>';}
+	// percentage names
+	yearToDatePercentageNames.innerHTML= 'Basic Pay <br>';
+	if (holidaysPercentage>0){yearToDatePercentageNames.innerHTML+= 'Holiday Payments<br>';}
+	if (sicknessPercentage>0){yearToDatePercentageNames.innerHTML+= 'Sickness Payments<br>';}
+	if (overtimePercentage>0){yearToDatePercentageNames.innerHTML+= 'Overtime Payments<br>';}
+	if (parentalPercentage>0){yearToDatePercentageNames.innerHTML+= 'Paternity Payments<br>';}
+	if (otherPercentage>0){yearToDatePercentageNames.innerHTML+= 'Other Payments<br>';}
+	if (bankHolidayPercentge>0){yearToDatePercentageNames.innerHTML+= 'Bank Holiday Payments<br>';}
+	//holidays table
+	//sort out wheather use day or days words.
+	holidayStatisticsAmount.innerHTML= totalHolidaysUsed;
+	if (totalHolidaysUsed==1){
+		holidayStatisticsAmount.innerHTML+= ' day<br>';
+	}	else {
+		holidayStatisticsAmount.innerHTML+= ' days<br>';
+	}
+	if (totalHolidaysBooked>0)	{
+		holidayStatisticsAmount.innerHTML+= totalHolidaysBooked;
+		if (totalHolidaysBooked<=1){
+			holidayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			holidayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (holidaysNotUsed>0)	{
+		holidayStatisticsAmount.innerHTML+= holidaysNotUsed;
+		if (holidaysNotUsed<=1){
+			holidayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			holidayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (holidaysEarned>0)	{
+		holidayStatisticsAmount.innerHTML+= holidaysEarned.toFixed(2);
+		if (holidaysEarned<=1){
+			holidayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			holidayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (nextFullHoliday === "Holiday!")	{
+		holidayStatisticsAmount.innerHTML+= '<span class="green">'+nextFullHoliday+'</span><br>';
+	}	else if (nextFullHoliday>0)	{
+		holidayStatisticsAmount.innerHTML+= nextFullHoliday;
+		if (nextFullHoliday<=1){
+			holidayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			holidayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysSinceLastHoliday === "Holiday!")	{
+		holidayStatisticsAmount.innerHTML+= '<span class="green">'+daysSinceLastHoliday+'</span><br>';
+	}	else if (daysSinceLastHoliday>0) {
+		holidayStatisticsAmount.innerHTML+= daysSinceLastHoliday;
+		if (daysSinceLastHoliday<=1){
+			holidayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			holidayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	holidayStatisticsNames.innerHTML= 'Holidays Used:<br>';
+	if (totalHolidaysBooked>0){holidayStatisticsNames.innerHTML+= 'Holidays Booked:<br>';}
+	if (holidaysNotUsed>0){holidayStatisticsNames.innerHTML+= 'Holidays Available:<br>';}
+	if (holidaysEarned>0){holidayStatisticsNames.innerHTML+= 'Holidays Earned:<br>';}
+	if (nextFullHoliday>0 || nextFullHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Till Next Holiday:<br>';}
+	if (daysSinceLastHoliday>0 || daysSinceLastHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Since Last Holiday:<br>';}
+
+
 	//still ne to pick elements for charts
 }
 const postData = (taxPeriodNumber) => {

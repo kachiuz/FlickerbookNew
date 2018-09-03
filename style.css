@@ -34,6 +34,15 @@ select {
 /*.glyphicon-info-sign{
   font-size: 18px;
 }*/
+hr {
+  height: 1px;
+  color: grey;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  background: grey;
+  font-size: 0;
+  border: 0; }
+
 .invalidForm {
   background: #ff8080;
   color: white; }
@@ -472,11 +481,13 @@ select {
   font-size: 20px;
   text-align: left;
   height: 100%;
+  line-height: 35px;
   border-top: 1px solid grey; }
 
 #totalGrossPaymentsAmount {
   font-weight: bold;
-  padding-right: 5px; }
+  text-align: right;
+  padding-right: 2px; }
 
 .totaDeductionsRow {
   border: 1px solid grey; }
@@ -499,6 +510,14 @@ select {
 
 .topBorder {
   border-top: 1px solid grey; }
+
+.align-right {
+  text-align: right;
+  padding-right: 2px; }
+
+.green {
+  font-weight: bold;
+  color: green; }
 
 .chartStyle, .chartStyleFullBorder {
   background: #ffffcc;
