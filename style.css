@@ -34,6 +34,10 @@ select {
 /*.glyphicon-info-sign{
   font-size: 18px;
 }*/
+.invalidForm {
+  background: #ff8080;
+  color: white; }
+
 .notSelectedColor {
   background: #ffffff;
   color: black; }
@@ -339,6 +343,9 @@ select {
 .text-align-center {
   text-align: center; }
 
+.errorStyle {
+  color: red; }
+
 /*additional bootsrtap for controls*/
 .col-xs-calD,
 .col-sm-calD,
@@ -530,3 +537,36 @@ select {
 
 .clickable {
   cursor: pointer; }
+
+.error-modal-color {
+  font-size: 25px;
+  background: #ffe6e6;
+  color: red;
+  font-weight: 999; }
+
+.textIndent {
+  text-indent: 10%; }
+
+#paySavingsDiv {
+  margin-bottom: -5px; }
+
+.savingsButtons {
+  font-size: 18px;
+  margin-top: -5px;
+  background: #0088cc;
+  padding: 3px;
+  color: white;
+  border: 1px solid grey;
+  text-align: center; }
+
+#payChristmasSavings {
+  margin-right: 1px;
+  margin-left: -1px; }
+
+#paySummerSavings {
+  margin-right: -1px;
+  margin-left: 1px; }
+
+@media (max-width: 767px) {
+  #paySummerSavings {
+    margin-top: 2px; } }

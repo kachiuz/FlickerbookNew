@@ -1268,6 +1268,380 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 	timeSinceEpoch -= mSecondsInWeek*4;
 	bankHolidayFilter(timeSinceEpoch);
 }
+const createPayoutButtons = (taxPeriodNumber) => {
+	let payChristmasSavings = document.getElementById("payChristmasSavings");
+
+	payChristmasSavings.innerHTML = " "; //istriname esama elementa
+
+	let payChristmasSavingsCheck = document.createElement("input");
+	payChristmasSavingsCheck.setAttribute("type", "checkbox");
+	payChristmasSavingsCheck.setAttribute("name", "payChristmasSavingsCheck"+taxPeriodNumber);
+	payChristmasSavingsCheck.setAttribute("id", "payChristmasSavingsCheck"+taxPeriodNumber);
+	payChristmasSavings.appendChild(payChristmasSavingsCheck);
+	let payChristmasSavingsCheckText = document.createTextNode(" Pay Christmas Savings");
+	payChristmasSavings.appendChild(payChristmasSavingsCheckText);
+
+	let paySummerSavings = document.getElementById("paySummerSavings");
+	paySummerSavings.innerHTML = " ";
+
+	let paySummerSavingsCheck = document.createElement("input");
+	paySummerSavingsCheck.setAttribute("type", "checkbox");
+	paySummerSavingsCheck.setAttribute("name", "paySummerSavingsCheck"+taxPeriodNumber);
+	paySummerSavingsCheck.setAttribute("id", "paySummerSavingsCheck"+taxPeriodNumber);
+	paySummerSavings.appendChild(paySummerSavingsCheck);
+	var paySummerSavingsCheckText = document.createTextNode(" Pay Summer Savings");
+	paySummerSavings.appendChild(paySummerSavingsCheckText);
+}
+//a jquery function that trigger error modal after recieving apropriate values
+const triggerErrorModal = (errors,val) => {
+  val = val;
+
+  let title = "Error occurred!";
+  let bodyText = errors;
+  if (val){
+    $('#errorModal').modal('show');
+    $('#errorModalLabel').text(title);
+    $('#errorModalBody').html(bodyText);
+  }
+}
+
+//----------------------FORM VALIDATION FUNCTIONS------------------------------------------------------//
+//function that prevents from sending extra payments data in case user checks checkboxes
+const deselectValuesValidateForm2 = (taxPeriodNumber) => {
+	weekStart = Number(weekStartArray[taxPeriodNumber]);
+	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
+	for(let b=0;b<7;b++)	{
+		let index = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
+
+		let startHours = document.getElementById("startHours"+taxPeriodStart);
+		let startMinutes = document.getElementById("startMinutes"+taxPeriodStart);
+		let endHours = document.getElementById("endHours"+taxPeriodStart);
+		let endMinutes = document.getElementById("endMinutes"+taxPeriodStart);
+
+		let sickness = document.getElementById("sicknessButton"+taxPeriodStart);
+		let familyLeave = document.getElementById("familyLeaveButton"+taxPeriodStart);
+		let dayInSick = document.getElementById("dayInSickButton"+taxPeriodStart);
+		let bereavement = document.getElementById("bereavementButton"+taxPeriodStart);
+		let compassionate = document.getElementById("compassionateButton"+taxPeriodStart);
+		let enHoliday = document.getElementById("enhancedHolidayButton"+taxPeriodStart);
+
+		//Sickness
+		if (index === 7 && sickness.checked === false )	{
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+		}	else if (index === 9 && familyLeave.checked === false)	{ //family leave
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+		}	else if (index === 10 && bereavement.checked === false)	{	//bereavement Leave
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+		}	else if (index === 11 && compassionate.checked === false)	{	//compassionate Leave
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+		}
+		taxPeriodStart++;
+	}
+	//once the values have been checked, send them to the server
+	postData(taxPeriodNumber);
+}
+
+//another validation function
+const deselectValuesValidateForm = (taxPeriodNumber) => {
+	weekStart = Number(weekStartArray[taxPeriodNumber]);
+	unsHCheckCurrent = Number(unsHCheck[taxPeriodNumber]);
+
+	var taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
+	for(let b=0;b<7;b++){
+		let index = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
+
+		let startHours = document.getElementById("startHours"+taxPeriodStart);
+		let startMinutes = document.getElementById("startMinutes"+taxPeriodStart);
+		let endHours = document.getElementById("endHours"+taxPeriodStart);
+		let endMinutes = document.getElementById("endMinutes"+taxPeriodStart);
+
+		let sickness = document.getElementById("sicknessButton"+taxPeriodStart);
+		let familyLeave = document.getElementById("familyLeaveButton"+taxPeriodStart);
+		let dayInSick = document.getElementById("dayInSickButton"+taxPeriodStart);
+		let bereavement = document.getElementById("bereavementButton"+taxPeriodStart);
+		let compassionate = document.getElementById("compassionateButton"+taxPeriodStart);
+		let enHoliday = document.getElementById("enhancedHolidayButton"+taxPeriodStart);
+		//deselecting values
+		if (index === 0) {			//Not Selected
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 1)	{	//Day In
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 2){		//Day Off
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 3) {		//Holiday
+				if (unsHCheckCurrent === 1)	{
+					sickness.checked = false;
+					dayInSick.checked = false;
+					bereavement.checked = false;
+					compassionate.checked = false;
+					familyLeave.checked = false;
+				}	else {
+					//jei nera uns valandu nuimame indexus
+					startHours.options.selectedIndex = "0";
+					startMinutes.options.selectedIndex = "0";
+					endHours.options.selectedIndex = "0";
+					endMinutes.options.selectedIndex = "0";
+
+					sickness.checked = false;
+					dayInSick.checked = false;
+					bereavement.checked = false;
+					compassionate.checked = false;
+					familyLeave.checked = false;
+				}
+		}	else if (index === 4){		//Half In/Holl
+			sickness.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			familyLeave.checked = false;
+		}	else if (index === 5) {		//unpaid hol
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 6) {		//Day In / Sick
+			sickness.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 7)	{	//Sickness
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 8)	{	//Abscence
+			startHours.options.selectedIndex = "0";
+			startMinutes.options.selectedIndex = "0";
+			endHours.options.selectedIndex = "0";
+			endMinutes.options.selectedIndex = "0";
+
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 9){		//Family Leave
+			sickness.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 10){		//Bereavement
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			compassionate.checked = false;
+			enHoliday.checked = false;
+		}	else if (index === 11){		//Compassionate
+			sickness.checked = false;
+			familyLeave.checked = false;
+			dayInSick.checked = false;
+			bereavement.checked = false;
+			enHoliday.checked = false;
+		}
+		// form validation
+		let startHourIndex = document.getElementById("startHours"+taxPeriodStart).options.selectedIndex;
+		let endHourIndex = document.getElementById("endHours"+taxPeriodStart).options.selectedIndex;
+
+		let submitSuccess = document.getElementById("submitSuccessMain");
+		if (startHourIndex>endHourIndex)	{
+			let errorText = '<p class="textIndent">It appears that in one of the main table rows your provided ';
+			errorText +='Start time is greater then Finish time.</p>';
+			errorText +='<p class="textIndent">The improper Finish and start times are marked accordingly in the main table.</p>';
+			errorText +='<p class="textIndent">In case you finish work the following morning, please select hour values';
+			errorText +=' in the dropdown menu that appear below 23.</p>';
+			errorText +='<p class="textIndent">Once you select hours properly, press Generate button again!</p>';
+			errorText +='<p class="textIndent">Thank You!</p>';
+			triggerErrorModal(errorText, true);
+			submitSuccess.removeAttribute("class");
+			submitSuccess.setAttribute("class", 'col-sm-10 col-xs-10 responseDiv errorStyle');
+			submitSuccess.innerHTML = 'Error occurred!';
+			endHours.setAttribute("class", "invalidForm hourMinuteSelect");
+			endMinutes.setAttribute("class", "invalidForm hourMinuteSelect");
+			return false;
+		}	else {
+			submitSuccess.removeAttribute("class");
+			submitSuccess.setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
+		}
+		taxPeriodStart++;
+	}
+	deselectValuesValidateForm2(taxPeriodNumber);
+}
+//-------------------------END OF FORM VALIDATION FUNCTIONS------------------------------------------//
+//----------------------------GET FORM VALUES FUNCTION---------------------------------------------//
+const getFormValues = (taxPeriodNumber)=>{
+	let str = '';
+
+	let timeSinceEpochValue = document.getElementById("timeSinceEpochInput").value;
+	str += 'taxPeriodNumberName'+'='+taxPeriodNumber+'&'+'timeSinceEpoch'+'='+timeSinceEpochValue+'&';
+
+	let payChristmasSavingsCheckName = "payChristmasSavingsCheck"+taxPeriodNumber;
+	let payChristmasSavingsCheckValue = document.getElementById("payChristmasSavingsCheck"+taxPeriodNumber).checked;
+
+	let paySummerSavingsCheckName = "paySummerSavingsCheck"+taxPeriodNumber;
+	let paySummerSavingsCheckValue = document.getElementById("paySummerSavingsCheck"+taxPeriodNumber).checked;
+
+	str += payChristmasSavingsCheckName+'='+payChristmasSavingsCheckValue+'&'+paySummerSavingsCheckName+'='+paySummerSavingsCheckValue+'&';
+
+	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
+	let submitSuccess = document.getElementById("submitSuccessMain");
+	for(let b=0;b<7;b++)	{
+		//day type
+		let dayTypeName = "dayType"+taxPeriodStart
+		let dayTypeValue = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
+		//start time
+		let startHoursName = "startHours"+taxPeriodStart;
+		let startHoursValue = document.getElementById("startHours"+taxPeriodStart).value;
+		let startMinutesName = "startMinutes"+taxPeriodStart;
+		let startMinutesValue = document.getElementById("startMinutes"+taxPeriodStart).value;
+		//end time
+		let endHoursName = "endHours"+taxPeriodStart;
+		let endHoursValue = document.getElementById("endHours"+taxPeriodStart).options.selectedIndex;//imame ne value o index, del naktines pamainaos valandu skaiciavimo
+		let endMinutesName = "endMinutes"+taxPeriodStart;
+		let endMinutesValue = document.getElementById("endMinutes"+taxPeriodStart).value;
+		//sicknes
+		let sicknessButton = "sicknessButton"+taxPeriodStart;
+		let sicknessButtonValue = document.getElementById("sicknessButton"+taxPeriodStart).checked;
+		//day in sickness
+		let dayInSickButton = "dayInSickButton"+taxPeriodStart;
+		let dayInSickButtonValue = document.getElementById("dayInSickButton"+taxPeriodStart).checked;
+		let bereavementButton = "bereavementButton"+taxPeriodStart;
+		let bereavementButtonValue = document.getElementById("bereavementButton"+taxPeriodStart).checked;
+		let compassionateButton = "compassionateButton"+taxPeriodStart;
+		let compassionateButtonValue = document.getElementById("compassionateButton"+taxPeriodStart).checked;
+		//enhanced holidays
+		let enHolButon = "enHolButon"+taxPeriodStart;
+		let enHolButonValue = document.getElementById("enhancedHolidayButton"+taxPeriodStart).checked;
+		//note values
+		let noteInput = "noteInput"+taxPeriodStart;
+		let noteInputValue = document.getElementById("noteInput"+taxPeriodStart).value;
+		//family leave
+		let familyLeaveButton = "familyLeaveButton"+taxPeriodStart;
+		let familyLeaveButtonValue = document.getElementById("familyLeaveButton"+taxPeriodStart).checked;
+		// date values
+		let dateInputHidden ='dateInputHidden' +taxPeriodStart;
+		let dateInputHiddenValue = document.getElementById("dateInputHidden"+taxPeriodStart).value;
+		//----------------------------------------------------------date checker--------------
+		let flickerbookStartDate = new Date("2017-03-31");
+		let flickerbookEndDate = new Date("2021-03-29");
+		let submmitedDate = new Date(dateInputHiddenValue);
+			if( submmitedDate < flickerbookStartDate || submmitedDate>flickerbookEndDate )	{
+				submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
+				submitSuccess.innerHTML += 'Submitted Date Not allowed, check your devices date settings.<br>';
+				submitSuccess.removeAttribute("class");
+				submitSuccess.setAttribute("class", "submitErrorMain");
+				return false;
+			}	else{
+				//submitSuccess.removeAttribute("class");
+				//submitSuccess.setAttribute("class", "submitSuccessMain");
+		}
+			//---------------------------------------------------------------------------------------
+
+		str += dateInputHidden+'='+dateInputHiddenValue+'&'+dayTypeName+'='+dayTypeValue+'&'+startHoursName+'='+startHoursValue+'&'+startMinutesName+'='+startMinutesValue+'&'+endHoursName+'='+endHoursValue+'&'+endMinutesName+'='+endMinutesValue+'&'+sicknessButton+'='+sicknessButtonValue+'&'+enHolButon+'='+enHolButonValue+'&'+dayInSickButton+'='+dayInSickButtonValue+'&'+noteInput+'='+noteInputValue+'&'+familyLeaveButton+'='+familyLeaveButtonValue+'&'+bereavementButton+'='+bereavementButtonValue+'&'+compassionateButton+'='+compassionateButtonValue+'&';
+
+		taxPeriodStart++
+	}
+	//taxPeriodNumber checker
+	if (taxPeriodNumber <0 || taxPeriodNumber>156)	{
+		submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
+		submitSuccess.innerHTML += 'Tax Period no. not allowed, check your date settings on your device.<br>';
+		submitSuccess.removeAttribute("class");
+		submitSuccess.setAttribute("class", "submitErrorMain");
+		return false;
+	}	else {
+		//submitSuccess.removeAttribute("class");
+		//submitSuccess.setAttribute("class", "submitSuccessMain");
+		return str;
+	}
+}
+//-----------------------------------------------------------------------------------------------------------//
+const loadResponseData = (response) => {
+	//let response = response;
+	console.log(response.holiday_units);
+}
+const postData = (taxPeriodNumber) => {
+	str = getFormValues(taxPeriodNumber);
+	if (XMLHttpRequest)	{
+			request = new XMLHttpRequest();
+		}	else if (ActiveXObject)	{
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}	else {return false;}
+	var url = "javascript/ajax/submitForm.php";
+	request.open("POST", url, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.onreadystatechange = function(){
+		if(request.readyState ==4 && request.status ==200){
+			let response = JSON.parse(this.responseText);
+			let submitSuccessMain = document.getElementById("submitSuccessMain");
+			errorsArrayLength = Object.keys(response.errors).length;
+			submitSuccessMain.innerHTML = " ";
+			if (errorsArrayLength>0){
+				let allErrors = "";
+				for (i=0; i<errorsArrayLength; i++)		{
+					submitSuccessMain.setAttribute("class", "col-sm-10 col-xs-10 responseDiv errorStyle");
+					allErrors += response.errors[i]+'<br>';
+				}
+				triggerErrorModal(allErrors, true);
+			}	else {
+					submitSuccessMain.setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
+					submitSuccessMain.innerHTML = 'Payslip Generated!';
+					setTimeout(function(){submitSuccessMain.innerHTML=" ";},1500);
+
+					//here I will create a function to which I need to send the response Object
+					//since I need to also load data from the back end and want to avoid having to write
+					//the same identical code for two http request.
+					loadResponseData(response);
+			}
+		}
+	}
+	request.send(str);
+	document.getElementById("submitSuccessMain").setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
+	document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
+}
 const start = () => {
 	//pick data from backend
 	fetch('data.php')
@@ -1276,7 +1650,6 @@ const start = () => {
 	})
 	.then(function(myJson) {
 		let taxPeriodLimit = myJson.taxPeriodLimit;
-		console.log(myJson);
 		//fill the arrays of weekstart and unsHCheck
 		for (let a=0; a<taxPeriodLimit; a++){ //a<66 turi sutapti su backend faile esanciau apribojimu
 			let weekStartAr = myJson.weekStartArray[a];
@@ -1287,9 +1660,16 @@ const start = () => {
 	}
 
 	//when we fetch the data from the server start creating elements
+	//in is neccessary to update the value of timesince epoch including the weekstart variable
 	timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStartArray[taxPeriodNumber]*86400000;
 	createTableElements(taxPeriodNumber, timeSinceEpoch);
 	generateCalendar (taxPeriodNumber,timeSinceEpoch);
+	createPayoutButtons(taxPeriodNumber);
+
+	let generateButton = document.getElementById("generateButton");
+	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
+
+	triggerErrorModal(false);
 	})
 }
 document.addEventListener("DOMContentLoaded",start,false);

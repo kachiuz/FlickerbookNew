@@ -88,13 +88,35 @@
 					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow4"> </div>
 					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow5"> </div>
 					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow6"> </div>
+
+			<!---------------------------------------SAVINGS BUTTONS-------------------------------->
+					<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding hidden " id="paySavingsDiv">
+						<div class="col-sm-6 col-xs-12 savingsButtons" id="payChristmasSavings"></div>
+						<div class="col-sm-6 col-xs-12 savingsButtons" id="paySummerSavings"></div>
+					</div>
 			<!---------------------------------------GENERATE BUTTON-------------------------------->
 					<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
-						<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain">lol		</div>
+						<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain"></div>
 						<div class="col-sm-2 col-xs-2">
-							<button type="button" class="btn btn-default button" id="form">Generate</button>
+							<button type="button" class="btn btn-default button" id="generateButton">Generate</button>
 						</div>
 					</div>
+				<!---------------------------ERROR MODAL-------------------------------------------------->
+				<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header error-modal-color">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="errorModalLabel"></h4>
+				      </div>
+				      <div class="modal-body" id="errorModalBody">
+				      </div>
+				      <div class="modal-footer error-modal-color">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Got it!</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 				</div>
 				<!-----------------------------------CALENDAR-------------------------------------------->
 				<div class="col-sm-6 col-xs-12">

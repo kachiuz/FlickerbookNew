@@ -11,6 +11,9 @@ $marginBetweenElements: 10px;
 $currentWeekColor: #ff3333;
 $insideBoxColor: #ffffcc;
 $modalInfoColor: #e6f2ff;
+$modalErrorColor: #ffe6e6;
+
+.invalidForm		{background: #ff8080; color: white;}
 
 .notSelectedColor	  {background: #ffffff; color: black;}
 .dayInColor		     	{background: #ffff80; color: black;}
@@ -83,3 +86,4 @@ $modalInfoColor: #e6f2ff;
 @import 'payments';
 @import 'chart';
 @import 'modal';
+@import 'savingsButtons';

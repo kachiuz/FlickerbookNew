@@ -15,3 +15,12 @@
 .clickable {
   cursor: pointer;
 }
+.error-modal-color {
+  font-size: 25px;
+  background: $modalErrorColor;
+  color: red;
+  font-weight: 999;
+}
+.textIndent {
+  text-indent: 10%;
+}

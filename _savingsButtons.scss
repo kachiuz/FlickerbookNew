@@ -1,0 +1,26 @@
+#paySavingsDiv{
+  margin-bottom: -5px;
+}
+.savingsButtons{
+  font-size: 18px;
+  margin-top: -5px;
+  background: $themeColor;
+  padding: 3px;
+  color:white;
+  border: $borderStyle;
+  text-align: center;
+}
+#payChristmasSavings{
+  margin-right: 1px;
+  margin-left: -1px;
+}
+#paySummerSavings{
+  margin-right: -1px;
+  margin-left: 1px;
+}
+
+@media (max-width: 767px) {
+  #paySummerSavings{
+    margin-top: 2px;
+  }
+}
