@@ -1726,6 +1726,11 @@ const loadResponseData = (response) => {
 	hourlytaxSumTotalH  = Number(hourlytaxSumTotalH);		hourlyNISumTotalH  = Number(hourlyNISumTotalH);
 	hourlyGrossPayAllH = Number(hourlyGrossPayAllH);		hourlyNetPayAllH = Number(hourlyNetPayAllH);
 	hourlytaxSumAllH  = Number(hourlytaxSumAllH);				hourlyNISumAllH  = Number(hourlyNISumAllH);
+	taxAmount = Number(taxAmount);											studentLoanDeduction = Number(studentLoanDeduction);
+	christmasSavingsDeduction = Number(christmasSavingsDeduction);
+	summerSavingsDeduction = Number(summerSavingsDeduction);
+	companyLoan = Number(companyLoan);									otherDeduction = Number(otherDeduction);
+	otherDeduction2 = Number(otherDeduction2);					otherDeduction3 = Number(otherDeduction3);
 
 	//get all elements from the dom that will be used to load data into them
 	//payments table
@@ -2542,7 +2547,7 @@ const loadResponseData = (response) => {
 	if (daysAbsence>0){dayStatisticsNames.innerHTML+= 'Days On Absence<br>';}
 	if (daysParental>0){dayStatisticsNames.innerHTML+= 'Parental Leave Days<br>';}
 	if (daysBereavement>0){dayStatisticsNames.innerHTML+= 'Bereavement Leave Days<br>';}
-	if (daysCompassionate>0){dayStatisticsNames.innerHTML+= 'Compassionate Leave Days<br>';}
+	if (daysCompassionate>0){dayStatisticsNames.innerHTML+= 'Compassionate Days<br>';}
 	if (daysNotSelected>0){dayStatisticsNames.innerHTML+= 'Days Not Defined<br>';}
 	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsNames.innerHTML+= '<hr>';}
 	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsNames.innerHTML+= 'Days Since Last Sick<br>';}
@@ -2664,6 +2669,40 @@ const loadResponseData = (response) => {
 
 
 	//still need to pick elements for charts
+	//CanvaJs color arrays-------------------------------------------------------------//
+	//must be a bit darker color tone then in the css file, otherwise the pie chart looks blurry
+	let dayInColor = '#e6e600';
+	let holidayColor = '#009900';
+	let sicknessColor = '#ff9999';
+	let familyLeaveColor = '#ffa64d';
+	let bereavementColor = '#000033';
+	let compassionateColor = '#ffce99';
+	let overtime1Color = '#cccc00';
+	let overtime2Color = '#b3b300';
+	let saturdayColor = '#df80ff';
+	let sundayColor = '#d966ff';
+	let bankHolidayColor = '#00ff55';
+	let bankHolidayBonusColor = '#00cc44';
+	let backPayColor = '#e69900';
+	let pieceWorkColor = '#ffd633';
+	let addPay1Color = '#ffb380';
+	let addPay2Color = '#ffa366';
+	let addPay3Color = '#ff944d';
+	let christmasColor = '#ff6633';
+	let summerColor = '#ff8c66';
+	let salaryColor = '#ffff00';
+	let bonusColor = '#cc9900';
+	let commissionsColor = '#ff8080';
+
+
+
+
+	let paymentsColorArray = [dayInColor, dayInColor, holidayColor, holidayColor, holidayColor,sicknessColor, sicknessColor];
+	paymentsColorArray.push(familyLeaveColor,familyLeaveColor, bereavementColor, bereavementColor, compassionateColor,compassionateColor);
+	paymentsColorArray.push(overtime1Color,overtime2Color, saturdayColor, sundayColor, bankHolidayColor, bankHolidayBonusColor);
+	paymentsColorArray.push(backPayColor, pieceWorkColor, sicknessColor, familyLeaveColor, addPay1Color, addPay2Color);
+	paymentsColorArray.push(addPay3Color, christmasColor, summerColor, familyLeaveColor, salaryColor, bonusColor, commissionsColor);
+	CanvasJS.addColorSet('paymentsColors', paymentsColorArray);
 	//last 10 weeks net pay chart
 	//check if we need to draw a chart;
 	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
@@ -2712,7 +2751,6 @@ const loadResponseData = (response) => {
 	}
 	//last 10 weeks hours chart
 	let last10weeksHoursSum = 0;
-	//console.log(last10WorkingHoursArray, typeof last10WorkingHoursArray[3])
 	for (let i=0;i<10;i++) {
 		last10weeksHoursSum += Number(last10WorkingHoursArray[i]);
 		last10weeksHoursSum += Number(last10AllHolidayHoursArray[i]);
@@ -2769,6 +2807,7 @@ const loadResponseData = (response) => {
 		animationEnabled: true,
 		exportEnabled: true,
 		backgroundColor: insideBoxColor,
+		colorSet: 'paymentsColors',
 		title: {
 			text: "Payments Pie Chart"
 		},
@@ -2779,27 +2818,27 @@ const loadResponseData = (response) => {
 		 	if (e.dataPoint.y === 0)
 			 	return "";
 		 	else
-			 return CanvasJS.formatNumber(e.percent) + "%";
+			 return CanvasJS.formatNumber(e.dataPoint.label)+" "+CanvasJS.formatNumber(e.percent) + "%";
 	 },
-			yValueFormatString: "##0.00\"%\"",
 			indexLabel: "{label} {y}",
 			dataPoints: [
-				{y: basicHoursPay, label: "Basic Pay"},
+				{y: basicHoursPay, label: "Basic Pay", exploded: true},
 				{y: unsocial_prem, label: "Uns. Premium"},
+				{y: enhancedHolidayPay, label: "Enhanced Holiday Pay"},
+				{y: holidayPay, label: "Holiday Pay"},
 				{y: unsocial_prem_hol, label: "Uns Prem. Holidays"},
+				{y: sicknessPay, label: "Sickness Pay"},
 				{y: unsocial_prem_sick, label: "Uns Prem. Sickness"},
+				{y: familyPay, label: "Paternity Pay"},
+				{y: unsocial_prem_family, label: "Uns Prem. Paternity"},
+				{y: bereavementPay, label: "Bereavement Pay"},
 				{y: unsocial_prem_bereavement, label: "Uns Prem. Bereav."},
+				{y: compassionatePay, label: "Compassionate Pay"},
 				{y: unsocial_prem_compassionate, label: "Uns Prem. Compass."},
 				{y: OT1Pay, label: "Overtime 1 Pay"},
 				{y: OT2Pay, label: "Overtime 2 Pay"},
-				{y: enhancedHolidayPay, label: "Enhanced Holiday Pay"},
-				{y: holidayPay, label: "Holiday Pay"},
 				{y: saturdayExtraPay, label: "Saturday Extra Pay"},
 				{y: sundayExtraPay, label: "Sunday Extra Pay"},
-				{y: sicknessPay, label: "Sickness Pay"},
-				{y: familyPay, label: "Paternity Pay"},
-				{y: bereavementPay, label: "Bereavement Pay"},
-				{y: compassionatePay, label: "Compassionate Pay"},
 				{y: bankHolidayHoursPay, label: "Bank Holiday Pay"},
 				{y: bankHolidayClockInBonus, label: "Bank Holiday Bonus"},
 				{y: payBack, label: "Back Pay"},
@@ -2818,12 +2857,65 @@ const loadResponseData = (response) => {
 			]
 		}]
 	});
-}else{
-	document.getElementById("paymentsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
-}
-Last10WeeksNetPaysChart.render();
-Last10WeeksPaidHoursChart.render();
-paymentsPieChart.render();
+	} else {
+		document.getElementById("paymentsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+
+	//if peniosn is not a salary sacrifise, show it in deductions chart
+	if (pensionBeforeTax ===0) {
+		var pensionAmountChart = pensionAmount;
+		var pensionSumChart = pensionSum;
+		var pensionSumLast12WeeksChart = pensionSumLast12Weeks;
+	} else {
+		var pensionAmountChart = 0;
+		var pensionSumChart = 0;
+		var pensionSumLast12WeeksChart = 0;
+	}
+	//deductions chart
+	if (christmasSavingsDeduction<0){christmasSavingsDeduction = 0;}
+	if (summerSavingsDeduction<0){summerSavingsDeduction = 0;}
+	if (taxAmount>0||NIAmount>0||unionDeduction>0||pensionAmountChart>0||christmasSavingsDeduction>0||summerSavingsDeduction>0||
+		companyLoan>0||studentLoanDeduction>0||otherDeduction>0||otherDeduction2>0||otherDeduction3>0||netPay>0){
+		var deductionsPieChart = new CanvasJS.Chart("deductionsPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		title: {
+			text: "Deductions Pie Chart"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+	 		},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: taxAmount, label: "Tax"},
+				{y: NIAmount, label: "NI"},
+				{y: unionDeduction, label: "Union"},
+				{y: pensionAmountChart, label: "Pension"},
+				{y: christmasSavingsDeduction, label: "Christmas Savings"},
+				{y: summerSavingsDeduction, label: "Summer Savings."},
+				{y: companyLoan, label: "Company Loan"},
+				{y: studentLoanDeduction, label: "Student Loan"},
+				{y: otherDeduction, label: otherDeductionName},
+				{y: otherDeduction2, label: otherDeduction2Name},
+				{y: otherDeduction3, label: otherDeduction3Name},
+				{y: netPay, label: "Net Pay",  exploded: true}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("deductionsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+	Last10WeeksNetPaysChart.render();
+	Last10WeeksPaidHoursChart.render();
+	paymentsPieChart.render();
+	deductionsPieChart.render();
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
