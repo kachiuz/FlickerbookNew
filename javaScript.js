@@ -2694,15 +2694,27 @@ const loadResponseData = (response) => {
 	let bonusColor = '#cc9900';
 	let commissionsColor = '#ff8080';
 
-
-
-
 	let paymentsColorArray = [dayInColor, dayInColor, holidayColor, holidayColor, holidayColor,sicknessColor, sicknessColor];
 	paymentsColorArray.push(familyLeaveColor,familyLeaveColor, bereavementColor, bereavementColor, compassionateColor,compassionateColor);
 	paymentsColorArray.push(overtime1Color,overtime2Color, saturdayColor, sundayColor, bankHolidayColor, bankHolidayBonusColor);
 	paymentsColorArray.push(backPayColor, pieceWorkColor, sicknessColor, familyLeaveColor, addPay1Color, addPay2Color);
 	paymentsColorArray.push(addPay3Color, christmasColor, summerColor, familyLeaveColor, salaryColor, bonusColor, commissionsColor);
 	CanvasJS.addColorSet('paymentsColors', paymentsColorArray);
+
+	let taxAmuntColor = '#ff3333';
+	let NIAmountColor = '#ff4d4d';
+	let unionColor = '#ff6666';
+	let pensionColor = '#ff8080';
+	let copanyLoanColor = '#ff9999';
+	let studentLoanColor = '#ffb3b3';
+	let otherDeductionColor = '#ffcccc';
+	let otherDeduction2Color = '#ff1a1a';
+	let otherDeduction3Color = '#ff0000';
+	let netPayColor = '#69cc00';
+
+	let deductionsColorArray = [taxAmuntColor, NIAmountColor, unionColor, pensionColor, christmasColor, summerColor, copanyLoanColor];
+	deductionsColorArray.push(studentLoanColor, otherDeductionColor, otherDeduction2Color, otherDeduction3Color, netPayColor);
+	CanvasJS.addColorSet('deductionsColors', deductionsColorArray);
 	//last 10 weeks net pay chart
 	//check if we need to draw a chart;
 	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
@@ -2880,6 +2892,7 @@ const loadResponseData = (response) => {
 		animationEnabled: true,
 		exportEnabled: true,
 		backgroundColor: insideBoxColor,
+		colorSet: 'deductionsColors',
 		title: {
 			text: "Deductions Pie Chart"
 		},
