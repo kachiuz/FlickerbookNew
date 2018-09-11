@@ -521,11 +521,13 @@ hr {
 
 .chartStyle, .chartStyleFullBorder {
   background: #ffffcc;
-  /*height: 250px;
-	width: 510px;*/
   text-align: center;
   border: 1px solid grey;
-  border-top: 0px; }
+  border-top: 0px;
+  height: 250px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px; }
 
 .chartStyleFullBorder {
   border: 1px solid grey; }

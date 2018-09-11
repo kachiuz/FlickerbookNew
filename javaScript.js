@@ -3,7 +3,7 @@
 let timeSinceEpochOriginal = 1491004800000;
 let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",];
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+let insideBoxColor = "#ffffcc";
 //bank holiday arrays
 //2017
 let bankHolidayArray = [1492128000000, 1492387200000, 1493596800000, 1496016000000, 1503878400000, 1514160000000, 1514246400000];
@@ -1655,45 +1655,78 @@ const loadResponseData = (response) => {
 	part_pater = Number(part_pater);										part_ber = Number(part_ber);
 	part_comp = Number(part_comp);											basicHoursUnits = Number(basic_hours);
 	unsocial_prem_units = Number(unsocial_prem_units);	unsocial_prem_hol_units = Number(unsocial_prem_hol_units);
-	unsocial_prem_sick_units = Number(unsocial_prem_sick_units);
-	unsocial_prem_family_units = Number(unsocial_prem_family_units);
+	union_deSum = Number(union_deSum);									unsocial_prem_sick_units = Number(unsocial_prem_sick_units);
+	gross_paySum = Number(gross_paySum);								unsocial_prem_family_units = Number(unsocial_prem_family_units);
 	uns_ber_units = Number(uns_ber_units);							uns_comp_units = Number(uns_comp_units);
 	overtime1_units = Number(overtime1_units);					overtime2_units = Number(overtime2_units);
-	enhanced_holiday_units = Number(enhanced_holiday_units);
+	sundayExtraRate = Number(sundayExtraRate);					enhanced_holiday_units = Number(enhanced_holiday_units);
 	holiday_units = Number(holiday_units);							sick_units = Number(sick_units);
 	family_units =Number(family_units);									ber_units =Number(ber_units);
 	comp_units =Number(comp_units);											bhol_units = Number(bhol_units);
 	basicHoursPay = Number(basicHoursPay);							unsocial_prem = Number(unsocial_prem);
 	unsocial_prem_hol = Number(unsocial_prem_hol);			unsocial_prem_sick = Number(unsocial_prem_sick);
-	unsocial_prem_family = Number(unsocial_prem_family); unsocial_prem_bereavement = Number(unsocial_prem_bereavement);
-	unsocial_prem_compassionate = Number(unsocial_prem_compassionate);
+	unsocial_prem_family = Number(unsocial_prem_family);unsocial_prem_bereavement = Number(unsocial_prem_bereavement);
+	pensionEmpSum = Number(pensionEmpSum);							unsocial_prem_compassionate = Number(unsocial_prem_compassionate);
 	OT1Pay = Number(OT1Pay);														OT2Pay = Number(OT2Pay);
 	enhancedHolidayPay = Number(enhancedHolidayPay);		holidayPay = Number(holidayPay);
 	sicknessPay = Number(sicknessPay);									familyPay = Number(familyPay);
 	bereavementPay = Number(bereavementPay);						compassionatePay = Number(compassionatePay);
 	bHolPayTimes = Number(bHolPayTimes);								bankHolidayHoursPay = Number(bankHolidayHoursPay);
-	bankHolidayClockInBonus = Number(bankHolidayClockInBonus);
+	commissions = Number(commissions);									bankHolidayClockInBonus = Number(bankHolidayClockInBonus);
 	payBack = Number(payBack);													pieceWork = Number(pieceWork);
 	SSP = Number(SSP);																	SPP = Number(SPP);
 	additionalPayment = Number(additionalPayment);			additionalPayment2 = Number(additionalPayment2);
 	additionalPayment3 = Number(additionalPayment3);		christmasSavingsPayment = Number(christmasSavingsPayment);
-	summerSavingsPayment = Number(summerSavingsPayment);
+	unionDeduction = Number(unionDeduction);						summerSavingsPayment = Number(summerSavingsPayment);
 	pensionBeforeTax = Number(pensionBeforeTax);				pensionAmount = Number(pensionAmount);
 	pensionRate = Number(pensionRate);									saturdayHours = Number(saturdayHours);
 	sundayHours = Number(sundayHours);									saturdayExtraPay = Number(saturdayExtraPay);
 	sundayExtraPay = Number(sundayExtraPay);						saturdayExtraRate = Number(saturdayExtraRate);
-	sundayExtraRate = Number(sundayExtraRate);					SAP = Number(SAP);
-	salary = Number(salary);														bonus = Number(bonus);
-	commissions = Number(commissions);									NISum = Number(NISum);
-	unionDeduction = Number(unionDeduction);						taxSum = Number(taxSum);
-	union_deSum = Number(union_deSum);									pensionSum = Number(pensionSum);
-	pensionEmpSum = Number(pensionEmpSum);							netPaySum = Number(netPaySum);
-	gross_paySum = Number(gross_paySum);								holidaysPercentage = Number(holidaysPercentage);
 	sicknessPercentage = Number(sicknessPercentage);		overtimePercentage = Number(overtimePercentage);
 	parentalPercentage = Number(parentalPercentage);		otherPercentage = Number(otherPercentage);
 	bankHolidayPercentge = Number(bankHolidayPercentge);holidaysEarned = Number(holidaysEarned);
+	NISumLast12Weeks = Number(holidaysEarned);					union_deSumLast12Weeks = Number(union_deSumLast12Weeks);
+	salary = Number(salary);														pensionSumLast12Weeks = Number(pensionSumLast12Weeks);
+	bonus = Number(bonus);															chris_savSumLast12Weeks  = Number(chris_savSumLast12Weeks);
+	SAP = Number(SAP);																	summer_savSumLast12Weeks = Number(summer_savSumLast12Weeks);
+	other_deLast12Weeks = Number(other_deLast12Weeks);	add_deSum2Last12Weeks = Number(add_deSum2Last12Weeks);
+	NISum = Number(NISum);															add_deSum3Last12Weeks = Number(add_deSum3Last12Weeks);
+	netPaySumLast12Weeks = Number(netPaySumLast12Weeks);gross_paySumLast12Weeks = Number(gross_paySumLast12Weeks);
+	taxSum = Number(taxSum);														pensionEmpSumLast12Weeks = Number(pensionEmpSumLast12Weeks);
+	pensionSum = Number(pensionSum);										companyLoanSumLast12Weeks = Number(companyLoanSumLast12Weeks);
+	netPaySum = Number(netPaySum);											studentLoanDeductionSumLast12Weeks = Number(studentLoanDeductionSumLast12Weeks);
+	holidaysPercentage = Number(holidaysPercentage);		taxSumLast12Weeks = Number(taxSumLast12Weeks);
+	basicPaySum = Number(basicPaySum);									basicHoursSum = Number(basicHoursSum);
+	ot1_paySum = Number(ot1_paySum);										ot1_unitsSum = Number(ot1_unitsSum);
+	ot2_paySum = Number(ot2_paySum);										ot2_unitsSum = Number(ot2_unitsSum);
+	hol_unitsSum = Number(hol_unitsSum);								hol_paySum = Number(hol_paySum);
+	enhol_unitsSum = Number(enhol_unitsSum);						enhol_paySum = Number(enhol_paySum);
+	bhol_unitsSum = Number(bhol_unitsSum);							bhol_paySum = Number(bhol_paySum);
+	bhol_bonusSum = Number(bhol_bonusSum);							sick_paySum = Number(sick_paySum);
+	sick_unitsSum = Number(sick_unitsSum);							fam_unitsSum = Number(fam_unitsSum);
+	fam_paySum = Number(fam_paySum);										ber_unitsSum = Number(ber_unitsSum);
+	ber_paySum = Number(ber_paySum);										comp_unitsSum = Number(comp_unitsSum);
+	comp_paySum = Number(comp_paySum);									uns_premSum = Number(uns_premSum);
+	uns_prem_unSum = Number(uns_prem_unSum);						uns_holSum = Number(uns_holSum);
+	uns_hol_unSum = Number(uns_hol_unSum);							uns_sickSum = Number(uns_sickSum);
+	uns_sick_unSum = Number(uns_sick_unSum);						uns_familySum = Number(uns_familySum);
+	uns_family_unSum = Number(uns_family_unSum);				uns_berSum = Number(uns_berSum);
+	uns_ber_unSum = Number(uns_ber_unSum);							uns_compSum = Number(uns_compSum);
+	uns_comp_unSum = Number(uns_comp_unSum);						SPP_Sum = Number(SPP_Sum);
+	SSP_Sum = Number(SSP_Sum);													totalHours = Number(totalHours);
+	pieceWorkSum = Number(pieceWorkSum);								paybackSum = Number(paybackSum);
+	add_paySum = Number(add_paySum);										add_pay2Sum = Number(add_pay2Sum);
+	add_pay3Sum = Number(add_pay3Sum);									saturdayExtraPaySum = Number(saturdayExtraPaySum);
+	sundayExtraPaySum = Number(sundayExtraPaySum);			saturdayHoursSum = Number(saturdayHoursSum);
+	sundayHoursSum = Number(sundayHoursSum);						SAPSum = Number(SAPSum);
+	salarySum = Number(salarySum);											bonusSum = Number(bonusSum);
+	hourlyGrossPay = Number(hourlyGrossPay);						hourlyNetPay = Number(hourlyNetPay);
+	hourlytaxSum  = Number(hourlytaxSum);								hourlyNISum  = Number(hourlyNISum);
+	hourlyGrossPayTotalH = Number(hourlyGrossPayTotalH);hourlyNetPayTotalH = Number(hourlyNetPayTotalH);
+	hourlytaxSumTotalH  = Number(hourlytaxSumTotalH);		hourlyNISumTotalH  = Number(hourlyNISumTotalH);
+	hourlyGrossPayAllH = Number(hourlyGrossPayAllH);		hourlyNetPayAllH = Number(hourlyNetPayAllH);
+	hourlytaxSumAllH  = Number(hourlytaxSumAllH);				hourlyNISumAllH  = Number(hourlyNISumAllH);
 
-	//console.log(bHolPayTimes.toFixed(2), typeof bHolPayTimes);
 	//get all elements from the dom that will be used to load data into them
 	//payments table
 	let paymentsAmountDiv = document.getElementById("paymentsAmountDiv");
@@ -1872,20 +1905,20 @@ const loadResponseData = (response) => {
 	if (bereavementPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_ber).toFixed(4);}
 	if (compassionatePay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_comp).toFixed(4);}
 	if (bankHolidayHoursPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*(bHolPayTimes-1)).toFixed(4);}
-	if (bankHolidayClockInBonus>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (payBack>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (pieceWork>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (SSP>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (SPP>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (SAP>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (salary>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (bonus>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (commissions>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (additionalPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (additionalPayment2>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (additionalPayment3>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (christmasSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
-	if (summerSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (bankHolidayClockInBonus>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (payBack>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (pieceWork>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (SSP>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (SPP>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (SAP>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (salary>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (bonus>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (commissions>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (additionalPayment>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (additionalPayment2>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (additionalPayment3>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (christmasSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (summerSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br> ';}
 	if ((pensionAmount>0) && (pensionBeforeTax === 1)){paymentsRateDiv.innerHTML += '<br> '+pensionRate.toFixed(2)+'%';}
 	//total gross payments
 	totalGrossPaymentsAmountDiv.innerHTML = totalGrossPayments.toFixed(2);
@@ -1982,6 +2015,220 @@ const loadResponseData = (response) => {
 	if (parentalPercentage>0){yearToDatePercentageNames.innerHTML+= 'Paternity Payments<br>';}
 	if (otherPercentage>0){yearToDatePercentageNames.innerHTML+= 'Other Payments<br>';}
 	if (bankHolidayPercentge>0){yearToDatePercentageNames.innerHTML+= 'Bank Holiday Payments<br>';}
+	//total payments table
+	let totalPaidHours = ot1_unitsSum + ot2_unitsSum + basicHoursSum;
+	let unpaidBreaksLength = totalHours - totalPaidHours;
+	//year to date II amounts
+	yearToDateAmountII.innerHTML = basicPaySum.toFixed(2)+' £<br>';
+	if (salarySum>0){yearToDateAmountII.innerHTML+= salarySum.toFixed(2)+' £<br>';}
+	if (uns_premSum>0){yearToDateAmountII.innerHTML+= uns_premSum.toFixed(2)+' £<br>';}
+	if (ot1_paySum>0){yearToDateAmountII.innerHTML+= ot1_paySum.toFixed(2)+' £<br>';}
+	if (ot2_paySum>0){yearToDateAmountII.innerHTML+= ot2_paySum.toFixed(2)+' £<br>';}
+	if (hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (hol_paySum>0){yearToDateAmountII.innerHTML+= hol_paySum.toFixed(2)+' £<br>';}
+	if (enhol_paySum>0){yearToDateAmountII.innerHTML+= enhol_paySum.toFixed(2)+' £<br>';}
+	if (uns_holSum>0){yearToDateAmountII.innerHTML+= uns_holSum.toFixed(2)+' £<br>';}
+	if (bhol_paySum>0){yearToDateAmountII.innerHTML+= bhol_paySum.toFixed(2)+' £<br>';}
+	if (bhol_bonusSum>0){yearToDateAmountII.innerHTML+= bhol_bonusSum.toFixed(2)+' £<br>';}
+	if (sundayExtraPaySum >0 || saturdayExtraPaySum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (saturdayExtraPaySum>0){yearToDateAmountII.innerHTML+= saturdayExtraPaySum.toFixed(2)+' £<br>';}
+	if (sundayExtraPaySum>0){yearToDateAmountII.innerHTML+= sundayExtraPaySum.toFixed(2)+' £<br>';}
+	if (sick_paySum >0 || uns_sickSum>0 ||SSP_Sum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (sick_paySum>0){yearToDateAmountII.innerHTML+= sick_paySum.toFixed(2)+' £<br>';}
+	if (uns_sickSum>0){yearToDateAmountII.innerHTML+= uns_sickSum.toFixed(2)+' £<br>';}
+	if (SSP_Sum>0){yearToDateAmountII.innerHTML+= SSP_Sum.toFixed(2)+' £<br>';}
+	if (fam_paySum >0 || uns_familySum>0 ||SPP_Sum>0 || SAPSum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (fam_paySum>0){yearToDateAmountII.innerHTML+= fam_paySum.toFixed(2)+' £<br>';}
+	if (uns_familySum>0){yearToDateAmountII.innerHTML+= uns_familySum.toFixed(2)+' £<br>';}
+	if (SPP_Sum>0){yearToDateAmountII.innerHTML+= SPP_Sum.toFixed(2)+' £<br>';}
+	if (SAPSum>0){yearToDateAmountII.innerHTML+= SAPSum.toFixed(2)+' £<br>';}
+	if (ber_paySum >0 || uns_berSum>0 ||comp_paySum>0 || uns_compSum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (ber_paySum>0){yearToDateAmountII.innerHTML+= ber_paySum.toFixed(2)+' £<br>';}
+	if (uns_berSum>0){yearToDateAmountII.innerHTML+= uns_berSum.toFixed(2)+' £<br>';}
+	if (comp_paySum>0){yearToDateAmountII.innerHTML+= comp_paySum.toFixed(2)+' £<br>';}
+	if (uns_compSum>0){yearToDateAmountII.innerHTML+= uns_compSum.toFixed(2)+' £<br>';}
+	if (pieceWorkSum >0 ||bonusSum>0|| commissionsSum>0 || paybackSum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (pieceWorkSum>0){yearToDateAmountII.innerHTML += pieceWorkSum.toFixed(2)+' £<br>';}
+	if (paybackSum>0){yearToDateAmountII.innerHTML += paybackSum.toFixed(2)+' £<br>';}
+	if (bonusSum>0){yearToDateAmountII.innerHTML += bonusSum.toFixed(2)+' £<br>';}
+	if (commissionsSum>0){yearToDateAmountII.innerHTML += commissionsSum.toFixed(2)+' £<br>';}
+	if (add_paySum >0 || add_pay2Sum>0 ||add_pay3Sum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (add_paySum>0){yearToDateAmountII.innerHTML += add_paySum.toFixed(2)+' £<br>';}
+	if (add_pay2Sum>0){yearToDateAmountII.innerHTML += add_pay2Sum.toFixed(2)+' £<br>';}
+	if (add_pay3Sum>0){yearToDateAmountII.innerHTML += add_pay3Sum.toFixed(2)+' £<br>';}
+	//year to date amounts hidden
+	yearToDateAmountIIHid.innerHTML = 'Premium<br>';
+	if (salarySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (uns_premSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (ot1_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (ot2_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (hol_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (enhol_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (uns_holSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (bhol_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (bhol_bonusSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (sundayExtraPaySum >0 || saturdayExtraPaySum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (saturdayExtraPaySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (sundayExtraPaySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (sick_paySum >0 || uns_sickSum>0 ||SSP_Sum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (sick_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (uns_sickSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (SSP_Sum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (fam_paySum >0 || uns_familySum>0 ||SPP_Sum>0 || SAPSum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (fam_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (uns_familySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (SPP_Sum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (SAPSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (ber_paySum >0 || uns_berSum>0 ||comp_paySum>0 || uns_compSum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (ber_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (uns_berSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (comp_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (uns_compSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (pieceWorkSum >0 ||bonusSum>0|| commissionsSum>0 || paybackSum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (pieceWorkSum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	if (paybackSum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	if (bonusSum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	if (commissionsSum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	if (add_paySum >0 || add_pay2Sum>0 ||add_pay3Sum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (add_paySum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	if (add_pay2Sum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	if (add_pay3Sum>0){yearToDateAmountIIHid.innerHTML += 'Premium<br>';}
+	//year to date II names
+	yearToDateNamesII.innerHTML = 'Basic Pay<br>';
+	if (salarySum>0){yearToDateNamesII.innerHTML+= 'Salary Pay<br>';}
+	if (uns_premSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Basic Pay<br>';}
+	if (ot1_paySum>0){yearToDateNamesII.innerHTML+= 'Overtime 1 Pay<br>';}
+	if (ot2_paySum>0){yearToDateNamesII.innerHTML+= 'Overtime 2 Pay<br>';}
+	if (hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (hol_paySum>0){yearToDateNamesII.innerHTML+= 'Holiday Pay<br>';}
+	if (enhol_paySum>0){yearToDateNamesII.innerHTML+= 'Enhanced Holiday Pay<br>';}
+	if (uns_holSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Holiday Pay<br>';}
+	if (bhol_paySum>0){yearToDateNamesII.innerHTML+= 'Bank Holiday Pay<br>';}
+	if (bhol_bonusSum>0){yearToDateNamesII.innerHTML+= 'Bank Holiday Bonuses<br>';}
+	if (sundayExtraPaySum >0 || saturdayExtraPaySum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (saturdayExtraPaySum>0){yearToDateNamesII.innerHTML+= 'Saturday Bonuses<br>';}
+	if (sundayExtraPaySum>0){yearToDateNamesII.innerHTML+= 'Sunday Bonuses<br>';}
+	if (sick_paySum >0 || uns_sickSum>0 ||SSP_Sum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (sick_paySum>0){yearToDateNamesII.innerHTML+= 'Sickness Pay<br>';}
+	if (uns_sickSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Sickness Pay<br>';}
+	if (SSP_Sum>0){yearToDateNamesII.innerHTML+= 'SSP Pay<br>';}
+	if (fam_paySum >0 || uns_familySum>0 ||SPP_Sum>0 || SAPSum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (fam_paySum>0){yearToDateNamesII.innerHTML+= 'Parental Pay<br>';}
+	if (uns_familySum>0){yearToDateNamesII.innerHTML+= 'Unsocial Parental Pay<br>';}
+	if (SPP_Sum>0){yearToDateNamesII.innerHTML+= 'SPP Pay<br>';}
+	if (SAPSum>0){yearToDateNamesII.innerHTML+= 'SAP Pay<br>';}
+	if (ber_paySum >0 || uns_berSum>0 ||comp_paySum>0 || uns_compSum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (ber_paySum>0){yearToDateNamesII.innerHTML+= 'Bereavement Pay<br>';}
+	if (uns_berSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Bereavement Pay<br>';}
+	if (comp_paySum>0){yearToDateNamesII.innerHTML+= 'Compassionate Pay<br>';}
+	if (uns_compSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Compass. Pay<br>';}
+	if (pieceWorkSum >0 ||bonusSum>0|| commissionsSum>0|| paybackSum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (pieceWorkSum>0){yearToDateNamesII.innerHTML += 'Piece Work Pay<br>';}
+	if (paybackSum>0){yearToDateNamesII.innerHTML += 'Back Pays<br>';}
+	if (bonusSum>0){yearToDateNamesII.innerHTML += 'Bonuses Pay<br>';}
+	if (commissionsSum>0){yearToDateNamesII.innerHTML += 'Commissions Pay<br>';}
+	if (add_paySum >0 || add_pay2Sum>0 ||add_pay3Sum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (add_paySum>0){yearToDateNamesII.innerHTML += 'Add. Pay 1<br>';}
+	if (add_pay2Sum>0){yearToDateNamesII.innerHTML += 'Add. Pay 2<br>';}
+	if (add_pay3Sum>0){yearToDateNamesII.innerHTML += 'Add. Pay 3<br>';}
+	//hours table
+	//hours amounts
+	yearToDateAmountHours.innerHTML= totalHours.toFixed(2)+' h<br>';
+	if (totalPaidHours>0){yearToDateAmountHours.innerHTML+= totalPaidHours.toFixed(2)+' h<br>';}
+	if (unpaidBreaksLength>0){yearToDateAmountHours.innerHTML+= unpaidBreaksLength.toFixed(2)+' h<br>';}
+
+	if (basicHoursSum >0 || uns_prem_unSum>0 || ot1_unitsSum>0|| ot2_unitsSum>0){yearToDateAmountHours.innerHTML+= '<hr>';}
+	yearToDateAmountHours.innerHTML+= basicHoursSum.toFixed(2)+' h<br>';
+	if (uns_prem_unSum>0){yearToDateAmountHours.innerHTML+= uns_prem_unSum.toFixed(2)+' h<br>';}
+	if (ot1_unitsSum>0){yearToDateAmountHours.innerHTML+= ot1_unitsSum.toFixed(2)+' h<br>';}
+	if (ot2_unitsSum>0){yearToDateAmountHours.innerHTML+= ot2_unitsSum.toFixed(2)+' h<br>';}
+
+	if (hol_unitsSum >0 || enhol_unitsSum>0 || uns_hol_unSum>0|| bhol_unitsSum>0){yearToDateAmountHours.innerHTML+= '<hr>';}
+	if (hol_unitsSum>0){yearToDateAmountHours.innerHTML+= hol_unitsSum.toFixed(2)+' h<br>';}
+	if (enhol_unitsSum>0){yearToDateAmountHours.innerHTML+= enhol_unitsSum.toFixed(2)+' h<br>';}
+	if (uns_hol_unSum>0){yearToDateAmountHours.innerHTML+= uns_hol_unSum.toFixed(2)+' h<br>';}
+	if (bhol_unitsSum>0){yearToDateAmountHours.innerHTML+= bhol_unitsSum.toFixed(2)+' h<br>';}
+
+	if (saturdayHoursSum >0 || sundayHoursSum>0){yearToDateAmountHours.innerHTML+= '<hr>';}
+	if (saturdayHoursSum>0){yearToDateAmountHours.innerHTML+= saturdayHoursSum.toFixed(2)+' h<br>';}
+	if (sundayHoursSum>0){yearToDateAmountHours.innerHTML+= sundayHoursSum.toFixed(2)+' h<br>';}
+
+	if (uns_sick_unSum >0 || sick_unitsSum>0 || uns_family_unSum>0|| fam_unitsSum>0){yearToDateAmountHours.innerHTML+= '<hr>';}
+	if (uns_sick_unSum>0){yearToDateAmountHours.innerHTML+= uns_sick_unSum.toFixed(2)+' h<br>';}
+	if (sick_unitsSum>0){yearToDateAmountHours.innerHTML+= sick_unitsSum.toFixed(2)+' h<br>';}
+	if (uns_family_unSum>0){yearToDateAmountHours.innerHTML+= uns_family_unSum.toFixed(2)+' h<br>';}
+	if (fam_unitsSum>0){yearToDateAmountHours.innerHTML+= fam_unitsSum.toFixed(2)+' h<br>';}
+
+	if (uns_ber_unSum >0 || ber_unitsSum>0 || comp_unitsSum>0|| uns_comp_unSum>0){yearToDateAmountHours.innerHTML+= '<hr>';}
+	if (uns_ber_unSum>0){yearToDateAmountHours.innerHTML+= uns_ber_unSum.toFixed(2)+' h<br>';}
+	if (ber_unitsSum>0){yearToDateAmountHours.innerHTML+= ber_unitsSum.toFixed(2)+' h<br>';}
+	if (uns_comp_unSum>0){yearToDateAmountHours.innerHTML+= uns_comp_unSum.toFixed(2)+' h<br>';}
+	if (comp_unitsSum>0){yearToDateAmountHours.innerHTML+= comp_unitsSum.toFixed(2)+' h<br>';}
+
+	yearToDateNamesHours.innerHTML= 'Hours Spent At Work<br>';
+	if (totalPaidHours>0){yearToDateNamesHours.innerHTML+= 'Paid Hours Spent At Work<br>';}
+	if (unpaidBreaksLength>0){yearToDateNamesHours.innerHTML+= 'Unpaid Break Hours<br>';}
+
+	if (basicHoursSum >0 || uns_prem_unSum>0 || ot1_unitsSum>0|| ot2_unitsSum>0){yearToDateNamesHours.innerHTML+= '<hr>';}
+	yearToDateNamesHours.innerHTML+= 'Basic Hours <br>';
+	if (uns_prem_unSum>0){yearToDateNamesHours.innerHTML+= 'Unsocial Basic Hours<br>';}
+	if (ot1_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Overtime 1 Hours<br>';}
+	if (ot2_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Overtime 2 Hours<br>';}
+
+	if (hol_unitsSum >0 || enhol_unitsSum>0 || uns_hol_unSum>0|| bhol_unitsSum>0){yearToDateNamesHours.innerHTML+= '<hr>';}
+	if (hol_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Holiday Hours<br>';}
+	if (enhol_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Enhanced Holiday Hours<br>';}
+	if (uns_hol_unSum>0){yearToDateNamesHours.innerHTML+= 'Unsocial Holiday Hours<br>';}
+	if (bhol_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Bank Holiday Hours<br>';}
+
+	if (saturdayHoursSum >0 || sundayHoursSum>0){yearToDateNamesHours.innerHTML+= '<hr>';}
+	if (saturdayHoursSum>0){yearToDateNamesHours.innerHTML+= 'Saturday Hours<br>';}
+	if (sundayHoursSum>0){yearToDateNamesHours.innerHTML+= 'Sunday Hours<br>';}
+
+	if (uns_sick_unSum >0 || sick_unitsSum>0 || uns_family_unSum>0|| fam_unitsSum>0){yearToDateNamesHours.innerHTML+= '<hr>';}
+	if (uns_sick_unSum>0){yearToDateNamesHours.innerHTML+= 'Unsocial Sickness Hours<br>';}
+	if (sick_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Paid Sickness Hours<br>';}
+	if (uns_family_unSum>0){yearToDateNamesHours.innerHTML+= 'Unsocial Parental Hours<br>';}
+	if (fam_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Parental Leave Hours<br>';}
+
+	if (uns_ber_unSum >0 || ber_unitsSum>0 || comp_unitsSum>0|| uns_comp_unSum>0){yearToDateNamesHours.innerHTML+= '<hr>';}
+	if (uns_ber_unSum>0){yearToDateNamesHours.innerHTML+= 'Unsocial Bereav. Hours<br>';}
+	if (ber_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Bereavement Leave Hours<br>';}
+	if (uns_comp_unSum>0){yearToDateNamesHours.innerHTML+= 'Unsocial Compass. Hours<br>';}
+	if (comp_unitsSum>0){yearToDateNamesHours.innerHTML+= 'Compassionate Hours<br>';}
+
+	yearToDateAmountHoursHid.innerHTML= 'Premium<br>';
+	if (totalPaidHours>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (unpaidBreaksLength>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+
+	if (basicHoursSum >0 || uns_prem_unSum>0 || ot1_unitsSum>0|| ot2_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= '<hr>';}
+	yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';
+	if (uns_prem_unSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (ot1_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (ot2_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+
+	if (hol_unitsSum >0 || enhol_unitsSum>0 || uns_hol_unSum>0|| bhol_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= '<hr>';}
+	if (hol_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (enhol_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (uns_hol_unSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (bhol_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+
+	if (saturdayHoursSum >0 || sundayHoursSum>0){yearToDateAmountHoursHid.innerHTML+= '<hr>';}
+	if (saturdayHoursSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (sundayHoursSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+
+	if (uns_sick_unSum >0 || sick_unitsSum>0 || uns_family_unSum>0|| fam_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= '<hr>';}
+	if (uns_sick_unSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (sick_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (uns_family_unSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (fam_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+
+	if (uns_ber_unSum >0 || ber_unitsSum>0 || comp_unitsSum>0|| uns_comp_unSum>0){yearToDateAmountHoursHid.innerHTML+= '<hr>';}
+	if (uns_ber_unSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (ber_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (uns_comp_unSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
+	if (comp_unitsSum>0){yearToDateAmountHoursHid.innerHTML+= 'Premium<br>';}
 	//holidays table
 	//sort out wheather use day or days words.
 	holidayStatisticsAmount.innerHTML= totalHolidaysUsed;
@@ -2041,8 +2288,542 @@ const loadResponseData = (response) => {
 	if (nextFullHoliday>0 || nextFullHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Till Next Holiday:<br>';}
 	if (daysSinceLastHoliday>0 || daysSinceLastHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Since Last Holiday:<br>';}
 
+	//last 13 weeks totals
+	//last 13 weeks amounts
+	yearToDateLast12WeeksAmount.innerHTML = taxSumLast12Weeks.toFixed(2)+' £<br>'+NISumLast12Weeks.toFixed(2)+' £<hr>';
+	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= union_deSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (companyLoanSumLast12Weeks >0){yearToDateLast12WeeksAmount.innerHTML+= companyLoanSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (studentLoanDeductionSumLast12Weeks >0){yearToDateLast12WeeksAmount.innerHTML+= studentLoanDeductionSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (chris_savSumLast12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= chris_savSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (summer_savSumLast12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= summer_savSumLast12Weeks.toFixed(2)+' £<br>';}
 
-	//still ne to pick elements for charts
+	if (other_deLast12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= other_deLast12Weeks.toFixed(2)+' £<br>';}
+	if (add_deSum2Last12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= add_deSum2Last12Weeks.toFixed(2)+' £<br>';}
+	if (add_deSum3Last12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= add_deSum3Last12Weeks.toFixed(2)+' £<br>';}
+	if (companyLoanSumLast12Weeks >0 || studentLoanDeductionSumLast12Weeks>0 || union_deSumLast12Weeks >0 || chris_savSumLast12Weeks>0 || other_deLast12Weeks>0||add_deSum2Last12Weeks>0 ||add_deSum3Last12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= '<hr>';}
+	if (pensionSumLast12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= pensionSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (pensionEmpSumLast12Weeks >0) {yearToDateLast12WeeksAmount.innerHTML+= pensionEmpSumLast12Weeks.toFixed(2) +' £<br>';}
+	var totalPensionLast12Weeks = pensionSumLast12Weeks + pensionEmpSumLast12Weeks;
+	if (totalPensionLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= totalPensionLast12Weeks.toFixed(2)+' £<hr>';}
+
+	yearToDateLast12WeeksAmount.innerHTML+= netPaySumLast12Weeks.toFixed(2)+' £<br>';
+	yearToDateLast12WeeksAmount.innerHTML+= '<b>'+gross_paySumLast12Weeks.toFixed(2)+' £</b>';
+
+	//last 13 weeks names
+	yearToDateLast12WeeksNames.innerHTML = 'Tax<br> National Insurance<hr>' ;
+	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Union<br>';}
+	if (companyLoanSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Loan Deduction<br>';}
+	if (studentLoanDeductionSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Student Loan<br>';}
+	if (chris_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Christmas Savings Deductions<br>';}
+	if (summer_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Summer Savings Deductions<br>';}
+
+	if (other_deLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeductionName+'<br>';}
+	if (add_deSum2Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeduction2Name+'<br>';}
+	if (add_deSum3Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeduction3Name+'<br>';}
+	if (companyLoanSumLast12Weeks >0 || studentLoanDeductionSumLast12Weeks>0 || union_deSumLast12Weeks >0 ||
+	summer_savSumLast12Weeks>0||other_deLast12Weeks>0||summer_savSumLast12Weeks>0 ||add_deSum2Last12Weeks>0||
+	add_deSum3Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= '<hr>';}
+	if (pensionSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Employee Pension<br>';}
+	if (pensionEmpSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Employer Pension<br>';}
+	if (totalPensionLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Pension<hr>';}
+
+	yearToDateLast12WeeksNames.innerHTML+= 'Net Pay<br>';
+	yearToDateLast12WeeksNames.innerHTML+= 'Gross Pay<br>';
+	//last 13 weeks amounts hidden
+	yearToDateLast12WeeksAmountHid.innerHTML = 'Premium<br>Premium<hr>';
+	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (companyLoanSumLast12Weeks >0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (studentLoanDeductionSumLast12Weeks >0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (chris_savSumLast12Weeks>0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (summer_savSumLast12Weeks>0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (other_deLast12Weeks>0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (add_deSum2Last12Weeks>0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (add_deSum3Last12Weeks>0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (companyLoanSumLast12Weeks >0 || studentLoanDeductionSumLast12Weeks>0 || union_deSumLast12Weeks >0 ||
+	chris_savSumLast12Weeks>0 || other_deLast12Weeks>0||add_deSum2Last12Weeks>0 ||
+	add_deSum3Last12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= '<hr>';}
+	if (pensionSumLast12Weeks>0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (pensionEmpSumLast12Weeks >0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	var totalPensionLast12Weeks = pensionSumLast12Weeks + pensionEmpSumLast12Weeks;
+	if (totalPensionLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<hr>';}
+
+	yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';
+	yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';
+	//--------------weeklyAverages div--------------------------//
+	//determine current Tax period number
+	if(taxPeriodNumber>0 && taxPeriodNumber<=52)	{
+		taxPeriodNumberNew = taxPeriodNumber;
+	}	else if (taxPeriodNumber>52 && taxPeriodNumber<=104)	{
+		taxPeriodNumberNew = taxPeriodNumber -52;
+	}	else if (taxPeriodNumber>104 && taxPeriodNumber<=156)	{
+			taxPeriodNumberNew = taxPeriodNumber -104;
+	}	else if (taxPeriodNumber>156 && taxPeriodNumber<=204)	{
+		taxPeriodNumberNew = taxPeriodNumber -156;
+	}	else {
+
+	}
+	let averageTax = taxSum / taxPeriodNumberNew;
+	let averageNI = NISum / taxPeriodNumberNew;
+	let averageGrossPay = gross_paySum / taxPeriodNumberNew;
+	let averageNetPay = netPaySum / taxPeriodNumberNew;
+	let averageBasicHoursPay = basicPaySum / taxPeriodNumberNew;
+	let averageBasicHours = basicHoursSum / taxPeriodNumberNew ;
+	let averageUnsocialPrem = uns_premSum / taxPeriodNumberNew;
+	let averageUnsocialHours = uns_prem_unSum / taxPeriodNumberNew;
+	let averageOvertimeHours = (ot1_unitsSum + ot2_unitsSum) / taxPeriodNumberNew; //sudeti overtime 1 ir overtime 2 hours
+	let averageOvertimePay = (ot1_paySum + ot2_paySum) / taxPeriodNumberNew;; // sudeti overtime1 ir overtime 2 pay
+
+	//weeklyAverages amounts
+	weeklyAveragesAmount.innerHTML= averageTax.toFixed(2)+' £<br>';
+	if (averageNI>0){weeklyAveragesAmount.innerHTML+= averageNI.toFixed(2)+' £<br>';}
+	if (averageGrossPay>0){weeklyAveragesAmount.innerHTML+= averageGrossPay.toFixed(2)+' £<br>';}
+	if (averageNetPay>0){weeklyAveragesAmount.innerHTML+= averageNetPay.toFixed(2)+' £<br>';}
+	if (averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesAmount.innerHTML+= '<hr>';}
+	if (averageBasicHoursPay>0){weeklyAveragesAmount.innerHTML+= averageBasicHoursPay.toFixed(2)+' £<br>';}
+	if (averageBasicHours>0){weeklyAveragesAmount.innerHTML+= averageBasicHours.toFixed(2)+' h<br>';}
+	if (averageUnsocialPrem>0){weeklyAveragesAmount.innerHTML+= averageUnsocialPrem.toFixed(2)+' £<br>';}
+	if (averageUnsocialHours>0){weeklyAveragesAmount.innerHTML+= averageUnsocialHours.toFixed(2)+' h<br>';}
+	if (averageOvertimePay>0){weeklyAveragesAmount.innerHTML+= averageOvertimePay.toFixed(2)+' £<br>';}
+	if (averageOvertimeHours>0){weeklyAveragesAmount.innerHTML+= averageOvertimeHours.toFixed(2)+' h<br>';}
+	//weeklyAverages names
+	weeklyAveragesNames.innerHTML= 'Tax<br>';
+	if (NISum>0){weeklyAveragesNames.innerHTML+= 'NI<br>';}
+	if (averageGrossPay>0){weeklyAveragesNames.innerHTML+= 'Gross Pay<br>';}
+	if (averageNetPay>0){weeklyAveragesNames.innerHTML+= 'Net Pay<br>';}
+	if (averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesNames.innerHTML+= '<hr>';}
+	if (averageBasicHoursPay>0){weeklyAveragesNames.innerHTML+= 'Basic Pay<br>';}
+	if (averageBasicHours>0){weeklyAveragesNames.innerHTML+= 'Basic Hours<br>';}
+	if (averageUnsocialPrem>0){weeklyAveragesNames.innerHTML+= 'Unsocial Basic Pay<br>';}
+	if (averageUnsocialHours>0){weeklyAveragesNames.innerHTML+= 'Unsocial Basic Hours<br>';}
+	if (averageOvertimePay>0){weeklyAveragesNames.innerHTML+= 'Overtime Pay<br>';}
+	if (averageOvertimeHours>0){weeklyAveragesNames.innerHTML+= 'Overtime Hours<br>';}
+	//weeklyAverages amounts hidden
+	weeklyAveragesAmountHid.innerHTML= 'Premium<br>';
+	if (averageNI>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageGrossPay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageNetPay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesAmountHid.innerHTML+= '<hr>';}
+	if (averageBasicHoursPay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageBasicHours>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageUnsocialPrem>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageUnsocialHours>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageOvertimePay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (averageOvertimeHours>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	//days amounts
+	//rename daysinsumNR to day names
+	let daysNotSelected = Number(daySum0);
+	let daysIn = Number(daySum1);
+	let daysOff = Number(daySum2);
+	let daysHoliday = Number(daySum3);
+	let daysHalfInHalfHol = Number(daySum4);
+	let daysUnpaidHoliday = Number(daySum5);
+	let daysInSick = Number(daySum6);
+	let daysSickness = Number(daySum7);
+	let daysAbsence = Number(daySum8);
+	let daysParental = Number(daySum9);
+	let daysBereavement = Number(daySum10);
+	let daysCompassionate = Number(daySum11);
+	dayStatisticsAmount.innerHTML= daysIn.toFixed(0);
+	if (daysIn<=1){
+		dayStatisticsAmount.innerHTML+= ' day<br>';
+	}	else {
+		dayStatisticsAmount.innerHTML+= ' days<br>';
+	}
+
+	if (daysOff>0){
+		dayStatisticsAmount.innerHTML+= daysOff.toFixed(0);
+		if (daysOff<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysHoliday>0)	{
+		dayStatisticsAmount.innerHTML+= daysHoliday.toFixed(0);
+		if (daysHoliday<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysHalfInHalfHol>0) {
+		dayStatisticsAmount.innerHTML+= daysHalfInHalfHol.toFixed(0);
+		if (daysHalfInHalfHol<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysUnpaidHoliday>0) {
+		dayStatisticsAmount.innerHTML+= daysUnpaidHoliday.toFixed(0);
+		if (daysUnpaidHoliday<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysInSick>0)	{
+		dayStatisticsAmount.innerHTML+= daysInSick.toFixed(0);
+		if (daysInSick<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		} else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysSickness>0)	{
+		dayStatisticsAmount.innerHTML+= daysSickness.toFixed(0);
+		if (daysSickness<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysAbsence>0){
+		dayStatisticsAmount.innerHTML+= daysAbsence.toFixed(0);
+		if (daysAbsence<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysParental>0)	{
+		dayStatisticsAmount.innerHTML+= daysParental.toFixed(0);
+		if (daysParental<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysBereavement>0)	{
+		dayStatisticsAmount.innerHTML+= daysBereavement.toFixed(0);
+		if (daysBereavement<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+
+	if (daysCompassionate>0)	{
+		dayStatisticsAmount.innerHTML+= daysCompassionate.toFixed(0);
+		if (daysCompassionate<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysNotSelected>0){
+		dayStatisticsAmount.innerHTML+= daysNotSelected.toFixed(0);
+		if (daysNotSelected<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsAmount.innerHTML+= '<hr>';}
+	if (daysSinceLastSick ==="Today")	{
+		dayStatisticsAmount.innerHTML+= '<b>'+daysSinceLastSick+'</b>';
+	}	else if (daysSinceLastSick>0)	{
+		dayStatisticsAmount.innerHTML+= daysSinceLastSick;
+		if (daysSinceLastSick<=1){
+			dayStatisticsAmount.innerHTML+= ' day<br>';
+		}	else {
+			dayStatisticsAmount.innerHTML+= ' days<br>';
+		}
+	}
+
+	// days names
+	dayStatisticsNames.innerHTML= 'Days In<br>';
+	if (daysOff>0){dayStatisticsNames.innerHTML+= 'Days Off<br>';}
+	if (daysHoliday>0){dayStatisticsNames.innerHTML+= 'Holidays<br>';}
+	if (daysHalfInHalfHol>0){dayStatisticsNames.innerHTML+= 'Half Days In/Half Holidays<br>';}
+	if (daysUnpaidHoliday>0){dayStatisticsNames.innerHTML+= 'Unpaid Holidays<br>';}
+	if (daysInSick>0){dayStatisticsNames.innerHTML+= 'Days In/Sickness<br>';}
+	if (daysSickness>0){dayStatisticsNames.innerHTML+= 'Days On Sick<br>';}
+	if (daysAbsence>0){dayStatisticsNames.innerHTML+= 'Days On Absence<br>';}
+	if (daysParental>0){dayStatisticsNames.innerHTML+= 'Parental Leave Days<br>';}
+	if (daysBereavement>0){dayStatisticsNames.innerHTML+= 'Bereavement Leave Days<br>';}
+	if (daysCompassionate>0){dayStatisticsNames.innerHTML+= 'Compassionate Leave Days<br>';}
+	if (daysNotSelected>0){dayStatisticsNames.innerHTML+= 'Days Not Defined<br>';}
+	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsNames.innerHTML+= '<hr>';}
+	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsNames.innerHTML+= 'Days Since Last Sick<br>';}
+
+	//days amounts hidden
+	dayStatisticsAmountHid.innerHTML= 'Premium<br>';
+	if (daysOff>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysHoliday>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysHalfInHalfHol>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysUnpaidHoliday>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysInSick>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysSickness>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysAbsence>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysParental>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysBereavement>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysCompassionate>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysNotSelected>0){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsAmountHid.innerHTML+= '<hr>';}
+	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsAmountHid.innerHTML+= 'Premium<br>';}
+	//daily averages table
+	//daylyaverages amounts
+	dailyAveragesAmount.innerHTML= +dailyGrossPay.toFixed(2)+' £<br>';
+	if (dailyNetPay>0){dailyAveragesAmount.innerHTML+= dailyNetPay.toFixed(2)+' £<br>';}
+	if (dailytaxSum>0){dailyAveragesAmount.innerHTML+= dailytaxSum.toFixed(2)+' £<br>';}
+	if (dailyNISum>0){dailyAveragesAmount.innerHTML+= dailyNISum.toFixed(2)+' £<br>';}
+	if (dailyHoursAtWork>0){dailyAveragesAmount.innerHTML+= dailyHoursAtWork.toFixed(2)+' h<br>';}
+	if (dailyPaidHours>0){dailyAveragesAmount.innerHTML+= dailyPaidHours.toFixed(2)+' h<br>';}
+
+	dailyAveragesAmount.innerHTML+= '<hr>'+dailyGrossPayAllDays.toFixed(2)+' £<br>';
+	if (dailyNetPayAllDays>0){dailyAveragesAmount.innerHTML+= dailyNetPayAllDays.toFixed(2)+' £<br>';}
+	if (dailytaxSumAllDays>0){dailyAveragesAmount.innerHTML+= dailytaxSumAllDays.toFixed(2)+' £<br>';}
+	if (dailyNISumAllDays>0){dailyAveragesAmount.innerHTML+= dailyNISumAllDays.toFixed(2)+' £<br>';}
+	if (dailyHoursAtWorkAllDays>0){dailyAveragesAmount.innerHTML+= dailyHoursAtWorkAllDays.toFixed(2)+' h<br>';}
+	if (dailyPaidHoursAllDays>0){dailyAveragesAmount.innerHTML+= dailyPaidHoursAllDays.toFixed(2)+' h<br>';}
+
+	//daylyaverages amounts hidden
+	dailyAveragesAmountHid.innerHTML= 'Premium<br>';
+	if (dailyNetPay>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (dailytaxSum>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (dailyNISum>0){dailyAveragesAmountHid.innerHTML+='Premium<br>';}
+	if (dailyHoursAtWork>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (dailyPaidHours>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+
+	dailyAveragesAmountHid.innerHTML+= '<hr>Premium<br>';
+	if (dailyNetPayAllDays>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (dailytaxSumAllDays>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (dailyNISumAllDays>0){dailyAveragesAmountHid.innerHTML+='Premium<br>';}
+	if (dailyHoursAtWorkAllDays>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (dailyPaidHoursAllDays>0){dailyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+
+	// daylyaverages names
+	dailyAveragesNames.innerHTML= 'Gross Pay For Day In<br>';
+	if (dailyNetPay>0){dailyAveragesNames.innerHTML+= 'Net Pay For Day In<br>';}
+	if (dailytaxSum>0){dailyAveragesNames.innerHTML+= 'TAX For Day In<br>';}
+	if (dailyNISum>0){dailyAveragesNames.innerHTML+= 'NI For Day In<br>';}
+	if (dailyHoursAtWork>0){dailyAveragesNames.innerHTML+= 'Hours Worked Per Day<br>';}
+	if (dailyPaidHours>0){dailyAveragesNames.innerHTML+= 'Paid Hours Per Day<br>';}
+
+	dailyAveragesNames.innerHTML+= '<hr>Gross Pay For All Days<br>';
+	if (dailyNetPayAllDays>0){dailyAveragesNames.innerHTML+= 'Net Pay For All Days<br>';}
+	if (dailytaxSumAllDays>0){dailyAveragesNames.innerHTML+= 'TAX For All Days<br>';}
+	if (dailyNISumAllDays>0){dailyAveragesNames.innerHTML+= 'NI For All Days <br>';}
+	if (dailyHoursAtWorkAllDays>0){dailyAveragesNames.innerHTML+= 'Hours Worked All Days<br>';}
+	if (dailyPaidHoursAllDays>0){dailyAveragesNames.innerHTML+= 'Paid Hours All Days <br>';}
+	//hourly averages table
+	//hourly averages amounts
+	hourlyAveragesAmount.innerHTML= hourlyGrossPay.toFixed(2)+' £<br>';
+	if (hourlyNetPay>0){hourlyAveragesAmount.innerHTML+= hourlyNetPay.toFixed(2)+' £<br>';}
+	if (hourlytaxSum>0){hourlyAveragesAmount.innerHTML+= hourlytaxSum.toFixed(2)+' £<br>';}
+	if (hourlyNISum>0){hourlyAveragesAmount.innerHTML+= hourlyNISum.toFixed(2)+' £<br>';}
+
+	hourlyAveragesAmount.innerHTML+='<hr>';
+	hourlyAveragesAmount.innerHTML+= hourlyGrossPayTotalH .toFixed(2)+' £<br>';
+	if (hourlyNetPayTotalH >0){hourlyAveragesAmount.innerHTML+= hourlyNetPayTotalH.toFixed(2)+' £<br>';}
+	if (hourlytaxSumTotalH >0){hourlyAveragesAmount.innerHTML+= hourlytaxSumTotalH.toFixed(2)+' £<br>';}
+	if (hourlyNISumTotalH >0){hourlyAveragesAmount.innerHTML+= hourlyNISumTotalH.toFixed(2)+' £<br>';}
+
+	hourlyAveragesAmount.innerHTML+='<hr>';
+	hourlyAveragesAmount.innerHTML+= hourlyGrossPayAllH .toFixed(2)+' £<br>';
+	if (hourlyNetPayAllH >0){hourlyAveragesAmount.innerHTML+= hourlyNetPayAllH.toFixed(2)+' £<br>';}
+	if (hourlytaxSumAllH >0){hourlyAveragesAmount.innerHTML+= hourlytaxSumAllH.toFixed(2)+' £<br>';}
+	if (hourlyNISumAllH >0){hourlyAveragesAmount.innerHTML+= hourlyNISumAllH.toFixed(2)+' £<br>';}
+
+	//hourly averages amounts hidden
+	hourlyAveragesAmountHid.innerHTML= 'Premium<br>';
+	if (hourlyNetPay>0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (hourlytaxSum>0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (hourlyNISum>0){hourlyAveragesAmountHid.innerHTML+='Premium<br>';}
+
+	hourlyAveragesAmountHid.innerHTML+='<hr>';
+	hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';
+	if (hourlyNetPayTotalH >0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (hourlytaxSumTotalH >0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (hourlyNISumTotalH >0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+
+	hourlyAveragesAmountHid.innerHTML+='<hr>';
+	hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';
+	if (hourlyNetPayAllH >0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (hourlytaxSumAllH >0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (hourlyNISumAllH >0){hourlyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+
+	// hourly averages names
+	hourlyAveragesNames.innerHTML= 'Paid Hours Avr. Gross Pay<br>';
+	if (hourlyNetPay>0){hourlyAveragesNames.innerHTML+= 'Paid Hours Avr. Net Pay<br>';}
+	if (hourlytaxSum>0){hourlyAveragesNames.innerHTML+= 'Paid Hours Avr. TAX<br>';}
+	if (hourlyNISum>0){hourlyAveragesNames.innerHTML+= 'Paid Hours Avr. NI<br>';}
+
+	hourlyAveragesNames.innerHTML+='<hr>';
+	hourlyAveragesNames.innerHTML+= 'Work Hours Avr. Gross Pay<br>';
+	if (hourlyNetPayTotalH >0){hourlyAveragesNames.innerHTML+= 'Work Hours Avr. Net Pay<br>';}
+	if (hourlytaxSumTotalH >0){hourlyAveragesNames.innerHTML+= 'Work Hours Avr. TAX<br>';}
+	if (hourlyNISumTotalH >0){hourlyAveragesNames.innerHTML+= 'Work Hours Avr. NI<br>';}
+
+	hourlyAveragesNames.innerHTML+='<hr>';
+	hourlyAveragesNames.innerHTML+= 'All Hours Avr. Gross Pay<br>';
+	if (hourlyNetPayAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. Net Pay<br>';}
+	if (hourlytaxSumAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. TAX<br>';}
+	if (hourlyNISumAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. NI<br>';}
+
+
+	//still need to pick elements for charts
+	//last 10 weeks net pay chart
+	//check if we need to draw a chart;
+	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
+	last10NetPayArray[8]>0||last10DeductionsArray[8]>0||
+	last10NetPayArray[7]>0||last10DeductionsArray[7]>0||
+	last10NetPayArray[6]>0||last10DeductionsArray[6]>0||
+	last10NetPayArray[5]>0||last10DeductionsArray[5]>0||
+	last10NetPayArray[4]>0||last10DeductionsArray[4]>0||
+	last10NetPayArray[3]>0||last10DeductionsArray[3]>0||
+	last10NetPayArray[2]>0||last10DeductionsArray[2]>0||
+	last10NetPayArray[1]>0||last10DeductionsArray[1]>0||
+	last10NetPayArray[0]>0||last10DeductionsArray[0]>0){
+		var Last10WeeksNetPaysChart = new CanvasJS.Chart("columnChartNetPay", {
+		animationEnabled: true,
+		exportEnabled: true,
+		theme: "light2", // "light1", "light2", "dark1", "dark2"
+		title:{
+			text: "Last 10 Weeks Net Pay Chart"
+		},
+		axisY:{
+		//valueFormatString:"$#0bn",
+		gridColor: "B6B1A8",
+		//tickColor: "#000000"
+	},
+		data: [{
+			type: "column", //change type to bar, line, area, pie, etc
+			//indexLabel: "{y}", //Shows y value on all Data Points
+			indexLabelFontColor: "#5A5757",
+			indexLabelPlacement: "outside",
+			dataPoints: [
+				{ x: taxPeriodNumberNew, y: Number(last10NetPayArray[0])},
+				{ x: taxPeriodNumberNew-1, y: last10NetPayArray[1]},
+				{ x: taxPeriodNumberNew-2, y: last10NetPayArray[2]},
+				{ x: taxPeriodNumberNew-3, y: last10NetPayArray[3]},
+				{ x: taxPeriodNumberNew-4, y: last10NetPayArray[4]},
+				{ x: taxPeriodNumberNew-5, y: last10NetPayArray[5]},
+				{ x: taxPeriodNumberNew-6, y: last10NetPayArray[6]},
+				{ x: taxPeriodNumberNew-7, y: last10NetPayArray[7]},
+				{ x: taxPeriodNumberNew-8, y: last10NetPayArray[8]},
+				{ x: taxPeriodNumberNew-9, y: last10NetPayArray[9]},
+			]
+		}]
+	});
+} else{
+	document.getElementById('columnChartNetPay').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+	//last 10 weeks hours chart
+	let last10weeksHoursSum = 0;
+	//console.log(last10WorkingHoursArray, typeof last10WorkingHoursArray[3])
+	for (let i=0;i<10;i++) {
+		last10weeksHoursSum += Number(last10WorkingHoursArray[i]);
+		last10weeksHoursSum += Number(last10AllHolidayHoursArray[i]);
+		last10weeksHoursSum += Number(last10SickHoursArray[i]);
+		last10weeksHoursSum += Number(last10FamHoursArray[i]);
+		last10weeksHoursSum += Number(last10BerHoursArray[i]);
+		last10weeksHoursSum += Number(last10CompHoursArray[i]);
+	}
+	if(last10weeksHoursSum>0){
+		var Last10WeeksPaidHoursChart = new CanvasJS.Chart("columnChartPaidHours", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		theme: "light2", // "light1", "light2", "dark1", "dark2"
+		title:{
+			text: "Last 10 Weeks Paid Hours Chart"
+		},
+		axisY:{
+		//valueFormatString:"$#0bn",
+		gridColor: "B6B1A8",
+		//tickColor: "#000000"
+		},
+		data: [{
+			type: "column", //change type to bar, line, area, pie, etc
+			//indexLabel: "{y}", //Shows y value on all Data Points
+			indexLabelFontColor: "#5A5757",
+			indexLabelPlacement: "outside",
+			dataPoints: [
+				{ x: taxPeriodNumberNew, y: last10WorkingHoursArray[0]},
+				{ x: taxPeriodNumberNew-1, y: last10WorkingHoursArray[1]},
+				{ x: taxPeriodNumberNew-2, y: last10WorkingHoursArray[2]},
+				{ x: taxPeriodNumberNew-3, y: last10WorkingHoursArray[3]},
+				{ x: taxPeriodNumberNew-4, y: last10WorkingHoursArray[4]},
+				{ x: taxPeriodNumberNew-5, y: last10WorkingHoursArray[5]},
+				{ x: taxPeriodNumberNew-6, y: last10WorkingHoursArray[6]},
+				{ x: taxPeriodNumberNew-7, y: last10WorkingHoursArray[7]},
+				{ x: taxPeriodNumberNew-8, y: last10WorkingHoursArray[8]},
+				{ x: taxPeriodNumberNew-9, y: last10WorkingHoursArray[9]},
+			]
+		}]
+		});
+	} else {
+		document.getElementById('columnChartPaidHours').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+
+	//other charts
+	//paymentsCharts
+	if (basicHoursPay >0||unsocial_prem>0||unsocial_prem_hol>0||unsocial_prem_sick>0||unsocial_prem_family>0||
+	unsocial_prem_bereavement>0||unsocial_prem_compassionate>0||OT1Pay>0||OT2Pay>0||enhancedHolidayPay>0||holidayPay>0||
+	saturdayExtraPay>0||sundayExtraPay>0||sicknessPay>0||familyPay>0||bereavementPay>0||compassionatePay>0||bankHolidayHoursPay>0||
+	bankHolidayClockInBonus>0||payBack>0||pieceWork>0||SSP>0||SPP>0||additionalPayment>0||additionalPayment2>0||additionalPayment3>0||
+	christmasSavingsPayment>0||summerSavingsPayment>0||SAP>0||salary>0||bonus>0||commissions>0)	{
+		var paymentsPieChart = new CanvasJS.Chart("paymentsPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		title: {
+			text: "Payments Pie Chart"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(e) {
+		 	if (e.dataPoint.y === 0)
+			 	return "";
+		 	else
+			 return CanvasJS.formatNumber(e.percent) + "%";
+	 },
+			yValueFormatString: "##0.00\"%\"",
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: basicHoursPay, label: "Basic Pay"},
+				{y: unsocial_prem, label: "Uns. Premium"},
+				{y: unsocial_prem_hol, label: "Uns Prem. Holidays"},
+				{y: unsocial_prem_sick, label: "Uns Prem. Sickness"},
+				{y: unsocial_prem_bereavement, label: "Uns Prem. Bereav."},
+				{y: unsocial_prem_compassionate, label: "Uns Prem. Compass."},
+				{y: OT1Pay, label: "Overtime 1 Pay"},
+				{y: OT2Pay, label: "Overtime 2 Pay"},
+				{y: enhancedHolidayPay, label: "Enhanced Holiday Pay"},
+				{y: holidayPay, label: "Holiday Pay"},
+				{y: saturdayExtraPay, label: "Saturday Extra Pay"},
+				{y: sundayExtraPay, label: "Sunday Extra Pay"},
+				{y: sicknessPay, label: "Sickness Pay"},
+				{y: familyPay, label: "Paternity Pay"},
+				{y: bereavementPay, label: "Bereavement Pay"},
+				{y: compassionatePay, label: "Compassionate Pay"},
+				{y: bankHolidayHoursPay, label: "Bank Holiday Pay"},
+				{y: bankHolidayClockInBonus, label: "Bank Holiday Bonus"},
+				{y: payBack, label: "Back Pay"},
+				{y: pieceWork, label: "Piece Work"},
+				{y: SSP, label: "SSP"},
+				{y: SPP, label: "SPP"},
+				{y: additionalPayment, label: "Add. Payment 1"},
+				{y: additionalPayment2, label: "Add. Payment 2"},
+				{y: additionalPayment3, label: "Add. Payment 3"},
+				{y: christmasSavingsPayment, label: "Christmas Sav. Payment"},
+				{y: summerSavingsPayment, label: "Summer Sav. Payment"},
+				{y: SAP, label: "SAP"},
+				{y: salary, label: "Salary"},
+				{y: bonus, label: "Bonus"},
+				{y: commissions, label: "Commissions"}
+			]
+		}]
+	});
+}else{
+	document.getElementById("paymentsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+}
+Last10WeeksNetPaysChart.render();
+Last10WeeksPaidHoursChart.render();
+paymentsPieChart.render();
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
@@ -2111,4 +2892,11 @@ const start = () => {
 	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
 	})
 }
+//this function is neccessary for popovers to work
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
 document.addEventListener("DOMContentLoaded",start,false);
