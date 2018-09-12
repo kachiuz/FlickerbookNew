@@ -1731,6 +1731,10 @@ const loadResponseData = (response) => {
 	summerSavingsDeduction = Number(summerSavingsDeduction);
 	companyLoan = Number(companyLoan);									otherDeduction = Number(otherDeduction);
 	otherDeduction2 = Number(otherDeduction2);					otherDeduction3 = Number(otherDeduction3);
+	companyLoanSum = Number(companyLoanSum);						studentLoanDeductionSum = Number(studentLoanDeductionSum);
+	other_de = Number(other_de);												add_deSum2 = Number(add_deSum2);
+	add_deSum3 = Number(add_deSum3);										summer_savSum = Number(summer_savSum);
+	chris_savSum = Number(chris_savSum);								commissionsSum = Number(commissionsSum);
 
 	//get all elements from the dom that will be used to load data into them
 	//payments table
@@ -2715,6 +2719,10 @@ const loadResponseData = (response) => {
 	let deductionsColorArray = [taxAmuntColor, NIAmountColor, unionColor, pensionColor, christmasColor, summerColor, copanyLoanColor];
 	deductionsColorArray.push(studentLoanColor, otherDeductionColor, otherDeduction2Color, otherDeduction3Color, netPayColor);
 	CanvasJS.addColorSet('deductionsColors', deductionsColorArray);
+
+	let otherColor = backPayColor;
+	let payStructureColorsArray = [dayInColor, holidayColor, sicknessColor, overtime1Color, bankHolidayColor, familyLeaveColor, otherColor];
+	CanvasJS.addColorSet('payStructureColors', payStructureColorsArray);
 	//last 10 weeks net pay chart
 	//check if we need to draw a chart;
 	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
@@ -2894,7 +2902,7 @@ const loadResponseData = (response) => {
 		backgroundColor: insideBoxColor,
 		colorSet: 'deductionsColors',
 		title: {
-			text: "Deductions Pie Chart"
+			text: "Year To Date Pie Chart"
 		},
 		data: [{
 			type: "pie",
@@ -2925,10 +2933,151 @@ const loadResponseData = (response) => {
 	} else {
 		document.getElementById("deductionsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
 	}
+	//yearToDate chart
+	if(taxSum>0||NISum>0||union_deSum>0||pensionSumChart>0||chris_savSum>0||summer_savSum>0||companyLoanSum>0||
+	studentLoanDeductionSum>0||other_de>0||add_deSum2>0||add_deSum3>0||netPaySum>0){
+		var yearToDatePieChart = new CanvasJS.Chart("yearToDatePieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'deductionsColors',
+		title: {
+			text: "Deductions Pie Chart"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+	 		},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: taxSum, label: "Tax"},
+				{y: NISum, label: "NI"},
+				{y: union_deSum, label: "Union"},
+				{y: pensionSumChart, label: "Pension"},
+				{y: chris_savSum , label: "Christmas Savings"},
+				{y: summer_savSum , label: "Summer Savings."},
+				{y: companyLoanSum , label: "Company Loan"},
+				{y: studentLoanDeductionSum, label: "Student Loan"},
+				{y: other_de , label: 'Add. Deduction'},
+				{y: add_deSum2, label: 'Add. Deduction 2'},
+				{y: add_deSum3, label: 'Add. Deduction 3'},
+				{y: netPaySum , label: "Net Pay",  exploded: true}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("yearToDatePieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+	//Year to date Percentage chart
+	if (basicPaymentsPercentage>0||holidaysPercentage>0||sicknessPercentage>0||overtimePercentage>0||bankHolidayPercentge>0||
+	parentalPercentage>0||otherPercentage>0){
+		var yearToDatePercentagePieChart = new CanvasJS.Chart("yearToDatePercentagePieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'payStructureColors',
+		title: {
+			text: "Year To Date Pay Structure"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+			},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: basicPaymentsPercentage, label: "Basic Payments", exploded: true,},
+				{y: holidaysPercentage, label: "Holiday Payments"},
+				{y: sicknessPercentage, label: "Sick Payments"},
+				{y: overtimePercentage, label: "Overtime Payments"},
+				{y: bankHolidayPercentge, label: "Bank Holiday Payments"},
+				{y: parentalPercentage, label: "Paternity Payments"},
+				{y: otherPercentage, label: "Other Payments"}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("yearToDatePercentagePieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+	if (basicHoursPay >0||unsocial_prem>0||unsocial_prem_hol>0||unsocial_prem_sick>0||unsocial_prem_family>0||
+	unsocial_prem_bereavement>0||unsocial_prem_compassionate>0||OT1Pay>0||OT2Pay>0||enhancedHolidayPay>0||holidayPay>0||
+	saturdayExtraPay>0||sundayExtraPay>0||sicknessPay>0||familyPay>0||bereavementPay>0||compassionatePay>0||bankHolidayHoursPay>0||
+	bankHolidayClockInBonus>0||payBack>0||pieceWork>0||SSP>0||SPP>0||additionalPayment>0||additionalPayment2>0||additionalPayment3>0||
+	christmasSavingsPayment>0||summerSavingsPayment>0||SAP>0||salary>0||bonus>0||commissions>0)	{
+		var yearToDateIIPieChart = new CanvasJS.Chart("yearToDateIIPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'paymentsColors',
+		title: {
+			text: "Total Payments Pie Chart"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(e) {
+		 	if (e.dataPoint.y === 0)
+			 	return "";
+		 	else
+			 return CanvasJS.formatNumber(e.dataPoint.label)+" "+CanvasJS.formatNumber(e.percent) + "%";
+	 },
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: basicPaySum, label: "Basic Pay", exploded: true},
+				{y: unsocial_prem, label: "Uns. Premium"},
+				{y: enhol_paySum, label: "Enhanced Holiday Pay"},
+				{y: hol_paySum, label: "Holiday Pay"},
+				{y: uns_holSum, label: "Uns Prem. Holidays"},
+				{y: sick_paySum, label: "Sickness Pay"},
+				{y: uns_sickSum, label: "Uns Prem. Sickness"},
+				{y: fam_paySum, label: "Paternity Pay"},
+				{y: uns_familySum, label: "Uns Prem. Paternity"},
+				{y: ber_paySum, label: "Bereavement Pay"},
+				{y: uns_berSum, label: "Uns Prem. Bereav."},
+				{y: comp_paySum, label: "Compassionate Pay"},
+				{y: uns_compSum, label: "Uns Prem. Compass."},
+				{y: ot1_paySum, label: "Overtime 1 Pay"},
+				{y: ot2_paySum, label: "Overtime 2 Pay"},
+				{y: saturdayExtraPaySum, label: "Saturday Extra Pay"},
+				{y: sundayExtraPaySum, label: "Sunday Extra Pay"},
+				{y: bhol_paySum, label: "Bank Holiday Pay"},
+				{y: bhol_bonusSum, label: "Bank Holiday Bonus"},
+				{y: paybackSum, label: "Back Pay"},
+				{y: pieceWorkSum , label: "Piece Work"},
+				{y: SPP_Sum , label: "SSP"},
+				{y: SSP_Sum , label: "SPP"},
+				{y: add_paySum , label: "Add. Payment 1"},
+				{y: add_pay2Sum , label: "Add. Payment 2"},
+				{y: add_pay3Sum , label: "Add. Payment 3"},
+				{y: chris_savSum, label: "Christmas Sav. Payment"},
+				{y: summer_savSum, label: "Summer Sav. Payment"},
+				{y: SAPSum , label: "SAP"},
+				{y: salarySum , label: "Salary"},
+				{y: bonusSum , label: "Bonus"},
+				{y: commissionsSum , label: "Commissions"}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("yearToDateIIPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+	console.log(typeof summer_savSum ,typeof SAPSum , typeof salarySum, typeof bonusSum, typeof commissionsSum);
 	Last10WeeksNetPaysChart.render();
 	Last10WeeksPaidHoursChart.render();
 	paymentsPieChart.render();
 	deductionsPieChart.render();
+	yearToDatePieChart.render();
+	yearToDatePercentagePieChart.render();
+	yearToDateIIPieChart.render();
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
