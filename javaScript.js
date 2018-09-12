@@ -2530,7 +2530,7 @@ const loadResponseData = (response) => {
 	}
 	if (daysSinceLastSick>0 || daysSinceLastSick==="Today" ){dayStatisticsAmount.innerHTML+= '<hr>';}
 	if (daysSinceLastSick ==="Today")	{
-		dayStatisticsAmount.innerHTML+= '<b>'+daysSinceLastSick+'</b>';
+		dayStatisticsAmount.innerHTML+= '<span class="red">'+daysSinceLastSick+'.</span>';
 	}	else if (daysSinceLastSick>0)	{
 		dayStatisticsAmount.innerHTML+= daysSinceLastSick;
 		if (daysSinceLastSick<=1){
@@ -2723,6 +2723,11 @@ const loadResponseData = (response) => {
 	let otherColor = backPayColor;
 	let payStructureColorsArray = [dayInColor, holidayColor, sicknessColor, overtime1Color, bankHolidayColor, familyLeaveColor, otherColor];
 	CanvasJS.addColorSet('payStructureColors', payStructureColorsArray);
+
+	let unpaidBreaksColor = '#80bfff';
+	let totalHoursColorsArray = [dayInColor, unpaidBreaksColor, overtime1Color, overtime2Color, holidayColor, holidayColor];
+	totalHoursColorsArray.push(sicknessColor, familyLeaveColor, bereavementColor, compassionateColor);
+	CanvasJS.addColorSet('totalHoursColors', totalHoursColorsArray);
 	//last 10 weeks net pay chart
 	//check if we need to draw a chart;
 	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
@@ -3070,7 +3075,45 @@ const loadResponseData = (response) => {
 	} else {
 		document.getElementById("yearToDateIIPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
 	}
-	console.log(typeof summer_savSum ,typeof SAPSum , typeof salarySum, typeof bonusSum, typeof commissionsSum);
+	//Year to date Hours chart
+	if(basicHoursSum>0||ot1_unitsSum>0||ot2_unitsSum>0||uns_prem_unSum>0||uns_hol_unSum>0||uns_sick_unSum>0||uns_family_unSum>0||
+	uns_ber_unSum>0||uns_comp_unSum>0||enhol_unitsSum>0||hol_unitsSum>0||sick_unitsSum>0||fam_unitsSum>0||ber_unitsSum>0||
+	comp_unitsSum>0){
+		var yearToDateHoursPieChart = new CanvasJS.Chart("yearToDateHoursPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'totalHoursColors',
+		title: {
+			text: "Year To Date Hours Chart"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+			},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: basicHoursSum, label: "Hours at Work", exploded: true,},
+				{y: totalHours-totalPaidHours, label: "Unpaid Breaks"},
+				{y: ot1_unitsSum, label: "Overtime 1 Hours"},
+				{y: ot2_unitsSum, label: "Overtime 2 Hours"},
+				{y: enhol_unitsSum, label: "Enhanced Holiday Hours"},
+				{y: hol_unitsSum, label: "Holiday Hours"},
+				{y: sick_unitsSum, label: "Sickness Hours"},
+				{y: fam_unitsSum, label: "Paternity Hours"},
+				{y: ber_unitsSum, label: "Bereavement Hours"},
+				{y: comp_unitsSum, label: "Compasionate Hours"}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("yearToDateHoursPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
 	Last10WeeksNetPaysChart.render();
 	Last10WeeksPaidHoursChart.render();
 	paymentsPieChart.render();
@@ -3078,6 +3121,7 @@ const loadResponseData = (response) => {
 	yearToDatePieChart.render();
 	yearToDatePercentagePieChart.render();
 	yearToDateIIPieChart.render();
+	yearToDateHoursPieChart.render();
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);

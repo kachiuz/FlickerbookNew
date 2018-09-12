@@ -519,6 +519,13 @@ hr {
   font-weight: bold;
   color: green; }
 
+.red {
+  font-weight: bold;
+  color: #ff9999; }
+
+.borderBottom {
+  border-bottom: 1px solid grey; }
+
 .chartStyle, .chartStyleFullBorder {
   background: #ffffcc;
   text-align: center;

@@ -41,3 +41,10 @@
   font-weight: bold;
   color: green;
 }
+.red {
+  font-weight: bold;
+  color: #ff9999;
+}
+.borderBottom {
+  border-bottom: $borderStyle;
+}
