@@ -2728,6 +2728,17 @@ const loadResponseData = (response) => {
 	let totalHoursColorsArray = [dayInColor, unpaidBreaksColor, overtime1Color, overtime2Color, holidayColor, holidayColor];
 	totalHoursColorsArray.push(sicknessColor, familyLeaveColor, bereavementColor, compassionateColor);
 	CanvasJS.addColorSet('totalHoursColors', totalHoursColorsArray);
+
+
+	let notSelectedColor = '#b3daff';
+	let dayOffColor = '#c3c3a2';
+	let halfInHalfOffColor = '#e6ffb3';
+	let unpaidHolColor = '#e6ffe6';
+	let dayInSickColor = '#ffcccc';
+	let absenceColor = '#ccebff';
+	let totalDaysColorsArray = [dayInColor, notSelectedColor, dayOffColor, holidayColor, halfInHalfOffColor, unpaidHolColor];
+	totalDaysColorsArray.push(dayInSickColor, sicknessColor, absenceColor, familyLeaveColor, bereavementColor, compassionateColor);
+	CanvasJS.addColorSet('totalDaysColors', totalDaysColorsArray);
 	//last 10 weeks net pay chart
 	//check if we need to draw a chart;
 	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
@@ -2907,7 +2918,7 @@ const loadResponseData = (response) => {
 		backgroundColor: insideBoxColor,
 		colorSet: 'deductionsColors',
 		title: {
-			text: "Year To Date Pie Chart"
+			text: "Deductions Pie Chart"
 		},
 		data: [{
 			type: "pie",
@@ -2947,7 +2958,7 @@ const loadResponseData = (response) => {
 		backgroundColor: insideBoxColor,
 		colorSet: 'deductionsColors',
 		title: {
-			text: "Deductions Pie Chart"
+			text: "Year To Date Pie Chart"
 		},
 		data: [{
 			type: "pie",
@@ -3114,6 +3125,46 @@ const loadResponseData = (response) => {
 	} else {
 		document.getElementById("yearToDateHoursPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
 	}
+	//Year to date Days chart
+	if(daysNotSelected>0||daysIn>0||daysOff>0||daysHoliday>0||daysHalfInHalfHol>0||daysUnpaidHoliday>0||daysInSick>0||
+	daysSickness>0||daysAbsence>0||daysParental>0||daysBereavement>0||daysCompassionate>0){
+		var dayStatisticsPieChart = new CanvasJS.Chart("dayStatisticsPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'totalDaysColors',
+		title: {
+			text: "Year To Date Days Chart"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+			},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: daysIn, label: "Days In", exploded: true,},
+				{y: daysNotSelected, label: "Not Defined"},
+				{y: daysOff, label: "Days Off"},
+				{y: daysHoliday, label: "Holidays"},
+				{y: daysHalfInHalfHol, label: "Half In/Hals Off"},
+				{y: daysUnpaidHoliday, label: "Unpaid Holiday"},
+				{y: daysInSick, label: "Day In/Sick"},
+				{y: daysSickness, label: "Sickness"},
+				{y: daysAbsence, label: "Absence"},
+				{y: daysParental, label: "Paternal"},
+				{y: daysBereavement, label: "Bereavement"},
+				{y: daysCompassionate, label: "Compassionate"}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("dayStatisticsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
 	Last10WeeksNetPaysChart.render();
 	Last10WeeksPaidHoursChart.render();
 	paymentsPieChart.render();
@@ -3122,6 +3173,7 @@ const loadResponseData = (response) => {
 	yearToDatePercentagePieChart.render();
 	yearToDateIIPieChart.render();
 	yearToDateHoursPieChart.render();
+	dayStatisticsPieChart.render();
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
