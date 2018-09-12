@@ -2298,6 +2298,19 @@ const loadResponseData = (response) => {
 	if (daysSinceLastHoliday>0 || daysSinceLastHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Since Last Holiday:<br>';}
 
 	//last 13 weeks totals
+	taxSumLast12Weeks =  taxSumLast12Weeks/13;
+	NISumLast12Weeks =  NISumLast12Weeks/13;
+	union_deSumLast12Weeks =  union_deSumLast12Weeks/13;
+	pensionSumLast12WeeksChart =  pensionSumLast12WeeksChart/13;
+	chris_savSumLast12Weeks =  chris_savSumLast12Weeks/13;
+	summer_savSumLast12Weeks =  summer_savSumLast12Weeks/13;
+	companyLoanSumLast12Weeks =  companyLoanSumLast12Weeks/13;
+	studentLoanDeductionSumLast12Weeks =  studentLoanDeductionSumLast12Weeks/13;
+	other_deLast12Weeks =  other_deLast12Weeks/13;
+	add_deSum2Last12Weeks =  add_deSum2Last12Weeks/13;
+	add_deSum3Last12Weeks =  add_deSum3Last12Weeks/13;
+	netPaySumLast12Weeks =  netPaySumLast12Weeks/13;
+	gross_paySumLast12Weeks = gross_paySumLast12Weeks/13;
 	//last 13 weeks amounts
 	yearToDateLast12WeeksAmount.innerHTML = taxSumLast12Weeks.toFixed(2)+' £<br>'+NISumLast12Weeks.toFixed(2)+' £<hr>';
 	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= union_deSumLast12Weeks.toFixed(2)+' £<br>';}
@@ -2671,7 +2684,6 @@ const loadResponseData = (response) => {
 	if (hourlytaxSumAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. TAX<br>';}
 	if (hourlyNISumAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. NI<br>';}
 
-
 	//still need to pick elements for charts
 	//CanvaJs color arrays-------------------------------------------------------------//
 	//must be a bit darker color tone then in the css file, otherwise the pie chart looks blurry
@@ -2739,6 +2751,17 @@ const loadResponseData = (response) => {
 	let totalDaysColorsArray = [dayInColor, notSelectedColor, dayOffColor, holidayColor, halfInHalfOffColor, unpaidHolColor];
 	totalDaysColorsArray.push(dayInSickColor, sicknessColor, absenceColor, familyLeaveColor, bereavementColor, compassionateColor);
 	CanvasJS.addColorSet('totalDaysColors', totalDaysColorsArray);
+
+	let holidaysAvailableColor = '#00ff00';
+	let holidaysBookedColor = '#00cc00';
+	let holidaychartColorsArray = [holidayColor, holidaysBookedColor, holidaysAvailableColor];
+	CanvasJS.addColorSet('holidayChartColors', holidaychartColorsArray);
+
+	let last10NetPayColorsArray = [netPayColor, taxAmuntColor];
+	CanvasJS.addColorSet('last10NetPayColors', last10NetPayColorsArray);
+
+	let last10WorkHoursPayColorsArray = [dayInColor, holidayColor, sicknessColor, familyLeaveColor, bereavementColor, compassionateColor];
+	CanvasJS.addColorSet('last10WorkHoursPayColors', last10WorkHoursPayColorsArray);
 	//last 10 weeks net pay chart
 	//check if we need to draw a chart;
 	if(last10NetPayArray[9]>0||last10DeductionsArray[9]>0||
@@ -2754,33 +2777,45 @@ const loadResponseData = (response) => {
 		var Last10WeeksNetPaysChart = new CanvasJS.Chart("columnChartNetPay", {
 		animationEnabled: true,
 		exportEnabled: true,
-		theme: "light2", // "light1", "light2", "dark1", "dark2"
+		backgroundColor: insideBoxColor,
+		colorSet: 'last10NetPayColors',
 		title:{
-			text: "Last 10 Weeks Net Pay Chart"
+			text: "Last 10 Weeks Net Pay and Deductions",
 		},
-		axisY:{
-		//valueFormatString:"$#0bn",
-		gridColor: "B6B1A8",
-		//tickColor: "#000000"
-	},
 		data: [{
-			type: "column", //change type to bar, line, area, pie, etc
-			//indexLabel: "{y}", //Shows y value on all Data Points
-			indexLabelFontColor: "#5A5757",
-			indexLabelPlacement: "outside",
+			type: "stackedColumn",
+			name: "Net Pay",
+			showInLegend: true,
 			dataPoints: [
-				{ x: taxPeriodNumberNew, y: Number(last10NetPayArray[0])},
-				{ x: taxPeriodNumberNew-1, y: last10NetPayArray[1]},
-				{ x: taxPeriodNumberNew-2, y: last10NetPayArray[2]},
-				{ x: taxPeriodNumberNew-3, y: last10NetPayArray[3]},
-				{ x: taxPeriodNumberNew-4, y: last10NetPayArray[4]},
-				{ x: taxPeriodNumberNew-5, y: last10NetPayArray[5]},
-				{ x: taxPeriodNumberNew-6, y: last10NetPayArray[6]},
-				{ x: taxPeriodNumberNew-7, y: last10NetPayArray[7]},
-				{ x: taxPeriodNumberNew-8, y: last10NetPayArray[8]},
-				{ x: taxPeriodNumberNew-9, y: last10NetPayArray[9]},
+				{ y: Number(last10NetPayArray[0]), x: taxPeriodNumberNew},
+				{ y: Number(last10NetPayArray[1]), x: taxPeriodNumberNew-1},
+				{ y: Number(last10NetPayArray[2]), x: taxPeriodNumberNew-2},
+				{ y: Number(last10NetPayArray[3]), x: taxPeriodNumberNew-3},
+				{ y: Number(last10NetPayArray[4]), x: taxPeriodNumberNew-4},
+				{ y: Number(last10NetPayArray[5]), x: taxPeriodNumberNew-5},
+				{ y: Number(last10NetPayArray[6]), x: taxPeriodNumberNew-6},
+				{ y: Number(last10NetPayArray[7]), x: taxPeriodNumberNew-7},
+				{ y: Number(last10NetPayArray[8]), x: taxPeriodNumberNew-8},
+				{ y: Number(last10NetPayArray[9]), x: taxPeriodNumberNew-9}
 			]
-		}]
+			},
+			{
+				type: "stackedColumn",
+				name: "Deductions",
+				showInLegend: true,
+				dataPoints: [
+					{ y: Number(last10DeductionsArray[0]), x: taxPeriodNumberNew },
+					{ y: Number(last10DeductionsArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10DeductionsArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10DeductionsArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10DeductionsArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10DeductionsArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10DeductionsArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10DeductionsArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10DeductionsArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10DeductionsArray[9]), x: taxPeriodNumberNew-9}
+				]
+			}]
 	});
 } else{
 	document.getElementById('columnChartNetPay').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
@@ -2797,36 +2832,115 @@ const loadResponseData = (response) => {
 	}
 	if(last10weeksHoursSum>0){
 		var Last10WeeksPaidHoursChart = new CanvasJS.Chart("columnChartPaidHours", {
-		animationEnabled: true,
-		exportEnabled: true,
-		backgroundColor: insideBoxColor,
-		theme: "light2", // "light1", "light2", "dark1", "dark2"
-		title:{
-			text: "Last 10 Weeks Paid Hours Chart"
-		},
-		axisY:{
-		//valueFormatString:"$#0bn",
-		gridColor: "B6B1A8",
-		//tickColor: "#000000"
-		},
-		data: [{
-			type: "column", //change type to bar, line, area, pie, etc
-			//indexLabel: "{y}", //Shows y value on all Data Points
-			indexLabelFontColor: "#5A5757",
-			indexLabelPlacement: "outside",
-			dataPoints: [
-				{ x: taxPeriodNumberNew, y: last10WorkingHoursArray[0]},
-				{ x: taxPeriodNumberNew-1, y: last10WorkingHoursArray[1]},
-				{ x: taxPeriodNumberNew-2, y: last10WorkingHoursArray[2]},
-				{ x: taxPeriodNumberNew-3, y: last10WorkingHoursArray[3]},
-				{ x: taxPeriodNumberNew-4, y: last10WorkingHoursArray[4]},
-				{ x: taxPeriodNumberNew-5, y: last10WorkingHoursArray[5]},
-				{ x: taxPeriodNumberNew-6, y: last10WorkingHoursArray[6]},
-				{ x: taxPeriodNumberNew-7, y: last10WorkingHoursArray[7]},
-				{ x: taxPeriodNumberNew-8, y: last10WorkingHoursArray[8]},
-				{ x: taxPeriodNumberNew-9, y: last10WorkingHoursArray[9]},
-			]
-		}]
+			nimationEnabled: true,
+			exportEnabled: true,
+			backgroundColor: insideBoxColor,
+			colorSet: 'last10WorkHoursPayColors',
+			title:{
+				text: "Last 10 Weeks Paid Hours Chart",
+			},
+			data: [{
+				type: "stackedColumn",
+				name: "Work",
+				showInLegend: true,
+				dataPoints: [
+					{ y: Number(last10WorkingHoursArray[0]), x: taxPeriodNumberNew},
+					{ y: Number(last10WorkingHoursArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10WorkingHoursArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10WorkingHoursArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10WorkingHoursArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10WorkingHoursArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10WorkingHoursArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10WorkingHoursArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10WorkingHoursArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10WorkingHoursArray[9]), x: taxPeriodNumberNew-9}
+				]
+			},
+			{
+				type: "stackedColumn",
+				name: "Holiday",
+				showInLegend: true,
+				dataPoints: [
+					{ y: Number(last10AllHolidayHoursArray[0]), x: taxPeriodNumberNew},
+					{ y: Number(last10AllHolidayHoursArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10AllHolidayHoursArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10AllHolidayHoursArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10AllHolidayHoursArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10AllHolidayHoursArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10AllHolidayHoursArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10AllHolidayHoursArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10AllHolidayHoursArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10AllHolidayHoursArray[9]), x: taxPeriodNumberNew-9}
+					]
+				},
+			{
+				type: "stackedColumn",
+				name: "Sick",
+				showInLegend: true,
+				dataPoints: [
+					{ y: Number(last10SickHoursArray[0]), x: taxPeriodNumberNew},
+					{ y: Number(last10SickHoursArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10SickHoursArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10SickHoursArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10SickHoursArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10SickHoursArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10SickHoursArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10SickHoursArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10SickHoursArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10SickHoursArray[9]), x: taxPeriodNumberNew-9}
+					]
+				},
+				{
+				type: "stackedColumn",
+				name: "Paternity",
+				showInLegend: true,
+				dataPoints: [
+					{ y: Number(last10FamHoursArray[0]), x: taxPeriodNumberNew},
+					{ y: Number(last10FamHoursArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10FamHoursArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10FamHoursArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10FamHoursArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10FamHoursArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10FamHoursArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10FamHoursArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10FamHoursArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10FamHoursArray[9]), x: taxPeriodNumberNew-9}
+				]
+			},
+			{
+				type: "stackedColumn",
+				name: "Work",
+				showInLegend: false,
+				dataPoints: [
+					{ y: Number(last10BerHoursArray[0]), x: taxPeriodNumberNew},
+					{ y: Number(last10BerHoursArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10BerHoursArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10BerHoursArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10BerHoursArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10BerHoursArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10BerHoursArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10BerHoursArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10BerHoursArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10BerHoursArray[9]), x: taxPeriodNumberNew-9}
+				]
+			},
+			{
+				type: "stackedColumn",
+				name: "Holiday",
+				showInLegend: false,
+				dataPoints: [
+					{ y: Number(last10CompHoursArray[0]), x: taxPeriodNumberNew },
+					{ y: Number(last10CompHoursArray[1]), x: taxPeriodNumberNew-1},
+					{ y: Number(last10CompHoursArray[2]), x: taxPeriodNumberNew-2},
+					{ y: Number(last10CompHoursArray[3]), x: taxPeriodNumberNew-3},
+					{ y: Number(last10CompHoursArray[4]), x: taxPeriodNumberNew-4},
+					{ y: Number(last10CompHoursArray[5]), x: taxPeriodNumberNew-5},
+					{ y: Number(last10CompHoursArray[6]), x: taxPeriodNumberNew-6},
+					{ y: Number(last10CompHoursArray[7]), x: taxPeriodNumberNew-7},
+					{ y: Number(last10CompHoursArray[8]), x: taxPeriodNumberNew-8},
+					{ y: Number(last10CompHoursArray[9]), x: taxPeriodNumberNew-9}
+				]
+			}]
 		});
 	} else {
 		document.getElementById('columnChartPaidHours').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
@@ -3165,6 +3279,89 @@ const loadResponseData = (response) => {
 	} else {
 		document.getElementById("dayStatisticsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
 	}
+	console.log(totalHolidaysBooked);
+	//Year to date holidays chart
+	if(totalHolidaysUsed>0||totalHolidaysBooked>0||holidaysNotUsed>0){
+		var holidayStatisticsPieChart = new CanvasJS.Chart("holidayStatisticsPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'holidayChartColors',
+		title: {
+			text: "Year To Date Holidays"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+			},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: totalHolidaysUsed, label: "Holidays Used", exploded: true,},
+				{y: totalHolidaysBooked, label: "Holidays Booked"},
+				{y: holidaysNotUsed, label: "Holidays Available"}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("holidayStatisticsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
+	//last 3 months average chart
+	taxSumLast12Weeks =  Number(taxSumLast12Weeks.toFixed(2));
+	NISumLast12Weeks =  Number(NISumLast12Weeks.toFixed(2));
+	union_deSumLast12Weeks =  Number(union_deSumLast12Weeks.toFixed(2));
+	pensionSumLast12WeeksChart =  Number(pensionSumLast12WeeksChart.toFixed(2));
+	chris_savSumLast12Weeks =  Number(chris_savSumLast12Weeks.toFixed(2));
+	summer_savSumLast12Weeks =  Number(summer_savSumLast12Weeks.toFixed(2));
+	companyLoanSumLast12Weeks =  Number(companyLoanSumLast12Weeks.toFixed(2));
+	studentLoanDeductionSumLast12Weeks =  Number(studentLoanDeductionSumLast12Weeks.toFixed(2));
+	other_deLast12Weeks =  Number(other_deLast12Weeks.toFixed(2));
+	add_deSum2Last12Weeks =  Number(add_deSum2Last12Weeks.toFixed(2));
+	add_deSum3Last12Weeks =  Number(add_deSum3Last12Weeks.toFixed(2));
+	netPaySumLast12Weeks =  Number(netPaySumLast12Weeks.toFixed(2));
+	if(taxSum>0||NISum>0||union_deSum>0||pensionSumChart>0||chris_savSum>0||summer_savSum>0||companyLoanSum>0||
+	studentLoanDeductionSum>0||other_de>0||add_deSum2>0||add_deSum3>0||netPaySum>0){
+		var las3MonthsPieChart = new CanvasJS.Chart("las3MonthsPieChart", {
+		animationEnabled: true,
+		exportEnabled: true,
+		backgroundColor: insideBoxColor,
+		colorSet: 'deductionsColors',
+		title: {
+			text: "Last 3 Months Averages"
+		},
+		data: [{
+			type: "pie",
+			startAngle: 240,
+			indexLabelFormatter: function(f) {
+				if (f.dataPoint.y === 0)
+					return "";
+				else
+				 return CanvasJS.formatNumber(f.dataPoint.label)+" "+CanvasJS.formatNumber(f.percent) +"%";
+	 		},
+			indexLabel: "{label} {y}",
+			dataPoints: [
+				{y: taxSumLast12Weeks, label: "Tax"},
+				{y: NISumLast12Weeks, label: "NI"},
+				{y: union_deSumLast12Weeks, label: "Union"},
+				{y: pensionSumLast12WeeksChart, label: "Pension"},
+				{y: chris_savSumLast12Weeks , label: "Christmas Savings"},
+				{y: summer_savSumLast12Weeks , label: "Summer Savings."},
+				{y: companyLoanSumLast12Weeks , label: "Company Loan"},
+				{y: studentLoanDeductionSumLast12Weeks, label: "Student Loan"},
+				{y: other_deLast12Weeks , label: 'Add. Deduction'},
+				{y: add_deSum2Last12Weeks, label: 'Add. Deduction 2'},
+				{y: add_deSum3Last12Weeks, label: 'Add. Deduction 3'},
+				{y: netPaySumLast12Weeks , label: "Net Pay",  exploded: true}
+			]
+		}]
+	});
+	} else {
+		document.getElementById("las3MonthsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	}
 	Last10WeeksNetPaysChart.render();
 	Last10WeeksPaidHoursChart.render();
 	paymentsPieChart.render();
@@ -3174,6 +3371,8 @@ const loadResponseData = (response) => {
 	yearToDateIIPieChart.render();
 	yearToDateHoursPieChart.render();
 	dayStatisticsPieChart.render();
+	holidayStatisticsPieChart.render();
+	las3MonthsPieChart.render();
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
