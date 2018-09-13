@@ -1600,7 +1600,7 @@ const getFormValues = (taxPeriodNumber)=>{
 	}
 }
 //-----------------------------------------------------------------------------------------------------------//
-const loadResponseData = (response) => {
+const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	//this function will need an additional parameter, depending from where it is called
 	//if it is called from load indexes function, the response object will be larger, as more data needs to be loaded,
 	//but if its called from postdata, then that object will not have additional parameters and that my cause errors.
@@ -1618,7 +1618,7 @@ const loadResponseData = (response) => {
 	let {enhanced_holiday_units, sick_units, family_units, bhol_units, unsocial_prem_bereavement, ber_units} = response;
 	let {bereavementPay, uns_ber_units, unsocial_prem_compassionate, comp_units, compassionatePay, uns_comp_units} = response;
 	let {pensionBeforeTax, pensionRate, pensionRateEmp, pensionAmountEmp, companyLoan, studentLoanDeduction} = response;
-	let {summerSavingsDeduction, summerSavingsPayment, paySummerSavingsCheck, payChristmasSavingsCheck, SSP} = response;
+	let {summerSavingsDeduction, summerSavingsPayment, SSP} = response;
 	let {SPP, bHolPayTimes, additionalPayment2, additionalPayment2Name, additionalPayment3, SAP, salary, bonus} = response;
 	let {additionalPayment3Name, otherDeduction2, otherDeduction2Name, otherDeduction3, otherDeduction3Name, taxSum} = response;
 	let {commissions, pieceWork, part_sick, part_pater, part_ber, part_comp, union_deSum, pensionSum, other_de} = response;
@@ -1639,10 +1639,13 @@ const loadResponseData = (response) => {
 	let {dailyHoursAtWorkAllDays, dailyPaidHoursAllDays, hourlyGrossPay, hourlyNetPay, hourlytaxSum, hourlyNISum } = response;
 	let {hourlyGrossPayTotalH, hourlyNetPayTotalH, hourlytaxSumTotalH, hourlyNISumTotalH, hourlyGrossPayAllH} = response;
 	let {hourlyNetPayAllH, hourlytaxSumAllH, hourlyNISumAllH, holidaysEarned, totalHolidaysUsed, totalHolidaysBooked} = response;
-	let {holidaysNotUsed, daysSinceLastHoliday, nextFullHoliday, daysSinceLastSick, premium, errors} = response;
+	let {holidaysNotUsed, daysSinceLastHoliday, nextFullHoliday, daysSinceLastSick, errors} = response;
 	let {daySum0, daySum1, daySum2, daySum3, daySum4, daySum5, daySum6, daySum7, daySum8, daySum9, daySum10, daySum11} = response;
 	let {last10NetPayArray, last10DeductionsArray, last10WorkingHoursArray, last10SickHoursArray, last10AllHolidayHoursArray } = response;
-	let {last10FamHoursArray, last10BerHoursArray, last10CompHoursArray} = response;
+	let {last10FamHoursArray, last10BerHoursArray, last10CompHoursArray, premium} = response;
+	// these two values ar assigned to a different name variable, as the buttons already have these names
+	let paySummerSavingsCheckRes = response.paySummerSavingsCheck;
+	let payChristmasSavingsCheckRes = response.payChristmasSavingsCheck;
 
 	//since some of the values from object are string elements, i need to convert them to number
 	//some small calculation will need to be done on the fron end, and also to keep the results in two or sometimes
@@ -1735,6 +1738,8 @@ const loadResponseData = (response) => {
 	other_de = Number(other_de);												add_deSum2 = Number(add_deSum2);
 	add_deSum3 = Number(add_deSum3);										summer_savSum = Number(summer_savSum);
 	chris_savSum = Number(chris_savSum);								commissionsSum = Number(commissionsSum);
+	totalGrossPayments = Number(totalGrossPayments);		NIAmount = Number(NIAmount);
+	totalDeductions = Number(totalDeductions);					netPay = Number(netPay);
 
 	//get all elements from the dom that will be used to load data into them
 	//payments table
@@ -2684,7 +2689,142 @@ const loadResponseData = (response) => {
 	if (hourlytaxSumAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. TAX<br>';}
 	if (hourlyNISumAllH >0){hourlyAveragesNames.innerHTML+= 'All Hours Avr. NI<br>';}
 
-	//still need to pick elements for charts
+	//christmas and summer saving buttons values.
+	//either show or hide paysavings div
+	if (summerSavingsPaymentCollected > 0 || christmasSavingsPaymentCollected >0 || payChristmasSavingsCheckRes == "true"||
+	 paySummerSavingsCheckRes=="true"){
+		 	paySavingsDiv.removeAttribute("class");
+				paySavingsDiv.setAttribute("class", "col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding");
+	}	else {
+		  paySavingsDiv.setAttribute("class", "col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding hidden");
+	}
+
+		//1 hide both buttons (the most likely one)
+		if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected<=0
+		 && payChristmasSavingsCheckRes == "false")	{
+			paySummerSavings.style.display = "none";
+			payChristmasSavings.style.display = "none";
+		}
+		//2 show both button
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected >0
+		&& payChristmasSavingsCheckRes == "false")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//3 showsummer savings button
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "false")	{
+			paySummerSavings.style.display = "initial";
+			payChristmasSavings.style.display = "none";
+		}
+		//4 show both buttons
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "true")		{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//5 show both buttons
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "true")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//6 show both buttons
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected>0 &&
+		payChristmasSavingsCheckRes == "true")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//7 show both buttons
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected>0
+		&& payChristmasSavingsCheckRes == "true")		{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//8 show summer savings button
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "false")	{
+			paySummerSavings.style.display = "initial";
+			payChristmasSavings.style.display = "none";
+		}
+		//9 rodome christmas savings mygtuka
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected>0 &&
+		payChristmasSavingsCheckRes == "false")	{
+			paySummerSavings.style.display = "none";
+			payChristmasSavings.style.display = "initial";
+		}
+		//10 show both buttons
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected >0
+		&& payChristmasSavingsCheckRes == "false")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//11 show summer savings button
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "false")	{
+			paySummerSavings.style.display = "initial";
+			payChristmasSavings.style.display = "none";
+		}
+		//12 show both buttons
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "true")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//13 show christmas savings button
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected<=0
+		&& payChristmasSavingsCheckRes == "true")	{
+			paySummerSavings.style.display = "none";
+			payChristmasSavings.style.display = "initial";
+		}
+		//14 show both buttons
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "true" && christmasSavingsPaymentCollected>0
+		 && payChristmasSavingsCheckRes == "true")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		//15 show christmas savings button
+		else if (summerSavingsPaymentCollected<=0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected>0
+		&& payChristmasSavingsCheckRes == "true")		{
+			paySummerSavings.style.display = "none";
+			payChristmasSavings.style.display = "initial";
+		}
+		//16 show both buttons
+		else if (summerSavingsPaymentCollected>0 && paySummerSavingsCheckRes == "false" && christmasSavingsPaymentCollected>0
+		&& payChristmasSavingsCheckRes == "false")	{
+			payChristmasSavings.style.display = "initial";
+			paySummerSavings.style.display = "initial";
+		}
+		// hide both buttons
+		else	{
+			paySummerSavings.style.display = "none";
+			payChristmasSavings.style.display = "none";
+		}
+
+
+		if(payChristmasSavingsCheckRes == "true")
+			{
+			document.getElementById("payChristmasSavingsCheck"+taxPeriodNumber).setAttribute("checked", "checked")
+			}
+		else if (payChristmasSavingsCheckRes == "false")
+			{
+			document.getElementById("payChristmasSavingsCheck"+taxPeriodNumber).removeAttribute("checked");
+			}
+		else{
+			alert('Something wrong with Christmas payout checkbox!');
+			}
+
+		if(paySummerSavingsCheckRes == "true")
+			{
+			document.getElementById("paySummerSavingsCheck"+taxPeriodNumber).setAttribute("checked", "checked")
+			}
+		else if (paySummerSavingsCheckRes == "false")
+			{
+			document.getElementById("paySummerSavingsCheck"+taxPeriodNumber).removeAttribute("checked");
+			}
+		else{
+			alert('Something wrong with Summer payout checkbox!');
+			}
 	//CanvaJs color arrays-------------------------------------------------------------//
 	//must be a bit darker color tone then in the css file, otherwise the pie chart looks blurry
 	let dayInColor = '#e6e600';
@@ -2740,7 +2880,6 @@ const loadResponseData = (response) => {
 	let totalHoursColorsArray = [dayInColor, unpaidBreaksColor, overtime1Color, overtime2Color, holidayColor, holidayColor];
 	totalHoursColorsArray.push(sicknessColor, familyLeaveColor, bereavementColor, compassionateColor);
 	CanvasJS.addColorSet('totalHoursColors', totalHoursColorsArray);
-
 
 	let notSelectedColor = '#b3daff';
 	let dayOffColor = '#c3c3a2';
@@ -3279,7 +3418,6 @@ const loadResponseData = (response) => {
 	} else {
 		document.getElementById("dayStatisticsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
 	}
-	console.log(totalHolidaysBooked);
 	//Year to date holidays chart
 	if(totalHolidaysUsed>0||totalHolidaysBooked>0||holidaysNotUsed>0){
 		var holidayStatisticsPieChart = new CanvasJS.Chart("holidayStatisticsPieChart", {
@@ -3373,6 +3511,190 @@ const loadResponseData = (response) => {
 	dayStatisticsPieChart.render();
 	holidayStatisticsPieChart.render();
 	las3MonthsPieChart.render();
+	//if the repsonse object is recieved via loadData function, it is neccessary to load
+	//main table indexes and calendar day colors
+	if (largerObject === true){
+		let weekStart = weekStartArray[taxPeriodNumber];
+		let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
+		//further object destructuring
+		let {dayType, startHour, startMinute, endHour, endMinute, note, dayTypeArrayCalendar} = response;
+		let {sickButton, familyLeaveButton, dayInSickButton, bereavementButton, compassionateButton, enHolButton} = response;
+		for ( let i = 0 ; i < 7 ; i++ )	{
+			document.getElementById("dayType"+taxPeriodStart).options.selectedIndex = dayType[i];
+			document.getElementById("startHours"+taxPeriodStart).options.selectedIndex =startHour[i];
+			document.getElementById("startMinutes"+taxPeriodStart).options.selectedIndex = startMinute[i];
+			document.getElementById("endHours"+taxPeriodStart).options.selectedIndex = endHour[i];
+			document.getElementById("endMinutes"+taxPeriodStart).options.selectedIndex = endMinute[i];
+
+			//SICKNESS button values
+			let sicknessButtonValue = sickButton[i];
+
+			if(sicknessButtonValue == "true"){
+				document.getElementById("sicknessButton"+taxPeriodStart).setAttribute("checked", "checked")
+			}	else if (sicknessButtonValue == "false")	{
+				document.getElementById("sicknessButton"+taxPeriodStart).removeAttribute("checked");
+			}	else {
+				alert('Something went wrong with the sick pay calculation!');
+			}
+
+			//FAMILY button values
+			let familyLeaveButtonValue = familyLeaveButton[i];
+			if(familyLeaveButtonValue == "true") {
+				document.getElementById("familyLeaveButton"+taxPeriodStart).setAttribute("checked", "checked")
+			}	else if (familyLeaveButtonValue == "false")	{
+				document.getElementById("familyLeaveButton"+taxPeriodStart).removeAttribute("checked");
+			}	else {
+				alert('Something went wrong with parental pay calculation!');
+			}
+
+			//Day in sicknes button values
+			var dayInSickButtonValue = dayInSickButton[i];
+			if(dayInSickButtonValue == "true"){
+				document.getElementById("dayInSickButton"+taxPeriodStart).setAttribute("checked", "checked")
+			}	else if (dayInSickButtonValue == "false")	{
+				document.getElementById("dayInSickButton"+taxPeriodStart).removeAttribute("checked")
+			}	else{
+				alert('Something went wrong with the day in/sick pay calculation!');
+			}
+
+			//Bereavement button values
+			let bereveamentButtonValue = bereavementButton[i];
+			if(bereveamentButtonValue == "true") {
+				document.getElementById("bereavementButton"+taxPeriodStart).setAttribute("checked", "checked")
+			}	else if (bereveamentButtonValue == "false")	{
+				document.getElementById("bereavementButton"+taxPeriodStart).removeAttribute("checked");
+			}	else {
+				alert('Something went wrong with the bereavement pay calculation!');
+			}
+
+			//COMPASSIONATE button values
+			let compassionateButtonValue = compassionateButton[i];
+			if(compassionateButtonValue == "true") {
+				document.getElementById("compassionateButton"+taxPeriodStart).setAttribute("checked", "checked")
+			}	else if (compassionateButtonValue == "false")	{
+				document.getElementById("compassionateButton"+taxPeriodStart).removeAttribute("checked");
+			}	else{
+				alert('Something went wrong with the compassionate pay calculation!');
+			}
+
+			//enhanced Holiday input values
+			let enhancedHolidayButtonValue = enHolButton[i];
+			if(enhancedHolidayButtonValue == "true")	{
+				document.getElementById("enhancedHolidayButton"+taxPeriodStart).setAttribute("checked", "checked");
+			}	else if (enhancedHolidayButtonValue == "false")		{
+				document.getElementById("enhancedHolidayButton"+taxPeriodStart).removeAttribute("checked");
+			}	else {
+				alert('Something went wrong with enhanced holiday calculations!');
+			}
+
+			//note input values
+			document.getElementById("noteInput"+taxPeriodStart).value = note[i];
+			taxPeriodStart++;
+		}
+		let currentDate = new Date();
+		let currentTime = currentDate.getTime()
+		let timeSinceEpochCurrentDay = timeSinceEpoch-(21*86400000);
+		let taxPeriodNumberCalendar = taxPeriodNumber- 3;
+		let taxPeriodStartCalendar = (taxPeriodNumberCalendar-1)*7+weekStart;
+		for ( bg = 0; bg < 49 ; bg++ )
+			{
+				dayDiv = document.getElementById("dayDiv"+bg);
+				backgroundIndex = response.dayTypeArrayCalendar[bg];
+				backgroundIndex = Number(backgroundIndex);
+				//NEED TO CHANGE THIS BRANCHING TO SWITCH
+				if (backgroundIndex === 0)	{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+						dayDiv.setAttribute("class", "dayDiv notSelectedColor currentDay");
+					}	else{
+						dayDiv.className="dayDiv notSelectedColor";
+					}
+				}	else if (backgroundIndex === 1) {
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+						dayDiv.setAttribute("class", "dayDiv dayInColor currentDay");
+					}	else {
+						dayDiv.className="dayDiv dayInColor";
+					}
+				}
+				else if (backgroundIndex === 2)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv dayOffColor currentDay");}
+					else
+					{dayDiv.className="dayDiv dayOffColor";}
+				}
+				else if (backgroundIndex === 3)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv holidayColor currentDay");}
+					else
+					{dayDiv.className="dayDiv holidayColor";}
+				}
+				else if (backgroundIndex === 4)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv unpaidHolColor currentDay");}
+					else
+					{dayDiv.className="dayDiv unpaidHolColor";}
+				}
+				else if (backgroundIndex === 5)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv halfInHalfOffColor currentDay");}
+					else
+					{dayDiv.className="dayDiv halfInHalfOffColor";}
+				}
+				else if (backgroundIndex === 6)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv dayInSickColor currentDay");}
+					else
+					{dayDiv.className="dayDiv dayInSickColor";}
+				}
+				else if (backgroundIndex === 7)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv sicknessColor currentDay");}
+					else
+					{dayDiv.className="dayDiv sicknessColor";}
+				}
+				else if (backgroundIndex === 8)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv absenceColor currentDay");}
+					else
+					{dayDiv.className="dayDiv absenceColor";}
+				}
+				else if (backgroundIndex === 9)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv familyLeaveColor currentDay");}
+					else
+					{dayDiv.className="dayDiv familyLeaveColor";}
+				}
+				else if (backgroundIndex === 10)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv bereavementColor currentDay");}
+					else
+					{dayDiv.className="dayDiv bereavementColor";}
+				}
+				else if (backgroundIndex === 11)
+				{
+					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+					{dayDiv.setAttribute("class", "dayDiv compassionateColor currentDay");}
+					else
+					{dayDiv.className="dayDiv compassionateColor";}
+				}
+				else  {dayDiv.className="dayDiv notSelectedColor";}
+				//id++;
+				taxPeriodStartCalendar++;
+				timeSinceEpochCurrentDay += 86400000
+			}
+		changeSelectBackground(taxPeriodNumber);
+		finishNextMorningBColor(taxPeriodNumber);
+		//bankHolidayFilter(taxPeriodNumber);
+		hideHoursSelect(taxPeriodNumber);
+	}
 }
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
@@ -3401,17 +3723,33 @@ const postData = (taxPeriodNumber) => {
 					submitSuccessMain.setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
 					submitSuccessMain.innerHTML = 'Payslip Generated!';
 					setTimeout(function(){submitSuccessMain.innerHTML=" ";},1500);
-
-					//here I will create a function to which I need to send the response Object
-					//since I need to also load data from the back end and want to avoid having to write
-					//the same identical code for two http request.
-					loadResponseData(response);
+					loadResponseData(response, taxPeriodNumber);
 			}
 		}
 	}
 	request.send(str);
 	document.getElementById("submitSuccessMain").setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
 	document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
+}
+const loadData = (taxPeriodNumber) => {
+	if (XMLHttpRequest)	{
+			request = new XMLHttpRequest();
+		}	else if (ActiveXObject)	{
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}	else {return false;}
+	let url = "javascript/ajax/loadindexes.php";
+	request.open("POST", url, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.onreadystatechange = function(){
+		if(request.readyState ==4 && request.status ==200){
+			let response = JSON.parse(this.responseText);
+			loadResponseData(response,taxPeriodNumber, true);
+			}
+		}
+	//}
+	request.send("taxPeriodNumber="+taxPeriodNumber);
+	//document.getElementById("submitSuccessMain").setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
+	//document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
 }
 const start = () => {
 	//pick data from backend
@@ -3439,6 +3777,8 @@ const start = () => {
 
 	let generateButton = document.getElementById("generateButton");
 	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
+	//call the function that loads data fro the server.
+	loadData(taxPeriodNumber);
 	})
 }
 //this function is neccessary for popovers to work

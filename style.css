@@ -453,7 +453,9 @@ hr {
   display: inline-block;
   text-align: center;
   height: 100%;
-  width: 12%; }
+  width: 12%;
+  -webkit-box-shadow: inset 1px 0px 0px 0px grey;
+  box-shadow: inset 1px 0px 0px 0px grey; }
 
 .monthDiv {
   background: #0088cc;
