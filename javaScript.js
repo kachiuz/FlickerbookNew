@@ -1355,6 +1355,7 @@ const deselectValuesValidateForm2 = (taxPeriodNumber) => {
 
 //another validation function
 const deselectValuesValidateForm = (taxPeriodNumber) => {
+	taxPeriodNumber += (counter+counter2);
 	weekStart = Number(weekStartArray[taxPeriodNumber]);
 	unsHCheckCurrent = Number(unsHCheck[taxPeriodNumber]);
 
@@ -1604,7 +1605,6 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	//this function will need an additional parameter, depending from where it is called
 	//if it is called from load indexes function, the response object will be larger, as more data needs to be loaded,
 	//but if its called from postdata, then that object will not have additional parameters and that my cause errors.
-
 	//destructuring object
 	let {summerSavingsPaymentCollected, christmasSavingsPaymentCollected, saturdayHours, NISum} = response;
 	let {sundayHours, saturdayExtraPay, sundayExtraPay, saturdayExtraRate, sundayExtraRate} = response;
@@ -1990,10 +1990,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (union_deSum>0){yearToDateNames.innerHTML+= 'Union<br>';}
 	if (companyLoanSum>0){yearToDateNames.innerHTML+= 'Loan Deduction<br>';}
 	if (studentLoanDeductionSum>0){yearToDateNames.innerHTML+= 'Student Loan<br>';}
-	if (christmasSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Christmas Savings Deductions<br>';}
-	if (christmasSavingsPaymentCollected>chris_savSum){yearToDateNames.innerHTML+= 'Christmas Savings Total Ded.<br>';}
-	if (summerSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Summer Savings Deductions<br>';}
-	if (summerSavingsPaymentCollected>summer_savSum){yearToDateNames.innerHTML+= 'Summer Savings Total Ded.<br>';}
+	if (christmasSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Christmas Deductions<br>';}
+	if (christmasSavingsPaymentCollected>chris_savSum){yearToDateNames.innerHTML+= 'Christmas Total Ded.<br>';}
+	if (summerSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Summer Deductions<br>';}
+	if (summerSavingsPaymentCollected>summer_savSum){yearToDateNames.innerHTML+= 'Summer Total Ded.<br>';}
 	if (other_de>0){yearToDateNames.innerHTML+= otherDeductionName+'<br>';}
 	if (add_deSum2>0){yearToDateNames.innerHTML+= otherDeduction2Name+'<br>';}
 	if (add_deSum3>0){yearToDateNames.innerHTML+= otherDeduction3Name+'<br>';}
@@ -2341,8 +2341,8 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Union<br>';}
 	if (companyLoanSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Loan Deduction<br>';}
 	if (studentLoanDeductionSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Student Loan<br>';}
-	if (chris_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Christmas Savings Deductions<br>';}
-	if (summer_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Summer Savings Deductions<br>';}
+	if (chris_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Christmas Deductions<br>';}
+	if (summer_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Summer Deductions<br>';}
 
 	if (other_deLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeductionName+'<br>';}
 	if (add_deSum2Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeduction2Name+'<br>';}
@@ -2956,8 +2956,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 				]
 			}]
 	});
+	Last10WeeksNetPaysChart.render();
 } else{
-	document.getElementById('columnChartNetPay').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+	document.getElementById('columnChartNetPay').innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//last 10 weeks hours chart
 	let last10weeksHoursSum = 0;
@@ -3081,8 +3082,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 				]
 			}]
 		});
+		Last10WeeksPaidHoursChart.render();
 	} else {
-		document.getElementById('columnChartPaidHours').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById('columnChartPaidHours').innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 
 	//other charts
@@ -3146,8 +3148,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	paymentsPieChart.render();
 	} else {
-		document.getElementById("paymentsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("paymentsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 
 	//if peniosn is not a salary sacrifise, show it in deductions chart
@@ -3199,8 +3202,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	deductionsPieChart.render();
 	} else {
-		document.getElementById("deductionsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("deductionsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//yearToDate chart
 	if(taxSum>0||NISum>0||union_deSum>0||pensionSumChart>0||chris_savSum>0||summer_savSum>0||companyLoanSum>0||
@@ -3239,8 +3243,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	yearToDatePieChart.render();
 	} else {
-		document.getElementById("yearToDatePieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("yearToDatePieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//Year to date Percentage chart
 	if (basicPaymentsPercentage>0||holidaysPercentage>0||sicknessPercentage>0||overtimePercentage>0||bankHolidayPercentge>0||
@@ -3274,8 +3279,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	yearToDatePercentagePieChart.render();
 	} else {
-		document.getElementById("yearToDatePercentagePieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("yearToDatePercentagePieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	if (basicHoursPay >0||unsocial_prem>0||unsocial_prem_hol>0||unsocial_prem_sick>0||unsocial_prem_family>0||
 	unsocial_prem_bereavement>0||unsocial_prem_compassionate>0||OT1Pay>0||OT2Pay>0||enhancedHolidayPay>0||holidayPay>0||
@@ -3336,8 +3342,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	yearToDateIIPieChart.render();
 	} else {
-		document.getElementById("yearToDateIIPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("yearToDateIIPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//Year to date Hours chart
 	if(basicHoursSum>0||ot1_unitsSum>0||ot2_unitsSum>0||uns_prem_unSum>0||uns_hol_unSum>0||uns_sick_unSum>0||uns_family_unSum>0||
@@ -3375,8 +3382,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	yearToDateHoursPieChart.render();
 	} else {
-		document.getElementById("yearToDateHoursPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("yearToDateHoursPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//Year to date Days chart
 	if(daysNotSelected>0||daysIn>0||daysOff>0||daysHoliday>0||daysHalfInHalfHol>0||daysUnpaidHoliday>0||daysInSick>0||
@@ -3415,8 +3423,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	dayStatisticsPieChart.render();
 	} else {
-		document.getElementById("dayStatisticsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("dayStatisticsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//Year to date holidays chart
 	if(totalHolidaysUsed>0||totalHolidaysBooked>0||holidaysNotUsed>0){
@@ -3445,8 +3454,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	holidayStatisticsPieChart.render();
 	} else {
-		document.getElementById("holidayStatisticsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+		document.getElementById("holidayStatisticsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
 	//last 3 months average chart
 	taxSumLast12Weeks =  Number(taxSumLast12Weeks.toFixed(2));
@@ -3497,20 +3507,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
-	} else {
-		document.getElementById("las3MonthsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
-	}
-	Last10WeeksNetPaysChart.render();
-	Last10WeeksPaidHoursChart.render();
-	paymentsPieChart.render();
-	deductionsPieChart.render();
-	yearToDatePieChart.render();
-	yearToDatePercentagePieChart.render();
-	yearToDateIIPieChart.render();
-	yearToDateHoursPieChart.render();
-	dayStatisticsPieChart.render();
-	holidayStatisticsPieChart.render();
 	las3MonthsPieChart.render();
+	} else {
+		document.getElementById("las3MonthsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
+	}
 	//if the repsonse object is recieved via loadData function, it is neccessary to load
 	//main table indexes and calendar day colors
 	if (largerObject === true){
@@ -3696,6 +3696,128 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 		hideHoursSelect(taxPeriodNumber);
 	}
 }
+//counter is used to keep a track of how many time a function has been called.
+var counter = 0;
+const increaseTaxPeriod = (taxPeriodNumber) => {
+	counter++;
+	taxPeriodNumber += (counter+counter2);
+	weekStart = Number(weekStartArray[taxPeriodNumber]);
+	let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-2)+weekStart*86400000;
+	modTimeSinceEpoch = timeSinceEpoch +604800000;
+	if (taxPeriodNumber === 1)	{
+		$("#buttonLeft").addClass("hidden");
+		$("#buttonLeftFake").removeClass("hidden");
+		$("#buttonUp").addClass("hidden");
+		$("#buttonUpFake").removeClass("hidden");
+		$("#fastBackward").addClass("hidden");
+		$("#fastBackwardFake").removeClass("hidden");
+	}	else if (taxPeriodNumber === 78)	{
+		$("#buttonRight").addClass("hidden");
+		$("#buttonRightFake").removeClass("hidden");
+		$("#buttonDown").addClass("hidden");
+		$("#buttonDownFake").removeClass("hidden");
+		$("#fastForward").addClass("hidden");
+		$("#fastForwardFake").removeClass("hidden");
+	}	else if (taxPeriodNumber>1 && taxPeriodNumber<78)	{
+		$("#buttonLeft").removeClass("hidden");
+		$("#buttonLeftFake").addClass("hidden");
+		$("#buttonRight").removeClass("hidden");
+		$("#buttonRightFake").addClass("hidden");
+		$("#buttonUp").removeClass("hidden");
+		$("#buttonUpFake").addClass("hidden");
+		$("#buttonDown").removeClass("hidden");
+		$("#buttonDownFake").addClass("hidden");
+		$("#fastBackward").removeClass("hidden");
+		$("#fastBackwardFake").addClass("hidden");
+		$("#fastForward").removeClass("hidden");
+		$("#fastForwardFake").addClass("hidden");
+	} else	{
+		$("#buttonLeft").addClass("hidden");
+		$("#buttonLeftFake").removeClass("hidden");
+		$("#buttonRight").addClass("hidden");
+		$("#buttonRightFake").removeClass("hidden");
+		$("#buttonUp").addClass("hidden");
+		$("#buttonUpFake").removeClass("hidden");
+		$("#buttonDown").addClass("hidden");
+		$("#buttonDownFake").removeClass("hidden");
+		$("#fastBackward").addClass("hidden");
+		$("#fastBackwardFake").removeClass("hidden");
+		$("#fastForward").addClass("hidden");
+		$("#fastForwardFake").removeClass("hidden");
+	}
+	//clear main table and calendar
+	for (let f=0;f<7;f++)	{
+		let tableRow = document.getElementById("tableRow"+f).innerHTML = " ";
+		var calendarRow = document.getElementById("calendarRow"+f).innerHTML = " ";
+	}
+
+	createTableElements(taxPeriodNumber, modTimeSinceEpoch);
+	createPayoutButtons(taxPeriodNumber);
+	generateCalendar (taxPeriodNumber,modTimeSinceEpoch);
+	loadData(taxPeriodNumber);
+}
+var counter2 = 0;
+const decreaseTaxPeriod = (taxPeriodNumber)=>{
+	counter2--;
+	taxPeriodNumber+=(counter+ counter2);
+	weekStart = Number(weekStartArray[taxPeriodNumber]);
+	let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber)+weekStart*86400000;
+
+			modTimeSinceEpoch = timeSinceEpoch -604800000;
+			// if tax period is 1, hide the backward buttons and show the fake backword buttons
+			if (taxPeriodNumber === 1)	{
+				$("#buttonLeft").addClass("hidden");
+				$("#buttonLeftFake").removeClass("hidden");
+				$("#buttonUp").addClass("hidden");
+				$("#buttonUpFake").removeClass("hidden");
+				$("#fastBackward").addClass("hidden");
+				$("#fastBackwardFake").removeClass("hidden");
+			}	else if (taxPeriodNumber === 208)	{ //show original values
+				$("#buttonRight").addClass("hidden");
+				$("#buttonRightFake").removeClass("hidden");
+				$("#buttonDown").addClass("hidden");
+				$("#buttonDownFake").removeClass("hidden");
+				$("#fastForward").addClass("hidden");
+				$("#fastForwardFake").removeClass("hidden");
+			}	else if (taxPeriodNumber>1 && taxPeriodNumber<208)	{ //hide forward buttos
+				$("#buttonLeft").removeClass("hidden");
+				$("#buttonLeftFake").addClass("hidden");
+				$("#buttonRight").removeClass("hidden");
+				$("#buttonRightFake").addClass("hidden");
+				$("#buttonUp").removeClass("hidden");
+				$("#buttonUpFake").addClass("hidden");
+				$("#buttonDown").removeClass("hidden");
+				$("#buttonDownFake").addClass("hidden");
+				$("#fastBackward").removeClass("hidden");
+				$("#fastBackwardFake").addClass("hidden");
+				$("#fastForward").removeClass("hidden");
+				$("#fastForwardFake").addClass("hidden");
+			} else	{ //in any other scenario show fake buttons and hide buttons with functions
+				$("#buttonLeft").addClass("hidden");
+				$("#buttonLeftFake").removeClass("hidden");
+				$("#buttonRight").addClass("hidden");
+				$("#buttonRightFake").removeClass("hidden");
+				$("#buttonUp").addClass("hidden");
+				$("#buttonUpFake").removeClass("hidden");
+				$("#buttonDown").addClass("hidden");
+				$("#buttonDownFake").removeClass("hidden");
+				$("#fastBackward").addClass("hidden");
+				$("#fastBackwardFake").removeClass("hidden");
+				$("#fastForward").addClass("hidden");
+				$("#fastForwardFake").removeClass("hidden");
+			}
+
+			for (let f=0;f<7;f++)	{
+				let tableRow = document.getElementById("tableRow"+f).innerHTML = " ";
+				let calendarRow = document.getElementById("calendarRow"+f).innerHTML = " ";
+			}
+
+			createTableElements(taxPeriodNumber, modTimeSinceEpoch);
+			createPayoutButtons(taxPeriodNumber);
+			generateCalendar (taxPeriodNumber,modTimeSinceEpoch);
+			loadData(taxPeriodNumber);
+}
+
 const postData = (taxPeriodNumber) => {
 	str = getFormValues(taxPeriodNumber);
 	if (XMLHttpRequest)	{
@@ -3740,16 +3862,13 @@ const loadData = (taxPeriodNumber) => {
 	let url = "javascript/ajax/loadindexes.php";
 	request.open("POST", url, true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send("taxPeriodNumber="+taxPeriodNumber);
 	request.onreadystatechange = function(){
 		if(request.readyState ==4 && request.status ==200){
 			let response = JSON.parse(this.responseText);
-			loadResponseData(response,taxPeriodNumber, true);
+			loadResponseData(response, taxPeriodNumber, true);
 			}
 		}
-	//}
-	request.send("taxPeriodNumber="+taxPeriodNumber);
-	//document.getElementById("submitSuccessMain").setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
-	//document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
 }
 const start = () => {
 	//pick data from backend
@@ -3777,10 +3896,26 @@ const start = () => {
 
 	let generateButton = document.getElementById("generateButton");
 	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
+
+
 	//call the function that loads data fro the server.
 	loadData(taxPeriodNumber);
+	let buttonRight = document.getElementById("buttonRight");
+	let downButton = document.getElementById("buttonDown");
+
+	//has to be wrapped inside a function, otherwise fings get messy :(
+	buttonRight.onclick =  function () {increaseTaxPeriod(taxPeriodNumber);};
+	downButton.onclick = function () {increaseTaxPeriod(taxPeriodNumber);};
+
+	let buttonLeft = document.getElementById("buttonLeft");
+	let upButton = document.getElementById("buttonUp");
+	buttonLeft.onclick = function () {decreaseTaxPeriod(taxPeriodNumber);};
+	upButton.onclick = function () {decreaseTaxPeriod(taxPeriodNumber);};
 	})
 }
+
+
+
 //this function is neccessary for popovers to work
 $(function () {
   $('[data-toggle="popover"]').popover()
