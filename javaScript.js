@@ -1355,7 +1355,7 @@ const deselectValuesValidateForm2 = (taxPeriodNumber) => {
 
 //another validation function
 const deselectValuesValidateForm = (taxPeriodNumber) => {
-	taxPeriodNumber += (counter+counter2);
+	taxPeriodNumber += (counter + counter2 + counter3 + counter4);
 	weekStart = Number(weekStartArray[taxPeriodNumber]);
 	unsHCheckCurrent = Number(unsHCheck[taxPeriodNumber]);
 
@@ -3696,29 +3696,19 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 		hideHoursSelect(taxPeriodNumber);
 	}
 }
-//counter is used to keep a track of how many time a function has been called.
-var counter = 0;
-const increaseTaxPeriod = (taxPeriodNumber) => {
-	counter++;
-	taxPeriodNumber += (counter+counter2);
-	weekStart = Number(weekStartArray[taxPeriodNumber]);
-	let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-2)+weekStart*86400000;
-	modTimeSinceEpoch = timeSinceEpoch +604800000;
-	if (taxPeriodNumber === 1)	{
+//this function gets called from 4 different functions(increase, decrease, fastincrease, fastdecsres),
+// and either shows or hides controls buttons depending on results
+const showHideForwardBackwardControls = (taxPeriodNumberNew, modTimeSinceEpoch) => {
+	if (taxPeriodNumberNew<1)	{
+		modTimeSinceEpoch = timeSinceEpochOriginal+weekStart*86400000;
+		taxPeriodNumberNew = 1;
 		$("#buttonLeft").addClass("hidden");
 		$("#buttonLeftFake").removeClass("hidden");
 		$("#buttonUp").addClass("hidden");
 		$("#buttonUpFake").removeClass("hidden");
 		$("#fastBackward").addClass("hidden");
 		$("#fastBackwardFake").removeClass("hidden");
-	}	else if (taxPeriodNumber === 78)	{
-		$("#buttonRight").addClass("hidden");
-		$("#buttonRightFake").removeClass("hidden");
-		$("#buttonDown").addClass("hidden");
-		$("#buttonDownFake").removeClass("hidden");
-		$("#fastForward").addClass("hidden");
-		$("#fastForwardFake").removeClass("hidden");
-	}	else if (taxPeriodNumber>1 && taxPeriodNumber<78)	{
+	}	else if (taxPeriodNumberNew>=1 && taxPeriodNumberNew<=208)	{
 		$("#buttonLeft").removeClass("hidden");
 		$("#buttonLeftFake").addClass("hidden");
 		$("#buttonRight").removeClass("hidden");
@@ -3731,7 +3721,16 @@ const increaseTaxPeriod = (taxPeriodNumber) => {
 		$("#fastBackwardFake").addClass("hidden");
 		$("#fastForward").removeClass("hidden");
 		$("#fastForwardFake").addClass("hidden");
-	} else	{
+	} else if (taxPeriodNumberNew > 208){
+		taxPeriodNumberNew = 208;
+		modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
+		$("#buttonRight").addClass("hidden");
+		$("#buttonRightFake").removeClass("hidden");
+		$("#buttonDown").addClass("hidden");
+		$("#buttonDownFake").removeClass("hidden");
+		$("#fastForward").addClass("hidden");
+		$("#fastForwardFake").removeClass("hidden");
+	} else {
 		$("#buttonLeft").addClass("hidden");
 		$("#buttonLeftFake").removeClass("hidden");
 		$("#buttonRight").addClass("hidden");
@@ -3745,77 +3744,51 @@ const increaseTaxPeriod = (taxPeriodNumber) => {
 		$("#fastForward").addClass("hidden");
 		$("#fastForwardFake").removeClass("hidden");
 	}
-	//clear main table and calendar
+	//clear the main table and calendar
 	for (let f=0;f<7;f++)	{
 		let tableRow = document.getElementById("tableRow"+f).innerHTML = " ";
-		var calendarRow = document.getElementById("calendarRow"+f).innerHTML = " ";
+		let calendarRow = document.getElementById("calendarRow"+f).innerHTML = " ";
 	}
-
-	createTableElements(taxPeriodNumber, modTimeSinceEpoch);
-	createPayoutButtons(taxPeriodNumber);
-	generateCalendar (taxPeriodNumber,modTimeSinceEpoch);
-	loadData(taxPeriodNumber);
+	createTableElements(taxPeriodNumberNew, modTimeSinceEpoch);
+	createPayoutButtons(taxPeriodNumberNew);
+	generateCalendar (taxPeriodNumberNew,modTimeSinceEpoch);
+	loadData(taxPeriodNumberNew);
+}
+//counter is used to keep a track of how many time a function has been called.
+//there are a total of 4 counter for each forward, backward functions.
+var counter = 0;
+const increaseTaxPeriod = (taxPeriodNumber) => {
+	counter++;
+	taxPeriodNumberNew += (counter + counter2 + counter3 + counter4 );
+	weekStart = Number(weekStartArray[taxPeriodNumberNew]);
+	let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-2)+weekStart*86400000;
+	modTimeSinceEpoch = timeSinceEpoch + 604800000;
+	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
 var counter2 = 0;
 const decreaseTaxPeriod = (taxPeriodNumber)=>{
 	counter2--;
-	taxPeriodNumber+=(counter+ counter2);
-	weekStart = Number(weekStartArray[taxPeriodNumber]);
-	let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber)+weekStart*86400000;
-
-			modTimeSinceEpoch = timeSinceEpoch -604800000;
-			// if tax period is 1, hide the backward buttons and show the fake backword buttons
-			if (taxPeriodNumber === 1)	{
-				$("#buttonLeft").addClass("hidden");
-				$("#buttonLeftFake").removeClass("hidden");
-				$("#buttonUp").addClass("hidden");
-				$("#buttonUpFake").removeClass("hidden");
-				$("#fastBackward").addClass("hidden");
-				$("#fastBackwardFake").removeClass("hidden");
-			}	else if (taxPeriodNumber === 208)	{ //show original values
-				$("#buttonRight").addClass("hidden");
-				$("#buttonRightFake").removeClass("hidden");
-				$("#buttonDown").addClass("hidden");
-				$("#buttonDownFake").removeClass("hidden");
-				$("#fastForward").addClass("hidden");
-				$("#fastForwardFake").removeClass("hidden");
-			}	else if (taxPeriodNumber>1 && taxPeriodNumber<208)	{ //hide forward buttos
-				$("#buttonLeft").removeClass("hidden");
-				$("#buttonLeftFake").addClass("hidden");
-				$("#buttonRight").removeClass("hidden");
-				$("#buttonRightFake").addClass("hidden");
-				$("#buttonUp").removeClass("hidden");
-				$("#buttonUpFake").addClass("hidden");
-				$("#buttonDown").removeClass("hidden");
-				$("#buttonDownFake").addClass("hidden");
-				$("#fastBackward").removeClass("hidden");
-				$("#fastBackwardFake").addClass("hidden");
-				$("#fastForward").removeClass("hidden");
-				$("#fastForwardFake").addClass("hidden");
-			} else	{ //in any other scenario show fake buttons and hide buttons with functions
-				$("#buttonLeft").addClass("hidden");
-				$("#buttonLeftFake").removeClass("hidden");
-				$("#buttonRight").addClass("hidden");
-				$("#buttonRightFake").removeClass("hidden");
-				$("#buttonUp").addClass("hidden");
-				$("#buttonUpFake").removeClass("hidden");
-				$("#buttonDown").addClass("hidden");
-				$("#buttonDownFake").removeClass("hidden");
-				$("#fastBackward").addClass("hidden");
-				$("#fastBackwardFake").removeClass("hidden");
-				$("#fastForward").addClass("hidden");
-				$("#fastForwardFake").removeClass("hidden");
-			}
-
-			for (let f=0;f<7;f++)	{
-				let tableRow = document.getElementById("tableRow"+f).innerHTML = " ";
-				let calendarRow = document.getElementById("calendarRow"+f).innerHTML = " ";
-			}
-
-			createTableElements(taxPeriodNumber, modTimeSinceEpoch);
-			createPayoutButtons(taxPeriodNumber);
-			generateCalendar (taxPeriodNumber,modTimeSinceEpoch);
-			loadData(taxPeriodNumber);
+	let taxPeriodNumberNew = taxPeriodNumber + counter + counter2 + counter3 + counter4;
+	weekStart = Number(weekStartArray[taxPeriodNumberNew]);
+	let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew)+weekStart*86400000;
+	modTimeSinceEpoch = timeSinceEpoch - 604800000;
+	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
+}
+var	counter3 = 0;
+const fastDecreaseTaxPeriod = (taxPeriodNr) => {
+	counter3-= 6;
+	let taxPeriodNumberNew = taxPeriodNumber + counter + counter2 + counter3 + counter4;
+	weekStart = Number(weekStartArray[taxPeriodNumber-6]);//reikia tos weekstart vertes, i kuria savaite sokame su sita funkcija!!
+	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
+	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
+}
+var	counter4 = 0;
+const fastIcreaseTaxPeriod = (taxPeriodNr) => {
+	counter4+= 6;
+	let taxPeriodNumberNew = taxPeriodNumber + counter + counter2 + counter3 + counter4;
+	weekStart = Number(weekStartArray[taxPeriodNumber+counter4]);//reikia tos weekstart vertes, i kuria savaite sokame su sita funkcija!!
+	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
+	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
 
 const postData = (taxPeriodNumber) => {
@@ -3911,10 +3884,14 @@ const start = () => {
 	let upButton = document.getElementById("buttonUp");
 	buttonLeft.onclick = function () {decreaseTaxPeriod(taxPeriodNumber);};
 	upButton.onclick = function () {decreaseTaxPeriod(taxPeriodNumber);};
+
+	let fastBackward = document.getElementById("fastBackward");
+	fastBackward.onclick = function () {fastDecreaseTaxPeriod(taxPeriodNumber);};
+
+	let fastForward = document.getElementById("fastForward");
+	fastForward.onclick = function () {fastIcreaseTaxPeriod(taxPeriodNumber);};
 	})
 }
-
-
 
 //this function is neccessary for popovers to work
 $(function () {
