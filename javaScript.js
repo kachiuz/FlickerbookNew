@@ -29,8 +29,9 @@ let taxPeriodNumber = Math.ceil((currentTime - timeSinceEpochOriginal)/mSecondsI
 //weekStart and unsHCheckCurrent will be arrays fiiled from back end
 let weekStartArray = [];
 let unsHCheck = [];
+let taxPeriodLimit = 0;
 
-var timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+0*86400000;
+let timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+0*86400000;
 //END OF GLOBAL VAIRABLES------------------------------------------------------------------------//
 
 //function that changes main table background colors and the visibility of its components
@@ -430,7 +431,8 @@ const changeSelectBackground =(taxPeriodNumber) => {
 }
 
 // a function that changes the colors of calendar day background depending on selection
-//it also marks a current day on a calendar
+//it also leaves a current day mark on a calendar
+//the actual marking of current day happens inside loadResponseData function.
 const calendarBackgroundChangeOnSelect = (taxPeriodNumber) => {
 	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
@@ -697,7 +699,7 @@ const finishNextMorningBColor= (taxPeriodNumber) => {
 //is uncheck, it hides them.
 const hideHoursSelect = (taxPeriodNumber) => {
 	let weekStart = weekStartArray[taxPeriodNumber];
-	let unsHCheckCurrent = Number(unsHCheck[taxPeriodNumber]);
+	let unsHCheckCurrent = unsHCheck[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	for(let b=0;b<7;b++) {
 		//day type value
@@ -839,30 +841,29 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 
-	let timeSinceEpochInput = document.getElementById("timeSinceEpochInput");
-	let timeSinceEpochInputValue = 1491004800000;
-	timeSinceEpochInputValue = Number(timeSinceEpochInputValue);
-	taxPeriodNumberN = Number(taxPeriodNumber); // pridedame weekstart
-	timeSinceEpochInputValue += 604800000*(taxPeriodNumberN-1)+weekStart*86400000;
-	timeSinceEpochInput.setAttribute("value",timeSinceEpochInputValue);
-
+	let tableCaptionTitle = document.getElementById("tableCaptionTitle");
+	let tableCaption2 = document.getElementById("tableCaption2");
 	//depending on a year, caption has to be changed
 	if(taxPeriodNumber<=52 && taxPeriodNumber>0 ){
 		tableCaptionTitle.innerHTML = "2017/2018 Tax Period " + taxPeriodNumber;
+		tableCaption2.innerHTML = "2017/2018 Tax Period " + taxPeriodNumber;
 	}	else if (taxPeriodNumber<=104 && taxPeriodNumber>52 ){
 		taxPeriodNumberNew = taxPeriodNumber - 52;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
 	}	else if (taxPeriodNumber<=156 && taxPeriodNumber>104 ){
 		taxPeriodNumberNew = taxPeriodNumber - 104;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
-	}	else if (taxPeriodNumber<=208 && taxPeriodNumber>156 ){
+		tableCaption2.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=taxPeriodLimit && taxPeriodNumber>156 ){
 		taxPeriodNumberNew = taxPeriodNumber - 156;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
 	}	else {
-		alert("Error!");
+		alert("Invalid Tax Period Number!");
 	}
 
 	for (let f=0;f<7;f++)	{
@@ -888,8 +889,6 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 			dayType.appendChild(dayOption);
 		}
 		tableRow.appendChild(tableData);
-		//dayType.onchange = function (){changeSelectBackground(), calendarBackgroundChangeOnSelect(), hideHoursSelect(), bankHolidayFilter(timeSinceEpoch)};
-		//dayType.onchange = test;
 
 		//creating second column
 		dateDiv = document.createElement("div");
@@ -1180,10 +1179,9 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 		timeSinceEpoch += 86400000 //pridedama viena diena
 		taxPeriodStart++;
 
-	//dayType.onchange = function (){changeSelectBackground(), calendarBackgroundChangeOnSelect(), hideHoursSelect(), bankHolidayFilter(timeSinceEpoch)};
-	dayType.onchange = function (){
-		changeSelectBackground(taxPeriodNumber),calendarBackgroundChangeOnSelect(taxPeriodNumber),
-		hideHoursSelect(taxPeriodNumber);
+		dayType.onchange = function (){
+			changeSelectBackground(taxPeriodNumber),calendarBackgroundChangeOnSelect(taxPeriodNumber),
+			hideHoursSelect(taxPeriodNumber);
 	 }
 	endHours.onchange = function(){finishNextMorningBColor(taxPeriodNumber);};
 	sicknessButton.onchange = function (){hideHoursSelect(taxPeriodNumber);}
@@ -1205,7 +1203,7 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 
 	let id = 0;
 	for(let tr=0;tr<7;tr++)	{
-		//iterpiami dienu pavadinimai i kalendorius
+		//add day names to calendar
 		let dayName = document.getElementById("dayName"+tr);
 		let startDay = new Date(timeSinceEpochForDay);
 		let dy = startDay.getDay();
@@ -1218,7 +1216,7 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 		mm = months[mm];
 		let calendarRow = document.getElementById("calendarRow"+tr);
 
-		//iterpiami menesiu pavadinimai i kalendoriu
+		//add month names to calendar
 		let monthDiv = document.createElement("div");
 		monthDiv.setAttribute("class", "col-xs-calDN col-sm-calDN dayDiv monthDiv");
 		monthDiv.setAttribute("id", "monthDiv"+tr);
@@ -1248,16 +1246,6 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 			let dayNumber = document.createTextNode(dd);
 			dayDiv.appendChild(dayNumber);
 			calendarRow.appendChild(dayDiv);
-
-			//paryskiname esama diena kalendoriuje
-			let currentDate = new Date();
-			let currentTime = currentDate.getTime()
-
-			if (currentTime>timeSinceEpoch && currentTime <(timeSinceEpoch + 86400000)) 	{
-				dayDiv.setAttribute("class", "dayDiv currentDay");
-			}	else 	{
-				dayDiv.setAttribute("class", "dayDiv");
-			}
 			timeSinceEpoch += 86400000;
 
 			id++;
@@ -1271,7 +1259,7 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 const createPayoutButtons = (taxPeriodNumber) => {
 	let payChristmasSavings = document.getElementById("payChristmasSavings");
 
-	payChristmasSavings.innerHTML = " "; //istriname esama elementa
+	payChristmasSavings.innerHTML = " ";
 
 	let payChristmasSavingsCheck = document.createElement("input");
 	payChristmasSavingsCheck.setAttribute("type", "checkbox");
@@ -1312,7 +1300,7 @@ let counter = 0;
 const showHideForwardBackwardControls = (taxPeriodNumberNew, modTimeSinceEpoch) => {
 	if (taxPeriodNumberNew<1)	{
 		taxPeriodNumberNew = 1;
-		let weekStart = Number(weekStartArray[taxPeriodNumberNew]);
+		let weekStart = weekStartArray[taxPeriodNumberNew];
 		modTimeSinceEpoch = timeSinceEpochOriginal+weekStart*86400000;
 		$("#buttonLeft").addClass("hidden");
 		$("#buttonLeftFake").removeClass("hidden");
@@ -1323,7 +1311,7 @@ const showHideForwardBackwardControls = (taxPeriodNumberNew, modTimeSinceEpoch) 
 		//must reset the value of counter 3, otherwise if skipping through payslips forward, it will drag the values back by
 		//the number it went beyond taxPeriodNumber
 		counter = 1-taxPeriodNumber;
-	}	else if (taxPeriodNumberNew>=1 && taxPeriodNumberNew<=208)	{
+	}	else if (taxPeriodNumberNew>=1 && taxPeriodNumberNew<=taxPeriodLimit)	{
 		$("#buttonLeft").removeClass("hidden");
 		$("#buttonLeftFake").addClass("hidden");
 		$("#buttonRight").removeClass("hidden");
@@ -1336,9 +1324,9 @@ const showHideForwardBackwardControls = (taxPeriodNumberNew, modTimeSinceEpoch) 
 		$("#fastBackwardFake").addClass("hidden");
 		$("#fastForward").removeClass("hidden");
 		$("#fastForwardFake").addClass("hidden");
-	} else if (taxPeriodNumberNew > 208){
-		taxPeriodNumberNew = 208;
-		let weekStart = Number(weekStartArray[taxPeriodNumberNew]);
+	} else if (taxPeriodNumberNew > taxPeriodLimit){
+		taxPeriodNumberNew = taxPeriodLimit;
+		let weekStart = weekStartArray[taxPeriodNumberNew];
 		modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 		$("#buttonRight").addClass("hidden");
 		$("#buttonRightFake").removeClass("hidden");
@@ -1346,7 +1334,7 @@ const showHideForwardBackwardControls = (taxPeriodNumberNew, modTimeSinceEpoch) 
 		$("#buttonDownFake").removeClass("hidden");
 		$("#fastForward").addClass("hidden");
 		$("#fastForwardFake").removeClass("hidden");
-		counter = 208-taxPeriodNumber;
+		counter = taxPeriodLimit-taxPeriodNumber;
 	} else {
 		$("#buttonLeft").addClass("hidden");
 		$("#buttonLeftFake").removeClass("hidden");
@@ -1374,28 +1362,28 @@ const showHideForwardBackwardControls = (taxPeriodNumberNew, modTimeSinceEpoch) 
 const increaseTaxPeriod = (taxPeriodNumber) => {
 	counter++;
 	taxPeriodNumberNew = taxPeriodNumber + counter;
-	let weekStart = Number(weekStartArray[taxPeriodNumberNew]);
+	let weekStart = weekStartArray[taxPeriodNumberNew];
 	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
 const decreaseTaxPeriod = (taxPeriodNumber)=>{
 	counter--;
 	let taxPeriodNumberNew = taxPeriodNumber + counter;
-	let weekStart = Number(weekStartArray[taxPeriodNumberNew]);
+	let weekStart = weekStartArray[taxPeriodNumberNew];
 	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
 const fastDecreaseTaxPeriod = (taxPeriodNumber) => {
 	counter-= 6;
 	let taxPeriodNumberNew = taxPeriodNumber + counter;
-	let weekStart = Number(weekStartArray[taxPeriodNumber-6]);
+	let weekStart = weekStartArray[taxPeriodNumber-6];
 	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
 const fastIcreaseTaxPeriod = (taxPeriodNumber) => {
 	counter+= 6;
 	let taxPeriodNumberNew = taxPeriodNumber + counter;
-	let weekStart = Number(weekStartArray[taxPeriodNumber+6]);
+	let weekStart = weekStartArray[taxPeriodNumber+6];
 	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
@@ -1403,7 +1391,7 @@ const fastIcreaseTaxPeriod = (taxPeriodNumber) => {
 //----------------------FORM VALIDATION FUNCTIONS------------------------------------------------------//
 //function that prevents from sending extra payments data in case user checks checkboxes
 const deselectValuesValidateForm2 = (taxPeriodNumber) => {
-	weekStart = Number(weekStartArray[taxPeriodNumber]);
+	weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	for(let b=0;b<7;b++)	{
 		let index = document.getElementById("dayType"+taxPeriodStart).options.selectedIndex;
@@ -1451,8 +1439,8 @@ const deselectValuesValidateForm2 = (taxPeriodNumber) => {
 //another validation function
 const deselectValuesValidateForm = (taxPeriodNumber) => {
 	taxPeriodNumber += counter;
-	weekStart = Number(weekStartArray[taxPeriodNumber]);
-	unsHCheckCurrent = Number(unsHCheck[taxPeriodNumber]);
+	weekStart = weekStartArray[taxPeriodNumber];
+	unsHCheckCurrent = unsHCheck[taxPeriodNumber];
 
 	var taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 	for(let b=0;b<7;b++){
@@ -3688,7 +3676,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 		}
 		let currentDate = new Date();
 		let currentTime = currentDate.getTime()
-		let timeSinceEpochCurrentDay = timeSinceEpoch-(21*86400000);
+		let timeSinceEpochCurrentDay = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-4)+weekStart*86400000;
 		let taxPeriodNumberCalendar = taxPeriodNumber- 3;
 		let taxPeriodStartCalendar = (taxPeriodNumberCalendar-1)*7+weekStart;
 		for ( bg = 0; bg < 49 ; bg++ )
@@ -3846,19 +3834,19 @@ const loadData = (taxPeriodNumber) => {
 }
 const start = () => {
 	//pick data from backend
-	fetch('data.php')
+	fetch('javascript/ajax/weekstart2.php')
 	.then(function(response) {
 	return response.json();
 	})
 	.then(function(myJson) {
-		let taxPeriodLimit = myJson.taxPeriodLimit;
+		taxPeriodLimit = myJson.taxPeriodLimit;
 		//fill the arrays of weekstart and unsHCheck
-		for (let a=0; a<taxPeriodLimit; a++){ //a<66 turi sutapti su backend faile esanciau apribojimu
+		for (let a=0; a<taxPeriodLimit; a++){
 			let weekStartAr = myJson.weekStartArray[a];
-			weekStartArray[a]= weekStartAr;
+			weekStartArray[a]= Number(weekStartAr);
 
 			let unsHCheckArray = myJson.unsHCheckArray[a];
-			unsHCheck[a] = unsHCheckArray;
+			unsHCheck[a] = Number(unsHCheckArray);
 	}
 
 	//when we fetch the data from the server start creating elements
@@ -3870,7 +3858,6 @@ const start = () => {
 
 	let generateButton = document.getElementById("generateButton");
 	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
-
 
 	//call the function that loads data fro the server.
 	loadData(taxPeriodNumber);
