@@ -41,9 +41,9 @@
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-					  <li><a href="#">Main</a></li>
-					  <li><a href="#">Payments</a></li>
-					  <li><a href="#">Deductions</a></li>
+					  <li><a href="index.php">Main</a></li>
+					  <li><a href="payments.php">Payments</a></li>
+					  <li><a href="deductions.php">Deductions</a></li>
 					  <li><a href="#">Calendar</a></li>
 					  <li><a href="#">Back Pay</a></li>
 					  <li><a href="#">Totals</a></li>
@@ -390,42 +390,42 @@
 		<div class="clearfix visible-sm"></div>
 			<!-----------------------------------------------------------Year To Date Days Totals----------------------------------------------------------->
 		<div class="row">
-			<div class="col-sm-6 col-xs-12">
-				<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
-					<div class="col-sm-11 col-xs-11 noPadding">Year To Date Days</div>
-					<div class="col-sm-1 col-xs-1 noPadding">
-						<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDateDaysTotalsModal">
-						</span>
-						<div id="yearToDateDaysTotalsModal" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Year To Date Days Info</h4>
-									</div>
-									<div class="modal-body">
-										<p>Here You can find the number of days you worked or had day off's to date. Other type off days are displayed as well.</p>
-										<p>Days since last sick is displayed for current date, which means that even if you skip forward or backward through
-										your payslips, it's value does not change.</p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<div class="col-sm-6 col-xs-12">
+					<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
+						<div class="col-sm-11 col-xs-11 noPadding">Year To Date Days</div>
+						<div class="col-sm-1 col-xs-1 noPadding">
+							<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDateDaysTotalsModal">
+							</span>
+							<div id="yearToDateDaysTotalsModal" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">Year To Date Days Info</h4>
+										</div>
+										<div class="modal-body">
+											<p>Here You can find the number of days you worked or had day off's to date. Other type off days are displayed as well.</p>
+											<p>Days since last sick is displayed for current date, which means that even if you skip forward or backward through
+											your payslips, it's value does not change.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="col-sm-12 col-xs-12 noPadding insideBox">
+						<div class="col-sm-9 col-xs-8 noPadding" id="dayStatisticsNames">5</div>
+						<div class="col-sm-3 col-xs-4 noPadding border-left" id="dayStatisticsAmount">5</div>
+						<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="dayStatisticsAmountHid">5</div>
+					</div>
+					<div id="dayStatisticsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
+					<div id="dayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+						<br>Charts Are Visible to Premium Members.<br><br>
+					</div>
 				</div>
-				<div class="col-sm-12 col-xs-12 noPadding insideBox">
-					<div class="col-sm-9 col-xs-8 noPadding" id="dayStatisticsNames">5</div>
-					<div class="col-sm-3 col-xs-4 noPadding border-left" id="dayStatisticsAmount">5</div>
-					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="dayStatisticsAmountHid">5</div>
-				</div>
-				<div id="dayStatisticsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
-				<div id="dayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
-					<br>Charts Are Visible to Premium Members.<br><br>
-				</div>
-			</div>
 		<!-----------------------------------------------------------Holidays----------------------------------------------------------->
 			<div class="col-sm-6 col-xs-12">
 			<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
@@ -548,85 +548,85 @@
 	</div>
 	<div class="clearfix visible-sm"></div>
 	<!-----------------------------------------------------------Year To Date Hourly Averages----------------------------------------------------------->
-	<div class="row">
-		<div class="col-sm-6 col-xs-12">
-			<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
-				<div class="col-sm-11 col-xs-11 noPadding">Year To Date Hourly Averages</div>
-				<div class="col-sm-1 col-xs-1 noPadding">
-					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#YTDHourlyAveragesModal">
-					</span>
-					<div id="YTDHourlyAveragesModal" class="modal fade" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Year To Date Hourly Averages Info</h4>
-								</div>
-								<div class="modal-body">
-									<p>This section displays three types of hourly averages.</p>
-									<p>The first one shows hourly averages rates for All Paid Hours that you spent at work: only day in hours are
-									used for calculation.<p>
-									<p>The second one shows hourly averages rates for All Hours In: it includes unpaid breaks, so if you have
-									unpaid breaks, this rate will be lower the the first one, if you do not, then it will be identical to the first rate.<p>
-									<p>The third one shows hourly averages for All Paid hours, including holiday, sick, and paternity leave hours, so this rate
-									will be the lowest of all three.<p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-xs-12 noPadding insideBox borderBottom">
-				<div class="col-sm-9 col-xs-8 noPadding" id="hourlyAveragesNames">5</div>
-				<div class="col-sm-3 col-xs-4 noPadding border-left" id="hourlyAveragesAmount">5</div>
-				<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="hourlyAveragesAmountHid">5</div>
-			</div>
-			<div id="hourlyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
-			<div id="hourlyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
-				<br>Charts Are Visible to Premium Members.<br><br>
-			</div>
-		</div>
-			<!-----------------------------------------------------------Last 3 Months Weekly Averages----------------------------------------------------------->
-		<div class="col-sm-6 col-xs-12">
-			<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
-				<div class="col-sm-11 col-xs-11 noPadding">Last 3 Months Averages</div>
-				<div class="col-sm-1 col-xs-1 noPadding">
-					<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#las12WeeksModal">
-					</span>
-					<div id="las12WeeksModal" class="modal fade" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Last 3 Months Averages Info</h4>
-								</div>
-								<div class="modal-body">
-									<p>Shows the last 13 weeks earnings and deductions. Values in this section are handy for those, who wish to apply for
-									mortgage or a personal loan.</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<div class="row">
+			<div class="col-sm-6 col-xs-12">
+				<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
+					<div class="col-sm-11 col-xs-11 noPadding">Year To Date Hourly Averages</div>
+					<div class="col-sm-1 col-xs-1 noPadding">
+						<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#YTDHourlyAveragesModal">
+						</span>
+						<div id="YTDHourlyAveragesModal" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Year To Date Hourly Averages Info</h4>
+									</div>
+									<div class="modal-body">
+										<p>This section displays three types of hourly averages.</p>
+										<p>The first one shows hourly averages rates for All Paid Hours that you spent at work: only day in hours are
+										used for calculation.<p>
+										<p>The second one shows hourly averages rates for All Hours In: it includes unpaid breaks, so if you have
+										unpaid breaks, this rate will be lower the the first one, if you do not, then it will be identical to the first rate.<p>
+										<p>The third one shows hourly averages for All Paid hours, including holiday, sick, and paternity leave hours, so this rate
+										will be the lowest of all three.<p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-12 col-xs-12 noPadding insideBox borderBottom">
+					<div class="col-sm-9 col-xs-8 noPadding" id="hourlyAveragesNames">5</div>
+					<div class="col-sm-3 col-xs-4 noPadding border-left" id="hourlyAveragesAmount">5</div>
+					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="hourlyAveragesAmountHid">5</div>
+				</div>
+				<div id="hourlyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
+				<div id="hourlyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+					<br>Charts Are Visible to Premium Members.<br><br>
+				</div>
 			</div>
-			<div class="col-sm-12 col-xs-12 noPadding insideBox">
-				<div class="col-sm-9 col-xs-8 noPadding" id="yearToDateLast12WeeksNames">5</div>
-				<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateLast12WeeksAmount">5</div>
-				<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateLast12WeeksAmountHid">5</div>
-			</div>
-			<div id="las3MonthsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
-			<div id="las3MonthsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
-				<br>Charts Are Visible to Premium Members.<br><br>
+				<!-----------------------------------------------------------Last 3 Months Weekly Averages----------------------------------------------------------->
+			<div class="col-sm-6 col-xs-12">
+				<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">
+					<div class="col-sm-11 col-xs-11 noPadding">Last 3 Months Averages</div>
+					<div class="col-sm-1 col-xs-1 noPadding">
+						<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#las12WeeksModal">
+						</span>
+						<div id="las12WeeksModal" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Last 3 Months Averages Info</h4>
+									</div>
+									<div class="modal-body">
+										<p>Shows the last 13 weeks earnings and deductions. Values in this section are handy for those, who wish to apply for
+										mortgage or a personal loan.</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-xs-12 noPadding insideBox">
+					<div class="col-sm-9 col-xs-8 noPadding" id="yearToDateLast12WeeksNames">5</div>
+					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateLast12WeeksAmount">5</div>
+					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateLast12WeeksAmountHid">5</div>
+				</div>
+				<div id="las3MonthsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
+				<div id="las3MonthsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+					<br>Charts Are Visible to Premium Members.<br><br>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="clearfix visible-sm"></div>
+		<div class="clearfix visible-sm"></div>
 	<!-----------------------------------------------------------Last 10 Weeks Net Pay Chart----------------------------------------------------------->
 		<div class="row">
 		<div class="col-sm-6 col-xs-12">
@@ -636,15 +636,15 @@
 				Charts Are Visible to Premium Members.<br><br></div>
 			</div>
 
-		<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
-		<div class="col-sm-6 col-xs-12">
-			<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Paid Hours Chart</div>
-			<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle"></div>
-			<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
-			Charts Are Visible to Premium Members.<br><br></div>
+			<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
+			<div class="col-sm-6 col-xs-12">
+				<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Paid Hours Chart</div>
+				<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle"></div>
+				<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
+				Charts Are Visible to Premium Members.<br><br></div>
+			</div>
 		</div>
-	</div>
-	<div class="clearfix visible-sm"></div>
+		<div class="clearfix visible-sm"></div>
 			<!----------------------------------------------------End of Charts and data----------------------------------------------------->
 
 			<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
@@ -654,44 +654,5 @@
 				</div>
 			</div>
 		</div><!--end of container-->
-		<p>
-			<p>
-
-
-
-		<!--teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest-->
-	<!--	<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-
-
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Dropdown
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li>Action</li>
-    <li>Another action</li>
-    <li>Something else here</li>
-    <li role="separator" class="divider"></li>
-    <li>Separated link</li>
-  </ul>
-</div>-->
-
-
-
-<p>
-	<p>
-
-<!--end test--------------------------------------------------------->
-
 	</body>
 </html>

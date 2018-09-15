@@ -1376,14 +1376,14 @@ const decreaseTaxPeriod = (taxPeriodNumber)=>{
 const fastDecreaseTaxPeriod = (taxPeriodNumber) => {
 	counter-= 6;
 	let taxPeriodNumberNew = taxPeriodNumber + counter;
-	let weekStart = weekStartArray[taxPeriodNumber-6];
+	let weekStart = weekStartArray[taxPeriodNumberNew-6];
 	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
 const fastIcreaseTaxPeriod = (taxPeriodNumber) => {
 	counter+= 6;
 	let taxPeriodNumberNew = taxPeriodNumber + counter;
-	let weekStart = weekStartArray[taxPeriodNumber+6];
+	let weekStart = weekStartArray[taxPeriodNumberNew+6];
 	let modTimeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumberNew-1)+weekStart*86400000;
 	showHideForwardBackwardControls(taxPeriodNumberNew, modTimeSinceEpoch);
 }
@@ -1599,9 +1599,9 @@ const deselectValuesValidateForm = (taxPeriodNumber) => {
 
 //----------------------------GET FORM VALUES FUNCTION---------------------------------------------//
 const getFormValues = (taxPeriodNumber)=>{
+	weekStart = weekStartArray[taxPeriodNumber];
+	let timeSinceEpochValue = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStart*86400000;
 	let str = '';
-
-	let timeSinceEpochValue = document.getElementById("timeSinceEpochInput").value;
 	str += 'taxPeriodNumberName'+'='+taxPeriodNumber+'&'+'timeSinceEpoch'+'='+timeSinceEpochValue+'&';
 
 	let payChristmasSavingsCheckName = "payChristmasSavingsCheck"+taxPeriodNumber;
@@ -3685,91 +3685,88 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 				backgroundIndex = response.dayTypeArrayCalendar[bg];
 				backgroundIndex = Number(backgroundIndex);
 				//NEED TO CHANGE THIS BRANCHING TO SWITCH
-				if (backgroundIndex === 0)	{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
-						dayDiv.setAttribute("class", "dayDiv notSelectedColor currentDay");
-					}	else{
-						dayDiv.className="dayDiv notSelectedColor";
-					}
-				}	else if (backgroundIndex === 1) {
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
-						dayDiv.setAttribute("class", "dayDiv dayInColor currentDay");
-					}	else {
-						dayDiv.className="dayDiv dayInColor";
-					}
+				switch (backgroundIndex){
+					case 0:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+							dayDiv.setAttribute("class", "dayDiv notSelectedColor currentDay");
+						}	else{
+							dayDiv.className="dayDiv notSelectedColor";
+						}
+						break;
+					case 1:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+							dayDiv.setAttribute("class", "dayDiv dayInColor currentDay");
+						}	else {
+							dayDiv.className="dayDiv dayInColor";
+						}
+						break;
+					case 2:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv dayOffColor currentDay");}
+						else
+						{dayDiv.className="dayDiv dayOffColor";}
+						break;
+					case 3:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv holidayColor currentDay");}
+						else
+						{dayDiv.className="dayDiv holidayColor";}
+						break;
+					case 4:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv unpaidHolColor currentDay");}
+						else
+						{dayDiv.className="dayDiv unpaidHolColor";}
+						break;
+					case 5:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv halfInHalfOffColor currentDay");}
+						else
+						{dayDiv.className="dayDiv halfInHalfOffColor";}
+						break;
+					case 6:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv dayInSickColor currentDay");}
+						else
+						{dayDiv.className="dayDiv dayInSickColor";}
+						break;
+					case 7:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv sicknessColor currentDay");}
+						else
+						{dayDiv.className="dayDiv sicknessColor";}
+						break;
+					case 8:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv absenceColor currentDay");}
+						else
+						{dayDiv.className="dayDiv absenceColor";}
+						break;
+					case 9:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv familyLeaveColor currentDay");}
+						else
+						{dayDiv.className="dayDiv familyLeaveColor";}
+						break;
+					case 10:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv bereavementColor currentDay");}
+						else
+						{dayDiv.className="dayDiv bereavementColor";}
+						break;
+					case 11:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
+						{dayDiv.setAttribute("class", "dayDiv compassionateColor currentDay");}
+						else
+						{dayDiv.className="dayDiv compassionateColor";}
+						break;
+					default:
+						if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))	{
+							dayDiv.setAttribute("class", "dayDiv notSelectedColor currentDay");
+						}	else{
+							dayDiv.className="dayDiv notSelectedColor";
+						}
 				}
-				else if (backgroundIndex === 2)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv dayOffColor currentDay");}
-					else
-					{dayDiv.className="dayDiv dayOffColor";}
-				}
-				else if (backgroundIndex === 3)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv holidayColor currentDay");}
-					else
-					{dayDiv.className="dayDiv holidayColor";}
-				}
-				else if (backgroundIndex === 4)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv unpaidHolColor currentDay");}
-					else
-					{dayDiv.className="dayDiv unpaidHolColor";}
-				}
-				else if (backgroundIndex === 5)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv halfInHalfOffColor currentDay");}
-					else
-					{dayDiv.className="dayDiv halfInHalfOffColor";}
-				}
-				else if (backgroundIndex === 6)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv dayInSickColor currentDay");}
-					else
-					{dayDiv.className="dayDiv dayInSickColor";}
-				}
-				else if (backgroundIndex === 7)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv sicknessColor currentDay");}
-					else
-					{dayDiv.className="dayDiv sicknessColor";}
-				}
-				else if (backgroundIndex === 8)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv absenceColor currentDay");}
-					else
-					{dayDiv.className="dayDiv absenceColor";}
-				}
-				else if (backgroundIndex === 9)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv familyLeaveColor currentDay");}
-					else
-					{dayDiv.className="dayDiv familyLeaveColor";}
-				}
-				else if (backgroundIndex === 10)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv bereavementColor currentDay");}
-					else
-					{dayDiv.className="dayDiv bereavementColor";}
-				}
-				else if (backgroundIndex === 11)
-				{
-					if (currentTime>timeSinceEpochCurrentDay && currentTime <(timeSinceEpochCurrentDay + 86400000))
-					{dayDiv.setAttribute("class", "dayDiv compassionateColor currentDay");}
-					else
-					{dayDiv.className="dayDiv compassionateColor";}
-				}
-				else  {dayDiv.className="dayDiv notSelectedColor";}
-				//id++;
 				taxPeriodStartCalendar++;
 				timeSinceEpochCurrentDay += 86400000
 			}
@@ -3832,6 +3829,28 @@ const loadData = (taxPeriodNumber) => {
 			}
 		}
 }
+const deleteTaxPeriod = (taxPeriodNumber) => {
+	if (XMLHttpRequest)	{
+			request = new XMLHttpRequest();
+		}	else if (ActiveXObject)	{
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}	else {
+			return false;
+		}
+	let url = "javascript/ajax/deletetaxperiod.php";
+	request.open("POST", url, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.onreadystatechange = function(){
+		if(request.readyState ==4 && request.status ==200){
+			let submitSuccess = document.getElementById("submitSuccessMain2");
+			submitSuccess.innerHTML = 'Payslip Deleted!';
+			setTimeout(function(){submitSuccess.innerHTML=" ";},1500);
+			//loadResponseData(taxPeriodNumber);
+		}
+	}
+	request.send( "taxPeriodNumber="+(taxPeriodNumber+counter));
+	document.getElementById("submitSuccessMain2").innerHTML = "Deleting...";
+}
 const start = () => {
 	//pick data from backend
 	fetch('javascript/ajax/weekstart2.php')
@@ -3878,6 +3897,10 @@ const start = () => {
 
 	let fastForward = document.getElementById("fastForward");
 	fastForward.onclick = function () {fastIcreaseTaxPeriod(taxPeriodNumber);};
+
+	var deleteTaxPeriodButton = document.getElementById("delete");
+	deleteTaxPeriodButton.onclick = function(){deleteTaxPeriod(taxPeriodNumber);}
+
 	})
 }
 
