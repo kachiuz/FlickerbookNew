@@ -19,11 +19,74 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-		<script type="text/javascript" src="javaScript.js"></script>
+		<script type="text/javascript" src="paymentsettings.js"></script>
 	</head>
 	<body>
 		<?php require ( 'includes/navigation.html')?>
-<!---------------------------Payments Settings--------------------------------------------------------------------------------->		
+<!---------------------------Payments Settings--------------------------------------------------------------------------------->
+
+		<div class="container-fluid containerOther marginTopOther noPadding"> <!--start of container div-->
+			<div class="row">
+				<div class="col-sm-6 col-xs-12  marginBetweenElements noPadding">
+					<div class="col-sm-12 col-xs-12 boxTitle">Payments Settings</div>
+					<!--<div class="col-sm-1 col-xs-1 noPadding">
+						<span class="glyphicon glyphicon-info-sign text-align-right clickable" data-toggle="modal" data-target="#yearToDatePayStructureModal">
+						</span>
+						<div id="yearToDatePayStructureModal" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						        <h4 class="modal-title">Year To Date Pay Structure Info</h4>
+						      </div>
+						      <div class="modal-body">
+										<p class="textIndent">This section demonstrate a percentage structure of your payments.</p>
+										<p class="textIndent">Basic Pay consists of regular hourly pay and unsocial hours pay.</p>
+										<p class="textIndent">Holiday payments consists of normal, enhanced and unsocial holiday payments.</p>
+										<p class="textIndent">Sickness payments consists of hourly paid sickness leave, unsocial sickness hours and SSP.</p>
+										<p class="textIndent">Overtime payments is a sum, received for doing all overtime rates.</p>
+										<p class="textIndent">Paternity payments consists of paid paternity hours, unsocial paternity hours, SAP and SPP.</p>
+										<p class="textIndent">Bank holiday payments consists of Bank Holiday hours and clock in bonuses.</p>
+										<p class="textIndent">If you recieved payments, that do not fall in to nay of the above categorie, they will be summed to "other payments."</p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</div>-->
+					<div class="col-sm-12 col-xs-12 insideBox border-bottom-other">
+						<div class="col-sm-12 col-xs-12">
+							<p class="textIndent">In order for Flickerbook to work correctly, filling the form on this page about 
+							your employment and payments is essential. Additionally you 
+							can use an email address of someone, who has filled the form and enabled other to use it.</p>
+						</div>
+						<div class="col-sm-12 col-xs-12 padding-left-other">
+							<div class="col-sm-12 col-xs-12 width80 text-align-center">
+								<input class="form-control" type="text" name="paymentSettingsEmail" id="paymentSettingsEmail" placeholder="Enter Email Address" value="" size="25" maxlength="50"></input>
+							</div>
+							<div class="col-sm-12 col-xs-12 width80">
+								<input type="submit" value="Load" id="paymentSettingsEmailButton" name="paymentSettingsEmailButton" class="btn btn-default button width50">
+							</div>
+							<div class="col-sm-12 col-xs-12">
+								<div class="col-sm-10 col-xs-10 responseDiv" id="paymentSettingsEmailDivResponse"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix visible-sm"></div>
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 noPadding">
+					<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessPayments"></div>
+					<div class="col-sm-2 col-xs-2">
+						<button type="button" class="btn btn-default button" id="buttonSubmit">Update</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="deductionCaption">Payments Settings</div>
 		<div id="paymentSettings">
 			<p class="textIndent">Answer the questions below about your employment. Additionally you can use an email address of somebody, 
@@ -375,9 +438,7 @@
 			</div>
 		</div>
 <!--------------------------------------------------bottom------------------------------------------------------------>		
-		<div id="tableBottomPayments" class="tableBottomBP">
-			<div id="submitSuccessPayments"></div>
-			<input type="submit" value="Submit" id="buttonSubmit" class="submit2">
-		</div>
+
+		<?php require ( 'includes/footer.html' ) ; ?>
 	</body>
 </html>

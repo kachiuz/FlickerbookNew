@@ -595,7 +595,7 @@ hr {
 
 .width50 {
   width: 100%;
-  font-weight: 999; }
+  font-weight: bold; }
 
 .clickable2 {
   cursor: pointer; }
@@ -663,3 +663,29 @@ a {
 
 .policiesHover:active {
   color: grey; }
+
+.marginTopOther {
+  margin-top: 50px; }
+
+.border-bottom-other {
+  border-bottom: 1px solid grey; }
+
+.width80 {
+  width: 80%;
+  margin: 0px;
+  margin: auto; }
+
+.containerOther {
+  font-size: 20px; }
+
+#paymentSettingsEmailDivResponse {
+  height: 35px; }
+
+.padding-left-other {
+  margin-left: 50px; }
+
+@media (max-width: 576px) {
+  .containerOther {
+    width: 100%; }
+  .marginTopOther {
+    margin-top: 40px; } }
