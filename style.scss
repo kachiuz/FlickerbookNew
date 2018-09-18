@@ -62,13 +62,20 @@ hr {
     margin-top: $marginBetweenElements;
     border-bottom: 0px;
 }
+.signout{
+  text-align: center;
+  width: 100%;
+  font-size: 35px;
+  color: green;
+  padding: 20px;
+}
 @media (max-width: 767px) {
 	.smallerContainer {
 		width: 100%;
 	}
 }
 .marginTopMain {
-  margin-top: 85px;
+  margin-top: 90px;
 }
 .marginBetweenElements {
   margin-top: $marginBetweenElements;
@@ -96,3 +103,4 @@ hr {
 @import 'chart';
 @import 'modal';
 @import 'savingsButtons';
+@import 'footer';

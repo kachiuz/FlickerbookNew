@@ -24,3 +24,27 @@
 .textIndent {
   text-indent: 10%;
 }
+.glyphicon-info-sign{
+  margin-left: -3px;
+}
+.modalBackground {
+  background: white;
+}
+.width50 {
+  width: 100%;
+  font-weight: 999;
+}
+.clickable2 {
+  cursor: pointer;
+}
+
+
+  @media (max-width: 576px) {
+    .g-recaptcha {
+        margin-left: 1px;
+        margin-bottom: -7px;
+        transform:scale(0.88);
+        transform-origin:0 0;
+    }
+
+      }

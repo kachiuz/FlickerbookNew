@@ -2069,7 +2069,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	yearToDateAmount.innerHTML+= netPaySum.toFixed(2)+' £<br>';
 	yearToDateAmount.innerHTML+= '<b>'+gross_paySum.toFixed(2)+' £</b>';
 	//year to date names
-	yearToDateNames.innerHTML = 'Tax<br> National Insurance<hr>' ;
+	yearToDateNames.innerHTML = 'TAX<br> National Insurance<hr>' ;
 	if (union_deSum>0){yearToDateNames.innerHTML+= 'Union<br>';}
 	if (companyLoanSum>0){yearToDateNames.innerHTML+= 'Loan Deduction<br>';}
 	if (studentLoanDeductionSum>0){yearToDateNames.innerHTML+= 'Student Loan<br>';}
@@ -2420,7 +2420,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	yearToDateLast12WeeksAmount.innerHTML+= '<b>'+gross_paySumLast12Weeks.toFixed(2)+' £</b>';
 
 	//last 13 weeks names
-	yearToDateLast12WeeksNames.innerHTML = 'Tax<br> National Insurance<hr>' ;
+	yearToDateLast12WeeksNames.innerHTML = 'TAX<br> National Insurance<hr>' ;
 	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Union<br>';}
 	if (companyLoanSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Loan Deduction<br>';}
 	if (studentLoanDeductionSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Student Loan<br>';}
@@ -2496,7 +2496,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (averageOvertimePay>0){weeklyAveragesAmount.innerHTML+= averageOvertimePay.toFixed(2)+' £<br>';}
 	if (averageOvertimeHours>0){weeklyAveragesAmount.innerHTML+= averageOvertimeHours.toFixed(2)+' h<br>';}
 	//weeklyAverages names
-	weeklyAveragesNames.innerHTML= 'Tax<br>';
+	weeklyAveragesNames.innerHTML= 'TAX<br>';
 	if (NISum>0){weeklyAveragesNames.innerHTML+= 'NI<br>';}
 	if (averageGrossPay>0){weeklyAveragesNames.innerHTML+= 'Gross Pay<br>';}
 	if (averageNetPay>0){weeklyAveragesNames.innerHTML+= 'Net Pay<br>';}
@@ -3199,11 +3199,11 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 				{y: basicHoursPay, label: "Basic Pay", exploded: true},
 				{y: unsocial_prem, label: "Uns. Premium"},
 				{y: enhancedHolidayPay, label: "Enhanced Holiday Pay"},
-				{y: holidayPay, label: "Holiday Pay"},
+				{y: holidayPay, label: "Holiday Pay", exploded: true},
 				{y: unsocial_prem_hol, label: "Uns Prem. Holidays"},
-				{y: sicknessPay, label: "Sickness Pay"},
+				{y: sicknessPay, label: "Sickness Pay", exploded: true},
 				{y: unsocial_prem_sick, label: "Uns Prem. Sickness"},
-				{y: familyPay, label: "Paternity Pay"},
+				{y: familyPay, label: "Paternity Pay", exploded: true},
 				{y: unsocial_prem_family, label: "Uns Prem. Paternity"},
 				{y: bereavementPay, label: "Bereavement Pay"},
 				{y: unsocial_prem_bereavement, label: "Uns Prem. Bereav."},
@@ -3366,11 +3366,11 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	} else {
 		document.getElementById("yearToDatePercentagePieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
 	}
-	if (basicHoursPay >0||unsocial_prem>0||unsocial_prem_hol>0||unsocial_prem_sick>0||unsocial_prem_family>0||
-	unsocial_prem_bereavement>0||unsocial_prem_compassionate>0||OT1Pay>0||OT2Pay>0||enhancedHolidayPay>0||holidayPay>0||
-	saturdayExtraPay>0||sundayExtraPay>0||sicknessPay>0||familyPay>0||bereavementPay>0||compassionatePay>0||bankHolidayHoursPay>0||
-	bankHolidayClockInBonus>0||payBack>0||pieceWork>0||SSP>0||SPP>0||additionalPayment>0||additionalPayment2>0||additionalPayment3>0||
-	christmasSavingsPayment>0||summerSavingsPayment>0||SAP>0||salary>0||bonus>0||commissions>0)	{
+	if (basicPaySum>0||uns_premSum>0||enhol_paySum>0||hol_paySum>0||uns_holSum>0||
+	sick_paySum>0||uns_sickSum>0||fam_paySum>0||ber_paySum>0||uns_berSum>0||comp_paySum>0||
+	uns_compSum>0||ot1_paySum>0||ot2_paySum>0||saturdayExtraPaySum>0||sundayExtraPaySum>0||bhol_paySum>0||bhol_bonusSum>0||
+	paybackSum>0||pieceWorkSum >0||SPP_Sum >0||SSP_Sum >0||add_paySum >0||add_pay2Sum >0||add_pay3Sum>0||chris_savSum>0||
+	summer_savSum>0||SAPSum>0||salarySum>0||bonusSum>0||commissionsSum>0)	{
 		var yearToDateIIPieChart = new CanvasJS.Chart("yearToDateIIPieChart", {
 		animationEnabled: true,
 		exportEnabled: true,
@@ -3590,6 +3590,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
+	console.log(las3MonthsPieChart);
 	las3MonthsPieChart.render();
 	} else {
 		document.getElementById("las3MonthsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
@@ -3830,6 +3831,7 @@ const loadData = (taxPeriodNumber) => {
 		}
 }
 const deleteTaxPeriod = (taxPeriodNumber) => {
+	taxPeriodNumber += counter;
 	if (XMLHttpRequest)	{
 			request = new XMLHttpRequest();
 		}	else if (ActiveXObject)	{
@@ -3845,20 +3847,49 @@ const deleteTaxPeriod = (taxPeriodNumber) => {
 			let submitSuccess = document.getElementById("submitSuccessMain2");
 			submitSuccess.innerHTML = 'Payslip Deleted!';
 			setTimeout(function(){submitSuccess.innerHTML=" ";},1500);
-			//loadResponseData(taxPeriodNumber);
+			loadData(taxPeriodNumber);
 		}
 	}
-	request.send( "taxPeriodNumber="+(taxPeriodNumber+counter));
+	request.send( "taxPeriodNumber="+taxPeriodNumber);
 	document.getElementById("submitSuccessMain2").innerHTML = "Deleting...";
 }
+
+//pick data from backend
+function callWeekStart() {
+	let url = 'javascript/ajax/weekstart2.php';
+	let promiseObj = new Promise(function(resolve, reject){
+	if (XMLHttpRequest)	{
+		 request = new XMLHttpRequest();
+	 }	else if (ActiveXObject)	{
+		 request = new ActiveXObject("Microsoft.XMLHTTP");
+	 }	else {return false;}
+	  request.open("POST", url, true);
+	  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  request.send();
+	  request.onreadystatechange = function(){
+	  if (request.readyState === 4){
+		 if (request.status === 200){
+			//console.log("xhr done successfully");
+			//var resp = xhr.responseText;
+			let response = JSON.parse(this.responseText);
+			resolve(response);
+						//console.log("looooooooooooooooool");
+		 } else {
+			reject(request.status);
+			//console.log("xhr failed");
+		 }
+	  } else {
+		 //console.log("xhr processing going on");
+	  }
+   }
+   //console.log("request sent succesfully");
+ });
+ return promiseObj;
+}
 const start = () => {
-	//pick data from backend
-	fetch('javascript/ajax/weekstart2.php')
-	.then(function(response) {
-	return response.json();
-	})
-	.then(function(myJson) {
+	callWeekStart().then(function(myJson) {
 		taxPeriodLimit = myJson.taxPeriodLimit;
+		//console.log(myJson);
 		//fill the arrays of weekstart and unsHCheck
 		for (let a=0; a<taxPeriodLimit; a++){
 			let weekStartAr = myJson.weekStartArray[a];
@@ -3867,7 +3898,7 @@ const start = () => {
 			let unsHCheckArray = myJson.unsHCheckArray[a];
 			unsHCheck[a] = Number(unsHCheckArray);
 	}
-
+	
 	//when we fetch the data from the server start creating elements
 	//in is neccessary to update the value of timesince epoch including the weekstart variable
 	timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStartArray[taxPeriodNumber]*86400000;

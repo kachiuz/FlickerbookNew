@@ -18,5 +18,12 @@
   text-align: center;
 }
 .errorStyle{
-  color: red
+  color: $modalErrorColor
+}
+.width50{
+  width: 100%;
+  font-weight: 999;
+}
+.g-recaptcha{
+  float:left;
 }

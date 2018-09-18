@@ -136,6 +136,13 @@ hr {
   margin-top: 10px;
   border-bottom: 0px; }
 
+.signout {
+  text-align: center;
+  width: 100%;
+  font-size: 35px;
+  color: green;
+  padding: 20px; }
+
 @media (max-width: 767px) {
   .smallerContainer {
     width: 100%; } }
@@ -199,6 +206,9 @@ hr {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: white;
     background-color: #4d4dff; } }
+
+.noBorder {
+  border: 0px; }
 
 .taxPeriodNumberContainer {
   position: relative;
@@ -341,7 +351,14 @@ hr {
   text-align: center; }
 
 .errorStyle {
-  color: red; }
+  color: #ffe6e6; }
+
+.width50 {
+  width: 100%;
+  font-weight: 999; }
+
+.g-recaptcha {
+  float: left; }
 
 /*additional bootsrtap for controls*/
 .col-xs-calD,
@@ -573,6 +590,27 @@ hr {
 .glyphicon-info-sign {
   margin-left: -3px; }
 
+.modalBackground {
+  background: white; }
+
+.width50 {
+  width: 100%;
+  font-weight: 999; }
+
+.clickable2 {
+  cursor: pointer; }
+
+@media (max-width: 576px) {
+  .g-recaptcha {
+    margin-left: 1px;
+    margin-bottom: -7px;
+    -webkit-transform: scale(0.88);
+    -ms-transform: scale(0.88);
+    transform: scale(0.88);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0; } }
+
 #paySavingsDiv {
   margin-bottom: -5px; }
 
@@ -596,3 +634,32 @@ hr {
 @media (max-width: 767px) {
   #paySummerSavings {
     margin-top: 2px; } }
+
+.footerBackground {
+  background: #c2c2a3;
+  padding-top: 5px;
+  padding-bottom: 10px; }
+
+.footerFont {
+  font-size: 30px; }
+
+.footerName {
+  padding-top: 10px; }
+
+a {
+  text-decoration: none; }
+
+.policiesHover {
+  text-decoration: none; }
+
+.policiesHover:link {
+  color: black; }
+
+.policiesHover:visited {
+  color: black; }
+
+.policiesHover:hover {
+  color: grey; }
+
+.policiesHover:active {
+  color: grey; }
