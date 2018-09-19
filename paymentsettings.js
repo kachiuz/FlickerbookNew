@@ -633,23 +633,23 @@ function ajaxPost(){
 			errorsArrayLength = Object.keys(response.errors).length;
 			submitSuccess.innerHTML = " ";
 			if (errorsArrayLength>0){
-				submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> ";
+				submitSuccess.innerHTML = "";
 				for (i=0; i<errorsArrayLength; i++)
 				{
 					submitSuccess.innerHTML += response.errors[i]+'<br>';
 					submitSuccess.removeAttribute("class");
-					submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
+					submitSuccess.setAttribute("class", "col-sm-10 col-xs-10 responseDiv errorStyle");
 				}
 			}	
 			else{
-					submitSuccess.setAttribute("class", "submitSuccessBP");
+					submitSuccess.setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
 					submitSuccess.innerHTML = 'Payments Updated!';
 					setTimeout(function(){submitSuccess.innerHTML=" ";},1500);	
 			}
 		}
 	}
 	request.send(str);
-	document.getElementById("submitSuccessPayments").setAttribute("class", "submitSuccessBP");
+	document.getElementById("submitSuccessPayments").setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
 	document.getElementById("submitSuccessPayments").innerHTML = "Updating...";
 }
 
@@ -736,29 +736,25 @@ function loadIndexesEmail()
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send( "email="+email ) ;
 	var submitSuccess = document.getElementById("paymentSettingsEmailDivResponse");	
-	submitSuccess.setAttribute("class", "submitSuccessBP");
+	submitSuccess.setAttribute("class", "col-sm-12 col-xs-12 responseDiv text-align-center width50");
 	submitSuccess.innerHTML = "Loading settings...";
 	request.onreadystatechange = function(){
 	
 	if ( (request.readyState === 4 ) && ( request.status === 200 ) )
 	{ 
 		var response = JSON.parse(this.responseText);
-		
-				
-
+		submitSuccess.innerHTML = "";
 		errorsArrayLength = Object.keys(response.errors).length;
 		if (errorsArrayLength>0){
-			submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> ";
 			for (i=0; i<errorsArrayLength; i++)
 			{
-				submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
+				submitSuccess.setAttribute("class", "col-sm-12 col-xs-12 responseDiv errorStyle text-align-center width50");
 				submitSuccess.innerHTML += response.errors[i]+'<br>';
 			}
 		}		
 		else{
-		//submitSuccess.innerHTML += errorsArray+'<br>';
-		submitSuccess.setAttribute("class", "submitSuccessBP");
-		submitSuccess.innerHTML = 'Loaded!';
+		submitSuccess.setAttribute("class", "col-sm-12 col-xs-12 responseDiv text-align-center width50");
+		submitSuccess.innerHTML = 'Settings Loaded!';
 		setTimeout(function(){submitSuccess.innerHTML=" ";},1500);
 		
 		weekStart.options.selectedIndex = response.weekStart;
@@ -927,339 +923,16 @@ function showHideDivs()
 	else{alert("something went wrong");}
 }
 
-
-function showEmploymentInfoInfo() {
-	
-	var employmentInfoHide = document.getElementById("employmentInfoHide");
-	var employmentInfoShow = document.getElementById("employmentInfoShow");
-	var employmentInfoInfo = document.getElementById("employmentInfoInfo");
-	employmentInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	employmentInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	employmentInfoInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-
-}
-function hideEmploymentInfoInfo() {
-	var employmentInfoHide = document.getElementById("employmentInfoHide");
-	var employmentInfoShow = document.getElementById("employmentInfoShow");
-	var employmentInfoInfo = document.getElementById("employmentInfoInfo");
-	employmentInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	employmentInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	employmentInfoInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showBasicPayInfo() {
-	
-	var basicPayInfoHide = document.getElementById("basicPayInfoHide");
-	var basicPayInfoShow = document.getElementById("basicPayInfoShow");
-	var basicPayInfo = document.getElementById("basicPayInfo");
-	basicPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	basicPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	basicPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	//vienu metu rodomas tik vienas info page, kiti paslepiame
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-
-}
-function hideBasicPayInfo() {
-	var basicPayInfoHide = document.getElementById("basicPayInfoHide");
-	var basicPayInfoShow = document.getElementById("basicPayInfoShow");
-	var basicPayInfo = document.getElementById("basicPayInfo");
-	basicPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	basicPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	basicPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showUnsocialPayInfo() {
-	
-	var unsocialPayInfoHide = document.getElementById("unsocialPayInfoHide");
-	var unsocialPayInfoShow = document.getElementById("unsocialPayInfoShow");
-	var unsocialPayInfo = document.getElementById("unsocialPayInfo");
-	unsocialPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	unsocialPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	unsocialPayInfo.style.visibility = "visible"; // parodome info puslapi
-
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-}
-function hideUnsocialPayInfo() {
-	var unsocialPayInfoHide = document.getElementById("unsocialPayInfoHide");
-	var unsocialPayInfoShow = document.getElementById("unsocialPayInfoShow");
-	var unsocialPayInfo = document.getElementById("unsocialPayInfo");
-	unsocialPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	unsocialPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	unsocialPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showOvertimePayInfo() {
-	
-	var overtimePayInfoHide = document.getElementById("overtimePayInfoHide");
-	var overtimePayInfoShow = document.getElementById("overtimePayInfoShow");
-	var overtimePayInfo = document.getElementById("overtimePayInfo");
-	overtimePayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	overtimePayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	overtimePayInfo.style.visibility = "visible"; // parodome info puslapi
-
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-}
-function hideOvertimePayInfo() {
-	var overtimePayInfoHide = document.getElementById("overtimePayInfoHide");
-	var overtimePayInfoShow = document.getElementById("overtimePayInfoShow");
-	var overtimePayInfo = document.getElementById("overtimePayInfo");
-	overtimePayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	overtimePayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	overtimePayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showBankholPayInfo() {
-	
-	var bankHolPayInfoHide = document.getElementById("bankHolPayInfoHide");
-	var bankHolPayInfoShow = document.getElementById("bankHolPayInfoShow");
-	var bankholPayInfo = document.getElementById("bankholPayInfo");
-	bankHolPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	bankHolPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	bankholPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-
-}
-function hideBankholPayInfo() {
-	var bankHolPayInfoHide = document.getElementById("bankHolPayInfoHide");
-	var bankHolPayInfoShow = document.getElementById("bankHolPayInfoShow");
-	var bankholPayInfo = document.getElementById("bankholPayInfo");
-	bankHolPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	bankHolPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	bankholPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showHolidayPayInfo() {
-	var holidayPayInfoHide = document.getElementById("holidayPayInfoHide");
-	var holidayPayInfoShow = document.getElementById("holidayPayInfoShow");
-	var holidayPayInfo = document.getElementById("holidayPayInfo");
-	holidayPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	holidayPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	holidayPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-}
-function hideHolidayPayInfo() {
-	var holidayPayInfoHide = document.getElementById("holidayPayInfoHide");
-	var holidayPayInfoShow = document.getElementById("holidayPayInfoShow");
-	var holidayPayInfo = document.getElementById("holidayPayInfo");
-	holidayPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	holidayPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	holidayPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-function showSickBerCompPayInfo() {
-	var sickBerCompPayInfoHide = document.getElementById("sickBerCompPayInfoHide");
-	var sickBerCompPayInfoShow = document.getElementById("sickBerCompPayInfoShow");
-	var sickBerCompPayInfo = document.getElementById("sickBerCompPayInfo");
-	sickBerCompPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	sickBerCompPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	sickBerCompPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideBerCompPayInfo();
-	hideAddPayInfo();
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-}
-function hideSickBerCompPayInfo() {
-	var sickBerCompPayInfoHide = document.getElementById("sickBerCompPayInfoHide");
-	var sickBerCompPayInfoShow = document.getElementById("sickBerCompPayInfoShow");
-	var sickBerCompPayInfo = document.getElementById("sickBerCompPayInfo");
-	sickBerCompPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	sickBerCompPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	sickBerCompPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showAddPayInfo() {
-	var addPayInfoHide = document.getElementById("addPayInfoHide");
-	var addPayInfoShow = document.getElementById("addPayInfoShow");
-	var addPayInfo = document.getElementById("addPayInfo");
-	addPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	addPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	addPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideBerCompPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-}
-function hideAddPayInfo() {
-	var addPayInfoHide = document.getElementById("addPayInfoHide");
-	var addPayInfoShow = document.getElementById("addPayInfoShow");
-	var addPayInfo = document.getElementById("addPayInfo");
-	addPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	addPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	addPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showBerCompPayInfo() {
-	var berCompPayInfoHide = document.getElementById("berCompPayInfoHide");
-	var berCompPayInfoShow = document.getElementById("berCompPayInfoShow");
-	var berCompPayInfo = document.getElementById("berCompPayInfo");
-	berCompPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	berCompPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	berCompPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideOtherPayInfo();
-}
-function hideBerCompPayInfo() {
-	var berCompPayInfoHide = document.getElementById("berCompPayInfoHide");
-	var berCompPayInfoShow = document.getElementById("berCompPayInfoShow");
-	var berCompPayInfo = document.getElementById("berCompPayInfo");
-	berCompPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	berCompPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	berCompPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-function showWeekendPayInfo() {
-	var weekendPayInfoHide = document.getElementById("weekendPayInfoHide");
-	var weekendPayInfoShow = document.getElementById("weekendPayInfoShow");
-	var weekendPayInfo = document.getElementById("weekendPayInfo");
-	weekendPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	weekendPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	weekendPayInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideAddPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideBerCompPayInfo();
-	hideOtherPayInfo();
-}
-function hideWeekendPayInfo() {
-	var weekendPayInfoHide = document.getElementById("weekendPayInfoHide");
-	var weekendPayInfoShow = document.getElementById("weekendPayInfoShow");
-	var weekendPayInfo = document.getElementById("weekendPayInfo");
-	weekendPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	weekendPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	weekendPayInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showOtherPayInfo() {
-	var otherPayInfoHide = document.getElementById("otherPayInfoHide");
-	var otherPayInfoShow = document.getElementById("otherPayInfoShow");
-	var otherPaymentsInfo = document.getElementById("otherPaymentsInfo");
-	otherPayInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	otherPayInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	otherPaymentsInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideBerCompPayInfo();
-	hideSickBerCompPayInfo() ;
-	hideHolidayPayInfo();
-	hideBankholPayInfo();
-	hideOvertimePayInfo();
-	hideUnsocialPayInfo();
-	hideBasicPayInfo();
-	hideEmploymentInfoInfo();
-	hideWeekendPayInfo();
-	hideAddPayInfo();
-}
-function hideOtherPayInfo() {
-	var otherPayInfoHide = document.getElementById("otherPayInfoHide");
-	var otherPayInfoShow = document.getElementById("otherPayInfoShow");
-	var otherPaymentsInfo = document.getElementById("otherPaymentsInfo");
-	otherPayInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	otherPayInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	otherPaymentsInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
 function hideErrorMessage()
 {
-	var submitSuccessPayments = document.getElementById("submitSuccessPayments");
-	submitSuccessPayments.innerHTML = " ";
-	submitSuccessPayments.setAttribute("class", "submitSuccessBP");
-	
-	var paymentSettingsEmailDivResponse = document.getElementById("paymentSettingsEmailDivResponse");
-	paymentSettingsEmailDivResponse.innerHTML = " ";
-	paymentSettingsEmailDivResponse.setAttribute("class", "submitSuccessBP");
-		
+	var submitSuccessPayments = document.getElementById("submitSuccessPayments").innerHTML = " ";
+	var paymentSettingsEmailDivResponse = document.getElementById("paymentSettingsEmailDivResponse").innerHTML = " ";	
 }
 
 function start (){
 	generateBreakLength();
 	generateHolidayDay();
 	generatePartiallySelectMenu();
-	//checkIfEmpty ();
 	var submitButton = document.getElementById("buttonSubmit");
 	submitButton.onclick = function () {dateChecker ();} //jei ne
 	
@@ -1280,63 +953,6 @@ function start (){
 	
 	var weekendHoursCheck = document.getElementById("weekendHoursCheck");
 	weekendHoursCheck.onchange = showHideDivs;
-	
-	
-	//info divs show/hideO
-	var employmentInfoShow = document.getElementById("employmentInfoShow");
-	employmentInfoShow.onclick = showEmploymentInfoInfo;
-	var employmentInfoHide = document.getElementById("employmentInfoHide");
-	employmentInfoHide.onclick = hideEmploymentInfoInfo;
-	
-	var basicPayInfoShow = document.getElementById("basicPayInfoShow");
-	basicPayInfoShow.onclick = showBasicPayInfo;
-	var basicPayInfoHide = document.getElementById("basicPayInfoHide");
-	basicPayInfoHide.onclick = hideBasicPayInfo;
-	
-	var unsocialPayInfoShow = document.getElementById("unsocialPayInfoShow");
-	unsocialPayInfoShow.onclick = showUnsocialPayInfo;
-	var unsocialPayInfoHide = document.getElementById("unsocialPayInfoHide");
-	unsocialPayInfoHide.onclick = hideUnsocialPayInfo;
-	
-	var overtimePayInfoShow = document.getElementById("overtimePayInfoShow");
-	overtimePayInfoShow.onclick = showOvertimePayInfo;
-	var overtimePayInfoHide = document.getElementById("overtimePayInfoHide");
-	overtimePayInfoHide.onclick = hideOvertimePayInfo;
-	
-	var bankHolPayInfoShow = document.getElementById("bankHolPayInfoShow");
-	bankHolPayInfoShow.onclick = showBankholPayInfo;
-	var bankHolPayInfoHide = document.getElementById("bankHolPayInfoHide");
-	bankHolPayInfoHide.onclick = hideBankholPayInfo;
-	
-	var holidayPayInfoShow = document.getElementById("holidayPayInfoShow");
-	holidayPayInfoShow.onclick = showHolidayPayInfo;
-	var holidayPayInfoHide = document.getElementById("holidayPayInfoHide");
-	holidayPayInfoHide.onclick = hideHolidayPayInfo;
-	
-	var sickBerCompPayInfoShow = document.getElementById("sickBerCompPayInfoShow");
-	sickBerCompPayInfoShow.onclick = showSickBerCompPayInfo;
-	var sickBerCompPayInfoHide = document.getElementById("sickBerCompPayInfoHide");
-	sickBerCompPayInfoHide.onclick = hideSickBerCompPayInfo;
-	
-	var addPayInfoShow = document.getElementById("addPayInfoShow");
-	addPayInfoShow.onclick = showAddPayInfo;
-	var addPayInfoHide = document.getElementById("addPayInfoHide");
-	addPayInfoHide.onclick = hideAddPayInfo;
-	
-	var berCompPayInfoShow = document.getElementById("berCompPayInfoShow");
-	berCompPayInfoShow.onclick = showBerCompPayInfo;
-	var berCompPayInfoHide = document.getElementById("berCompPayInfoHide");
-	berCompPayInfoHide.onclick = hideBerCompPayInfo;
-	
-	var weekendPayInfoShow = document.getElementById("weekendPayInfoShow");
-	weekendPayInfoShow.onclick = showWeekendPayInfo;
-	var weekendPayInfoHide = document.getElementById("weekendPayInfoHide");
-	weekendPayInfoHide.onclick = hideWeekendPayInfo;
-	
-	var otherPayInfoShow = document.getElementById("otherPayInfoShow");
-	otherPayInfoShow.onclick = showOtherPayInfo;
-	var otherPayInfoHide = document.getElementById("otherPayInfoHide");
-	otherPayInfoHide.onclick = hideOtherPayInfo;
 	
 	var submitSuccessPaymentsHideError = document.getElementById("submitSuccessPayments");
 	submitSuccessPaymentsHideError.onclick = hideErrorMessage;
