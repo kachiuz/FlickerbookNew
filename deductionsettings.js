@@ -154,23 +154,23 @@ function ajaxPost(){
 			errorsArrayLength = Object.keys(response.errors).length;
 			submitSuccess.innerHTML = " ";
 			if (errorsArrayLength>0){
-				submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> ";
+				submitSuccess.innerHTML = "";
 				for (i=0; i<errorsArrayLength; i++)
 				{
 					submitSuccess.innerHTML += response.errors[i]+'<br>';
 					submitSuccess.removeAttribute("class");
-					submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
+					submitSuccess.setAttribute("class", "col-sm-10 col-xs-10 responseDiv errorStyle");
 				}
 			}	
 			else{
-					submitSuccess.setAttribute("class", "submitSuccessBP");
+					submitSuccess.setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
 					submitSuccess.innerHTML = 'Deductions Updated!';
 					setTimeout(function(){submitSuccess.innerHTML=" ";},1500);	
 			}
 		}
 	}
 	request.send(str);
-	document.getElementById("submitSuccessDeductions").setAttribute("class", "submitSuccessBP");
+	document.getElementById("submitSuccessDeductions").setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
 	document.getElementById("submitSuccessDeductions").innerHTML = "Updating...";
 	
 }
@@ -191,126 +191,6 @@ function showHideDivs()
 	else{alert("something went wrong");}
 }
 
-
-function showTaxAndNIInfo() {
-	var taxAndNIInfoHide = document.getElementById("taxAndNIInfoHide");
-	var taxAndNIInfoShow = document.getElementById("taxAndNIInfoShow");
-	var taxAndNIInfo = document.getElementById("taxAndNIInfo");
-	taxAndNIInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	taxAndNIInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	taxAndNIInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideAddDeductionsInfo();
-	hideSavingsInfo();
-	hideStudentLoanInfo() ;
-	hidePensionInfo();
-}
-function hideTaxAndNIInfo() {
-	var taxAndNIInfoHide = document.getElementById("taxAndNIInfoHide");
-	var taxAndNIInfoShow = document.getElementById("taxAndNIInfoShow");
-	var taxAndNIInfo = document.getElementById("taxAndNIInfo");
-	taxAndNIInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	taxAndNIInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	taxAndNIInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showPensionInfo() {
-	var pensionInfoHide = document.getElementById("pensionInfoHide");
-	var pensionInfoShow = document.getElementById("pensionInfoShow");
-	var pensionInfo = document.getElementById("pensionInfo");
-	pensionInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	pensionInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	pensionInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideAddDeductionsInfo();
-	hideSavingsInfo();
-	hideStudentLoanInfo() ;
-	hideTaxAndNIInfo();
-}
-function hidePensionInfo() {
-	var pensionInfoHide = document.getElementById("pensionInfoHide");
-	var pensionInfoShow = document.getElementById("pensionInfoShow");
-	var pensionInfo = document.getElementById("pensionInfo");
-	pensionInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	pensionInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	pensionInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showStudentLoanInfo() {
-	var studentLoanInfoHide = document.getElementById("studentLoanInfoHide");
-	var studentLoanInfoShow = document.getElementById("studentLoanInfoShow");
-	var studentLoanInfo = document.getElementById("studentLoanInfo");
-	studentLoanInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	studentLoanInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	studentLoanInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideAddDeductionsInfo();
-	hideSavingsInfo();
-	hidePensionInfo();
-	hideTaxAndNIInfo();
-}
-function hideStudentLoanInfo() {
-	var studentLoanInfoHide = document.getElementById("studentLoanInfoHide");
-	var studentLoanInfoShow = document.getElementById("studentLoanInfoShow");
-	var studentLoanInfo = document.getElementById("studentLoanInfo");
-	studentLoanInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	studentLoanInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	studentLoanInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showSavingsInfo() {
-	var savingsInfoHide = document.getElementById("savingsInfoHide");
-	var savingsInfoShow = document.getElementById("savingsInfoShow");
-	var savingsInfo = document.getElementById("savingsInfo");
-	savingsInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	savingsInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	savingsInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideAddDeductionsInfo();
-	hideStudentLoanInfo() ;
-	hidePensionInfo();
-	hideTaxAndNIInfo();
-}
-function hideSavingsInfo() {
-	var savingsInfoHide = document.getElementById("savingsInfoHide");
-	var savingsInfoShow = document.getElementById("savingsInfoShow");
-	var savingsInfo = document.getElementById("savingsInfo");
-	savingsInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	savingsInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	savingsInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-function showAddDeductionsInfo() {
-	var addDeductionsInfoHide = document.getElementById("addDeductionsInfoHide");
-	var addDeductionsInfoShow = document.getElementById("addDeductionsInfoShow");
-	var addDeductionsInfo = document.getElementById("addDeductionsInfo");
-	addDeductionsInfoHide.style.visibility = "visible"; //parodome Hide info mygtuka
-	addDeductionsInfoShow.style.visibility = "hidden"; // paslepiame show info mygtuka
-	addDeductionsInfo.style.visibility = "visible"; // parodome info puslapi
-	
-	hideSavingsInfo();
-	hideStudentLoanInfo() ;
-	hidePensionInfo();
-	hideTaxAndNIInfo();
-}
-function hideAddDeductionsInfo() {
-	var addDeductionsInfoHide = document.getElementById("addDeductionsInfoHide");
-	var addDeductionsInfoShow = document.getElementById("addDeductionsInfoShow");
-	var addDeductionsInfo = document.getElementById("addDeductionsInfo");
-	addDeductionsInfoHide.style.visibility = "hidden"; //paslepiame Hide info mygtuka
-	addDeductionsInfoShow.style.visibility = "visible" // parodome show info mygtuka
-	addDeductionsInfo.style.visibility = "hidden"; // paslepiame info puslapi
-}
-
-
-function hideErrorMessage()
-{
-	var submitSuccessDeductions = document.getElementById("submitSuccessDeductions");
-	submitSuccessDeductions.innerHTML = " ";
-	submitSuccessDeductions.setAttribute("class", "submitSuccessBP");
-		
-}
-
 function start (){
 	
 	var submitButton = document.getElementById("buttonSubmit");
@@ -320,36 +200,6 @@ function start (){
 	
 	var studentLoanCheck = document.getElementById("studentLoanCheck");
 	studentLoanCheck.onchange = showHideDivs;
-	
-	var taxAndNIInfoShow = document.getElementById("taxAndNIInfoShow");
-	taxAndNIInfoShow.onclick = showTaxAndNIInfo;
-	var taxAndNIInfoHide = document.getElementById("taxAndNIInfoHide");
-	taxAndNIInfoHide.onclick = hideTaxAndNIInfo;
-	
-	var pensionInfoShow = document.getElementById("pensionInfoShow");
-	pensionInfoShow.onclick = showPensionInfo;
-	var pensionInfoHide = document.getElementById("pensionInfoHide");
-	pensionInfoHide.onclick = hidePensionInfo;
-	
-	var studentLoanInfoShow = document.getElementById("studentLoanInfoShow");
-	studentLoanInfoShow.onclick = showStudentLoanInfo;
-	var studentLoanInfoHide = document.getElementById("studentLoanInfoHide");
-	studentLoanInfoHide.onclick = hideStudentLoanInfo;
-	
-	var savingsInfoShow = document.getElementById("savingsInfoShow");
-	savingsInfoShow.onclick = showSavingsInfo;
-	var savingsInfoHide = document.getElementById("savingsInfoHide");
-	savingsInfoHide.onclick = hideSavingsInfo;
-	
-	var addDeductionsInfoShow = document.getElementById("addDeductionsInfoShow");
-	addDeductionsInfoShow.onclick = showAddDeductionsInfo;
-	var addDeductionsInfoHide = document.getElementById("addDeductionsInfoHide");
-	addDeductionsInfoHide.onclick = hideAddDeductionsInfo;
-	
-	
-	var submitSuccessDeductionsHideError = document.getElementById("submitSuccessDeductions");
-	submitSuccessDeductionsHideError.onclick = hideErrorMessage;
-	
-	window.onscroll = function() {scrollFunction()};
+		
 }
 document.addEventListener("DOMContentLoaded",start,false);

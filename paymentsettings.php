@@ -1,3 +1,6 @@
+<!--<//?php session_start();
+if ( !isset( $_SESSION[ 'user_id' ] ) ) { require ( 'login_tools.php' ) ; load() ; }
+?>-->
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -151,7 +154,7 @@
 							<label class="noPadding" for="hourlyRate">Hourly Rate</label>
 						</div>
 						<div class="col-sm-7 col-xs-6 noPadding">
-							<input class="form-control" type="text" name="hourlyRate" value="" size="5" maxlength="6" id="hourlyRate" placeholder="Rate">
+							<input class="form-control" type="number" name="hourlyRate" value="" size="5" maxlength="6" id="hourlyRate" placeholder="Rate">
 						</div>
 						<div class="col-sm-5 col-xs-6 noPadding">
 							<label class="noPadding" for="unpaidBreaks">Unpaid breaks:</label>
@@ -210,7 +213,7 @@
 							<input class="form-control" type="checkbox" name ="unsociableHoursCheck" id="unsociableHoursCheck">
 						</div>
 						<div class = "pos-relative">
-							<div id="hideUnsocialHours" class="hide-input">loooool</div>
+							<div id="hideUnsocialHours" class="hide-input"></div>
 							<div class="col-sm-7 col-xs-8 noPadding">
 								<label class="noPadding" for="unsociableHourStart">Unsociable Hours start:</label>
 							</div>
@@ -255,7 +258,7 @@
 								<label class="noPadding" for="unsociablePrem">Unsociable Hours Rate:</label>
 							</div>
 							<div class="col-sm-5 col-xs-4 noPadding">
-								<input class="form-control" type="text" name="unsociablePrem" id="unsociablePrem" value="" size="6" maxlength="6" placeholder="Rate"><p></p>
+								<input class="form-control" type="number" name="unsociablePrem" id="unsociablePrem" value="" size="6" maxlength="6" placeholder="Rate"><p></p>
 							</div>
 						</div>
 					</div>
@@ -304,19 +307,19 @@
 								<label class="noPadding" for="overtime1Start">Overtime 1 Start:</label>
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
-								<input class="form-control" type="text" name="overtime1Start" id="overtime1Start" size="5" maxlength="7" placeholder="Hours">
+								<input class="form-control" type="number" name="overtime1Start" id="overtime1Start" size="5" maxlength="7" placeholder="Hours">
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
 								<label class="noPadding" for="overtime1Finish">Overtime 1 End:</label>
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
-								<input class="form-control" type="text" name="overtime1Finish"  id="overtime1Finish" size="5" maxlength="7" placeholder="Hours">
+								<input class="form-control" type="number" name="overtime1Finish"  id="overtime1Finish" size="5" maxlength="7" placeholder="Hours">
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
 								<label class="noPadding" for="overtime1rate">Overtime 1 Rate:</label>
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
-								<input class="form-control" type="text" name="overtime1rate" id="overtime1rate"size="7" maxlength="7" placeholder="Rate">
+								<input class="form-control" type="number" name="overtime1rate" id="overtime1rate"size="7" maxlength="7" placeholder="Rate">
 							</div>	
 							<div class="col-sm-9 col-xs-11 noPadding">
 								<label class="noPadding" for="overtimeCheck2">Is there a second overtime rate?</label>
@@ -331,19 +334,19 @@
 								<label class="noPadding" for="overtime2start">Overtime 2 Start:</label>
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
-								<input class="form-control" type="text" name="overtime2start" id="overtime2start" size="5" maxlength="7" placeholder="Hours">
+								<input class="form-control" type="number" name="overtime2start" id="overtime2start" size="5" maxlength="7" placeholder="Hours">
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
 								<label class="noPadding" for="overtime2Finish">Overtime 2 End:</label>
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
-								<input class="form-control" type="text" name="overtime2Finish"  id="overtime2Finish" size="5" maxlength="7" placeholder="Hours">
+								<input class="form-control" type="number" name="overtime2Finish"  id="overtime2Finish" size="5" maxlength="7" placeholder="Hours">
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
 								<label class="noPadding" for="overtime2rate">Overtime 2 Rate:</label>
 							</div>
 							<div class="col-sm-6 col-xs-6 noPadding">
-								<input class="form-control" type="text" name="overtime2rate" id="overtime2rate"size="7" maxlength="7" placeholder="Rate"><p></p>
+								<input class="form-control" type="number" name="overtime2rate" id="overtime2rate"size="7" maxlength="7" placeholder="Rate"><p></p>
 							</div>	
 						</div>
 					</div>
@@ -414,13 +417,13 @@
 							<label class="noPadding" for="enhancedHolidayPay">Enhanced holiday rate:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="enhancedHolidayPay" id="enhancedHolidayPay" size="7" maxlength="7" placeholder="Rate">
+							<input class="form-control" type="number" name="enhancedHolidayPay" id="enhancedHolidayPay" size="7" maxlength="7" placeholder="Rate">
 						</div>
 						<div class="col-sm-8 col-xs-9 noPadding">
 							<label class="noPadding" for="holidaysPerYear">Eligible holiday days per year:</label>
 						</div>
 						<div class="col-sm-4 col-xs-3 noPadding">
-							<input class="form-control" type="text" name="holidaysPerYear" id="holidaysPerYear" maxlength="2" size="5" placeholder="Days">
+							<input class="form-control" type="number" name="holidaysPerYear" id="holidaysPerYear" maxlength="2" size="5" placeholder="Days">
 						</div>
 						<div class="col-sm-9 col-xs-11 noPadding">
 							<label class="noPadding" for="holidayOvertime">Holiday hours Adds to Overtime:</label>
@@ -462,7 +465,7 @@
 					</div>
 					<div class="col-sm-12 col-xs-12 insideBox border-bottom-other noPadding"><p></p>
 						<div class="col-sm-6 col-xs-7 noPadding">
-							<label class="noPadding" for="bankHolidayPay">Bank holiday pay:</label>
+							<label class="noPadding" for="bankHolidayPay">Bank Holiday Pay:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
 							<select class="form-control" name="bankHolidayPay" id="bankHolidayPay">
@@ -477,13 +480,13 @@
 							<label class="noPadding" for="clockInBonus">Bank Holiday Clock in Bonus:</label>
 						</div>
 						<div class="col-sm-4 col-xs-3 noPadding">
-							<input type="text" class="form-control" name="clockInBonus" id="clockInBonus" size="5" maxlength="7" placeholder="Bonus">
+							<input type="number" class="form-control" name="clockInBonus" id="clockInBonus" size="5" maxlength="7" placeholder="Bonus">
 						</div>
 						<div class="col-sm-8 col-xs-9 noPadding">
 							<label class="noPadding" for="holidayOvertime">Hours Required for Bonus:</label>
 						</div>
 						<div class="col-sm-4 col-xs-3 noPadding">
-							<input type="text" class="form-control" name="clockInBonusHours" id="clockInBonusHours" size="5" maxlength="7" placeholder="Hours"><p></p>
+							<input type="number" class="form-control" name="clockInBonusHours" id="clockInBonusHours" size="5" maxlength="7" placeholder="Hours"><p></p>
 						</div>
 					</div>
 				</div>
@@ -523,16 +526,16 @@
 						<div class="pos-relative">
 							<div id ="hideWeekendHours" class="hide-input"></div>
 							<div class="col-sm-8 col-xs-8 noPadding">
-								<label class="noPadding" for="extraRateSaturday">Extra ratio for Saturday:</label>
+								<label class="noPadding" for="extraRateSaturday">Extra Ratio for Saturday:</label>
 							</div>
 							<div class="col-sm-4 col-xs-4 noPadding">
-								<input class="form-control" type="text" name="extraRateSaturday" id="extraRateSaturday" value="" placeholder="Rate" size="5" maxlength="5">
+								<input class="form-control" type="number" name="extraRateSaturday" id="extraRateSaturday" value="" placeholder="Rate" size="5" maxlength="5">
 							</div>
 							<div class="col-sm-8 col-xs-8 noPadding">
 								<label class="noPadding" for="extraRateSunday">Extra Ratio for Sunday:</label>
 							</div>
 							<div class="col-sm-4 col-xs-4 noPadding">
-								<input class="form-control" type="text" name="extraRateSunday" id="extraRateSunday" value="" placeholder="Rate"size="6" maxlength="5"><p></p>
+								<input class="form-control" type="number" name="extraRateSunday" id="extraRateSunday" value="" placeholder="Rate"size="6" maxlength="5"><p></p>
 							</div>
 						</div>
 					</div>
@@ -575,7 +578,7 @@
 							<label class="noPadding" for="SSP">Statutory Sick Pay:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="SSP" id="SSP" value="" size="12" maxlength="7" placeholder="Enter £89.35 ">
+							<input class="form-control" type="number" name="SSP" id="SSP" value="" size="12" maxlength="7" placeholder="Enter £89.35 ">
 						</div>
 						<div class="col-sm-8 col-xs-9 noPadding">
 							<label class="noPadding" for="partialSickPay">Partially Paid Sick Leave:</label>
@@ -593,13 +596,13 @@
 							<label class="noPadding" for="SPP">Statutory Paternity Pay:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="SPP" id="SPP"  value="" size="12" maxlength="7" placeholder="Enter £140.98">
+							<input class="form-control" type="number" name="SPP" id="SPP"  value="" size="12" maxlength="7" placeholder="Enter £140.98">
 						</div>
 						<div class="col-sm-6 col-xs-7 noPadding">
 							<label class="noPadding" for="SAP">Statutory Adoption Pay:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="SAP" id="SAP" value="" size="12" maxlength="7" placeholder="Enter £140.98">
+							<input class="form-control" type="number" name="SAP" id="SAP" value="" size="12" maxlength="7" placeholder="Enter £140.98">
 						</div>
 						<div class="col-sm-8 col-xs-9 noPadding">
 							<label class="noPadding" for="partialPaternityPay">Partially Paid Paternal Leave:</label>
@@ -651,7 +654,7 @@
 							<select class="form-control" name="partialBereavementPay" id="partialBereavementPay"></select>
 						</div>
 						<div class="col-sm-9 col-xs-11 noPadding">
-							<label class="noPadding" for="bereavementOvertime">Bereavement Hours Adds to Overtime:</label>
+							<label class="noPadding" for="bereavementOvertime">They Count Towards Overtime:</label>
 						</div>
 						<div class="col-sm-3 col-xs-1 noPadding">
 							<input class="form-control" type="checkbox" name ="bereavementOvertime" id="bereavementOvertime">
@@ -663,7 +666,7 @@
 							<select class="form-control" name="partialCompassionatePay" id="partialCompassionatePay"></select>
 						</div>
 						<div class="col-sm-9 col-xs-11 noPadding">
-							<label class="noPadding" for="compOvertime">Compassionate Hours Adds to Overtime:</label>
+							<label class="noPadding" for="compOvertime">They Count Towards Overtime:</label>
 						</div>
 						<div class="col-sm-3 col-xs-1 noPadding">
 							<input class="form-control" type="checkbox" name ="compOvertime" id="compOvertime">
@@ -703,31 +706,31 @@
 							<label class="noPadding" for="salary">Salary:</label>
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
-							<input class="form-control" type="text" name="salary" id="salary" value="" size="12" maxlength="7" placeholder="Enter Amount">
+							<input class="form-control" type="number" name="salary" id="salary" value="" size="12" maxlength="7" placeholder="Enter Amount">
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
 							<label class="noPadding" for="bonus">Bonus:</label>
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
-							<input class="form-control" type="text" name="bonus" id="bonus" value="" size="12" maxlength="7" placeholder="Enter Amount">
+							<input class="form-control" type="number" name="bonus" id="bonus" value="" size="12" maxlength="7" placeholder="Enter Amount">
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
 							<label class="noPadding" for="commissions">Commissions:</label>
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
-							<input class="form-control" type="text" name="commissions" id="commissions" value="" size="12" maxlength="7" placeholder="Enter Amount">
+							<input class="form-control" type="number" name="commissions" id="commissions" value="" size="12" maxlength="7" placeholder="Enter Amount">
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
 							<label class="noPadding" for="pieceWork">Piece Work:</label>
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
-							<input class="form-control" type="text" name="pieceWork" id="pieceWork" value="" size="12" maxlength="7" placeholder="Enter Amount">
+							<input class="form-control" type="number" name="pieceWork" id="pieceWork" value="" size="12" maxlength="7" placeholder="Enter Amount">
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
 							<label class="noPadding" for="payback">Back Pay Amount: </label>
 						</div>
 						<div class="col-sm-6 col-xs-6 noPadding">
-							<input class="form-control" type="text" name="payback" id="payback" value="" size="12" maxlength="7" placeholder="Enter Amount"><p></p>
+							<input class="form-control" type="number" name="payback" id="payback" value="" size="12" maxlength="7" placeholder="Enter Amount"><p></p>
 						</div>
 					</div>
 				</div>
@@ -769,7 +772,7 @@
 							<label class="noPadding" for="additionalPayment">Add. Payment Amount:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="additionalPayment" id="additionalPayment" value="" size="12" maxlength="7" placeholder="Enter Amount">
+							<input class="form-control" type="number" name="additionalPayment" id="additionalPayment" value="" size="12" maxlength="7" placeholder="Enter Amount">
 						</div>
 						
 						<div class="col-sm-6 col-xs-7 noPadding">
@@ -782,7 +785,7 @@
 							<label class="noPadding" for="additionalPayment2">Add. Payment Amount:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="additionalPayment2" id="additionalPayment2" value="" size="12" maxlength="7" placeholder="Enter Amount">
+							<input class="form-control" type="number" name="additionalPayment2" id="additionalPayment2" value="" size="12" maxlength="7" placeholder="Enter Amount">
 						</div>
 						
 						<div class="col-sm-6 col-xs-7 noPadding">
@@ -795,7 +798,7 @@
 							<label class="noPadding" for="additionalPayment3">Add. Payment Amount:</label>
 						</div>
 						<div class="col-sm-6 col-xs-5 noPadding">
-							<input class="form-control" type="text" name="additionalPayment3" id="additionalPayment3" value="" size="12" maxlength="7" placeholder="Enter Amount"><p></p>
+							<input class="form-control" type="number" name="additionalPayment3" id="additionalPayment3" value="" size="12" maxlength="7" placeholder="Enter Amount"><p></p>
 						</div>
 					</div>
 				</div>

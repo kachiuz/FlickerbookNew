@@ -58,7 +58,7 @@ function generatePartiallySelectMenu()
 	
 }
 
-function overtimeCheck()
+function overtimeCheckFunction()
 {
 	var overtime1StartValue = document.getElementById("overtime1Start").value;
 		overtime1StartValue = Number(overtime1StartValue); // reikalinga lyginimui
@@ -160,113 +160,6 @@ function overtimeCheck()
 	}
 
 	ajaxPost();	
-	
-}
-function dateChecker ()
-{
-	
-	//------------------------------date checker------------
-	
-	var holidayStartYear = document.getElementById("holidayStartYear");
-	var holidayStartYearIndex = holidayStartYear.options.selectedIndex;
-	var holidayStartYearValue = Number(holidayStartYear.options[holidayStartYear.selectedIndex].value);
-		
-	var holidayStartMonth = document.getElementById("holidayStartMonth");
-	var holidayStartMonthIndex = holidayStartMonth.options.selectedIndex;
-	var holidayStartMonthValue = holidayStartMonth.options[holidayStartMonth.selectedIndex].value;
-		
-	var holidayStartDay = document.getElementById("holidayStartDay");
-	var holidayStartDayIndex = holidayStartDay.options.selectedIndex;
-	var holidayStartDayValue = holidayStartDay.options[holidayStartDay.selectedIndex].value;
-	
-	var submitSuccess = document.getElementById("submitSuccessPayments");
-	//check if proper year has been selected
-	if (holidayStartYearValue !==2017 && holidayStartYearValue !== 2018 && holidayStartYearValue !== 2019 && holidayStartYearValue !== 2020 && holidayStartYearValue !== 2021 && holidayStartYearValue !== 2022)
-	{
-		submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
-		submitSuccess.innerHTML += 'Invalid Holiday start year declared!';
-		submitSuccess.removeAttribute("class");
-		submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
-		
-		//alert("Invalid Holiday start year declared!");
-		holidayStartYear.setAttribute("class", "invalidForm");
-		return false;
-	}
-	else{holidayStartYear.removeAttribute("class");}
-	
-	//check if proper month number has been selected, nothing else except 01-12 can be allowed to be selected
-	if(holidayStartMonthValue !=='01' && holidayStartMonthValue !=='02' && holidayStartMonthValue !=='03' && holidayStartMonthValue !=='04' && holidayStartMonthValue !=='05' && holidayStartMonthValue !=='06' && holidayStartMonthValue !=='07' && holidayStartMonthValue !=='08' && holidayStartMonthValue !=='09' && holidayStartMonthValue !=='10' && holidayStartMonthValue !=='11' && holidayStartMonthValue !=='12')
-	{
-		submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
-		submitSuccess.innerHTML += 'Invalid Holiday start month declared!';
-		submitSuccess.removeAttribute("class");
-		submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
-		//alert("Invalid Holiday start month declared");
-		holidayStartMonth.setAttribute("class", "invalidForm");
-		return false;
-	}
-	
-	//check if proper day has been selected
-	if (holidayStartDayValue === "01"){holidayStartDayValue;}
-	else if (holidayStartDayValue === "02"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "03"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "04"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "05"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "06"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "07"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "08"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "09"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "10"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "11"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "12"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "13"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "14"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "15"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "16"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "17"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "18"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "19"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "20"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "21"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "22"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "23"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "24"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "25"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "26"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "27"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "28"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "29"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "30"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else if (holidayStartDayValue === "31"){holidayStartDayValue; holidayStartYear.removeAttribute("class");}
-	else
-		{
-			submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
-			submitSuccess.innerHTML += 'Invalid Holiday start day declared!';
-			submitSuccess.removeAttribute("class");
-			submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
-			//alert("Invalid Holiday start day declared");
-			holidayStartDay.setAttribute("class", "invalidForm");
-			return false;
-		}
-	
-//check if proper day selected for a month ( avoid 29, 30, 31 for feb and so on)
-	if ((holidayStartMonthValue === "04" && holidayStartDayValue === "31") || (holidayStartMonthValue === "06" && holidayStartDayValue === "31") || (holidayStartMonthValue === "09" && holidayStartDayValue === "31") || (holidayStartMonthValue === "11" && holidayStartDayValue === "31") || (holidayStartMonthValue === "02" && holidayStartDayValue === "29")||(holidayStartMonthValue === "02" && holidayStartDayValue === "30")||(holidayStartMonthValue === "02" && holidayStartDayValue === "31") )
-	{
-		submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
-		submitSuccess.innerHTML += 'Invalid Holiday start month and day declared!';
-		submitSuccess.removeAttribute("class");
-		submitSuccess.setAttribute("class", "submitSuccessBPErorrs");
-		//alert("Invalid Holiday start month and day declared!");
-		holidayStartMonth.setAttribute("class", "invalidForm");
-		holidayStartDay.setAttribute("class", "invalidForm");
-		return false;
-	}
-	else{
-		holidayStartMonth.removeAttribute("class");
-		holidayStartDay.removeAttribute("class");
-	}
-
-	overtimeCheck()
 	
 }
 
@@ -934,7 +827,7 @@ function start (){
 	generateHolidayDay();
 	generatePartiallySelectMenu();
 	var submitButton = document.getElementById("buttonSubmit");
-	submitButton.onclick = function () {dateChecker ();} //jei ne
+	submitButton.onclick = function (){overtimeCheckFunction();};
 	
 	loadindexes();
 	
