@@ -845,20 +845,22 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	let tableCaption2 = document.getElementById("tableCaption2");
 	//depending on a year, caption has to be changed
 	if(taxPeriodNumber<=52 && taxPeriodNumber>0 ){
-		tableCaptionTitle.innerHTML = "2017/2018 Tax Period " + taxPeriodNumber;
-		tableCaption2.innerHTML = "2017/2018 Tax Period " + taxPeriodNumber;
+		let taxPeriodNumberNew = taxPeriodNumber;
+		if (taxPeriodNumber<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2017/2018 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2017/2018 Tax Period " + taxPeriodNumberNew;
 	}	else if (taxPeriodNumber<=104 && taxPeriodNumber>52 ){
-		taxPeriodNumberNew = taxPeriodNumber - 52;
+		let taxPeriodNumberNew = taxPeriodNumber - 52;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
 	}	else if (taxPeriodNumber<=156 && taxPeriodNumber>104 ){
-		taxPeriodNumberNew = taxPeriodNumber - 104;
+		let taxPeriodNumberNew = taxPeriodNumber - 104;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
 	}	else if (taxPeriodNumber<=taxPeriodLimit && taxPeriodNumber>156 ){
-		taxPeriodNumberNew = taxPeriodNumber - 156;
+		let taxPeriodNumberNew = taxPeriodNumber - 156;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
@@ -935,80 +937,94 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 		dayInSickDiv.setAttribute("id","dayInSickDiv"+taxPeriodStart);
 		dayInSickDiv.setAttribute("class","absoluteDiv absoluteDivSick dayInSickDiv dayInSickColor");
 		let dayInSickText = document.createTextNode("Paid ");
-		dayInSickDiv.appendChild(dayInSickText);
+		let dayInSickLabel = document.createElement("label");
+		dayInSickLabel.appendChild(dayInSickText);
 		let dayInSickButton = document.createElement("input");
 		dayInSickButton.setAttribute("id", "dayInSickButton"+taxPeriodStart);
 		dayInSickButton.setAttribute("type", "checkbox");
 		dayInSickButton.setAttribute("name", "dayInSick"+taxPeriodStart);
 		dayInSickButton.setAttribute("value", "true");
-		dayInSickDiv.appendChild(dayInSickButton);
+		dayInSickLabel.appendChild(dayInSickButton);
+		dayInSickDiv.appendChild(dayInSickLabel);
 
 		dateDiv.appendChild(dayInSickDiv);
 
 		let sicknessDiv = document.createElement("div");
 		sicknessDiv.setAttribute("id","sicknessDiv"+taxPeriodStart);
 		sicknessDiv.setAttribute("class","absoluteDiv sicknessDiv sicknessColor");
+		
+		let sicknessLabel = document.createElement("label");
 		let sicknessText = document.createTextNode("Paid ");
-		sicknessDiv.appendChild(sicknessText);
+		sicknessLabel.appendChild(sicknessText);
+		
 		let sicknessButton = document.createElement("input");
 		sicknessButton.setAttribute("id", "sicknessButton"+taxPeriodStart);
 		sicknessButton.setAttribute("type", "checkbox");
 		sicknessButton.setAttribute("name", "sickness"+taxPeriodStart);
 		sicknessButton.setAttribute("value", "true");
-		sicknessDiv.appendChild(sicknessButton);
+		sicknessLabel.appendChild(sicknessButton);
+		sicknessDiv.appendChild(sicknessLabel);
 		dateDiv.appendChild(sicknessDiv);
 
 		let familyLeaveDiv = document.createElement("div");
 		familyLeaveDiv.setAttribute("id","familyLeaveDiv"+taxPeriodStart);
 		familyLeaveDiv.setAttribute("class","absoluteDiv familyLeaveDiv familyLeaveColor");
 
+		let familyLeaveLabel = document.createElement("label");
 		let familyLeaveText = document.createTextNode("Paid ");
-		familyLeaveDiv.appendChild(familyLeaveText);
+		familyLeaveLabel.appendChild(familyLeaveText);
 		let familyLeaveButton = document.createElement("input");
 		familyLeaveButton.setAttribute("id", "familyLeaveButton"+taxPeriodStart);
 		familyLeaveButton.setAttribute("type", "checkbox");
 		familyLeaveButton.setAttribute("name", "familyLeave"+taxPeriodStart);
 		familyLeaveButton.setAttribute("value", "true");
-		familyLeaveDiv.appendChild(familyLeaveButton);
+		familyLeaveLabel.appendChild(familyLeaveButton);
+		familyLeaveDiv.appendChild(familyLeaveLabel);
 		dateDiv.appendChild(familyLeaveDiv);
 
 		let enhancedHolidayDiv = document.createElement("div");
 		enhancedHolidayDiv.setAttribute("id","enhancedHolidayDiv"+taxPeriodStart);
 		enhancedHolidayDiv.setAttribute("class","absoluteDiv absoluteDivSick holidayDiv holidayColor");
+		let enhancedHolidayLabel = document.createElement("label");
 		let enhancedHolidayText = document.createTextNode("Enhanced ");
-		enhancedHolidayDiv.appendChild(enhancedHolidayText);
+		enhancedHolidayLabel.appendChild(enhancedHolidayText);
 		let enhancedHolidayButton = document.createElement("input");
 		enhancedHolidayButton.setAttribute("id", "enhancedHolidayButton"+taxPeriodStart);
 		enhancedHolidayButton.setAttribute("type", "checkbox");
 		enhancedHolidayButton.setAttribute("name", "enhancedHoliday"+taxPeriodStart);
 		enhancedHolidayButton.setAttribute("value", "true");
-		enhancedHolidayDiv.appendChild(enhancedHolidayButton);
+		enhancedHolidayLabel.appendChild(enhancedHolidayButton);
+		enhancedHolidayDiv.appendChild(enhancedHolidayLabel);
 		dateDiv.appendChild(enhancedHolidayDiv);
 
 		let bereavementButtonDiv = document.createElement("div");
 		bereavementButtonDiv.setAttribute("id","bereavementButtonDiv"+taxPeriodStart);
 		bereavementButtonDiv.setAttribute("class","absoluteDiv absoluteDivSick bereavementDiv bereavementColor");
+		let bereavementLabel = document.createElement("label");
 		let bereavementButtonText = document.createTextNode("Paid ");
-		bereavementButtonDiv.appendChild(bereavementButtonText);
+		bereavementLabel.appendChild(bereavementButtonText);
 		let bereavementButton = document.createElement("input");
 		bereavementButton.setAttribute("id", "bereavementButton"+taxPeriodStart);
 		bereavementButton.setAttribute("type", "checkbox");
 		bereavementButton.setAttribute("name", "bereavementButton"+taxPeriodStart);
 		bereavementButton.setAttribute("value", "true");
-		bereavementButtonDiv.appendChild(bereavementButton);
+		bereavementLabel.appendChild(bereavementButton);
+		bereavementButtonDiv.appendChild(bereavementLabel);
 		dateDiv.appendChild(bereavementButtonDiv);
 
 		let compassionateButtonDiv = document.createElement("div");
 		compassionateButtonDiv.setAttribute("id","compassionateButtonDiv"+taxPeriodStart);
 		compassionateButtonDiv.setAttribute("class","absoluteDiv absoluteDivSick compassionateDiv compassionateColor");
 		let compassionateButtonText = document.createTextNode("Paid ");
-		compassionateButtonDiv.appendChild(compassionateButtonText);
+		let compassionateLabel = document.createElement("label");
+		compassionateLabel.appendChild(compassionateButtonText);
 		let compassionateButton = document.createElement("input");
 		compassionateButton.setAttribute("id", "compassionateButton"+taxPeriodStart);
 		compassionateButton.setAttribute("type", "checkbox");
 		compassionateButton.setAttribute("name", "compassionateButton"+taxPeriodStart);
 		compassionateButton.setAttribute("value", "true");
-		compassionateButtonDiv.appendChild(compassionateButton);
+		compassionateLabel.appendChild(compassionateButton);
+		compassionateButtonDiv.appendChild(compassionateLabel);
 		dateDiv.appendChild(compassionateButtonDiv);
 
 		tableRow.appendChild(dateDiv);
@@ -1771,7 +1787,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	sicknessPercentage = Number(sicknessPercentage);		overtimePercentage = Number(overtimePercentage);
 	parentalPercentage = Number(parentalPercentage);		otherPercentage = Number(otherPercentage);
 	bankHolidayPercentge = Number(bankHolidayPercentge);holidaysEarned = Number(holidaysEarned);
-	NISumLast12Weeks = Number(holidaysEarned);					union_deSumLast12Weeks = Number(union_deSumLast12Weeks);
+	NISumLast12Weeks = Number(NISumLast12Weeks);					union_deSumLast12Weeks = Number(union_deSumLast12Weeks);
 	salary = Number(salary);														pensionSumLast12Weeks = Number(pensionSumLast12Weeks);
 	bonus = Number(bonus);															chris_savSumLast12Weeks  = Number(chris_savSumLast12Weeks);
 	SAP = Number(SAP);																	summer_savSumLast12Weeks = Number(summer_savSumLast12Weeks);
@@ -3590,7 +3606,6 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			]
 		}]
 	});
-	console.log(las3MonthsPieChart);
 	las3MonthsPieChart.render();
 	} else {
 		document.getElementById("las3MonthsPieChart").innerHTML = "<span class='noChartText'><br><br>No Data Provided<br>For Chart.</span>";
@@ -3869,27 +3884,20 @@ function callWeekStart() {
 	  request.onreadystatechange = function(){
 	  if (request.readyState === 4){
 		 if (request.status === 200){
-			//console.log("xhr done successfully");
-			//var resp = xhr.responseText;
 			let response = JSON.parse(this.responseText);
 			resolve(response);
-						//console.log("looooooooooooooooool");
 		 } else {
 			reject(request.status);
-			//console.log("xhr failed");
 		 }
 	  } else {
-		 //console.log("xhr processing going on");
 	  }
    }
-   //console.log("request sent succesfully");
  });
  return promiseObj;
 }
 const start = () => {
 	callWeekStart().then(function(myJson) {
 		taxPeriodLimit = myJson.taxPeriodLimit;
-		//console.log(myJson);
 		//fill the arrays of weekstart and unsHCheck
 		for (let a=0; a<taxPeriodLimit; a++){
 			let weekStartAr = myJson.weekStartArray[a];
