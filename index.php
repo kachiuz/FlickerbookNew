@@ -31,6 +31,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 		<script type="text/javascript" src="javascript/javaScript.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	</head>
 	<body>
 		<?php require ( 'includes/navigation.html' ) ; ?>
@@ -76,9 +77,9 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					</div>
 			<!---------------------------------------GENERATE BUTTON-------------------------------->
 					<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
-						<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain"></div>
-						<div class="col-sm-2 col-xs-2">
-							<button type="button" class="btn btn-default button" id="generateButton">Generate</button>
+						<div class="col-sm-9 col-xs-8 responseDiv" id="submitSuccessMain"></div>
+						<div class="col-sm-3 col-xs-4">
+							<button type="button" class="btn btn-primary button" id="generateButton">Generate</button>
 						</div>
 					</div>
 				<!---------------------------ERROR MODAL-------------------------------------------------->
@@ -133,7 +134,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<!---------------------------------CALENDAR BUTTONS------------------------------------------------>
 					<div class="col-sm-12 col-xs-12 marginBetweenElements text-align-center noPadding">
 						<div class="btn-group" role="group" aria-label="Basic example">
-						  <button type="button" class="btn btn-default button" data-toggle="modal" data-target="#3monthsCalendar">3 Months</button>
+						  <button type="button" class="btn btn-primary button" data-toggle="modal" data-target="#3monthsCalendar">3 Months</button>
 							<div id="3monthsCalendar" class="modal fade" role="dialog">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -150,7 +151,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 									</div>
 								</div>
 							</div>
-						  <button type="button" class="btn btn-default button" data-toggle="modal" data-target="#6monthsCalendar">6 Months</button>
+						  <button type="button" class="btn btn-primary button" data-toggle="modal" data-target="#6monthsCalendar">6 Months</button>
 							<div id="6monthsCalendar" class="modal fade" role="dialog">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -167,7 +168,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 									</div>
 								</div>
 							</div>
-						  <button type="button" class="btn btn-default button" data-toggle="modal" data-target="#12monthsCalendar">12 Months</button>
+						  <button type="button" class="btn btn-primary button" data-toggle="modal" data-target="#12monthsCalendar">12 Months</button>
 							<div id="12monthsCalendar" class="modal fade" role="dialog">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -318,12 +319,12 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-xs-12 noPadding  insideBox">
+				<div class="col-sm-12 col-xs-12 noPadding  insideBox borderBottom">
 					<div class="col-sm-9 col-xs-8 noPadding" id="yearToDateNamesII">Basic Pay</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateAmountII">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateAmountIIHid"></div>
 				</div>
-					<div id="yearToDateIIPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
+					<div id="yearToDateIIPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
 					<div id="yearToDateIIPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
 					Charts Are Visible to Premium Members.<br><br></div>
 			</div>
@@ -354,12 +355,12 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-xs-12 noPadding insideBox">
+				<div class="col-sm-12 col-xs-12 noPadding insideBox borderBottom">
 					<div class="col-sm-9 col-xs-8 noPadding" id="yearToDateNamesHours">Hours Spent At Work</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateAmountHours">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateAmountHoursHid"></div>
 				</div>
-				<div id="yearToDateHoursPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
+				<div id="yearToDateHoursPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
 				<div id="yearToDateHoursPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
 					<br>Charts Are Visible to Premium Members.<br><br>
 				</div>
@@ -626,9 +627,9 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 			<!----------------------------------------------------End of Charts and data----------------------------------------------------->
 
 			<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
-				<div class="col-sm-10 col-xs-10 responseDiv" id="submitSuccessMain2"></div>
-				<div class="col-sm-2 col-xs-2">
-					<button type="button" class="btn btn-default button" id="delete">Delete Payslip</button>
+				<div class="col-sm-9 col-xs-8 responseDiv" id="submitSuccessMain2"></div>
+				<div class="col-sm-3 col-xs-4">
+					<button type="button" class="btn btn-primary button" id="delete">Delete Payslip</button>
 				</div>
 			</div>
 		</div><!--end of container-->
