@@ -29,7 +29,6 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 		<script type="text/javascript" src="javascript/javaScript.js"></script>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	</head>
@@ -46,11 +45,60 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<span class="glyphicon glyphicon-triangle-right clickable hidden" id="buttonRightFake"></span>
 				</div>
 			</div>
-			<div class="marginBetweenElementsBottom hidden-xs"></div>
-		</div>
+		
 
+		<!-----------------------------SELECT PERIOD NUMBER MENU LINE----------------------------------------------------->
+		
+			<div class="row marginTop90 slectPeriodNumberMenu" id="slectPeriodNumberMenu">
+				<div class="col-sm-8 hidden-xs"></div>
+				<div class="col-sm-4 col-xs-12 noPadding">
+					<div class="col-sm-3 col-xs-3 noPaddingFromSides">
+						<select class="form-control" name="selectTaxPeriodYear" id="selectTaxPeriodYear">
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019" selected>2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option> 
+						</select>
+					</div>
+					<div class="col-sm-3 col-xs-3 noPaddingFromSides">
+						<select class="form-control" name="selectTaxPeriodMonth" id="selectTaxPeriodMonth">
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option> 
+							<option value="06">June</option> 
+							<option value="07">July</option> 
+							<option value="08">August</option> 
+							<option value="09">September</option> 
+							<option value="10">October</option> 
+							<option value="11">November</option> 
+							<option value="12">December</option> 
+						</select>
+					</div>	
+					<div class="col-sm-2 col-xs-2 noPaddingFromSides">
+						<select class="form-control" name="selectTaxPeriodDay" id="selectTaxPeriodDay">
+						</select>
+					</div>	
+					<div class="col-sm-4 col-xs-4">
+							<button type="button" class="btn btn-primary button smaller" id="selectTaxPeriodButton">Load</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		<!-------------------------------TABLE AND CALENDAR---------------------------------------------------------->
-		<div class="container smallerContainer marginTopMain"> <!--start of container div-->
+		<div class="container smallerContainer"> <!--start of container div-->
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
 					<div class="col-sm-12 hidden-xs boxTitle noPadding">
@@ -62,42 +110,32 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 						<div class="col-sm-4 col-xs-5">Start/Finish</div>
 						<div class="col-sm-2  hidden-xs">Notes</div>
 					</div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow0"> </div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow1"> </div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow2"> </div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow3"> </div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow4"> </div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow5"> </div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow6"> </div>
+					<div class="col-sm-12 col-xs-12 noPadding hidden" id="loadImageMainTable">
+						<img class="pic-sm pic-xs" src="pics2/EXfZ.gif" alt="Loading">
+					</div>
+					<div class="col-sm-12 col-xs-12 noPadding" id="loadMainTable">
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow0"> </div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow1"> </div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow2"> </div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow3"> </div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow4"> </div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow5"> </div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="tableRow6"> </div>
+					</div>
 
 			<!---------------------------------------SAVINGS BUTTONS-------------------------------->
 					<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding hidden" id="paySavingsDiv">
 						<div class="col-sm-6 col-xs-12 savingsButtons" id="payChristmasSavings"></div>
 						<div class="col-sm-6 col-xs-12 savingsButtons" id="paySummerSavings"></div>
 					</div>
-			<!---------------------------------------GENERATE BUTTON-------------------------------->
+			<!---------------------------------------GENERATE BUTTON-------------------------------->		
 					<div class="col-sm-12 col-xs-12 marginBetweenElements marginBetweenElementsBottom noPadding">
 						<div class="col-sm-9 col-xs-8 responseDiv" id="submitSuccessMain"></div>
 						<div class="col-sm-3 col-xs-4">
 							<button type="button" class="btn btn-primary button" id="generateButton">Generate</button>
 						</div>
 					</div>
-				<!---------------------------ERROR MODAL-------------------------------------------------->
-				<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				      <div class="modal-header error-modal-color">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="errorModalLabel"></h4>
-				      </div>
-				      <div class="modal-body" id="errorModalBody">
-				      </div>
-				      <div class="modal-footer error-modal-color">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Got it!</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+
 				</div>
 				<!-----------------------------------CALENDAR-------------------------------------------->
 				<div class="col-sm-6 col-xs-12">
@@ -122,17 +160,22 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName5"></div>
 						<div class="col-xs-calD col-sm-calD calendarHeading" id ="dayName6"></div>
 					</div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow0"></div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow1"></div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow2"></div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding currentWeek" id="calendarRow3">
-						<div class="currentWeekFilter"></div>
+					<div class="col-sm-12 col-xs-12 noPadding hidden" id="loadImageCalendar">
+						<img class="pic-sm pic-xs" src="pics2/EXfZ.gif" alt="Loading">
 					</div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow4"></div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow5"></div>
-					<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow6"></div>
+					<div class="col-sm-12 col-xs-12 noPadding" id="loadCalendar">
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow0"></div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow1"></div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow2"></div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding currentWeek" id="calendarRow3">
+							<div class="currentWeekFilter"></div>
+						</div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow4"></div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow5"></div>
+						<div class="col-sm-12 col-xs-12 tableRow noPadding" id="calendarRow6"></div>
+					</div>
 					<!---------------------------------CALENDAR BUTTONS------------------------------------------------>
-					<div class="col-sm-12 col-xs-12 marginBetweenElements text-align-center noPadding">
+					<div class="col-sm-12 col-xs-12 marginBetweenElements text-align-center noPadding hidden">
 						<div class="btn-group" role="group" aria-label="Basic example">
 						  <button type="button" class="btn btn-primary button" data-toggle="modal" data-target="#3monthsCalendar">3 Months</button>
 							<div id="3monthsCalendar" class="modal fade" role="dialog">
@@ -207,31 +250,64 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<div class="col-sm-2 col-xs-3 noPadding align-right" id="paymentsAmountDiv">0</div>
 				</div>
 				<div class="col-sm-12 col-xs-12 noPadding tableRow">
-					<div class="col-sm-10 col-xs-10 noPadding" id="totalGrossPaymentsName">Total gross payments</div>
-					<div class="col-sm-2 col-xs-2 noPadding" id="totalGrossPaymentsAmount">0</div>
+					<div class="col-sm-9 col-xs-9 noPadding totalGrossPaymentsName">Total Gross Payments</div>
+					<div class="col-sm-3 col-xs-3 noPadding" id="totalGrossPaymentsAmount"><span id="totalGrossPaymentsAmountText">0</span></div>
 				</div>
-					<div id="paymentsPieChart" class="col-sm-12 col-xs-12 chartStyle"></div>
-					<div id="paymentsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
-						<br>Charts Are Visible to Premium Members.<br><br>
+					<div class="col-sm-12 col-xs-12 noChartText chartStyle">
+						<div id="paymentsPieChart" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
+						<div id="paymentsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+							<br>Charts Are Visible to Premium Members.<br><br>
+						</div>
 					</div>
 				</div>
 				<!-----------------------------------------------------DEDUCTIONS------------------------------------------>
 			<div class="col-sm-6 col-xs-12">
-				<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">Deductions</div>
-				<div class="col-sm-12 col-xs-12 noPadding insideBox">
-						<div class="col-sm-5 col-xs-6 noPadding"id="deductionsNamesDiv">TAX<br></div>
-						<div class="col-sm-2 col-xs-2 noPadding" id="deductionsAmountDiv">0</div>
-						<div class="col-sm-5 col-xs-4 noPadding"></div>
+			
+				<div class="col-sm-12 col-xs-12 noPadding">
+					<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">Tax Free Deductions</div>
+					<div class="col-sm-12 col-xs-12 noPadding insideBox">
+						<div id="taxFreeDeductions">
+							<div class="col-sm-9 col-xs-8 noPadding"id="taxFreeDeductionsNamesDiv">None</div>
+							<div class="col-sm-3 col-xs-4 noPadding align-right" id="taxFreeDeductionsAmountDiv">0</div>
+							<div class="col-sm-9 col-xs-8 noPadding hidden "id="taxFreePensionNameDiv">Pension</div>
+							<div class="col-sm-3 col-xs-4 noPadding hidden align-right" id="taxFreePensionAmountDiv">0</div>
+							<div class="col-sm-9 col-xs-8 noPadding hidden "id="taxFreeTravelNamesDiv">Travel</div>
+							<div class="col-sm-3 col-xs-4 noPadding hidden align-right" id="taxFreeTravelAmountDiv">0</div>
+							<div class="col-sm-9 col-xs-8 noPadding hidden "id="taxFreeDeduction1NamesDiv">Deduction 1</div>
+							<div class="col-sm-3 col-xs-4 noPadding hidden align-right" id="taxFreeDeduction1AmountDiv">0</div>
+							<div class="col-sm-9 col-xs-8 noPadding hidden "id="taxFreeDeduction2NamesDiv">Deduction 2</div>
+							<div class="col-sm-3 col-xs-4 noPadding hidden align-right" id="taxFreeDeduction2AmountDiv">0</div>
+							<div class="col-sm-9 col-xs-8 noPadding hidden "id="taxFreeDeduction3NamesDiv">Deduction 3</div>
+							<div class="col-sm-3 col-xs-4 noPadding hidden align-right" id="taxFreeDeduction3AmountDiv">0</div>
+						</div>	
+					</div>
+					<div class="col-sm-12 col-xs-12 noPadding tableRow">
+						<div class="col-sm-9 col-xs-9 noPadding totalGrossPaymentsName">Total Taxable Payments</div>
+						<div class="col-sm-3 col-xs-3 noPadding" id="totalTaxablePaymentsAmount"><span id="totalTaxablePaymentsAmountText">0</span></div>
+					</div>
 				</div>
-				<div class="col-sm-12 col-xs-12 noPadding totaDeductionsRow">
-						<div class="col-sm-5 col-xs-5 noPadding">Total Deductions</div>
-						<div class="col-sm-2 col-xs-2 noPadding" id="totalDeductionsAmount">0</div>
-						<div class="col-sm-3 col-xs-3 noPadding netPay">Net Pay</div>
-						<div class="col-sm-2 col-xs-2 noPadding" id="netPayAmount">0</div>
-				</div>
-					<div id="deductionsPieChart" class="col-sm-12 col-xs-12 chartStyle"></div>
-					<div id="deductionsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
-					Charts Are Visible to Premium Members.<br><br>
+			
+				<div class="col-sm-12 col-xs-12 noPadding">
+					<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">Deductions</div>
+					<div class="col-sm-12 col-xs-12 noPadding insideBox">
+							<div class="col-sm-6 col-xs-6 noPadding"id="deductionsNamesDiv">TAX<br></div>
+							<div class="col-sm-6 col-xs-6 noPadding align-right" id="deductionsAmountDiv">0</div>
+					</div>
+					<div class="col-sm-12 col-xs-12 noPadding totaDeductionsRow">
+							<div class="col-sm-6 col-xs-6 noPadding">Total Deductions</div>
+							<div class="col-sm-6 col-xs-6 noPadding align-right" id="totalDeductionsAmount">0</div>
+					</div>
+					<div class="col-sm-12 col-xs-12 noPadding totaDeductionsRow">
+							<div class="col-sm-6 xs-hidden noPadding netPay"></div>
+							<div class="col-sm-3 col-xs-6 noPadding netPay">Net Pay</div>
+							<div class="col-sm-3 col-xs-6 noPadding" id="netPayAmount">0</div>
+					</div>
+						<div class="col-sm-12 col-xs-12 noChartText chartStyle">
+							<div id="deductionsPieChart" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
+							<div id="deductionsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+							Charts Are Visible to Premium Members.<br><br>
+							</div>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -241,12 +317,14 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 				<div class="col-sm-6 col-xs-12">
 					<div class="col-sm-12 col-xs-12 noPadding boxTitle marginBetweenElements">Year To Date</div>
 					<div class="col-sm-12 col-xs-12 noPadding insideBox">
-						<div class="col-sm-9 col-xs-8 noPadding" id="yearToDateNames">TAX</div>
+						<div class="col-sm-9 col-xs-8 noPadding border" id="yearToDateNames">TAX</div>
 						<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateAmount">0</div>
 					</div>
-				<div id="yearToDatePieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
-				<div id="yearToDatePieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
-					Charts Are Visible to Premium Members.<br><br>
+				<div class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder">
+					<div id="yearToDatePieChart" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
+					<div id="yearToDatePieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+						Charts Are Visible to Premium Members.<br><br>
+					</div>
 				</div>
 			</div>
 			<!-----------------------------------------------------------Year To Date Pay Structure----------------------------------------------------------->
@@ -286,9 +364,11 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDatePercentageAmount">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDatePercentageAmountHid"></div>
 				</div>
-				<div id="yearToDatePercentagePieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
-				<div id="yearToDatePercentagePieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
-				Charts Are Visible to Premium Members.<br><br></div>
+				<div class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder">
+					<div id="yearToDatePercentagePieChart" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
+					<div id="yearToDatePercentagePieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
+					Charts Are Visible to Premium Members.<br><br></div>
+				</div>
 			</div>
 		</div>
 		<div class="clearfix visible-sm"></div>
@@ -324,7 +404,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateAmountII">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateAmountIIHid"></div>
 				</div>
-					<div id="yearToDateIIPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
+					<div id="yearToDateIIPieChart" class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder hidden"></div>
 					<div id="yearToDateIIPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden"><br>
 					Charts Are Visible to Premium Members.<br><br></div>
 			</div>
@@ -360,7 +440,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateAmountHours">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateAmountHoursHid"></div>
 				</div>
-				<div id="yearToDateHoursPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
+				<div id="yearToDateHoursPieChart" class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder hidden"></div>
 				<div id="yearToDateHoursPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
 					<br>Charts Are Visible to Premium Members.<br><br>
 				</div>
@@ -400,9 +480,11 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 						<div class="col-sm-3 col-xs-4 noPadding border-left" id="dayStatisticsAmount">0</div>
 						<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="dayStatisticsAmountHid"></div>
 					</div>
-					<div id="dayStatisticsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
-					<div id="dayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
-						<br>Charts Are Visible to Premium Members.<br><br>
+					<div class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder">
+						<div id="dayStatisticsPieChart" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
+						<div id="dayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+							<br>Charts Are Visible to Premium Members.<br><br>
+						</div>
 					</div>
 				</div>
 		<!-----------------------------------------------------------Holidays----------------------------------------------------------->
@@ -437,7 +519,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 				<div class="col-sm-3 col-xs-4 noPadding border-left" id="holidayStatisticsAmount">0</div>
 				<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="holidayStatisticsAmountHid"></div>
 			</div>
-			<div id="holidayStatisticsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
+			<div id="holidayStatisticsPieChart" class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder"></div>
 			<div id="holidayStatisticsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
 				<br>Charts Are Visible to Premium Members.<br><br>
 			</div>
@@ -478,7 +560,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 				<div class="col-sm-3 col-xs-4 noPadding  border-left" id="weeklyAveragesAmount">0</div>
 				<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="weeklyAveragesAmountHid"></div>
 			</div>
-			<div id="weeklyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
+			<div id="weeklyAveragesPieChart" class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder hidden"></div>
 			<div id="weeklyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
 				<br> Charts Are Visible to Premium Members.<br><br>
 			</div>
@@ -519,7 +601,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 				<div class="col-sm-3 col-xs-4 noPadding border-left" id="dailyAveragesAmount">0</div>
 				<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="dailyAveragesAmountHid"></div>
 			</div>
-			<div id="dailyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
+			<div id="dailyAveragesPieChart" class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder hidden"></div>
 			<div id="dailyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
 				<br>Charts Are Visible to Premium Members.<br><br>
 			</div>
@@ -563,7 +645,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="hourlyAveragesAmount">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="hourlyAveragesAmountHid"></div>
 				</div>
-				<div id="hourlyAveragesPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder hidden"></div>
+				<div id="hourlyAveragesPieChart" class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder hidden"></div>
 				<div id="hourlyAveragesPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
 					<br>Charts Are Visible to Premium Members.<br><br>
 				</div>
@@ -599,9 +681,11 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 					<div class="col-sm-3 col-xs-4 noPadding border-left" id="yearToDateLast12WeeksAmount">0</div>
 					<div class="col-sm-3 col-xs-4 noPadding border-left hidden" id="yearToDateLast12WeeksAmountHid"></div>
 				</div>
-				<div id="las3MonthsPieChart" class="col-sm-12 col-xs-12 chartStyleFullBorder"></div>
-				<div id="las3MonthsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
-					<br>Charts Are Visible to Premium Members.<br><br>
+				<div class="col-sm-12 col-xs-12 noChartText chartStyleFullBorder">
+					<div id="las3MonthsPieChart" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
+					<div id="las3MonthsPieChartNoPremium" class="col-sm-12 col-xs-12 noPremium hidden">
+						<br>Charts Are Visible to Premium Members.<br><br>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -610,7 +694,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 		<div class="row">
 		<div class="col-sm-6 col-xs-12">
 			<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Net Pay Chart</div>
-			<div id="columnChartNetPay" class="col-sm-12 col-xs-12 chartStyle"></div>
+			<div id="columnChartNetPay" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
 			<div id="columnChartNetPayNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
 				Charts Are Visible to Premium Members.<br><br></div>
 			</div>
@@ -618,7 +702,7 @@ if ( !isset( $_SESSION['user_id'] ) ) { require ( 'login_tools.php' ) ; load('la
 			<!-----------------------------------------------------------Last 10 Weeks Paid Hours Chart----------------------------------------------------------->
 			<div class="col-sm-6 col-xs-12">
 				<div class="col-sm-12 col-xs-12 boxTitle marginBetweenElements">Last 10 Weeks Paid Hours Chart</div>
-				<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 chartStyle"></div>
+				<div id="columnChartPaidHours" class="col-sm-12 col-xs-12 noChartText chartStyle"></div>
 				<div id="columnChartPaidHoursNoPremium"  class="col-sm-12 col-xs-12 noPremium hidden"><br>
 				Charts Are Visible to Premium Members.<br><br></div>
 			</div>

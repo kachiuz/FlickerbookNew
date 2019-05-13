@@ -5,6 +5,9 @@ select {
 .noPadding {
   padding: 0px; }
 
+.padding-all-2px {
+  padding: 2px; }
+
 .noMargin {
   margin: 0px; }
 
@@ -21,10 +24,10 @@ select {
 }*/
 hr {
   height: 1px;
-  color: grey;
+  color: #d9d9d9;
   margin-bottom: 2px;
   margin-top: 2px;
-  background: grey;
+  background: #d9d9d9;
   font-size: 0;
   border: 0; }
 
@@ -148,7 +151,8 @@ hr {
     width: 100%; } }
 
 .marginTopMain {
-  margin-top: 90px; }
+  margin-top: 90px;
+  background-color: #e6e6e6; }
 
 .marginBetweenElements {
   margin-top: 10px; }
@@ -157,37 +161,41 @@ hr {
   margin-bottom: 10px; }
 
 .squareBorder {
-  border: 1px solid grey; }
+  border: 1px solid #d9d9d9; }
 
 .insideBox {
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  background: #ffffcc; }
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  background: #ffffe6; }
+
+footer {
+  postion: absolute;
+  bottom: 0; }
 
 .navbar-default {
-  background-color: #0088cc;
-  border-color: #4d4dff; }
+  background-color: #e6e6e6;
+  border-color: #d9d9d9; }
   .navbar-default .navbar-brand {
-    color: #ecf0f1; }
+    color: #4d4d33; }
     .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
       color: white; }
   .navbar-default .navbar-text {
-    color: #ecf0f1; }
+    color: #4d4d33; }
   .navbar-default .navbar-nav > li > a {
-    color: #ecf0f1; }
+    color: #4d4d33; }
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
       color: white;
-      background-color: #4d4dff; }
+      background-color: #adad85; }
   .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: white;
-    background-color: #4d4dff; }
+    background-color: #d9d9d9; }
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     color: white;
-    background-color: #4d4dff; }
+    background-color: #d9d9d9; }
   .navbar-default .navbar-toggle {
-    border-color: #4d4dff; }
+    border-color: #d9d9d9; }
     .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-      background-color: #4d4dff; }
+      background-color: #d9d9d9; }
     .navbar-default .navbar-toggle .icon-bar {
       background-color: #ecf0f1; }
   .navbar-default .navbar-collapse,
@@ -204,44 +212,75 @@ hr {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
       color: white; }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: white;
-    background-color: #4d4dff; } }
+    color: #4d4d33;
+    background-color: #d9d9d9; } }
 
 .noBorder {
   border: 0px; }
 
 .taxPeriodNumberContainer {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   width: 100%; }
 
 #taxPeriodNumberMenu {
   margin-top: 50px;
-  background-color: #0088cc;
+  background-color: #e6e6e6;
   font-size: 25px;
-  color: white;
+  color: #4d4d33;
   height: 40px;
   text-align: center;
   padding: 0px;
+  z-index: 3;
   position: fixed;
   width: 100%;
-  border-bottom: 1px solid #4d4dff; }
+  border-bottom: 1px solid #d9d9d9; }
+
+.slectPeriodNumberMenu {
+  background-color: #e6e6e6;
+  font-size: 25px;
+  color: #4d4d33;
+  height: 45px;
+  text-align: center;
+  padding: 0px;
+  z-index: 2;
+  border-bottom: 1px solid #d9d9d9; }
+
+.smaller {
+  margin-top: 5px;
+  height: 35px; }
+
+.noPaddingFromSides {
+  margin-top: 5px;
+  padding-left: 0px;
+  padding-right: 0px; }
+
+.marginTopMain {
+  margin-top: 50px; }
+
+.marginTop90 {
+  margin-top: 90px; }
+
+.paddingTop5 {
+  padding-top: 5px; }
 
 .clickable {
   font-size: 35px; }
 
 @media (max-width: 767px) {
-  #taxPeriodNumberMenu {
-    font-size: 22px; } }
+  #taxPeriodNumberMenu, .slectPeriodNumberMenu {
+    font-size: 22px; }
+  .paddingTop5 {
+    padding-top: 50px; } }
 
 .tableCaption {
-  background-color: #0088cc;
-  color: white;
+  background-color: #e6e6e6;
+  color: #4d4d33;
   text-align: center; }
 
 .tableRow {
   height: 35px;
-  border: 1px solid grey;
+  border: 1px solid #d9d9d9;
   border-top: 0px; }
 
 .tableData {
@@ -255,7 +294,7 @@ hr {
   height: 34px;
   outline: none;
   border: 0px;
-  border-right: 1px solid grey;
+  border-right: 1px solid #d9d9d9;
   text-indent: 1px; }
 
 .dateDiv {
@@ -285,7 +324,7 @@ hr {
   height: 100%;
   font-size: 20px;
   padding-left: 3%;
-  border-left: 1px solid grey; }
+  border-left: 1px solid #d9d9d9; }
 
 .nextMorningSelect {
   background: #6b6b47;
@@ -305,7 +344,7 @@ hr {
   line-height: 35px; }
 
 .noteDiv {
-  border-left: 1px solid grey;
+  border-left: 1px solid #d9d9d9;
   height: 34px; }
 
 .noteInput {
@@ -316,7 +355,7 @@ hr {
   text-indent: 5px; }
 
 .border-left-message {
-  border-left: 1px solid grey; }
+  border-left: 1px solid #d9d9d9; }
 
 .currentDateInput {
   color: #006600;
@@ -327,15 +366,27 @@ hr {
   box-shadow: 0px 0px 0px 2px green inset;
   font-weight: bold; }
 
+.pic-sm, .pic-xs, .pic-chart {
+  height: 245px;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-top: 0px; }
+
+.pic-chart {
+  height: 250px; }
+
 @media (max-width: 767px) {
   .tableContainer {
     width: 100%; } }
 
+@media (max-width: 400px) {
+  .noteDiv {
+    visibility: visible; } }
+
 .button {
   float: right;
   font-size: 20px;
-  background-color: #0088cc;
-  color: white;
+  background-color: #6666ff;
   font-weight: bold; }
 
 .responseDiv {
@@ -343,9 +394,6 @@ hr {
   color: green;
   font-weight: bold;
   font-size: 22px; }
-
-.33percentWidth {
-  width: 33.3%; }
 
 .text-align-center {
   text-align: center; }
@@ -428,12 +476,12 @@ hr {
     float: left; } }
 
 .boxTitle {
-  background-color: #0088cc;
-  color: white;
+  background-color: #e6e6e6;
+  color: #4d4d33;
   text-align: center;
   font-size: 25px;
   height: 40px;
-  border: 1px solid grey; }
+  border: 1px solid #d9d9d9; }
 
 #calendarCaption {
   padding: 0px 20px 0px 20px; }
@@ -459,19 +507,19 @@ hr {
   text-align: center;
   height: 100%;
   width: 12%;
-  -webkit-box-shadow: inset 1px 0px 0px 0px grey;
-  box-shadow: inset 1px 0px 0px 0px grey; }
+  -webkit-box-shadow: inset 1px 0px 0px 0px #d9d9d9;
+  box-shadow: inset 1px 0px 0px 0px #d9d9d9; }
 
 .monthDiv {
-  background: #0088cc;
-  color: white;
+  background: #e6e6e6;
+  color: #4d4d33;
   width: 16%;
   height: 100%; }
 
 /*calendar and payments subheadings*/
 .calendarHeading, .paymentsHeading {
-  background: #0088cc;
-  color: white;
+  background: #e6e6e6;
+  color: #4d4d33;
   display: inline-block;
   text-align: center;
   height: 100%; }
@@ -483,25 +531,25 @@ hr {
   -webkit-box-shadow: 0px 0px 0px 4px green inset;
   box-shadow: 0px 0px 0px 4px green inset; }
 
-#totalGrossPaymentsName, #totalGrossPaymentsAmount, .totaDeductionsRow {
+#totalGrossPaymentsName, #totalGrossPaymentsAmount, .totaDeductionsRow, #totalTaxablePaymentsAmount {
   background: #d7d7c1;
   font-size: 20px;
   text-align: left;
   height: 100%;
   line-height: 35px;
-  border-top: 1px solid grey; }
+  border-top: 1px solid #d9d9d9; }
 
-#totalGrossPaymentsAmount {
+#totalGrossPaymentsAmount, #totalTaxablePaymentsAmount {
   font-weight: bold;
   text-align: right;
   padding-right: 2px; }
 
 .totaDeductionsRow {
-  border: 1px solid grey; }
+  border: 1px solid #d9d9d9; }
 
 .netPay {
   background: #ceff99;
-  border-left: 1px solid grey;
+  border-left: 1px solid #d9d9d9;
   padding-left: 5px; }
 
 #netPayAmount {
@@ -511,12 +559,12 @@ hr {
   background: #ceff99; }
 
 .border-left {
-  border-left: 1px solid grey;
+  border-left: 1px solid #d9d9d9;
   text-align: right;
   padding-right: 5px; }
 
 .topBorder {
-  border-top: 1px solid grey; }
+  border-top: 1px solid #d9d9d9; }
 
 .align-right {
   text-align: right;
@@ -531,12 +579,12 @@ hr {
   color: #ff9999; }
 
 .borderBottom {
-  border-bottom: 1px solid grey; }
+  border-bottom: 1px solid #d9d9d9; }
 
 .chartStyle, .chartStyleFullBorder {
-  background: #ffffcc;
+  background: #ffffe6;
   text-align: center;
-  border: 1px solid grey;
+  border: 1px solid #d9d9d9;
   border-top: 0px;
   height: 250px;
   width: 100%;
@@ -544,14 +592,14 @@ hr {
   padding: 0px; }
 
 .chartStyleFullBorder {
-  border: 1px solid grey; }
+  border: 1px solid #d9d9d9; }
 
 .noPremium {
   font-size: 18px;
   background: #e6ffcc;
   text-align: center;
   color: #cca300;
-  border-bottom: 1px solid grey; }
+  border-bottom: 1px solid #d9d9d9; }
 
 .noBottomBorder {
   border-bottom: 0px; }
@@ -617,10 +665,10 @@ hr {
 .savingsButtons {
   font-size: 18px;
   margin-top: -5px;
-  background: #0088cc;
+  background: #e6e6e6;
   padding: 3px;
   color: white;
-  border: 1px solid grey;
+  border: 1px solid #d9d9d9;
   text-align: center; }
 
 #payChristmasSavings {
@@ -664,11 +712,14 @@ a {
 .policiesHover:active {
   color: grey; }
 
+.font20 {
+  font-size: 25px; }
+
 .marginTopOther {
   margin-top: 50px; }
 
 .border-bottom-other {
-  border-bottom: 1px solid grey; }
+  border-bottom: 1px solid #d9d9d9; }
 
 .width80 {
   width: 80%;
@@ -697,8 +748,26 @@ label {
   position: absolute;
   opacity: 0.3; }
 
+.marginAuto {
+  margin: auto; }
+
+.text-align-right {
+  text-align: right; }
+
+.text-align-center {
+  text-align: center; }
+
+#backPayIncludeCheckbox input {
+  cursor: pointer; }
+
 @media (max-width: 576px) {
   .containerOther {
     width: 100%; }
   .marginTopOther {
-    margin-top: 40px; } }
+    margin-top: 40px; }
+  .table-bordered {
+    margin-left: -10px; } }
+
+@media (min-width: 400px) and (max-width: 760px) {
+  .showOnMobile {
+    visibility: visible; } }

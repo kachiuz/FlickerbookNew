@@ -1,24 +1,27 @@
 @import 'undoBootstrap';
 
-$themeColor   : #0088cc;
-$bgHighlight : #4d4dff;
+$buttonColor: #6666ff;
+$themeColor   : #e6e6e6;
+$textColor: #4d4d33;
+$bgHighlight : #d9d9d9;
 $colDefault  : #ecf0f1;
 $colHighlight: white;
-$hoverBackground : #4d4dff;
+$hoverBackground : #adad85;
 $tableWidth: 95%;
-$borderStyle: 1px solid grey;
+$borderStyle: 1px solid #d9d9d9;
 $marginBetweenElements: 10px;
 $currentWeekColor: #ff3333;
-$insideBoxColor: #ffffcc;
+$insideBoxColor: #ffffe6;
 $modalInfoColor: #e6f2ff;
 $modalErrorColor: #ffe6e6;
 
+
 hr {
   height: 1px;
-  color: grey;
+  color: #d9d9d9;
   margin-bottom: 2px;
   margin-top: 2px;
-  background: grey;
+  background: #d9d9d9;
   font-size: 0;
   border: 0;
 }
@@ -76,6 +79,7 @@ hr {
 }
 .marginTopMain {
   margin-top: 90px;
+  background-color: $themeColor;
 }
 .marginBetweenElements {
   margin-top: $marginBetweenElements;
@@ -93,6 +97,10 @@ hr {
   background: $insideBoxColor;
 }
 
+footer {
+  postion: absolute;
+  bottom: 0;
+}
 
 @import 'navbar';
 @import 'taxPeriodNumberMenu';
@@ -106,3 +114,4 @@ hr {
 @import 'savingsButtons';
 @import 'footer';
 @import 'otherPages';
+@import 'mainTableGrid'; 

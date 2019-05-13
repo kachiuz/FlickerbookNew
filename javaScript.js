@@ -1,12 +1,44 @@
+  
 //GLOBAL VARIABLES------------------------------------------------------------------------------//
 
-let timeSinceEpochOriginal = 1491004800000;
+let timeSinceEpochOriginal = 1238198400000 //1491004800000;
+							
 let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",];
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let insideBoxColor = "#ffffe6";
 //bank holiday arrays
 //2017
-let bankHolidayArray = [1492128000000, 1492387200000, 1493596800000, 1496016000000, 1503878400000, 1514160000000, 1514246400000];
+let bankHolidayArray = [1483228800000, 1483315200000, 1492128000000, 1492387200000, 1493596800000, 1496016000000, 1503878400000, 1514160000000, 1514246400000];
+//2009
+bankHolidayArray.push(1239321600000, 1239580800000, 1241395200000, 1243209600000, 1251676800000, 1261699200000, 1261785600000);
+
+//2010
+bankHolidayArray.push(1262304000000, 1270166400000, 1270425600000, 1272844800000);
+bankHolidayArray.push(1275264000000, 1283126400000, 1293235200000, 1293321600000);
+//2011
+bankHolidayArray.push(1293840000000, 1303430400000, 1303689600000, 1304035200000);
+bankHolidayArray.push(1304294400000, 1306713600000, 1314576000000, 1324771200000, 1324857600000);
+
+//2012
+bankHolidayArray.push(1325376000000, 1325462400000, 1333670400000, 1333929600000);
+bankHolidayArray.push(1336348800000, 1338768000000, 1338854400000, 1346025600000, 1356393600000, 1356480000000);
+
+//2013
+bankHolidayArray.push(1356998400000, 1364515200000, 1364774400000, 1367798400000);
+bankHolidayArray.push(1369612800000, 1377475200000, 1387929600000, 1388016000000);
+
+//2014
+bankHolidayArray.push(1388534400000, 1397779200000, 1398038400000, 1399248000000);
+bankHolidayArray.push(1401062400000, 1408924800000, 1419465600000, 1419552000000);
+
+//2015
+bankHolidayArray.push(1420070400000, 1428019200000, 1428278400000, 1430697600000);
+bankHolidayArray.push(1432512000000, 1440979200000, 1451001600000, 1451088000000, 1451260800000);
+
+//2016
+bankHolidayArray.push(1451606400000, 1458864000000, 1459123200000, 1462147200000);
+bankHolidayArray.push(1464566400000, 1472428800000, 1482624000000, 1482710400000, 1482796800000);
+
 //2018
 bankHolidayArray.push(1514764800000, 1522368000000, 1522627200000, 1525651200000);
 bankHolidayArray.push(1527465600000, 1535328000000, 1545696000000, 1545782400000);
@@ -669,6 +701,75 @@ const bankHolidayFilter = (timeSinceEpoch) => {
 			else if(timeSinceEpoch === bankHolidayArray[39]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
 			else if(timeSinceEpoch === bankHolidayArray[40]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
 			else if(timeSinceEpoch === bankHolidayArray[41]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[42]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[43]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[44]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[45]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[46]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[47]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[48]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[49]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[50]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[51]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[52]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[53]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[54]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[55]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[56]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[57]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[58]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[59]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[60]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[61]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[62]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[63]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[64]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[65]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[66]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[67]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[68]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[69]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[70]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[71]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[72]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[73]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[74]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[75]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[76]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[77]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[78]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[79]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[80]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[81]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[82]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[83]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[84]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[85]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[86]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[87]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[88]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[89]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[90]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[91]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[92]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[93]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[94]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[95]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[96]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[97]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[98]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[99]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[100]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[101]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[102]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[103]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[104]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[105]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[106]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[107]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[108]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			else if(timeSinceEpoch === bankHolidayArray[109]){dayDiv.style.color = "red"; dayDiv.style.fontWeight = "bold";}
+			
 			else {dayDiv.style.color = "black";  dayDiv.style.fontWeight = "normal";}
 			timeSinceEpoch+=86400000;
 			id++;
@@ -841,33 +942,73 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 
-	let tableCaptionTitle = document.getElementById("tableCaptionTitle");
+		let tableCaptionTitle = document.getElementById("tableCaptionTitle");
 	let tableCaption2 = document.getElementById("tableCaption2");
 	//depending on a year, caption has to be changed
-	if(taxPeriodNumber<=52 && taxPeriodNumber>0 ){
-		let taxPeriodNumberNew = taxPeriodNumber;
+	if(taxPeriodNumber<=52	 && taxPeriodNumber>=1 ){
+		taxPeriodNumberNew = taxPeriodNumber;
 		if (taxPeriodNumber<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2009/2010 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2009/2010 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=104 && taxPeriodNumber>52	 ){
+		taxPeriodNumberNew = taxPeriodNumber - 52;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2010/2011 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2010/2011 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=156 && taxPeriodNumber>104 ){
+		taxPeriodNumberNew = taxPeriodNumber - 104;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2011/2012 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2011/2012 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=209 && taxPeriodNumber>156 ){
+		taxPeriodNumberNew = taxPeriodNumber - 156;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2012/2013 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2012/2013 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=261 && taxPeriodNumber>209 ){
+		taxPeriodNumberNew = taxPeriodNumber - 209;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2013/2014 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2013/2014 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=313 && taxPeriodNumber>261 ){
+		taxPeriodNumberNew = taxPeriodNumber - 261;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2014/2015 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2014/2015 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=365 && taxPeriodNumber>313 ){
+		taxPeriodNumberNew = taxPeriodNumber - 313;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2015/2016 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2015/2016 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=417 && taxPeriodNumber>365 ){
+		taxPeriodNumberNew = taxPeriodNumber - 365;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
+		tableCaptionTitle.innerHTML = "2016/2017 Tax Period " + taxPeriodNumberNew;
+		tableCaption2.innerHTML = "2016/2017 Tax Period " + taxPeriodNumberNew;
+	}	else if (taxPeriodNumber<=469 && taxPeriodNumber>417 ){
+		taxPeriodNumberNew = taxPeriodNumber - 417;
+		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2017/2018 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2017/2018 Tax Period " + taxPeriodNumberNew;
-	}	else if (taxPeriodNumber<=104 && taxPeriodNumber>52 ){
-		let taxPeriodNumberNew = taxPeriodNumber - 52;
+	}	else if (taxPeriodNumber<=522 && taxPeriodNumber>469 ){
+		taxPeriodNumberNew = taxPeriodNumber - 469;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2018/2019 Tax Period " + taxPeriodNumberNew;
-	}	else if (taxPeriodNumber<=156 && taxPeriodNumber>104 ){
-		let taxPeriodNumberNew = taxPeriodNumber - 104;
+	}	else if (taxPeriodNumber<=574 && taxPeriodNumber>522 ){
+		taxPeriodNumberNew = taxPeriodNumber - 522;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2019/2020 Tax Period " + taxPeriodNumberNew;
-	}	else if (taxPeriodNumber<=taxPeriodLimit && taxPeriodNumber>156 ){
-		let taxPeriodNumberNew = taxPeriodNumber - 156;
+	}	else if (taxPeriodNumber<=taxPeriodLimit && taxPeriodNumber>574 ){
+		taxPeriodNumberNew = taxPeriodNumber - 574;
 		if (taxPeriodNumberNew<10){taxPeriodNumberNew="0"+taxPeriodNumberNew;}
 		tableCaptionTitle.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
 		tableCaption2.innerHTML = "2020/2021 Tax Period " + taxPeriodNumberNew;
 	}	else {
-		alert("Invalid Tax Period Number!");
+		taxPeriodNumberNew = taxPeriodNumber;
 	}
-
+	
 	for (let f=0;f<7;f++)	{
 		//creating first column
 		let tableRow = document.getElementById("tableRow"+f);
@@ -1123,28 +1264,28 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 		let dayOffDiv = document.createElement("div");
 		dayOffDiv.setAttribute("id","dayOffDiv"+taxPeriodStart);
 		dayOffDiv.setAttribute("class","border-left-message absoluteDiv dayOffDiv dayOffColor");
-		let dayOffText = document.createTextNode("Enjoy Your day off!");
+		let dayOffText = document.createTextNode("Enjoy Your Day!");
 		dayOffDiv.appendChild(dayOffText);
 		tableData2.appendChild(dayOffDiv);
 
 		let sicknessTextDiv = document.createElement("div");
 		sicknessTextDiv.setAttribute("id","sicknessTextDiv"+taxPeriodStart);
 		sicknessTextDiv.setAttribute("class","border-left-message absoluteDiv sicknessDiv sicknessColor");
-		let sicknessTextDivText = document.createTextNode("Get well soon!");
+		let sicknessTextDivText = document.createTextNode("Get Well Soon!");
 		sicknessTextDiv.appendChild(sicknessTextDivText);
 		tableData2.appendChild(sicknessTextDiv);
 
 		let dayInSickTextDiv = document.createElement("div");
 		dayInSickTextDiv.setAttribute("id","dayInSickTextDiv"+taxPeriodStart);
 		dayInSickTextDiv.setAttribute("class","border-left-message absoluteDiv dayInSickDiv dayInSickColor");
-		let dayInSickTextDivText = document.createTextNode("Get well soon!");
+		let dayInSickTextDivText = document.createTextNode("Get Well Soon!");
 		dayInSickTextDiv.appendChild(dayInSickTextDivText);
 		tableData2.appendChild(dayInSickTextDiv);
 
 		let absenceDiv = document.createElement("div");
 		absenceDiv.setAttribute("id","absenceDiv"+taxPeriodStart);
 		absenceDiv.setAttribute("class","border-left-message absoluteDiv absenceDiv absenceColor");
-		let absenceDivText = document.createTextNode("Time off work.");
+		let absenceDivText = document.createTextNode("Time Off Work.");
 		absenceDiv.appendChild(absenceDivText);
 		tableData2.appendChild(absenceDiv);
 
@@ -1172,7 +1313,7 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 		let unpaidHolDiv = document.createElement("div");
 		unpaidHolDiv.setAttribute("id","unpaidHolDiv"+taxPeriodStart);
 		unpaidHolDiv.setAttribute("class","border-left-message absoluteDiv unpaidHolDiv unpaidHolColor");
-		let unpaidHolDivText = document.createTextNode("Enjoy Your time off");
+		let unpaidHolDivText = document.createTextNode("Enjoy Your Time!");
 		unpaidHolDiv.appendChild(unpaidHolDivText);
 		tableData2.appendChild(unpaidHolDiv);
 
@@ -1584,28 +1725,25 @@ const deselectValuesValidateForm = (taxPeriodNumber) => {
 			enHoliday.checked = false;
 		}
 		// form validation
-		let startHourIndex = document.getElementById("startHours"+taxPeriodStart).options.selectedIndex;
-		let endHourIndex = document.getElementById("endHours"+taxPeriodStart).options.selectedIndex;
+		// form validation
+		var startHourIndex = document.getElementById("startHours"+taxPeriodStart).options.selectedIndex;
+		var endHourIndex = document.getElementById("endHours"+taxPeriodStart).options.selectedIndex;
 
-		let submitSuccess = document.getElementById("submitSuccessMain");
-		if (startHourIndex>endHourIndex)	{
-			let errorText = '<p class="textIndent">It appears that in one of the main table rows your provided ';
-			errorText +='Start time is greater then Finish time.</p>';
-			errorText +='<p class="textIndent">The improper Finish and start times are marked accordingly in the main table.</p>';
-			errorText +='<p class="textIndent">In case you finish work the following morning, please select hour values';
-			errorText +=' in the dropdown menu that appear below 23.</p>';
-			errorText +='<p class="textIndent">Once you select hours properly, press Generate button again!</p>';
-			errorText +='<p class="textIndent">Thank You!</p>';
-			triggerErrorModal(errorText, true);
+		var submitSuccess = document.getElementById("submitSuccessMain");
+		if (startHourIndex>endHourIndex)
+		{
 			submitSuccess.removeAttribute("class");
-			submitSuccess.setAttribute("class", 'col-sm-10 col-xs-10 responseDiv errorStyle');
-			submitSuccess.innerHTML = 'Error occurred!';
+			submitSuccess.setAttribute("class", 'col-sm-9 col-xs-8 responseDiv errorStyle');
+			submitSuccess.innerHTML = 'Start time can not be greater then finish time!';
+			
+			//alert("Start time can not be greater then finish time!");
 			endHours.setAttribute("class", "invalidForm hourMinuteSelect");
-			endMinutes.setAttribute("class", "invalidForm hourMinuteSelect");
+			endMinutes.setAttribute("class", "invalidForm hourMinuteSelect");		
 			return false;
-		}	else {
+		}
+		else{
 			submitSuccess.removeAttribute("class");
-			submitSuccess.setAttribute("class", "col-sm-10 col-xs-10 responseDiv");
+			submitSuccess.setAttribute("class", "col-sm-9 col-xs-8 responseDiv");
 		}
 		taxPeriodStart++;
 	}
@@ -1644,6 +1782,7 @@ const getFormValues = (taxPeriodNumber)=>{
 		let endHoursValue = document.getElementById("endHours"+taxPeriodStart).options.selectedIndex;//imame ne value o index, del naktines pamainaos valandu skaiciavimo
 		let endMinutesName = "endMinutes"+taxPeriodStart;
 		let endMinutesValue = document.getElementById("endMinutes"+taxPeriodStart).value;
+		
 		//sicknes
 		let sicknessButton = "sicknessButton"+taxPeriodStart;
 		let sicknessButtonValue = document.getElementById("sicknessButton"+taxPeriodStart).checked;
@@ -1667,18 +1806,19 @@ const getFormValues = (taxPeriodNumber)=>{
 		let dateInputHidden ='dateInputHidden' +taxPeriodStart;
 		let dateInputHiddenValue = document.getElementById("dateInputHidden"+taxPeriodStart).value;
 		//----------------------------------------------------------date checker--------------
-		let flickerbookStartDate = new Date("2017-03-31");
+		let flickerbookStartDate = new Date("2009-03-28");
 		let flickerbookEndDate = new Date("2021-03-29");
 		let submmitedDate = new Date(dateInputHiddenValue);
 			if( submmitedDate < flickerbookStartDate || submmitedDate>flickerbookEndDate )	{
-				submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
-				submitSuccess.innerHTML += 'Submitted Date Not allowed, check your devices date settings.<br>';
+				
 				submitSuccess.removeAttribute("class");
-				submitSuccess.setAttribute("class", "submitErrorMain");
+				submitSuccess.setAttribute("class", 'col-sm-9 col-xs-8 responseDiv errorStyle');
+				submitSuccess.innerHTML = 'Submitted Date Not Allowed!';
+			
 				return false;
-			}	else{
-				//submitSuccess.removeAttribute("class");
-				//submitSuccess.setAttribute("class", "submitSuccessMain");
+			} else {
+				submitSuccess.removeAttribute("class");
+				submitSuccess.setAttribute("class", "col-sm-9 col-xs-8 responseDiv");
 		}
 			//---------------------------------------------------------------------------------------
 
@@ -1687,7 +1827,7 @@ const getFormValues = (taxPeriodNumber)=>{
 		taxPeriodStart++
 	}
 	//taxPeriodNumber checker
-	if (taxPeriodNumber <0 || taxPeriodNumber>156)	{
+	if (taxPeriodNumber <0 || taxPeriodNumber>taxPeriodLimit)	{
 		submitSuccess.innerHTML = "Error! Touch to dismiss.<hr> "
 		submitSuccess.innerHTML += 'Tax Period no. not allowed, check your date settings on your device.<br>';
 		submitSuccess.removeAttribute("class");
@@ -1717,7 +1857,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	let {enhanced_holiday_units, sick_units, family_units, bhol_units, unsocial_prem_bereavement, ber_units} = response;
 	let {bereavementPay, uns_ber_units, unsocial_prem_compassionate, comp_units, compassionatePay, uns_comp_units} = response;
 	let {pensionBeforeTax, pensionRate, pensionRateEmp, pensionAmountEmp, companyLoan, studentLoanDeduction} = response;
-	let {summerSavingsDeduction, summerSavingsPayment, SSP} = response;
+	let {summerSavingsDeduction, summerSavingsPayment, SSP, holidayPayment} = response;
 	let {SPP, bHolPayTimes, additionalPayment2, additionalPayment2Name, additionalPayment3, SAP, salary, bonus} = response;
 	let {additionalPayment3Name, otherDeduction2, otherDeduction2Name, otherDeduction3, otherDeduction3Name, taxSum} = response;
 	let {commissions, pieceWork, part_sick, part_pater, part_ber, part_comp, union_deSum, pensionSum, other_de} = response;
@@ -1728,7 +1868,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	let {saturdayHoursSum, sundayHoursSum, uns_premSum, uns_prem_unSum, uns_holSum, uns_hol_unSum, uns_sickSum} = response;
 	let {uns_sick_unSum, uns_familySum, uns_family_unSum, uns_berSum, uns_ber_unSum, uns_compSum, uns_comp_unSum} = response;
 	let {SSP_Sum, SPP_Sum, pieceWorkSum, paybackSum, sundayExtraPaySum, saturdayExtraPaySum, add_pay2Sum, add_pay3Sum} = response;
-	let {add_paySum, SAPSum, salarySum, bonusSum, commissionsSum, daysNotOff, totalHours, taxSumLast12Weeks, } = response;
+	let {add_paySum, SAPSum, salarySum, bonusSum, commissionsSum, daysNotOff, totalHours, taxSumLast12Weeks, holidayPaySum} = response;
 	let {NISumLast12Weeks, union_deSumLast12Weeks, pensionSumLast12Weeks, chris_savSumLast12Weeks, overtimePercentage} = response;
 	let {other_deLast12Weeks, netPaySumLast12Weeks, pensionEmpSumLast12Weeks, companyLoanSumLast12Weeks} = response;
 	let {studentLoanDeductionSumLast12Weeks, summer_savSumLast12Weeks, add_deSum2Last12Weeks, add_deSum3Last12Weeks} = response;
@@ -1741,7 +1881,13 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	let {holidaysNotUsed, daysSinceLastHoliday, nextFullHoliday, daysSinceLastSick, errors} = response;
 	let {daySum0, daySum1, daySum2, daySum3, daySum4, daySum5, daySum6, daySum7, daySum8, daySum9, daySum10, daySum11} = response;
 	let {last10NetPayArray, last10DeductionsArray, last10WorkingHoursArray, last10SickHoursArray, last10AllHolidayHoursArray } = response;
-	let {last10FamHoursArray, last10BerHoursArray, last10CompHoursArray, premium} = response;
+	let {last10FamHoursArray, last10BerHoursArray, last10CompHoursArray, premium, taxablePayments} = response;
+	let {taxFreeDeduction1, taxFreeDeduction2, taxFreeDeduction3, travelDeduction} = response;
+	let {taxFreeDeduction1Name, taxFreeDeduction2Name, taxFreeDeduction3Name, travelDeductionSum} = response;
+	let {taxFreeDeduction1Sum, taxFreeDeduction2Sum, taxFreeDeduction3Sum, taxablePaySum} = response;
+	
+	let {taxablePaySumLast12Weeks, travelDeductionSumLast12Weeks, taxFreeDeduction1SumLast12Weeks} = response;
+	let {taxFreeDeduction2SumLast12Weeks, taxFreeDeduction3SumLast12Weeks} = response;
 	// these two values ar assigned to a different name variable, as the buttons already have these names
 	let paySummerSavingsCheckRes = response.paySummerSavingsCheck;
 	let payChristmasSavingsCheckRes = response.payChristmasSavingsCheck;
@@ -1839,6 +1985,16 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	chris_savSum = Number(chris_savSum);								commissionsSum = Number(commissionsSum);
 	totalGrossPayments = Number(totalGrossPayments);		NIAmount = Number(NIAmount);
 	totalDeductions = Number(totalDeductions);					netPay = Number(netPay);
+	holidayPayment = Number(holidayPayment);		holidayPaySum = Number(holidayPaySum);
+	taxFreeDeduction1 = Number(taxFreeDeduction1);							taxFreeDeduction2 = Number(taxFreeDeduction2);
+	taxFreeDeduction3 = Number(taxFreeDeduction3);							travelDeduction = Number(travelDeduction);
+	taxablePayments = Number(taxablePayments);					taxFreeDeduction1Sum = Number(taxFreeDeduction1Sum);
+	taxFreeDeduction2Sum = Number(taxFreeDeduction2Sum);	taxFreeDeduction3Sum = Number(taxFreeDeduction3Sum);
+	travelDeductionSum = Number(travelDeductionSum);		taxablePaySum = Number(taxablePaySum);
+	taxablePaySumLast12Weeks = Number(taxablePaySumLast12Weeks);		travelDeductionSumLast12Weeks = Number(travelDeductionSumLast12Weeks);
+	taxFreeDeduction1SumLast12Weeks = Number(taxFreeDeduction1SumLast12Weeks);
+	taxFreeDeduction2SumLast12Weeks = Number(taxFreeDeduction2SumLast12Weeks);
+	taxFreeDeduction3SumLast12Weeks = Number(taxFreeDeduction3SumLast12Weeks);
 
 	//get all elements from the dom that will be used to load data into them
 	//payments table
@@ -1846,7 +2002,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	let paymentsNamesDiv = document.getElementById("paymentsNamesDiv");
 	let paymentsUnitsDiv = document.getElementById("paymentsUnitsDiv");
 	let paymentsRateDiv = document.getElementById("paymentsRateDiv");
-	let totalGrossPaymentsAmountDiv = document.getElementById("totalGrossPaymentsAmount");
+	let totalGrossPaymentsAmountDiv = document.getElementById("totalGrossPaymentsAmountText");
+	
+	
 	//deductions table
 	let deductionsAmountDiv = document.getElementById("deductionsAmountDiv");
 	let deductionsNamesDiv = document.getElementById("deductionsNamesDiv");
@@ -1910,6 +2068,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (OT2Pay>0) {paymentsAmountDiv.innerHTML += '<br>'+OT2Pay.toFixed(2);}
 	if (enhancedHolidayPay>0) {paymentsAmountDiv.innerHTML += '<br>'+enhancedHolidayPay.toFixed(2);}
 	if (holidayPay>0) {paymentsAmountDiv.innerHTML += '<br>'+holidayPay.toFixed(2);}
+	if (holidayPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+holidayPayment.toFixed(2);}
 	if (saturdayExtraPay>0) {paymentsAmountDiv.innerHTML += '<br>'+saturdayExtraPay.toFixed(2);}
 	if (sundayExtraPay>0) {paymentsAmountDiv.innerHTML += '<br>'+sundayExtraPay.toFixed(2);}
 	if (sicknessPay>0) {paymentsAmountDiv.innerHTML += '<br>'+sicknessPay.toFixed(2);}
@@ -1926,9 +2085,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (salary>0) {paymentsAmountDiv.innerHTML += '<br>'+salary.toFixed(2);}
 	if (bonus>0) {paymentsAmountDiv.innerHTML += '<br>'+bonus.toFixed(2);}
 	if (commissions>0) {paymentsAmountDiv.innerHTML += '<br>'+commissions.toFixed(2);}
-	if (additionalPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment.toFixed(2);}
-	if (additionalPayment2>0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment2.toFixed(2);}
-	if (additionalPayment3>0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment3.toFixed(2);}
+	if (additionalPayment !== 0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment.toFixed(2);}
+	if (additionalPayment2 !== 0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment2.toFixed(2);}
+	if (additionalPayment3 !== 0) {paymentsAmountDiv.innerHTML += '<br>'+additionalPayment3.toFixed(2);}
 	if (christmasSavingsPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+christmasSavingsPayment.toFixed(2);}
 	if (summerSavingsPayment>0) {paymentsAmountDiv.innerHTML += '<br>'+summerSavingsPayment.toFixed(2);}
 	if (pensionAmount>0 && pensionBeforeTax === 1){paymentsAmountDiv.innerHTML += '<br>- '+pensionAmount.toFixed(2);}
@@ -1943,6 +2102,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (OT2Pay>0) {paymentsNamesDiv.innerHTML += '<br>Overtime 2';}
 	if (enhancedHolidayPay>0) {paymentsNamesDiv.innerHTML += '<br>En. Hol';}
 	if (holidayPay>0) {paymentsNamesDiv.innerHTML += '<br>Holiday';}
+	if (holidayPayment>0) {paymentsNamesDiv.innerHTML += '<br>Holiday Pay 2';}
 	if (saturdayExtraPay>0) {paymentsNamesDiv.innerHTML += '<br>Saturday B';}
 	if (sundayExtraPay>0) {paymentsNamesDiv.innerHTML += '<br>Sunday B';}
 	if (sicknessPay>0) {paymentsNamesDiv.innerHTML += '<br>Sick Pay';}
@@ -1959,9 +2119,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (salary>0) {paymentsNamesDiv.innerHTML += '<br> Salary';}
 	if (bonus>0) {paymentsNamesDiv.innerHTML += '<br> Bonus';}
 	if (commissions>0) {paymentsNamesDiv.innerHTML += '<br> Commissions';}
-	if (additionalPayment>0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPaymentName;}
-	if (additionalPayment2>0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPayment2Name;}
-	if (additionalPayment3>0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPayment3Name;}
+	if (additionalPayment !==0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPaymentName;}
+	if (additionalPayment2 !==0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPayment2Name;}
+	if (additionalPayment3 !==0) {paymentsNamesDiv.innerHTML += '<br>'+additionalPayment3Name;}
 	if (christmasSavingsPayment>0) {paymentsNamesDiv.innerHTML += '<br> Chris. Sav';}
 	if (summerSavingsPayment>0) {paymentsNamesDiv.innerHTML += '<br> Summer Sav.';}
 	if (pensionAmount>0 && pensionBeforeTax === 1){paymentsNamesDiv.innerHTML += '<br> Pension';}
@@ -1977,6 +2137,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (OT2Pay>0) {paymentsUnitsDiv.innerHTML += '<br>'+overtime2_units.toFixed(2);}
 	if (enhancedHolidayPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+enhanced_holiday_units.toFixed(2);}
 	if (holidayPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+holiday_units.toFixed(2);}
+	if (holidayPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
 	if (saturdayExtraPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+saturdayHours.toFixed(2);}
 	if (sundayExtraPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+sundayHours.toFixed(2);}
 	if (sicknessPay>0) {paymentsUnitsDiv.innerHTML += '<br>'+sick_units.toFixed(2);}
@@ -1993,9 +2154,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (salary>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
 	if (bonus>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
 	if (commissions>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
-	if (additionalPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
-	if (additionalPayment2>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
-	if (additionalPayment3>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (additionalPayment !==0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (additionalPayment2 !==0) {paymentsUnitsDiv.innerHTML += '<br>-';}
+	if (additionalPayment3 !==0) {paymentsUnitsDiv.innerHTML += '<br>-';}
 	if (christmasSavingsPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
 	if (summerSavingsPayment>0) {paymentsUnitsDiv.innerHTML += '<br>-';}
 	if (pensionAmount>0 && pensionBeforeTax === 1){paymentsUnitsDiv.innerHTML += '<br>-';}
@@ -2011,6 +2172,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (OT2Pay>0){paymentsRateDiv.innerHTML += '<br>'+overtime2_rate.toFixed(4);}
 	if (enhancedHolidayPay>0) {paymentsRateDiv.innerHTML += '<br>'+enhancedHolidayRate;}
 	if (holidayPay>0) {paymentsRateDiv.innerHTML += '<br>'+hourlyRate.toFixed(4);}
+	if (holidayPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
 	if (saturdayExtraPay>0) {paymentsRateDiv.innerHTML += '<br>*'+saturdayExtraRate.toFixed(4);}
 	if (sundayExtraPay>0) {paymentsRateDiv.innerHTML += '<br>*'+sundayExtraRate.toFixed(4);}
 	if (sicknessPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_sick).toFixed(4);}
@@ -2018,23 +2180,131 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (bereavementPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_ber).toFixed(4);}
 	if (compassionatePay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*part_comp).toFixed(4);}
 	if (bankHolidayHoursPay>0) {paymentsRateDiv.innerHTML += '<br>'+(hourlyRate*(bHolPayTimes-1)).toFixed(4);}
-	if (bankHolidayClockInBonus>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (payBack>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (pieceWork>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (SSP>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (SPP>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (SAP>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (salary>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (bonus>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (commissions>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (additionalPayment>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (additionalPayment2>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (additionalPayment3>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (christmasSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br> ';}
-	if (summerSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br> ';}
+	if (bankHolidayClockInBonus>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (payBack>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (pieceWork>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (SSP>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (SPP>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (SAP>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (salary>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (bonus>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (commissions>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (additionalPayment !==0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (additionalPayment2 !==0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (additionalPayment3 !==0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (christmasSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
+	if (summerSavingsPayment>0) {paymentsRateDiv.innerHTML += '<br>-';}
 	if ((pensionAmount>0) && (pensionBeforeTax === 1)){paymentsRateDiv.innerHTML += '<br> '+pensionRate.toFixed(2)+'%';}
 	//total gross payments
 	totalGrossPaymentsAmountDiv.innerHTML = totalGrossPayments.toFixed(2);
+	
+	
+	// TAX FREE deductions table;
+	//tax free deductions
+	let taxFreeDeductionsNamesDiv = document.getElementById("taxFreeDeductionsNamesDiv");
+	let taxFreeDeductionsAmountDiv = document.getElementById("taxFreeDeductionsAmountDiv");
+	
+	let taxFreePensionNameDiv = document.getElementById("taxFreePensionNameDiv");
+	let taxFreePensionAmountDiv = document.getElementById("taxFreePensionAmountDiv");
+	let taxFreeTravelNamesDiv = document.getElementById("taxFreeTravelNamesDiv");
+	let taxFreeTravelAmountDiv = document.getElementById("taxFreeTravelAmountDiv");
+	let taxFreeDeduction1NamesDiv = document.getElementById("taxFreeDeduction1NamesDiv");
+	let taxFreeDeduction1AmountDiv = document.getElementById("taxFreeDeduction1AmountDiv");
+	let taxFreeDeduction2NamesDiv = document.getElementById("taxFreeDeduction2NamesDiv");
+	let taxFreeDeduction2AmountDiv = document.getElementById("taxFreeDeduction2AmountDiv");
+	let taxFreeDeduction3NamesDiv = document.getElementById("taxFreeDeduction3NamesDiv");
+	let taxFreeDeduction3AmountDiv = document.getElementById("taxFreeDeduction3AmountDiv");
+	
+	
+	
+	
+	
+	
+	let totalTaxablePaymentsAmountText = document.getElementById("totalTaxablePaymentsAmountText");
+	
+	//names
+	if (pensionBeforeTax === 1 && travelDeduction === 0 && taxFreeDeduction1 === 0 && taxFreeDeduction2 === 0 && taxFreeDeduction3 === 0){
+		$('#taxFreeDeductionsNamesDiv').removeClass("hidden");
+		$('#taxFreeDeductionsAmountDiv').removeClass("hidden");
+		
+		$('#taxFreePensionAmountDiv').addClass("hidden");
+		$('#taxFreePensionNameDiv').addClass("hidden");
+		$('#taxFreeTravelAmountDiv').addClass("hidden");
+		$('#taxFreeTravelNamesDiv').addClass("hidden");
+		
+		$('#taxFreeDeduction1AmountDiv').addClass("hidden");
+		$('#taxFreeDeduction1NamesDiv').addClass("hidden");
+		$('#taxFreeDeduction2AmountDiv').addClass("hidden");
+		$('#taxFreeDeduction2NamesDiv').addClass("hidden");
+		$('#taxFreeDeduction3AmountDiv').addClass("hidden");
+		$('#taxFreeDeduction3NamesDiv').addClass("hidden");
+		
+		
+	} else {
+		$('#taxFreeDeductionsNamesDiv').addClass("hidden");
+		$('#taxFreeDeductionsAmountDiv').addClass("hidden");
+	
+		if (pensionAmount>0  && pensionBeforeTax === 0){
+			taxFreePensionAmountDiv.innerHTML = pensionAmount.toFixed(2);
+			$('#taxFreePensionAmountDiv').removeClass("hidden");
+			$('#taxFreePensionNameDiv').removeClass("hidden");
+		} else {
+			taxFreePensionAmountDiv.innerHTML = '0';
+			$('#taxFreePensionAmountDiv').addClass("hidden");
+			$('#taxFreePensionNameDiv').addClass("hidden");
+		}
+		
+		if (travelDeduction>0){
+			//taxFreeTravelNamesDiv.innerHTML = 'Travel';
+			taxFreeTravelAmountDiv.innerHTML = pensionAmount.toFixed(2);
+			$('#taxFreeTravelAmountDiv').removeClass("hidden");
+			$('#taxFreeTravelNamesDiv').removeClass("hidden");
+		} else {
+			//taxFreeTravelNamesDiv.innerHTML = '';
+			taxFreeTravelAmountDiv.innerHTML = '0';
+			$('#taxFreeTravelAmountDiv').addClass("hidden");
+			$('#taxFreeTravelNamesDiv').addClass("hidden");
+		}
+		
+		if (taxFreeDeduction1>0){
+			taxFreeDeduction1NamesDiv.innerHTML = taxFreeDeduction1Name;
+			taxFreeDeduction1AmountDiv.innerHTML = taxFreeDeduction1.toFixed(2);
+			$('#taxFreeDeduction1AmountDiv').removeClass("hidden");
+			$('#taxFreeDeduction1NamesDiv').removeClass("hidden");
+		} else {
+			taxFreeDeduction1NamesDiv.innerHTML = '';
+			taxFreeDeduction1AmountDiv.innerHTML = '0';
+			$('#taxFreeDeduction1AmountDiv').addClass("hidden");
+			$('#taxFreeDeduction1NamesDiv').addClass("hidden");
+		}
+		
+		if (taxFreeDeduction2>0){
+			taxFreeDeduction2NamesDiv.innerHTML = taxFreeDeduction2Name;
+			taxFreeDeduction2AmountDiv.innerHTML = taxFreeDeduction2.toFixed(2);
+			$('#taxFreeDeduction2AmountDiv').removeClass("hidden");
+			$('#taxFreeDeduction2NamesDiv').removeClass("hidden");
+		} else {
+			taxFreeDeduction2NamesDiv.innerHTML = '';
+			taxFreeDeduction2AmountDiv.innerHTML = '0';
+			$('#taxFreeDeduction2AmountDiv').addClass("hidden");
+			$('#taxFreeDeduction2NamesDiv').addClass("hidden");
+		}
+		
+		if (taxFreeDeduction3>0){
+			taxFreeDeduction3NamesDiv.innerHTML = taxFreeDeduction3Name;
+			taxFreeDeduction3AmountDiv.innerHTML = taxFreeDeduction3.toFixed(2);
+			$('#taxFreeDeduction3AmountDiv').removeClass("hidden");
+			$('#taxFreeDeduction3NamesDiv').removeClass("hidden");
+		} else {
+			taxFreeDeduction3NamesDiv.innerHTML = '';
+			taxFreeDeduction3AmountDiv.innerHTML = '0';
+			$('#taxFreeDeduction3AmountDiv').addClass("hidden");
+			$('#taxFreeDeduction3NamesDiv').addClass("hidden");
+		}
+	}	
+	//total taxable payments
+	totalTaxablePaymentsAmountText.innerHTML = taxablePayments.toFixed(2);
+	
 	//---------deductions table-------------------------------------//
 	deductionsAmountDiv.innerHTML = taxAmount.toFixed(2);
 	deductionsAmountDiv.innerHTML += '<br>'+NIAmount.toFixed(2);
@@ -2045,6 +2315,12 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (otherDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+otherDeduction.toFixed(2);}
 	if (otherDeduction2>0){deductionsAmountDiv.innerHTML += '<br>'+otherDeduction2.toFixed(2);}
 	if (otherDeduction3>0){deductionsAmountDiv.innerHTML += '<br>'+otherDeduction3.toFixed(2);}
+	
+	if (travelDeduction>0)deductionsAmountDiv.innerHTML += '<br>'+ travelDeduction.toFixed(2);
+	if (taxFreeDeduction1>0)deductionsAmountDiv.innerHTML += '<br>' + taxFreeDeduction1.toFixed(2);
+	if (taxFreeDeduction2>0)deductionsAmountDiv.innerHTML += '<br>' + taxFreeDeduction2.toFixed(2);
+	if (taxFreeDeduction3>0)deductionsAmountDiv.innerHTML += '<br>' + taxFreeDeduction3.toFixed(2);
+	
 	if (companyLoan>0){deductionsAmountDiv.innerHTML += '<br>'+companyLoan.toFixed(2);}
 	if (studentLoanDeduction>0){deductionsAmountDiv.innerHTML += '<br>'+studentLoanDeduction.toFixed(2);}
 	//deductions names
@@ -2057,6 +2333,11 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (otherDeduction>0)deductionsNamesDiv.innerHTML += '<br>' + otherDeductionName;
 	if (otherDeduction2>0)deductionsNamesDiv.innerHTML += '<br>' + otherDeduction2Name;
 	if (otherDeduction3>0)deductionsNamesDiv.innerHTML += '<br>' + otherDeduction3Name;
+	if (travelDeduction>0)deductionsNamesDiv.innerHTML += '<br>Travel';
+	if (taxFreeDeduction1>0)deductionsNamesDiv.innerHTML += '<br>' + taxFreeDeduction1Name;
+	if (taxFreeDeduction2>0)deductionsNamesDiv.innerHTML += '<br>' + taxFreeDeduction2Name;
+	if (taxFreeDeduction3>0)deductionsNamesDiv.innerHTML += '<br>' + taxFreeDeduction3Name;
+	
 	if (companyLoan>0)deductionsNamesDiv.innerHTML += '<br>Loan Deduction';
 	if (studentLoanDeduction>0)deductionsNamesDiv.innerHTML += '<br>Student Loan';
 	//total deductions
@@ -2082,7 +2363,16 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (pensionEmpSum >0) {yearToDateAmount.innerHTML+= pensionEmpSum.toFixed(2) +' £<br>';}
 	let totalPension = pensionSum + pensionEmpSum;
 	if (totalPension>0){yearToDateAmount.innerHTML+= totalPension.toFixed(2)+' £<hr>';}
+	
+	if (travelDeductionSum>0){yearToDateAmount.innerHTML+= travelDeductionSum.toFixed(2)+' £<br>';}
+	if (taxFreeDeduction1Sum>0){yearToDateAmount.innerHTML+= taxFreeDeduction1Sum.toFixed(2)+' £<br>';}
+	if (taxFreeDeduction2Sum>0){yearToDateAmount.innerHTML+= taxFreeDeduction2Sum.toFixed(2)+' £<br>';}
+	if (taxFreeDeduction3Sum>0){yearToDateAmount.innerHTML+= taxFreeDeduction3Sum.toFixed(2)+' £<br>';}
+	if (travelDeductionSum >0 || taxFreeDeduction1Sum>0 || taxFreeDeduction2Sum>0 || taxFreeDeduction3Sum>0) {
+		yearToDateAmount.innerHTML+= '<hr>';}
+	
 	yearToDateAmount.innerHTML+= netPaySum.toFixed(2)+' £<br>';
+	yearToDateAmount.innerHTML+= taxablePaySum.toFixed(2)+' £<br>';
 	yearToDateAmount.innerHTML+= '<b>'+gross_paySum.toFixed(2)+' £</b>';
 	//year to date names
 	yearToDateNames.innerHTML = 'TAX<br> National Insurance<hr>' ;
@@ -2101,7 +2391,15 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (pensionSum>0){yearToDateNames.innerHTML+= 'Employee Pension<br>';}
 	if (pensionEmpSum>0){yearToDateNames.innerHTML+= 'Employer Pension<br>';}
 	if (totalPension>0){yearToDateNames.innerHTML+= 'Total Pension<hr>';}
+	
+	if (travelDeductionSum>0){yearToDateNames.innerHTML+= 'Travel<br>';}
+	if (taxFreeDeduction1Sum>0){yearToDateNames.innerHTML+= 'Tax Free Ded. 1<br>';}
+	if (taxFreeDeduction2Sum>0){yearToDateNames.innerHTML+= 'Tax Free Ded. 2<br>';} 
+	if (taxFreeDeduction3Sum>0){yearToDateNames.innerHTML+= 'Tax Free Ded. 3<br>';}
+	if (travelDeductionSum >0 || taxFreeDeduction1Sum>0 || taxFreeDeduction2Sum>0 || taxFreeDeduction3Sum>0) {
+		yearToDateNames.innerHTML+= '<hr>';}
 	yearToDateNames.innerHTML+= 'Total Net Pay<br>';
+	yearToDateNames.innerHTML+= 'Total Taxable Pay<br>';
 	yearToDateNames.innerHTML+= 'Total Gross Pay<br>';
 	//pay structure table
 	//percentage amounts
@@ -2137,8 +2435,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (uns_premSum>0){yearToDateAmountII.innerHTML+= uns_premSum.toFixed(2)+' £<br>';}
 	if (ot1_paySum>0){yearToDateAmountII.innerHTML+= ot1_paySum.toFixed(2)+' £<br>';}
 	if (ot2_paySum>0){yearToDateAmountII.innerHTML+= ot2_paySum.toFixed(2)+' £<br>';}
-	if (hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateAmountII.innerHTML+= '<hr>';}
+	if (holidayPaySum > 0 || hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateAmountII.innerHTML+= '<hr>';}
 	if (hol_paySum>0){yearToDateAmountII.innerHTML+= hol_paySum.toFixed(2)+' £<br>';}
+	if (holidayPaySum>0){yearToDateAmountII.innerHTML+= holidayPaySum.toFixed(2)+' £<br>';}
 	if (enhol_paySum>0){yearToDateAmountII.innerHTML+= enhol_paySum.toFixed(2)+' £<br>';}
 	if (uns_holSum>0){yearToDateAmountII.innerHTML+= uns_holSum.toFixed(2)+' £<br>';}
 	if (bhol_paySum>0){yearToDateAmountII.innerHTML+= bhol_paySum.toFixed(2)+' £<br>';}
@@ -2175,8 +2474,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (uns_premSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
 	if (ot1_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
 	if (ot2_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
-	if (hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
+	if (holidayPaySum >0 || hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateAmountIIHid.innerHTML+= '<hr>';}
 	if (hol_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	if (holidayPaySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
+	
 	if (enhol_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
 	if (uns_holSum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
 	if (bhol_paySum>0){yearToDateAmountIIHid.innerHTML+= 'Premium<br>';}
@@ -2213,8 +2514,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (uns_premSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Basic Pay<br>';}
 	if (ot1_paySum>0){yearToDateNamesII.innerHTML+= 'Overtime 1 Pay<br>';}
 	if (ot2_paySum>0){yearToDateNamesII.innerHTML+= 'Overtime 2 Pay<br>';}
-	if (hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateNamesII.innerHTML+= '<hr>';}
+	if (holidayPaySum>0|| hol_paySum>0 || enhol_paySum>0 || bhol_paySum>0 || bhol_bonusSum>0 ||uns_holSum>0){yearToDateNamesII.innerHTML+= '<hr>';}
 	if (hol_paySum>0){yearToDateNamesII.innerHTML+= 'Holiday Pay<br>';}
+	if (holidayPaySum>0){yearToDateNamesII.innerHTML+= 'Holiday Pay 2<br>';}
+	
 	if (enhol_paySum>0){yearToDateNamesII.innerHTML+= 'Enhanced Holiday Pay<br>';}
 	if (uns_holSum>0){yearToDateNamesII.innerHTML+= 'Unsocial Holiday Pay<br>';}
 	if (bhol_paySum>0){yearToDateNamesII.innerHTML+= 'Bank Holiday Pay<br>';}
@@ -2406,6 +2709,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	NISumLast12Weeks =  NISumLast12Weeks/13;
 	union_deSumLast12Weeks =  union_deSumLast12Weeks/13;
 	pensionSumLast12WeeksChart =  pensionSumLast12Weeks/13;
+	pensionEmpSumLast12Weeks = pensionEmpSumLast12Weeks/13;
 	chris_savSumLast12Weeks =  chris_savSumLast12Weeks/13;
 	summer_savSumLast12Weeks =  summer_savSumLast12Weeks/13;
 	companyLoanSumLast12Weeks =  companyLoanSumLast12Weeks/13;
@@ -2415,6 +2719,12 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	add_deSum3Last12Weeks =  add_deSum3Last12Weeks/13;
 	netPaySumLast12Weeks =  netPaySumLast12Weeks/13;
 	gross_paySumLast12Weeks = gross_paySumLast12Weeks/13;
+	
+	taxablePaySumLast12Weeks = taxablePaySumLast12Weeks/13;		
+	travelDeductionSumLast12Weeks = travelDeductionSumLast12Weeks/13;
+	taxFreeDeduction1SumLast12Weeks = taxFreeDeduction1SumLast12Weeks/13;
+	taxFreeDeduction2SumLast12Weeks = taxFreeDeduction2SumLast12Weeks/13;
+	taxFreeDeduction3SumLast12Weeks = taxFreeDeduction3SumLast12Weeks/13;
 	//last 13 weeks amounts
 	yearToDateLast12WeeksAmount.innerHTML = taxSumLast12Weeks.toFixed(2)+' £<br>'+NISumLast12Weeks.toFixed(2)+' £<hr>';
 	if (union_deSumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= union_deSumLast12Weeks.toFixed(2)+' £<br>';}
@@ -2427,12 +2737,20 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (add_deSum2Last12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= add_deSum2Last12Weeks.toFixed(2)+' £<br>';}
 	if (add_deSum3Last12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= add_deSum3Last12Weeks.toFixed(2)+' £<br>';}
 	if (companyLoanSumLast12Weeks >0 || studentLoanDeductionSumLast12Weeks>0 || union_deSumLast12Weeks >0 || chris_savSumLast12Weeks>0 || other_deLast12Weeks>0||add_deSum2Last12Weeks>0 ||add_deSum3Last12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= '<hr>';}
-	if (pensionSumLast12Weeks>0) {yearToDateLast12WeeksAmount.innerHTML+= pensionSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (pensionSumLast12WeeksChart>0) {yearToDateLast12WeeksAmount.innerHTML+= pensionSumLast12WeeksChart.toFixed(2)+' £<br>';}
 	if (pensionEmpSumLast12Weeks >0) {yearToDateLast12WeeksAmount.innerHTML+= pensionEmpSumLast12Weeks.toFixed(2) +' £<br>';}
-	var totalPensionLast12Weeks = pensionSumLast12Weeks + pensionEmpSumLast12Weeks;
+	var totalPensionLast12Weeks = pensionSumLast12WeeksChart + pensionEmpSumLast12Weeks;
 	if (totalPensionLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= totalPensionLast12Weeks.toFixed(2)+' £<hr>';}
-
+	
+	if (travelDeductionSumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= travelDeductionSumLast12Weeks.toFixed(2)+' £<br>';}
+	if (taxFreeDeduction1SumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= taxFreeDeduction1SumLast12Weeks.toFixed(2)+' £<br>';}
+	if (taxFreeDeduction2SumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= taxFreeDeduction2SumLast12Weeks.toFixed(2)+' £<br>';}
+	if (taxFreeDeduction3SumLast12Weeks>0){yearToDateLast12WeeksAmount.innerHTML+= taxFreeDeduction3SumLast12Weeks.toFixed(2)+' £<br>';}
+	if (travelDeductionSumLast12Weeks >0 || taxFreeDeduction1SumLast12Weeks>0 || taxFreeDeduction2SumLast12Weeks >0 || taxFreeDeduction3SumLast12Weeks>0) {
+		yearToDateLast12WeeksAmount.innerHTML+= '<hr>';}
+	
 	yearToDateLast12WeeksAmount.innerHTML+= netPaySumLast12Weeks.toFixed(2)+' £<br>';
+	yearToDateLast12WeeksAmount.innerHTML+= taxablePaySumLast12Weeks.toFixed(2)+' £<br>';
 	yearToDateLast12WeeksAmount.innerHTML+= '<b>'+gross_paySumLast12Weeks.toFixed(2)+' £</b>';
 
 	//last 13 weeks names
@@ -2452,8 +2770,16 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (pensionSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Employee Pension<br>';}
 	if (pensionEmpSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Employer Pension<br>';}
 	if (totalPensionLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Pension<hr>';}
+	
+	if (travelDeductionSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Travel <br>';}
+	if (taxFreeDeduction1SumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Tax Free Ded. 1<br>';}
+	if (taxFreeDeduction2SumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Tax Free Ded. 2<br>';}
+	if (taxFreeDeduction3SumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Tax Free Ded. 3<br>';}
+	if (travelDeductionSumLast12Weeks >0 || taxFreeDeduction1SumLast12Weeks>0 || taxFreeDeduction2SumLast12Weeks >0 || taxFreeDeduction3SumLast12Weeks>0) {
+		yearToDateLast12WeeksNames.innerHTML+= '<hr>';}
 
 	yearToDateLast12WeeksNames.innerHTML+= 'Net Pay<br>';
+	yearToDateLast12WeeksNames.innerHTML+= 'Taxable Pay<br>';
 	yearToDateLast12WeeksNames.innerHTML+= 'Gross Pay<br>';
 	//last 13 weeks amounts hidden
 	yearToDateLast12WeeksAmountHid.innerHTML = 'Premium<br>Premium<hr>';
@@ -2472,25 +2798,24 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (pensionEmpSumLast12Weeks >0) {yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
 	var totalPensionLast12Weeks = pensionSumLast12Weeks + pensionEmpSumLast12Weeks;
 	if (totalPensionLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<hr>';}
+	
+	if (travelDeductionSumLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (taxFreeDeduction1SumLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (taxFreeDeduction2SumLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (taxFreeDeduction3SumLast12Weeks>0){yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';}
+	if (travelDeductionSumLast12Weeks >0 || taxFreeDeduction1SumLast12Weeks>0 || taxFreeDeduction2SumLast12Weeks >0 || taxFreeDeduction3SumLast12Weeks>0) {
+		yearToDateLast12WeeksAmountHid.innerHTML+= '<hr>';}
 
+	yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';
 	yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';
 	yearToDateLast12WeeksAmountHid.innerHTML+= 'Premium<br>';
 	//--------------weeklyAverages div--------------------------//
-	//determine current Tax period number
-	if(taxPeriodNumber>0 && taxPeriodNumber<=52)	{
-		taxPeriodNumberNew = taxPeriodNumber;
-	}	else if (taxPeriodNumber>52 && taxPeriodNumber<=104)	{
-		taxPeriodNumberNew = taxPeriodNumber -52;
-	}	else if (taxPeriodNumber>104 && taxPeriodNumber<=156)	{
-			taxPeriodNumberNew = taxPeriodNumber -104;
-	}	else if (taxPeriodNumber>156 && taxPeriodNumber<=204)	{
-		taxPeriodNumberNew = taxPeriodNumber -156;
-	}	else {
-
-	}
+	//determine current Tax period number: nustatomas kitoje funcijoje, kur generuojamas table caption
+	
 	let averageTax = taxSum / taxPeriodNumberNew;
 	let averageNI = NISum / taxPeriodNumberNew;
 	let averageGrossPay = gross_paySum / taxPeriodNumberNew;
+	let avergetaxablePay = taxablePaySum / taxPeriodNumberNew;
 	let averageNetPay = netPaySum / taxPeriodNumberNew;
 	let averageBasicHoursPay = basicPaySum / taxPeriodNumberNew;
 	let averageBasicHours = basicHoursSum / taxPeriodNumberNew ;
@@ -2502,9 +2827,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	//weeklyAverages amounts
 	weeklyAveragesAmount.innerHTML= averageTax.toFixed(2)+' £<br>';
 	if (averageNI>0){weeklyAveragesAmount.innerHTML+= averageNI.toFixed(2)+' £<br>';}
+	if (avergetaxablePay>0){weeklyAveragesAmount.innerHTML+= avergetaxablePay.toFixed(2)+' £<br>';}
 	if (averageGrossPay>0){weeklyAveragesAmount.innerHTML+= averageGrossPay.toFixed(2)+' £<br>';}
 	if (averageNetPay>0){weeklyAveragesAmount.innerHTML+= averageNetPay.toFixed(2)+' £<br>';}
-	if (averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesAmount.innerHTML+= '<hr>';}
+	if (avergetaxablePay >0 || averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesAmount.innerHTML+= '<hr>';}
 	if (averageBasicHoursPay>0){weeklyAveragesAmount.innerHTML+= averageBasicHoursPay.toFixed(2)+' £<br>';}
 	if (averageBasicHours>0){weeklyAveragesAmount.innerHTML+= averageBasicHours.toFixed(2)+' h<br>';}
 	if (averageUnsocialPrem>0){weeklyAveragesAmount.innerHTML+= averageUnsocialPrem.toFixed(2)+' £<br>';}
@@ -2514,9 +2840,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	//weeklyAverages names
 	weeklyAveragesNames.innerHTML= 'TAX<br>';
 	if (NISum>0){weeklyAveragesNames.innerHTML+= 'NI<br>';}
+	if (avergetaxablePay>0){weeklyAveragesNames.innerHTML+= 'Taxable Pay<br>';}
 	if (averageGrossPay>0){weeklyAveragesNames.innerHTML+= 'Gross Pay<br>';}
 	if (averageNetPay>0){weeklyAveragesNames.innerHTML+= 'Net Pay<br>';}
-	if (averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesNames.innerHTML+= '<hr>';}
+	if (avergetaxablePay >0 || averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesNames.innerHTML+= '<hr>';}
 	if (averageBasicHoursPay>0){weeklyAveragesNames.innerHTML+= 'Basic Pay<br>';}
 	if (averageBasicHours>0){weeklyAveragesNames.innerHTML+= 'Basic Hours<br>';}
 	if (averageUnsocialPrem>0){weeklyAveragesNames.innerHTML+= 'Unsocial Basic Pay<br>';}
@@ -2526,9 +2853,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	//weeklyAverages amounts hidden
 	weeklyAveragesAmountHid.innerHTML= 'Premium<br>';
 	if (averageNI>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
+	if (avergetaxablePay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
 	if (averageGrossPay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
 	if (averageNetPay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
-	if (averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesAmountHid.innerHTML+= '<hr>';}
+	if (avergetaxablePay >0 || averageTax >0 || NISum>0 || averageGrossPay>0 || averageNetPay>0){weeklyAveragesAmountHid.innerHTML+= '<hr>';}
 	if (averageBasicHoursPay>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
 	if (averageBasicHours>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
 	if (averageUnsocialPrem>0){weeklyAveragesAmountHid.innerHTML+= 'Premium<br>';}
@@ -3052,13 +3380,19 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 				//payments chart
 				let paymentsColorArray = [dayInColor, dayInColor, holidayColor,sicknessColor, familyLeaveColor, bereavementColor]; 
 				paymentsColorArray.push(compassionateColor, overtime1Color,overtime2Color);
-				paymentsColorArray.push(holidayColor, holidayColor, saturdayColor, sundayColor);
+				paymentsColorArray.push(holidayColor, holidayColor, holidayColor, saturdayColor, sundayColor);
 				paymentsColorArray.push(sicknessColor, familyLeaveColor, bereavementColor, compassionateColor,  bankHolidayColor); 
 				paymentsColorArray.push(bankHolidayBonusColor,backPayColor, pieceWorkColor, sicknessColor, familyLeaveColor, addPay1Color, addPay2Color);
-				paymentsColorArray.push(addPay3Color, christmasColor, summerColor, familyLeaveColor, salaryColor, bonusColor, commissionsColor);
+				paymentsColorArray.push(addPay3Color, christmasColor, summerColor, familyLeaveColor, salaryColor, bonusColor, commissionsColor, taxAmuntColor);
 				//var deletechart = document.getElementById('paymentsPieChart').innerHTML = " ";
+				//remove negative values
+				let taxReturn = 0;
+				if (additionalPayment < 0){additionalPayment = 0};
+				if (additionalPayment2 < 0){additionalPayment2 = 0};
+				if (additionalPayment3 < 0){additionalPayment3 = 0};
+				if (taxAmount < 0 ) {taxReturn = -taxAmount};
 				if (basicHoursPay >0||unsocial_prem>0||unsocial_prem_hol>0||unsocial_prem_sick>0||unsocial_prem_family>0||
-				unsocial_prem_bereavement>0||unsocial_prem_compassionate>0||OT1Pay>0||OT2Pay>0||enhancedHolidayPay>0||holidayPay>0||
+				unsocial_prem_bereavement>0||unsocial_prem_compassionate>0||OT1Pay>0||OT2Pay>0||enhancedHolidayPay>0||holidayPay>0||holidayPayment>0||
 				saturdayExtraPay>0||sundayExtraPay>0||sicknessPay>0||familyPay>0||bereavementPay>0||compassionatePay>0||bankHolidayHoursPay>0||
 				bankHolidayClockInBonus>0||payBack>0||pieceWork>0||SSP>0||SPP>0||additionalPayment>0||additionalPayment2>0||additionalPayment3>0||
 				christmasSavingsPayment>0||summerSavingsPayment>0||SAP>0||salary>0||bonus>0||commissions>0)
@@ -3079,6 +3413,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 						['Overtime 2 Pay', OT2Pay],
 						['Enhanced Holiday Pay', enhancedHolidayPay],
 						['Holiday Pay', holidayPay],
+						['Holiday Pay', holidayPayment],
 						['Saturday Extra Pay', saturdayExtraPay],
 						['Sunday Extra Pay', sundayExtraPay],
 						['Sickness Pay', sicknessPay],
@@ -3100,6 +3435,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 						['Salary', salary],
 						['Bonus', bonus],
 						['Commissions', commissions],
+						['Tax Return', taxReturn],
 						]);
 
 						var options = {
@@ -3138,6 +3474,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					var pensionSumLast12WeeksChart = 0;
 				}
 				//deductions chart
+				if (taxAmount < 0 ){taxAmount = 0;}
 				let deductionsColorArray = [taxAmuntColor, NIAmountColor, unionColor, pensionColor, christmasColor, summerColor, copanyLoanColor];
 					deductionsColorArray.push(studentLoanColor, otherDeductionColor, otherDeduction2Color, otherDeduction3Color, netPayColor);
 				if (christmasSavingsDeduction<0){christmasSavingsDeduction = 0;}
@@ -3619,6 +3956,12 @@ const postData = (taxPeriodNumber) => {
 	document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
 }
 const loadData = (taxPeriodNumber) => {
+	
+	let loadImageMainTable = document.getElementById("loadImageMainTable");
+	let loadMainTable = document.getElementById("loadMainTable");
+	let loadImageCalendar = document.getElementById("loadImageCalendar");
+	let loadCalendar = document.getElementById("loadCalendar");
+	
 	if (XMLHttpRequest)	{
 			request = new XMLHttpRequest();
 		}	else if (ActiveXObject)	{
@@ -3632,9 +3975,62 @@ const loadData = (taxPeriodNumber) => {
 		if(request.readyState ==4 && request.status ==200){
 			let response = JSON.parse(this.responseText);
 			loadResponseData(response, taxPeriodNumber, true);
+			loadImageMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
+			loadMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
+			loadImageCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
+			loadCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
+			
 			}
 		}
+	loadImageMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
+	loadMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
+	loadImageCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
+	loadCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
+	
+	//document.getElementById("paymentsUnitsDiv").innerHTML =" - ";
+	$("#paymentsPieChart").fadeOut(100);
+	$("#paymentsPieChart").fadeIn(1000);
+	$("#deductionsPieChart").fadeOut(100);
+	$("#deductionsPieChart").fadeIn(1000);
+	$("#yearToDatePieChart").fadeOut(100);
+	$("#yearToDatePieChart").fadeIn(1000);
+	$("#yearToDatePercentagePieChart").fadeOut(100);
+	$("#yearToDatePercentagePieChart").fadeIn(1000);
+	$("#dayStatisticsPieChart").fadeOut(100);
+	$("#dayStatisticsPieChart").fadeIn(1000);
+	$("#las3MonthsPieChart").fadeOut(100);
+	$("#las3MonthsPieChart").fadeIn(1000);
+		
+	$("#paymentsUnitsDiv").fadeOut(100);
+	$("#paymentsUnitsDiv").fadeIn(1000);
+	$("#paymentsRateDiv").fadeOut(100);
+	$("#paymentsRateDiv").fadeIn(1000);
+	$("#paymentsAmountDiv").fadeOut(100);
+	$("#paymentsAmountDiv").fadeIn(1000);
+	$("#paymentsNamesDiv").fadeOut(100);
+	$("#paymentsNamesDiv").fadeIn(1000);
+	$("#totalGrossPaymentsAmountText").fadeOut(100);
+	$("#totalGrossPaymentsAmountText").fadeIn(1000);
+
+	$("#taxFreeDeductions").fadeOut(100);
+	$("#taxFreeDeductions").fadeIn(1000);
+	$("#totalTaxablePaymentsAmountText").fadeOut(100);
+	$("#totalTaxablePaymentsAmountText").fadeIn(1000);
+	
+	$("#deductionsNamesDiv").fadeOut(100);
+	$("#deductionsNamesDiv").fadeIn(1000);
+	$("#deductionsAmountDiv").fadeOut(100);
+	$("#deductionsAmountDiv").fadeIn(1000);
+	$("#totalDeductionsAmount").fadeOut(100);
+	$("#totalDeductionsAmount").fadeIn(1000);
+	$("#netPayAmount").fadeOut(100);
+	$("#netPayAmount").fadeIn(1000);
+	
+	
+	
 }
+
+
 const deleteTaxPeriod = (taxPeriodNumber) => {
 	taxPeriodNumber += counter;
 	if (XMLHttpRequest)	{
@@ -3685,6 +4081,113 @@ function callWeekStart() {
  });
  return promiseObj;
 }
+//SELECT TAX PRIOD FUNCTIONS
+const generateStartDay =() =>{
+	let selectTaxPeriodDay = document.getElementById("selectTaxPeriodDay");
+	for(i=1;i<32;i++)
+	{
+		let dayOption = document.createElement("option");
+		if (i<10){i="0"+i;}
+		let textday = document.createTextNode(i);
+		
+		dayOption.appendChild(textday);						//option<---[text]
+		selectTaxPeriodDay.appendChild(dayOption);
+	}
+	
+}
+function loadSelectTaxPeriod(){
+	
+	let selectTaxPeriodYear = document.getElementById("selectTaxPeriodYear");
+	let selectTaxPeriodYearValue = Number(selectTaxPeriodYear.options[selectTaxPeriodYear.selectedIndex].value);
+	let selectTaxPeriodMonth = document.getElementById("selectTaxPeriodMonth");
+	let selectTaxPeriodMonthValue = selectTaxPeriodMonth.options[selectTaxPeriodMonth.selectedIndex].value;	
+	let selectTaxPeriodDay = document.getElementById("selectTaxPeriodDay");
+	let selectTaxPeriodDayValue = selectTaxPeriodDay.options[selectTaxPeriodDay.selectedIndex].value;
+	
+	let taxPeriodDate = selectTaxPeriodYearValue+'-'+selectTaxPeriodMonthValue+'-'+selectTaxPeriodDayValue;
+	
+	let taxPeriodDateString = 'taxPeriodDate='+taxPeriodDate+'&';
+	
+	if (XMLHttpRequest)
+		{
+			request = new XMLHttpRequest();
+		}
+			else if (ActiveXObject)
+		{
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	else {return false;}
+	let url = "javascript/ajax/loadSelectTaxPeriod.php";
+	let submitSuccess = $("#submitSuccessMain");
+	request.open("POST", url, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.onreadystatechange = function(){
+		if(request.readyState ==4 && request.status ==200){
+			
+			var response = JSON.parse(this.responseText);
+					
+			errorsArrayLength = Object.keys(response.errors).length;
+			//submitSuccessBP.text(" ");
+			if (errorsArrayLength>0){
+				for (i=0; i<errorsArrayLength; i++)
+				{
+					submitSuccess.addClass("errorStyle");
+					let errorText = "";
+					errorText += response.errors[i];
+					if (errorText === "Invalid date format!") {
+						$('#selectTaxPeriodYear').addClass("invalidForm");
+						$('#selectTaxPeriodMonth').addClass("invalidForm");
+						$('#selectTaxPeriodDay').addClass("invalidForm");
+					}
+					else if (errorText === 'Start date is not set!'){
+						$('#selectTaxPeriodYear').addClass("invalidForm");
+						$('#selectTaxPeriodMonth').addClass("invalidForm");
+						$('#selectTaxPeriodDay').addClass("invalidForm");
+					}
+					else if (errorText === 'Date Is Not Allowed!'){
+					$('#selectTaxPeriodYear').addClass("invalidForm");
+					$('#selectTaxPeriodMonth').addClass("invalidForm");
+					$('#selectTaxPeriodDay').addClass("invalidForm");
+					}
+					else{
+						$('#selectTaxPeriodYear').removeClass("invalidForm");
+						$('#selectTaxPeriodMonth').removeClass("invalidForm");
+						$('#selectTaxPeriodDay').removeClass("invalidForm");
+					}
+					errorText += '<br>';
+					submitSuccess.html(errorText);
+				}
+			}	
+			else{
+					$('#selectTaxPeriodYear').removeClass("invalidForm");
+					$('#selectTaxPeriodMonth').removeClass("invalidForm");
+					$('#selectTaxPeriodDay').removeClass("invalidForm");
+					taxPeriodNumber = response.taxPeriodNumber;
+					
+					timeSinceEpoch = timeSinceEpochOriginal + 604800000*(taxPeriodNumber-1)+weekStartArray[taxPeriodNumber]*86400000;
+					
+					for (let f=0;f<7;f++)	{
+						let tableRow = document.getElementById("tableRow"+f).innerHTML = " ";
+						let calendarRow = document.getElementById("calendarRow"+f).innerHTML = " ";
+					}
+					counter = 0; //need to reset this value
+					createTableElements(taxPeriodNumber, timeSinceEpoch);
+					generateCalendar (taxPeriodNumber,timeSinceEpoch);
+					createPayoutButtons(taxPeriodNumber);
+					
+					loadData(taxPeriodNumber);
+					submitSuccess.removeClass("errorStyle");
+					submitSuccess.text('Loaded!');
+					setTimeout(function(){submitSuccess.text(" ");},1500);
+			}
+		}
+	}
+	request.send(taxPeriodDateString);
+	//document.getElementById("closeError").setAttribute("class", "errorTitleHide");
+	submitSuccess.removeClass("errorStyle");
+	submitSuccess.text("Loading...");
+}
+
 const start = () => {
 	callWeekStart().then(function(myJson) {
 		taxPeriodLimit = myJson.taxPeriodLimit;
@@ -3703,7 +4206,11 @@ const start = () => {
 	createTableElements(taxPeriodNumber, timeSinceEpoch);
 	generateCalendar (taxPeriodNumber,timeSinceEpoch);
 	createPayoutButtons(taxPeriodNumber);
-
+	generateStartDay();
+	
+	let selectTaxPeriodButton = document.getElementById("selectTaxPeriodButton");
+	selectTaxPeriodButton.onclick = function () {loadSelectTaxPeriod();}
+	
 	let generateButton = document.getElementById("generateButton");
 	generateButton.onclick = function () {deselectValuesValidateForm(taxPeriodNumber);}
 
