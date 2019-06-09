@@ -14,7 +14,15 @@
 }
 .clickable {
   cursor: pointer;
+  color: #3bb300;
+  font-size: 35px;
 }
+.clickableNoColor {
+  cursor: pointer;
+  font-size: 35px;
+}
+
+
 .error-modal-color {
   font-size: 25px;
   background: $modalErrorColor;
@@ -23,6 +31,7 @@
 }
 .textIndent {
   text-indent: 10%;
+  text-shadow: 0px !important;
 }
 .glyphicon-info-sign{
   margin-left: -3px;

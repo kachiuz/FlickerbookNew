@@ -1,8 +1,8 @@
 .chartStyle, .chartStyleFullBorder {
 	background: $insideBoxColor;
 	text-align: center;
-  border: $borderStyle;
-	border-top: 0px;
+  //border: $borderStyle;
+	//border-top: 0px;
 	height: 250px;
 	width: 100%;
 	margin: 0px;
@@ -10,6 +10,15 @@
 }
 .chartStyleFullBorder {
   border: $borderStyle;
+}
+.chartStyleNoTopBorder{
+  border: $borderStyle;
+	border-top: 0px;
+}
+.chartStyleNoBorder{
+  border:0px;
+	height: 246px;
+	width: 98%;
 }
 .noPremium {
 	font-size: 18px;

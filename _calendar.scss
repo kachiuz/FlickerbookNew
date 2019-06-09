@@ -1,13 +1,21 @@
-.boxTitle {
-  background-color: $themeColor;
-  color: white;
+.boxTitle, .boxTitleCalendar,.boxTitleNoBottomBorder {
+  background-color: $titleColor;
+  color: $textColor;
   text-align: center;
   font-size: 25px;
   height: 40px;
   border: $borderStyle;
 }
+.boxTitleCalendar {
+  font-size: 25px;
+  padding-bottom: 5px !important;
+}
+.boxTitleNoBottomBorder{
+  border-bottom: 0px;
+}
 #calendarCaption {
-  padding: 0px 20px 0px 20px;
+  padding: 0px 10% 0px 10%;
+  font-size: 33px;
 }
 .currentWeek {
 	/*border-top: 1px solid $currentWeekColor;
@@ -30,24 +38,26 @@
 	text-align: center;
 	height: 100%;
   width: 12%;
-  box-shadow: inset 1px 0px 0px 0px grey;
+  box-shadow: inset 1px 0px 0px 0px #d9d9d9;
 }
 .monthDiv {
-	background: $themeColor;
-	color: white;
+	background: $titleColor;
+	color: $textColor;
   width: 16%;
   height: 100%;
 }
 /*calendar and payments subheadings*/
 .calendarHeading, .paymentsHeading {
-	background: $themeColor;
-	color: white;
+	background: $titleColor;
+	color: $textColor;
 	display: inline-block;
 	text-align: center;
   height: 100%;
 }
 .paymentsHeading {
   text-align: left;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 .currentDay {
 	box-shadow: 0px 0px 0px 4px green inset;

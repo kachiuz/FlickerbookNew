@@ -1,0 +1,97 @@
+.arrowPosition,{
+position: absolute;
+left:5%;
+top: -5px;
+font-size: 70px;
+color: $userGuideColor;
+z-index: 44;
+}
+.arrowPosition2{
+  position: absolute;
+  right:20%;
+  top: -5px;
+  font-size: 70px;
+  color: $userGuideColor;
+  z-index: 44;
+}
+.arrowPositionRight{
+  position: absolute;
+  right: 5%;
+  top: -25px;
+  font-size: 70px;
+  color: $userGuideColor;
+  z-index: 44;
+}
+.guideInfo1{
+  position: absolute;
+  right:10%;
+  width:50%;
+  height: 0%;
+  font-size: 0px;
+  font-weight: bold;
+  top: 10%;
+  color: #00b300;
+  z-index: 44;
+  background-color: white;
+  padding: 0%;
+  -webkit-box-shadow: 0px 0px 0px 2px #00b300 inset;
+  box-shadow: 0px 0px 0px 2px #00b300 inset;
+}
+#guideInfo3 {
+  -webkit-box-shadow: 0px;
+  box-shadow: 0px;
+}
+.roundBorder {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 50%;
+  width: 200px;
+  border: 5px solid $userGuideColor;
+  margin: auto;
+}
+.noBorder {
+  border: 0px;
+}
+.allBorder {
+  border: $borderStyle;
+}
+.hourMinuteSelectGuide {
+	border: 0px;
+	outline: none;
+	width: 50%;
+  height: 100%;
+	font-size: 20px;
+  padding-left: 3%;
+}
+.typeOfDaySelectGuide {
+  border-right: 0px;
+}
+.borderLeft {
+  border-left: $borderStyle;
+}
+#taxPeriodNumberMenuGuide{
+  position: static;
+  margin-top: 0px;
+  margin: auto;
+  border: $borderStyle;
+  padding-bottom: 4px;
+  width: 104%;
+  margin-left: -3%;
+}
+.roundBorder2 {
+  border-radius: 50%;
+  width: 50px;
+  border: 5px solid $userGuideColor;
+  margin: auto;
+}
+.roundBorder3 {
+  border-radius: 5%;
+  border: 5px solid $userGuideColor;
+  padding-bottom: 5px;
+}
+.roundBorder4 {
+  border-radius: 50%;
+  width: 140px;
+  border: 5px solid $userGuideColor;
+  margin: auto;
+}

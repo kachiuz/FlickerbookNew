@@ -1,29 +1,30 @@
 .button{
   float: right;
   font-size: 20px;
-  background-color: $themeColor;
-  color: white;
+  background-color: $buttonColor;
+  //color: $textColor;
   font-weight: bold;
 }
 .responseDiv{
   float: left;
-  color: green;
+  color: #009900;
   font-weight: bold;
   font-size: 22px;
-}
-.33percentWidth{
-  width: 33.3%;
+  text-shadow: 1px 1px black;
 }
 .text-align-center {
   text-align: center;
 }
 .errorStyle{
-  color: #ff9999
-}
-.width50{
-  width: 100%;
-  font-weight: 999;
+  color: #ff6666;
 }
 .g-recaptcha{
-  float:left;
+  float: left;
+}
+.fixedBottom {
+  position: fixed;
+  bottom: 0px;
+}
+.removeFixedPos{
+  position: static;
 }

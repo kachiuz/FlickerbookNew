@@ -1,0 +1,30 @@
+.footerBackground{
+	background: #c2c2a3;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 20px;
+	-webkit-box-shadow: 0px -2px 3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px -2px 3px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px -2px 3px rgba(50, 50, 50, 0.75);
+}
+.footerFont{
+		font-size: 30px;
+
+}
+.footerName {
+	padding-top: 10px;
+}
+a{
+	text-decoration: none;
+	color: $textColor;
+}
+.policiesHover{
+	text-decoration: none;
+}
+.policiesHover:link{color:black;}
+.policiesHover:visited{color:black;}
+.policiesHover:hover{color:grey;}
+.policiesHover:active{color:grey;}
+.font20{
+	font-size: 25px;
+}

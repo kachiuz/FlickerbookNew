@@ -1,12 +1,19 @@
 .tableCaption {
-  background-color: $themeColor;
-  color: white;
+  background-color: $titleColor;
+  color: $textColor;
   text-align: center;
 }
-.tableRow {
+.tableRow, .calendarRow {
   height: 35px;
   border: $borderStyle;
   border-top: 0px;
+}
+.calendarRow {
+  border-left: 0px;
+}
+.tableRowWithtopBorder {
+  height: 35px;
+  border: $borderStyle;
 }
 .tableData {
 	float: left;
@@ -14,7 +21,7 @@
   height: 100%;
   padding: 0px;
 }
-.typeOfDaySelect {
+.typeOfDaySelect, .typeOfDaySelectGuide {
   width: 100%;
   height: 34px;
   outline:none;
@@ -31,17 +38,13 @@
 }
 .dateInput {
 	text-align: right;
-	line-height:28px;
-	font-size: 18px;
-  vertical-align: middle;
-
 }
 .dateInputHidden {
 	visibility: hidden;
 	position: absolute;
 }
 .tableDataRelative {position: relative;}
-.hourMinuteSelect {
+.hourMinuteSelect, .hourMinuteSelectGuide {
 	border: 0px;
 	outline: none;
 	width: 25%;
@@ -90,8 +93,22 @@
 	font-weight: bold;
 }
 
+.pic-sm, .pic-xs, .pic-chart  {
+  height: 245px;
+  width: 100%;
+  border: $borderStyle;
+  border-top: 0px;
+}
+.pic-chart {
+  height: 250px;
+}
 @media (max-width: 767px) {
 	.tableContainer {
 		width: 100%;
+	}
+}
+@media (max-width: 400px) {
+	.noteDiv {
+		visibility: visible;
 	}
 }

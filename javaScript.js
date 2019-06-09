@@ -5,7 +5,73 @@ let timeSinceEpochOriginal = 1238198400000 //1491004800000;
 							
 let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",];
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-let insideBoxColor = "#ffffe6";
+let insideBoxColor = "white";
+
+//object to store data for google charts resize. gets filled in the loaddata function.
+let resizeChartValues = {};
+//chart colors
+	let dayInColor = '#e6e600';
+		let holidayColor = '#009900';
+		let sicknessColor = '#ff9999';
+		let familyLeaveColor = '#ffa64d';
+		let bereavementColor = '#000033';
+		let compassionateColor = '#ffce99';
+		let overtime1Color = '#cccc00';
+		let overtime2Color = '#b3b300';
+		let saturdayColor = '#df80ff';
+		let sundayColor = '#d966ff';
+		let bankHolidayColor = '#00ff55';
+		let bankHolidayBonusColor = '#00cc44';
+		let backPayColor = '#e69900';
+		let pieceWorkColor = '#ffd633';
+		let addPay1Color = '#ffb380';
+		let addPay2Color = '#ffa366';
+		let addPay3Color = '#ff944d';
+		let christmasColor = '#ff6633';
+		let summerColor = '#ff8c66';
+		let salaryColor = '#ffff00';
+		let bonusColor = '#cc9900';
+		let commissionsColor = '#ff8080';
+
+		let taxAmuntColor = '#ff3333';
+		let NIAmountColor = '#ff4d4d';
+		let unionColor = '#ff6666';
+		let pensionColor = '#ff8080';
+		let copanyLoanColor = '#ff9999';
+		let studentLoanColor = '#ffb3b3';
+		let otherDeductionColor = '#ffcccc';
+		let otherDeduction2Color = '#ff1a1a';
+		let otherDeduction3Color = '#ff0000';
+		
+		let travelDeductionColor = '#ffb399';
+		let taxFreeDeduction1Color = '#ff9f80'
+		let taxFreeDeduction2Color = '#ff8c66'
+		let taxFreeDeduction3Color = '#ff794d'
+		
+		let netPayColor = '#69cc00';
+
+		let unpaidBreaksColor = '#80bfff';
+
+		let notSelectedColor = '#b3daff';
+		let dayOffColor = '#c3c3a2';
+		let halfInHalfOffColor = '#e6ffb3';
+		let unpaidHolColor = '#e6ffe6';
+		let dayInSickColor = '#ffcccc';
+		let absenceColor = '#ccebff';
+
+		let holidaysAvailableColor = '#00ff00';
+		let holidaysBookedColor = '#00cc00';
+		
+		let paymentsColorArray = [dayInColor, dayInColor, holidayColor,sicknessColor, familyLeaveColor, bereavementColor]; 
+		paymentsColorArray.push(compassionateColor, overtime1Color,overtime2Color);
+		paymentsColorArray.push(holidayColor, holidayColor, holidayColor, saturdayColor, sundayColor);
+		paymentsColorArray.push(sicknessColor, familyLeaveColor, bereavementColor, compassionateColor,  bankHolidayColor); 
+		paymentsColorArray.push(bankHolidayBonusColor,backPayColor, pieceWorkColor, sicknessColor, familyLeaveColor, addPay1Color, addPay2Color);
+		paymentsColorArray.push(addPay3Color, christmasColor, summerColor, familyLeaveColor, salaryColor, bonusColor, commissionsColor, taxAmuntColor);
+		
+		let deductionsColorArray = [taxAmuntColor, NIAmountColor, unionColor, pensionColor, christmasColor, summerColor, copanyLoanColor];
+		deductionsColorArray.push(studentLoanColor, otherDeductionColor, otherDeduction2Color, otherDeduction3Color, travelDeductionColor);
+		deductionsColorArray.push(taxFreeDeduction1Color, taxFreeDeduction2Color, taxFreeDeduction3Color, netPayColor);
 //bank holiday arrays
 //2017
 let bankHolidayArray = [1483228800000, 1483315200000, 1492128000000, 1492387200000, 1493596800000, 1496016000000, 1503878400000, 1514160000000, 1514246400000];
@@ -942,7 +1008,7 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 	let weekStart = weekStartArray[taxPeriodNumber];
 	let taxPeriodStart = (taxPeriodNumber-1)*7+weekStart;
 
-		let tableCaptionTitle = document.getElementById("tableCaptionTitle");
+	let tableCaptionTitle = document.getElementById("tableCaptionTitle");
 	let tableCaption2 = document.getElementById("tableCaption2");
 	//depending on a year, caption has to be changed
 	if(taxPeriodNumber<=52	 && taxPeriodNumber>=1 ){
@@ -1021,7 +1087,7 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 		dayType.setAttribute("class", "typeOfDaySelect");
 		tableData.appendChild(dayType);
 
-		let dayOptionsArray =["Not Selected", "Day In", "Day Off", "Holiday", "Half In/Hol", "Unpaid Hol", "Day In/Sick", "Sickness", "Absence",  "Parental Leave", "Bereavement", "Compassionate" ];
+		let dayOptionsArray =["↓ Select", "Day In", "Day Off", "Holiday", "Half In/Hol", "Unpaid Hol", "Day In/Sick", "Sickness", "Absence",  "Parental Leave", "Bereavement", "Compassionate" ];
 		let dayOptionsColors = ["notSelectedColor", "dayInColor", "dayOffColor", "holidayColor", "halfInHalfOffColor", "unpaidHolColor", "dayInSickColor", "sicknessColor", "absenceColor", "familyLeaveColor","bereavementColor", "compassionateColor"];
 		//a loop that inserts day types into select input
 		for(let k=0; k<dayOptionsArray.length; k++)	{
@@ -1249,7 +1315,7 @@ const createTableElements = (taxPeriodNumber, timeSinceEpoch) => {
 		let notSelectedDiv = document.createElement("div");
 		notSelectedDiv.setAttribute("id","notSelectedDiv"+taxPeriodStart);
 		notSelectedDiv.setAttribute("class","border-left-message absoluteDiv notSelectedColor notSelectedDiv");
-		let notSelectedText = document.createTextNode("Select Day Type.");
+		let notSelectedText = document.createTextNode("Select Day Type");
 		notSelectedDiv.appendChild(notSelectedText);
 		tableData2.appendChild(notSelectedDiv);
 
@@ -1389,7 +1455,7 @@ const generateCalendar = (taxPeriodNumber,timeSinceEpoch) => {
 
 		let startDatecalendarCaption = new Date(timeSinceEpoch-86400000*21);
 		let yy = startDatecalendarCaption.getFullYear();
-		calendarCaption.innerHTML = "Calendar "+yy;
+		calendarCaption.innerHTML = yy;
 
 		//cd = create div
 		for(let cd=0;cd<7;cd++) 	{
@@ -1436,18 +1502,6 @@ const createPayoutButtons = (taxPeriodNumber) => {
 	paySummerSavings.appendChild(paySummerSavingsCheck);
 	var paySummerSavingsCheckText = document.createTextNode(" Pay Summer Savings");
 	paySummerSavings.appendChild(paySummerSavingsCheckText);
-}
-//a jquery function that trigger error modal after recieving apropriate values
-const triggerErrorModal = (errors,val) => {
-  val = val;
-
-  let title = "Error occurred!";
-  let bodyText = errors;
-  if (val){
-    $('#errorModal').modal('show');
-    $('#errorModalLabel').text(title);
-    $('#errorModalBody').html(bodyText);
-  }
 }
 //---------------------------------FORWARD BACKWARD FUNCTIONS------------------------------------------//
 //counter is used to keep a track of how many time all function has been called.
@@ -1891,6 +1945,14 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	// these two values ar assigned to a different name variable, as the buttons already have these names
 	let paySummerSavingsCheckRes = response.paySummerSavingsCheck;
 	let payChristmasSavingsCheckRes = response.payChristmasSavingsCheck;
+	
+	let {paymentsPieChartVis, deductionsPieChartVis, yearToDatePieChartVis} = response;
+	//vis for visibility
+	let {payStructurePieChartVis, daysPieChartVis, holidaysPieChartVis} = response;
+	let {last3MonthsPieChartVis, last10WeeksNetChartVis, last10WeeksPaidHoursChartVis} = response;
+	let {hourlyAveragesVis, dailyAveragesVis, weeklyAveragesVis} = response;
+	let {payStructureVis, YTDPaymentsVis, YTDHoursVis} = response;
+	let {YTDDaysVis, holidaysSectionVis, last3MonthsAveragesVis} = response;
 
 	//since some of the values from object are string elements, i need to convert them to number
 	//some small calculation will need to be done on the fron end, and also to keep the results in two or sometimes
@@ -1995,6 +2057,184 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	taxFreeDeduction1SumLast12Weeks = Number(taxFreeDeduction1SumLast12Weeks);
 	taxFreeDeduction2SumLast12Weeks = Number(taxFreeDeduction2SumLast12Weeks);
 	taxFreeDeduction3SumLast12Weeks = Number(taxFreeDeduction3SumLast12Weeks);
+
+	paymentsPieChartVis = Number(paymentsPieChartVis);
+
+	if (paymentsPieChartVis === 0){
+		$('#paymentsPieChartShowHide').addClass("hidden");
+	}
+	else if(paymentsPieChartVis === 1) {
+		$('#paymentsPieChartShowHide').removeClass("hidden");
+	}
+	else{alert("Pie Chart Error")}
+	
+	deductionsPieChartVis = Number(deductionsPieChartVis);
+
+	if (deductionsPieChartVis === 0){
+		$('#deductionsPieChartShowHide').addClass("hidden");
+	}
+	else if(deductionsPieChartVis === 1) {
+		$('#deductionsPieChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	yearToDatePieChartVis = Number(yearToDatePieChartVis);
+
+	if (yearToDatePieChartVis === 0){
+		$('#YTDPieChartShowHide').addClass("hidden");
+	}
+	else if(yearToDatePieChartVis === 1) {
+		$('#YTDPieChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	payStructurePieChartVis = Number(payStructurePieChartVis);
+
+	if (payStructurePieChartVis === 0){
+		$('#YTDPSPieChartShowHide').addClass("hidden");
+	}
+	else if(payStructurePieChartVis === 1) {
+		$('#YTDPSPieChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	daysPieChartVis = Number(daysPieChartVis);
+
+	if (daysPieChartVis === 0){
+		$('#daysPieChartShowHide').addClass("hidden");
+	}
+	else if(daysPieChartVis === 1) {
+		$('#daysPieChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	holidaysPieChartVis = Number(holidaysPieChartVis);
+
+	if (holidaysPieChartVis === 0){
+		$('#holidayPieChartShowHide').addClass("hidden");
+	}
+	else if(holidaysPieChartVis === 1) {
+		$('#holidayPieChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	
+	last3MonthsPieChartVis = Number(last3MonthsPieChartVis);
+
+	if (last3MonthsPieChartVis === 0){
+		$('#last3MonthsPieChartShowHide').addClass("hidden");
+	}
+	else if(last3MonthsPieChartVis === 1) {
+		$('#last3MonthsPieChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	
+	last10WeeksNetChartVis = Number(last10WeeksNetChartVis);
+
+	if (last10WeeksNetChartVis === 0){
+		$('#last10WeeksNetPayChartShowHide').addClass("hidden");
+	}
+	else if(last10WeeksNetChartVis === 1) {
+		$('#last10WeeksNetPayChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	last10WeeksPaidHoursChartVis = Number(last10WeeksPaidHoursChartVis);
+
+	if (last10WeeksPaidHoursChartVis === 0){
+		$('#last10WeeksPaidHoursChartShowHide').addClass("hidden");
+	}
+	else if(last10WeeksPaidHoursChartVis === 1) {
+		$('#last10WeeksPaidHoursChartShowHide').removeClass("hidden");
+	}
+	else{}
+	
+	dailyAveragesVis = Number(dailyAveragesVis);
+
+	if (dailyAveragesVis === 0){
+		$('#dailyAverages').addClass("hidden");
+	}
+	else if(dailyAveragesVis === 1) {
+		$('#dailyAverages').removeClass("hidden");
+	}
+	else{}
+	
+	weeklyAveragesVis = Number(weeklyAveragesVis);
+
+	if (weeklyAveragesVis === 0){
+		$('#weeklyAverages').addClass("hidden");
+	}
+	else if(weeklyAveragesVis === 1) {
+		$('#weeklyAverages').removeClass("hidden");
+	}
+	else{}
+	
+	hourlyAveragesVis = Number(hourlyAveragesVis);
+	if (hourlyAveragesVis === 0){
+		$('#hourlyAverages').addClass("hidden");
+	}
+	else if(hourlyAveragesVis === 1) {
+		$('#hourlyAverages').removeClass("hidden");
+	}
+	else{}
+	
+	//let {payStructureVis, YTDPaymentsVis, YTDHoursVis} = response;
+	//let {YTDDaysVis, holidaysSectionVis, last3MonthsAveragesVis} = response;
+
+	payStructureVis = Number(payStructureVis);
+	if (payStructureVis === 0){
+		$('#payStructure').addClass("hidden");
+	}
+	else if(payStructureVis === 1) {
+		$('#payStructure').removeClass("hidden");
+	}
+	else{}
+	
+	YTDPaymentsVis = Number(YTDPaymentsVis);
+	if (YTDPaymentsVis === 0){
+		$('#YTDPayments').addClass("hidden");
+	}
+	else if(YTDPaymentsVis === 1) {
+		$('#YTDPayments').removeClass("hidden");
+	}
+	else{}
+
+	YTDHoursVis = Number(YTDHoursVis);
+	if (YTDHoursVis === 0){
+		$('#YTDHours').addClass("hidden");
+	}
+	else if(YTDHoursVis === 1) {
+		$('#YTDHours').removeClass("hidden");
+	}
+	else{}
+
+	YTDDaysVis = Number(YTDDaysVis);
+	if (YTDDaysVis === 0){
+		$('#YTDDays').addClass("hidden");
+	}
+	else if(YTDDaysVis === 1) {
+		$('#YTDDays').removeClass("hidden");
+	}
+	else{}
+
+	holidaysSectionVis = Number(holidaysSectionVis);
+	if (holidaysSectionVis === 0){
+		$('#holidaysSection').addClass("hidden");
+	}
+	else if(holidaysSectionVis === 1) {
+		$('#holidaysSection').removeClass("hidden");
+	}
+	else{}
+
+	last3MonthsAveragesVis = Number(last3MonthsAveragesVis);
+	if (last3MonthsAveragesVis === 0){
+		$('#last3MonthsAverages').addClass("hidden");
+	}
+	else if(last3MonthsAveragesVis === 1) {
+		$('#last3MonthsAverages').removeClass("hidden");
+	}
+	else{}
 
 	//get all elements from the dom that will be used to load data into them
 	//payments table
@@ -2238,8 +2478,23 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 		$('#taxFreeDeduction2NamesDiv').addClass("hidden");
 		$('#taxFreeDeduction3AmountDiv').addClass("hidden");
 		$('#taxFreeDeduction3NamesDiv').addClass("hidden");
+	
+	} else if (pensionBeforeTax === 0 && pensionAmount === 0 && travelDeduction === 0 && taxFreeDeduction1 === 0 && taxFreeDeduction2 === 0 && taxFreeDeduction3 === 0){
+		$('#taxFreeDeductionsNamesDiv').removeClass("hidden");
+		$('#taxFreeDeductionsAmountDiv').removeClass("hidden");
 		
+		$('#taxFreePensionAmountDiv').addClass("hidden");
+		$('#taxFreePensionNameDiv').addClass("hidden");
+		$('#taxFreeTravelAmountDiv').addClass("hidden");
+		$('#taxFreeTravelNamesDiv').addClass("hidden");
 		
+		$('#taxFreeDeduction1AmountDiv').addClass("hidden");
+		$('#taxFreeDeduction1NamesDiv').addClass("hidden");
+		$('#taxFreeDeduction2AmountDiv').addClass("hidden");
+		$('#taxFreeDeduction2NamesDiv').addClass("hidden");
+		$('#taxFreeDeduction3AmountDiv').addClass("hidden");
+		$('#taxFreeDeduction3NamesDiv').addClass("hidden");
+	
 	} else {
 		$('#taxFreeDeductionsNamesDiv').addClass("hidden");
 		$('#taxFreeDeductionsAmountDiv').addClass("hidden");
@@ -2256,7 +2511,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 		
 		if (travelDeduction>0){
 			//taxFreeTravelNamesDiv.innerHTML = 'Travel';
-			taxFreeTravelAmountDiv.innerHTML = pensionAmount.toFixed(2);
+			taxFreeTravelAmountDiv.innerHTML = travelDeduction.toFixed(2);
 			$('#taxFreeTravelAmountDiv').removeClass("hidden");
 			$('#taxFreeTravelNamesDiv').removeClass("hidden");
 		} else {
@@ -2383,9 +2638,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (christmasSavingsPaymentCollected>chris_savSum){yearToDateNames.innerHTML+= 'Christmas Total Ded.<br>';}
 	if (summerSavingsPaymentCollected>0){yearToDateNames.innerHTML+= 'Summer Deductions<br>';}
 	if (summerSavingsPaymentCollected>summer_savSum){yearToDateNames.innerHTML+= 'Summer Total Ded.<br>';}
-	if (other_de>0){yearToDateNames.innerHTML+= otherDeductionName+'<br>';}
-	if (add_deSum2>0){yearToDateNames.innerHTML+= otherDeduction2Name+'<br>';}
-	if (add_deSum3>0){yearToDateNames.innerHTML+= otherDeduction3Name+'<br>';}
+	if (other_de>0){yearToDateNames.innerHTML+= 'Add Ded. 1<br>';}
+	if (add_deSum2>0){yearToDateNames.innerHTML+= 'Add Ded. 2<br>';}
+	if (add_deSum3>0){yearToDateNames.innerHTML+= 'Add Ded. 3<br>';}
 	if (companyLoanSum >0 || studentLoanDeductionSum>0 || union_deSum >0 || christmasSavingsPaymentCollected>0||
 	other_de>0||summerSavingsPaymentCollected>summer_savSum ||add_deSum2>0||add_deSum3>0){yearToDateNames.innerHTML+= '<hr>';}
 	if (pensionSum>0){yearToDateNames.innerHTML+= 'Employee Pension<br>';}
@@ -2697,12 +2952,12 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 			holidayStatisticsAmount.innerHTML+= ' days<br>';
 		}
 	}
-	holidayStatisticsNames.innerHTML= 'Holidays Used:<br>';
-	if (totalHolidaysBooked>0){holidayStatisticsNames.innerHTML+= 'Holidays Booked:<br>';}
-	if (holidaysNotUsed>0){holidayStatisticsNames.innerHTML+= 'Holidays Available:<br>';}
-	if (holidaysEarned>0){holidayStatisticsNames.innerHTML+= 'Holidays Earned:<br>';}
-	if (nextFullHoliday>0 || nextFullHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Till Next Holiday:<br>';}
-	if (daysSinceLastHoliday>0 || daysSinceLastHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Since Last Holiday:<br>';}
+	holidayStatisticsNames.innerHTML= 'Holidays Used<br>';
+	if (totalHolidaysBooked>0){holidayStatisticsNames.innerHTML+= 'Holidays Booked<br>';}
+	if (holidaysNotUsed>0){holidayStatisticsNames.innerHTML+= 'Holidays Available<br>';}
+	if (holidaysEarned>0){holidayStatisticsNames.innerHTML+= 'Holidays Earned<br>';}
+	if (nextFullHoliday>0 || nextFullHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Till Next Holiday<br>';}
+	if (daysSinceLastHoliday>0 || daysSinceLastHoliday === "Holiday!"){holidayStatisticsNames.innerHTML+= 'Days Since Last Holiday<br>';}
 
 	//last 13 weeks totals
 	taxSumLast12Weeks =  taxSumLast12Weeks/13;
@@ -2761,9 +3016,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	if (chris_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Christmas Deductions<br>';}
 	if (summer_savSumLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Summer Deductions<br>';}
 
-	if (other_deLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeductionName+'<br>';}
-	if (add_deSum2Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeduction2Name+'<br>';}
-	if (add_deSum3Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= otherDeduction3Name+'<br>';}
+	if (other_deLast12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Add Ded. 1<br>';}
+	if (add_deSum2Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Add Ded. 2 <br>';}
+	if (add_deSum3Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= 'Add Ded. 3<br>';}
 	if (companyLoanSumLast12Weeks >0 || studentLoanDeductionSumLast12Weeks>0 || union_deSumLast12Weeks >0 ||
 	summer_savSumLast12Weeks>0||other_deLast12Weeks>0||summer_savSumLast12Weeks>0 ||add_deSum2Last12Weeks>0||
 	add_deSum3Last12Weeks>0){yearToDateLast12WeeksNames.innerHTML+= '<hr>';}
@@ -3231,7 +3486,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 
 		if(payChristmasSavingsCheckRes == "true")
 			{
-			document.getElementById("payChristmasSavingsCheck"+taxPeriodNumber).setAttribute("checked", "checked")
+			document.getElementById("payChristmasSavingsCheck"+taxPeriodNumber).setAttribute("checked", "checked");
 			}
 		else if (payChristmasSavingsCheckRes == "false")
 			{
@@ -3243,7 +3498,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 
 		if(paySummerSavingsCheckRes == "true")
 			{
-			document.getElementById("paySummerSavingsCheck"+taxPeriodNumber).setAttribute("checked", "checked")
+			document.getElementById("paySummerSavingsCheck"+taxPeriodNumber).setAttribute("checked", "checked");
 			}
 		else if (paySummerSavingsCheckRes == "false")
 			{
@@ -3255,56 +3510,31 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 	
 	///// gooooooooooogle char4ts////////////////////////////
 	
-		let dayInColor = '#e6e600';
-		let holidayColor = '#009900';
-		let sicknessColor = '#ff9999';
-		let familyLeaveColor = '#ffa64d';
-		let bereavementColor = '#000033';
-		let compassionateColor = '#ffce99';
-		let overtime1Color = '#cccc00';
-		let overtime2Color = '#b3b300';
-		let saturdayColor = '#df80ff';
-		let sundayColor = '#d966ff';
-		let bankHolidayColor = '#00ff55';
-		let bankHolidayBonusColor = '#00cc44';
-		let backPayColor = '#e69900';
-		let pieceWorkColor = '#ffd633';
-		let addPay1Color = '#ffb380';
-		let addPay2Color = '#ffa366';
-		let addPay3Color = '#ff944d';
-		let christmasColor = '#ff6633';
-		let summerColor = '#ff8c66';
-		let salaryColor = '#ffff00';
-		let bonusColor = '#cc9900';
-		let commissionsColor = '#ff8080';
-
-		let taxAmuntColor = '#ff3333';
-		let NIAmountColor = '#ff4d4d';
-		let unionColor = '#ff6666';
-		let pensionColor = '#ff8080';
-		let copanyLoanColor = '#ff9999';
-		let studentLoanColor = '#ffb3b3';
-		let otherDeductionColor = '#ffcccc';
-		let otherDeduction2Color = '#ff1a1a';
-		let otherDeduction3Color = '#ff0000';
-		let netPayColor = '#69cc00';
-
-		let unpaidBreaksColor = '#80bfff';
-
-		let notSelectedColor = '#b3daff';
-		let dayOffColor = '#c3c3a2';
-		let halfInHalfOffColor = '#e6ffb3';
-		let unpaidHolColor = '#e6ffe6';
-		let dayInSickColor = '#ffcccc';
-		let absenceColor = '#ccebff';
-
-		let holidaysAvailableColor = '#00ff00';
-		let holidaysBookedColor = '#00cc00';
-	
+			
+		//if peniosn is not a salary sacrifise, show it in deductions chart
+				if (pensionBeforeTax ===0)
+				{
+					var pensionAmountChart = pensionAmount;
+					var pensionSumChart = pensionSum;
+					var pensionSumLast12WeeksChart = pensionSumLast12Weeks;
+				}
+				{
+					var pensionAmountChart = 0;
+					var pensionSumChart = 0;
+					var pensionSumLast12WeeksChart = 0;
+				}
+				//jei deductions udeta tik varnele yra isaugojama minus 1 verte db, ir ja reikia panaikinti
+				if (studentLoanDeduction === -1) {studentLoanDeduction = 0;}
 	
 	google.charts.load('current', {'packages':['corechart']});
 
-				//holidays chart
+			//holidays chart
+			resizeChartValues.totalHolidaysUsed = totalHolidaysUsed; 
+			resizeChartValues.totalHolidaysBooked = totalHolidaysBooked; 
+			resizeChartValues.holidaysNotUsed = holidaysNotUsed; 
+			resizeChartValues.holidaysPieChartVis = holidaysPieChartVis;
+			
+			if (holidaysPieChartVis === 1){
 				if(totalHolidaysUsed>0||totalHolidaysBooked>0||holidaysNotUsed>0){
 					google.charts.setOnLoadCallback(drawChartHolidays);
 					function drawChartHolidays() {
@@ -3331,13 +3561,26 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 
 						chart.draw(data, options);
 					}
+				}else{
+					document.getElementById('holidayStatisticsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
-				else
-				{
-					document.getElementById('holidayStatisticsPieChart').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
-				}
-				
-				//days chart
+			}
+			//days chart
+			resizeChartValues.daysPieChartVis = daysPieChartVis; 
+			resizeChartValues.daysNotSelected = daysNotSelected; 
+			resizeChartValues.daysIn = daysIn; 
+			resizeChartValues.daysOff = daysOff;
+			resizeChartValues.daysHoliday = daysHoliday; 
+			resizeChartValues.daysHalfInHalfHol = daysHalfInHalfHol; 
+			resizeChartValues.daysUnpaidHoliday = daysUnpaidHoliday; 
+			resizeChartValues.daysInSick = daysInSick;
+			resizeChartValues.daysSickness = daysSickness; 
+			resizeChartValues.daysAbsence = daysAbsence; 
+			resizeChartValues.daysParental = daysParental; 
+			resizeChartValues.daysBereavement = daysBereavement;
+			resizeChartValues.daysCompassionate = daysCompassionate;
+			
+			if (daysPieChartVis === 1){
 				if(daysNotSelected>0||daysIn>0||daysOff>0||daysHoliday>0||daysHalfInHalfHol>0||daysUnpaidHoliday>0||daysInSick>0||
 				daysSickness>0||daysAbsence>0||daysParental>0||daysBereavement>0||daysCompassionate>0){
 					google.charts.setOnLoadCallback(drawChartDays);
@@ -3374,16 +3617,51 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					document.getElementById('dayStatisticsPieChart').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('dayStatisticsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
-
-				//payments chart
-				let paymentsColorArray = [dayInColor, dayInColor, holidayColor,sicknessColor, familyLeaveColor, bereavementColor]; 
-				paymentsColorArray.push(compassionateColor, overtime1Color,overtime2Color);
-				paymentsColorArray.push(holidayColor, holidayColor, holidayColor, saturdayColor, sundayColor);
-				paymentsColorArray.push(sicknessColor, familyLeaveColor, bereavementColor, compassionateColor,  bankHolidayColor); 
-				paymentsColorArray.push(bankHolidayBonusColor,backPayColor, pieceWorkColor, sicknessColor, familyLeaveColor, addPay1Color, addPay2Color);
-				paymentsColorArray.push(addPay3Color, christmasColor, summerColor, familyLeaveColor, salaryColor, bonusColor, commissionsColor, taxAmuntColor);
+			}	
+			
+			//payments chart
+			//resizeChartValues.taxReturn = taxReturn; 
+			resizeChartValues.additionalPayment = additionalPayment; 
+			resizeChartValues.additionalPayment2 = additionalPayment2; 
+			resizeChartValues.additionalPayment3 = additionalPayment3;
+			resizeChartValues.taxAmount = taxAmount; 
+			resizeChartValues.basicHoursPay = basicHoursPay; 
+			resizeChartValues.unsocial_prem = unsocial_prem; 
+			resizeChartValues.unsocial_prem_hol = unsocial_prem_hol;
+			resizeChartValues.unsocial_prem_sick = unsocial_prem_sick; 
+			resizeChartValues.unsocial_prem_family = unsocial_prem_family; 
+			resizeChartValues.unsocial_prem_bereavement = unsocial_prem_bereavement; 
+			resizeChartValues.unsocial_prem_compassionate = unsocial_prem_compassionate;
+			resizeChartValues.OT1Pay = OT1Pay;
+			resizeChartValues.OT2Pay = OT2Pay; 
+			resizeChartValues.enhancedHolidayPay = enhancedHolidayPay; 
+			resizeChartValues.holidayPay = holidayPay; 
+			resizeChartValues.holidayPayment = holidayPayment;
+			resizeChartValues.saturdayExtraPay = saturdayExtraPay; 
+			resizeChartValues.sundayExtraPay = sundayExtraPay; 
+			resizeChartValues.sicknessPay = sicknessPay; 
+			resizeChartValues.familyPay = familyPay;
+			resizeChartValues.bereavementPay = bereavementPay; 
+			resizeChartValues.compassionatePay = compassionatePay; 
+			resizeChartValues.bankHolidayHoursPay = bankHolidayHoursPay; 
+			resizeChartValues.bankHolidayClockInBonus = bankHolidayClockInBonus;
+			resizeChartValues.payBack = payBack;
+			resizeChartValues.pieceWork = pieceWork; 
+			resizeChartValues.SSP = SSP; 
+			resizeChartValues.SPP = SPP; 
+			resizeChartValues.christmasSavingsPayment = christmasSavingsPayment;
+			resizeChartValues.summerSavingsPayment = summerSavingsPayment; 
+			resizeChartValues.SAP = SAP; 
+			resizeChartValues.salary = salary; 
+			resizeChartValues.bonus = bonus;
+			resizeChartValues.commissions = commissions; 
+			resizeChartValues.paymentsPieChartVis = paymentsPieChartVis; 
+			resizeChartValues.bankHolidayHoursPay = bankHolidayHoursPay; 
+			
+			if (paymentsPieChartVis === 1){
+				
 				//var deletechart = document.getElementById('paymentsPieChart').innerHTML = " ";
 				//remove negative values
 				let taxReturn = 0;
@@ -3459,28 +3737,44 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					 document.getElementById("paymentsPieChart").innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					 document.getElementById("paymentsPieChart").innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
-				//if peniosn is not a salary sacrifise, show it in deductions chart
-				if (pensionBeforeTax ===0)
-				{
-					var pensionAmountChart = pensionAmount;
-					var pensionSumChart = pensionSum;
-					var pensionSumLast12WeeksChart = pensionSumLast12Weeks;
-				}
-				{
-					var pensionAmountChart = 0;
-					var pensionSumChart = 0;
-					var pensionSumLast12WeeksChart = 0;
-				}
-				//deductions chart
+			}
+			
+			//deductions chart
+			resizeChartValues.deductionsPieChartVis = deductionsPieChartVis; 
+			resizeChartValues.NIAmount = NIAmount; 
+			resizeChartValues.unionDeduction = unionDeduction;
+			resizeChartValues.taxAmount = taxAmount; 
+			resizeChartValues.pensionAmountChart = pensionAmountChart; 
+			resizeChartValues.companyLoan = companyLoan; 
+			resizeChartValues.studentLoanDeduction = studentLoanDeduction;
+			resizeChartValues.otherDeduction = otherDeduction; 
+			resizeChartValues.otherDeduction2 = otherDeduction2; 
+			resizeChartValues.otherDeduction3 = otherDeduction3; 
+			resizeChartValues.taxFreeDeduction1 = taxFreeDeduction1;
+			resizeChartValues.travelDeduction = travelDeduction;
+			resizeChartValues.taxFreeDeduction2 = taxFreeDeduction2; 
+			resizeChartValues.taxFreeDeduction1 = taxFreeDeduction1;
+			resizeChartValues.taxFreeDeduction3 = taxFreeDeduction3;
+			resizeChartValues.netPay = netPay;
+			resizeChartValues.otherDeductionName = otherDeductionName; 
+			resizeChartValues.otherDeduction2Name = otherDeduction2Name;
+			resizeChartValues.otherDeduction3Name = otherDeduction3Name;
+			resizeChartValues.taxFreeDeduction1Name = taxFreeDeduction1Name; 
+			resizeChartValues.taxFreeDeduction2Name = taxFreeDeduction2Name;
+			resizeChartValues.taxFreeDeduction3Name = taxFreeDeduction3Name;
+			
+			if (deductionsPieChartVis === 1){
+				
+				//no negative values for chart
 				if (taxAmount < 0 ){taxAmount = 0;}
-				let deductionsColorArray = [taxAmuntColor, NIAmountColor, unionColor, pensionColor, christmasColor, summerColor, copanyLoanColor];
-					deductionsColorArray.push(studentLoanColor, otherDeductionColor, otherDeduction2Color, otherDeduction3Color, netPayColor);
+				
 				if (christmasSavingsDeduction<0){christmasSavingsDeduction = 0;}
 				if (summerSavingsDeduction<0){summerSavingsDeduction = 0;}
 				if (taxAmount>0||NIAmount>0||unionDeduction>0||pensionAmountChart>0||christmasSavingsDeduction>0||summerSavingsDeduction>0||
-				companyLoan>0||studentLoanDeduction>0||otherDeduction>0||otherDeduction2>0||otherDeduction3>0||netPay>0){
+				companyLoan>0||studentLoanDeduction>0||otherDeduction>0||otherDeduction2>0||otherDeduction3>0||netPay>0 || travelDeduction>0 ||
+				taxFreeDeduction1>0 || taxFreeDeduction2 >0 || taxFreeDeduction3 >0){
 					google.charts.setOnLoadCallback(drawChartDeductions);
 					function drawChartDeductions() {
 					var data = google.visualization.arrayToDataTable([
@@ -3496,13 +3790,17 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 						[otherDeductionName, otherDeduction],
 						[otherDeduction2Name, otherDeduction2],
 						[otherDeduction3Name, otherDeduction3],
+						['Travel', travelDeductionSum ],
+						[taxFreeDeduction1Name, taxFreeDeduction1],
+						[taxFreeDeduction2Name, taxFreeDeduction2],
+						[taxFreeDeduction3Name, taxFreeDeduction3],
 						['Net Pay', netPay],
 						]);
 
 						var options = {
 						backgroundColor: insideBoxColor,
 						colors: deductionsColorArray,
-						slices: {  11: {offset: 0.2},
+						slices: {  15: {offset: 0.2},
 							},
 						title: 'Deductions Pie Chart',
 						is3D: true,
@@ -3514,12 +3812,33 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					document.getElementById('deductionsPieChart').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('deductionsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
+			}
 
-				//Year to date chart
+			//Year to date chart
+			resizeChartValues.yearToDatePieChartVis = yearToDatePieChartVis; 
+			resizeChartValues.taxSum = taxSum; 
+			resizeChartValues.NISum = NISum;
+			resizeChartValues.union_deSum = union_deSum; 
+			resizeChartValues.pensionSumChart = pensionSumChart; 
+			resizeChartValues.chris_savSum = chris_savSum; 
+			resizeChartValues.summer_savSum = summer_savSum;
+			resizeChartValues.companyLoanSum = companyLoanSum; 
+			resizeChartValues.studentLoanDeductionSum = studentLoanDeductionSum; 
+			resizeChartValues.other_de = other_de; 
+			resizeChartValues.add_deSum2 = add_deSum2;
+			resizeChartValues.add_deSum3 = add_deSum3;
+			resizeChartValues.netPaySum = netPaySum; 
+			resizeChartValues.travelDeductionSum = travelDeductionSum;
+			resizeChartValues.taxFreeDeduction1Sum = taxFreeDeduction1Sum;
+			resizeChartValues.taxFreeDeduction2Sum = taxFreeDeduction2Sum;
+			resizeChartValues.taxFreeDeduction3Sum = taxFreeDeduction3Sum; 
+			
+			if (yearToDatePieChartVis === 1){
 				if(taxSum>0||NISum>0||union_deSum>0||pensionSumChart>0||chris_savSum>0||summer_savSum>0||companyLoanSum>0||
-				studentLoanDeductionSum>0||other_de>0||add_deSum2>0||add_deSum3>0||netPaySum>0){
+				studentLoanDeductionSum>0||other_de>0||add_deSum2>0||add_deSum3>0||netPaySum>0 || travelDeductionSum>0 ||
+				taxFreeDeduction1Sum>0 || taxFreeDeduction2Sum >0 || taxFreeDeduction3Sum >0){
 					google.charts.setOnLoadCallback(drawChartYearToDate);
 					function drawChartYearToDate() {
 					var data = google.visualization.arrayToDataTable([
@@ -3535,13 +3854,17 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 						['Add. Deduction', other_de ],
 						['Add. Deduction 2', add_deSum2 ],
 						['Add. Deduction 3', add_deSum3 ],
+						['Travel', travelDeductionSum ],
+						['Tax Free Ded. 1', taxFreeDeduction1Sum ],
+						['Tax Free Ded. 2', taxFreeDeduction2Sum ],
+						['Tax Free Ded. 3', taxFreeDeduction3Sum ],
 						['Net Pay', netPaySum ],
 						]);
 
 						var options = {
 						backgroundColor: insideBoxColor,
 						colors: deductionsColorArray,
-						slices: {  11: {offset: 0.2},
+						slices: {  15: {offset: 0.2},
 							},
 						title: 'Year To Date Pie Chart',
 						is3D: true,
@@ -3553,10 +3876,22 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					document.getElementById('yearToDatePieChart').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('yearToDatePieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
+			}
 
-				//Year to date Percentage chart
+
+			//Year to date Percentage chart
+			resizeChartValues.payStructurePieChartVis = payStructurePieChartVis; 
+			resizeChartValues.basicPaymentsPercentage = basicPaymentsPercentage; 
+			resizeChartValues.holidaysPercentage = holidaysPercentage;
+			resizeChartValues.sicknessPercentage = sicknessPercentage; 
+			resizeChartValues.overtimePercentage = overtimePercentage; 
+			resizeChartValues.bankHolidayPercentge = bankHolidayPercentge; 
+			resizeChartValues.parentalPercentage = parentalPercentage;
+			resizeChartValues.otherPercentage = otherPercentage;
+			
+			if (payStructurePieChartVis === 1){
 				if (basicPaymentsPercentage>0||holidaysPercentage>0||sicknessPercentage>0||overtimePercentage>0||bankHolidayPercentge>0||
 				parentalPercentage>0||otherPercentage>0){
 					google.charts.setOnLoadCallback(drawChartYearToDatePercentages);
@@ -3588,18 +3923,38 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 				}
 				else
 				{
-					document.getElementById('yearToDatePercentagePieChart').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('yearToDatePercentagePieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
-
+			}
 				
 
 				
-				//last 13 weeks averages
+			//last 13 weeks averages
+			resizeChartValues.last3MonthsPieChartVis = last3MonthsPieChartVis; 
+			resizeChartValues.chris_savSumLast12Weeks = chris_savSumLast12Weeks; 
+			resizeChartValues.summer_savSumLast12Weeks = summer_savSumLast12Weeks;
+			resizeChartValues.taxSumLast12Weeks = taxSumLast12Weeks; 
+			resizeChartValues.NISumLast12Weeks = NISumLast12Weeks; 
+			resizeChartValues.union_deSumLast12Weeks = union_deSumLast12Weeks; 
+			resizeChartValues.pensionSumLast12WeeksChart = pensionSumLast12WeeksChart;
+			resizeChartValues.companyLoanSumLast12Weeks = companyLoanSumLast12Weeks; 
+			resizeChartValues.studentLoanDeductionSumLast12Weeks = studentLoanDeductionSumLast12Weeks; 
+			resizeChartValues.other_deLast12Weeks = other_deLast12Weeks; 
+			resizeChartValues.add_deSum2Last12Weeks = add_deSum2Last12Weeks;
+			resizeChartValues.add_deSum3Last12Weeks = add_deSum3Last12Weeks;
+			resizeChartValues.netPaySumLast12Weeks = netPaySumLast12Weeks; 
+			resizeChartValues.travelDeductionSumLast12Weeks = travelDeductionSumLast12Weeks;
+			resizeChartValues.taxFreeDeduction1SumLast12Weeks = taxFreeDeduction1SumLast12Weeks;
+			resizeChartValues.taxFreeDeduction2SumLast12Weeks = taxFreeDeduction2SumLast12Weeks;
+			resizeChartValues.taxFreeDeduction3SumLast12Weeks = taxFreeDeduction3SumLast12Weeks; 
+			
+			if (last3MonthsPieChartVis === 1){
 				if (chris_savSumLast12Weeks<0){chris_savSumLast12Weeks = 0;}
 				if (summer_savSumLast12Weeks<0){summer_savSumLast12Weeks = 0;}
 				if(taxSumLast12Weeks>0||NISumLast12Weeks>0||union_deSumLast12Weeks>0||pensionSumLast12WeeksChart>0||chris_savSumLast12Weeks>0||
 				summer_savSumLast12Weeks>0||companyLoanSumLast12Weeks>0||studentLoanDeductionSumLast12Weeks>0||other_deLast12Weeks>0||
-				add_deSum2Last12Weeks>0||add_deSum3Last12Weeks>0||netPaySumLast12Weeks>0){
+				add_deSum2Last12Weeks>0||add_deSum3Last12Weeks>0||netPaySumLast12Weeks>0 || travelDeductionSumLast12Weeks>0 || taxFreeDeduction1SumLast12Weeks>0 || 
+				taxFreeDeduction2SumLast12Weeks>0|| taxFreeDeduction3SumLast12Weeks>0){
 					google.charts.setOnLoadCallback(drawChartLast3Months);
 					function drawChartLast3Months() {
 					var data = google.visualization.arrayToDataTable([
@@ -3615,6 +3970,10 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 						['Add. Deduction', other_deLast12Weeks],
 						['Add. Deduction 2', add_deSum2Last12Weeks],
 						['Add. Deduction 3', add_deSum3Last12Weeks],
+						['Travel', travelDeductionSumLast12Weeks ],
+						['Tax Free Ded. 1', taxFreeDeduction1SumLast12Weeks ],
+						['Tax Free Ded. 2', taxFreeDeduction2SumLast12Weeks ],
+						['Tax Free Ded. 3', taxFreeDeduction3SumLast12Weeks ],
 						['Net Pay', netPaySumLast12Weeks],
 						]);
 
@@ -3622,7 +3981,7 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 						animation: {startup: true, duration: 1000},	
 						backgroundColor: insideBoxColor,
 						colors: deductionsColorArray,
-						slices: {  11: {offset: 0.2},
+						slices: {  15: {offset: 0.2},
 							},
 						title: 'Last 3 Months Averages Pie Chart',
 						is3D: true,
@@ -3634,10 +3993,17 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					document.getElementById('las3MonthsPieChart').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('las3MonthsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
+			}
 				
-				//paid hours chart
+			//paid hours chart
+			//add values to object 
+			resizeChartValues.last10WeeksNetChartVis = last10WeeksNetChartVis;
+			resizeChartValues.last10NetPayArray = response.last10NetPayArray;
+			resizeChartValues.last10DeductionsArray = response.last10DeductionsArray;
+		
+			if (last10WeeksNetChartVis === 1){
 				if(Number(response.last10NetPayArray[9])>0||Number(response.last10DeductionsArray[9])>0||
 				Number(response.last10NetPayArray[8])>0||Number(response.last10DeductionsArray[8])>0||
 				Number(response.last10NetPayArray[7])>0||Number(response.last10DeductionsArray[7])>0||
@@ -3680,11 +4046,20 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					document.getElementById('columnChartNetPay').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('columnChartNetPay').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
+			}
 
-
-				//susumuojame visas valandas patikrinti ar reikia braizyti grafika
+			//paid hours chart
+			resizeChartValues.last10WeeksPaidHoursChartVis = last10WeeksPaidHoursChartVis;
+			resizeChartValues.last10WorkingHoursArray = response.last10WorkingHoursArray;
+			resizeChartValues.last10AllHolidayHoursArray = response.last10AllHolidayHoursArray;
+			resizeChartValues.last10SickHoursArray = response.last10SickHoursArray;
+			resizeChartValues.last10FamHoursArray = response.last10FamHoursArray;
+			resizeChartValues.last10BerHoursArray = response.last10BerHoursArray;
+			resizeChartValues.last10CompHoursArray = response.last10CompHoursArray;
+			//susumuojame visas valandas patikrinti ar reikia braizyti grafika
+			if (last10WeeksPaidHoursChartVis === 1){
 				var last10weeksHoursSum = 0;
 				for (i=0;i<10;i++)
 				{
@@ -3730,9 +4105,9 @@ const loadResponseData = (response, taxPeriodNumber, largerObject = false) => {
 					}
 				}
 				else{
-					document.getElementById('columnChartPaidHours').innerHTML = "<br><br><br>No Data Provided<br>For Chart.";
+					document.getElementById('columnChartPaidHours').innerHTML = "<br><br>No Data Provided<br>For Chart.";
 				}
-	
+			}
 	
 	
 	
@@ -3927,33 +4302,86 @@ const postData = (taxPeriodNumber) => {
 		}	else if (ActiveXObject)	{
 			request = new ActiveXObject("Microsoft.XMLHTTP");
 		}	else {return false;}
-	var url = "javascript/ajax/submitForm.php";
+	let url = "javascript/ajax/submitForm.php";
+	let submitSuccessMain = $("#submitSuccessMain");
 	request.open("POST", url, true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.onreadystatechange = function(){
 		if(request.readyState ==4 && request.status ==200){
 			let response = JSON.parse(this.responseText);
-			let submitSuccessMain = document.getElementById("submitSuccessMain");
 			errorsArrayLength = Object.keys(response.errors).length;
-			submitSuccessMain.innerHTML = " ";
+			//submitSuccessMain.innerHTML = " ";
 			if (errorsArrayLength>0){
-				let allErrors = "";
 				for (i=0; i<errorsArrayLength; i++)		{
-					submitSuccessMain.setAttribute("class", "col-sm-9 col-xs-8 responseDiv errorStyle");
-					allErrors += response.errors[i]+'<br>';
+					let errorText = "";
+					errorText += response.errors[i];
+					
+					submitSuccessMain.html(errorText);
+					submitSuccessMain.addClass("errorStyle");
 				}
-				triggerErrorModal(allErrors, true);
 			}	else {
-					submitSuccessMain.setAttribute("class", "col-sm-9 col-xs-8 responseDiv");
-					submitSuccessMain.innerHTML = 'Payslip Generated!';
-					setTimeout(function(){submitSuccessMain.innerHTML=" ";},1500);
+					submitSuccessMain.removeClass("errorStyle");
+					submitSuccessMain.text('Payslip Generated!');
+					//submitSuccessMain.innerHTML = 'Payslip Generated!';
+					setTimeout(function(){submitSuccessMain.text(" ");},1500);	
 					loadResponseData(response, taxPeriodNumber);
+					$("#paymentsPieChart").fadeIn(1000);
+					$("#deductionsPieChart").fadeIn(1000);
+					$("#yearToDatePieChart").fadeIn(1000);
+					$("#yearToDatePercentagePieChart").fadeIn(1000);
+					$("#dayStatisticsPieChart").fadeIn(1000);
+					$("#las3MonthsPieChart").fadeIn(1000);
+					$("#paymentsUnitsDiv").fadeIn(1000);
+					$("#paymentsRateDiv").fadeIn(1000);
+					$("#paymentsAmountDiv").fadeIn(1000);
+					//$("#paymentsNamesDiv").fadeIn(1000);
+					$("#totalGrossPaymentsAmountText").fadeIn(1000);
+					$("#taxFreeDeductions").fadeIn(1000);
+					$("#totalTaxablePaymentsAmountText").fadeIn(1000);
+					$("#deductionsAmountDiv").fadeIn(1000);
+					$("#totalDeductionsAmount").fadeIn(1000);
+					$("#netPayAmount").fadeIn(1000);
+					$("#yearToDateAmount").fadeIn(1000);
+					$("#yearToDatePercentageAmount").fadeIn(1000);
+					$("#yearToDateAmountII").fadeIn(1000);
+					$("#yearToDateAmountHours").fadeIn(1000);
+					$("#dayStatisticsAmount").fadeIn(1000);
+					$("#weeklyAveragesAmount").fadeIn(1000);
+					$("#dailyAveragesAmount").fadeIn(1000);
+					$("#hourlyAveragesAmount").fadeIn(1000);
+					$("#yearToDateLast12WeeksAmount").fadeIn(1000);
 			}
 		}
 	}
 	request.send(str);
-	document.getElementById("submitSuccessMain").setAttribute("class", "col-sm-9 col-xs-8 responseDiv");
-	document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
+	submitSuccessMain.removeClass("errorStyle");
+	submitSuccessMain.text('Generating Payslip...');
+	$("#paymentsPieChart").fadeOut(0);
+	$("#deductionsPieChart").fadeOut(0);
+	$("#yearToDatePieChart").fadeOut(0);
+	$("#yearToDatePercentagePieChart").fadeOut(0);
+	$("#dayStatisticsPieChart").fadeOut(0);
+	$("#las3MonthsPieChart").fadeOut(0);
+	$("#paymentsUnitsDiv").fadeOut(0);
+	$("#paymentsRateDiv").fadeOut(0);
+	$("#paymentsAmountDiv").fadeOut(0);
+	//$("#paymentsNamesDiv").fadeOut(100);
+	$("#totalGrossPaymentsAmountText").fadeOut(0);
+	$("#taxFreeDeductions").fadeOut(0);
+	$("#totalTaxablePaymentsAmountText").fadeOut(0);
+	$("#deductionsAmountDiv").fadeOut(0);
+	$("#totalDeductionsAmount").fadeOut(0);
+	$("#netPayAmount").fadeOut(0);
+	$("#yearToDateAmount").fadeOut(0);
+	$("#yearToDatePercentageAmount").fadeOut(0);
+	$("#yearToDateAmountII").fadeOut(0);
+	$("#yearToDateAmountHours").fadeOut(0);
+	$("#dayStatisticsAmount").fadeOut(0);
+	$("#weeklyAveragesAmount").fadeOut(0);
+	$("#dailyAveragesAmount").fadeOut(0);
+	$("#hourlyAveragesAmount").fadeOut(0);
+	$("#yearToDateLast12WeeksAmount").fadeOut(0);
+	//document.getElementById("submitSuccessMain").innerHTML = "Generating payslip...";
 }
 const loadData = (taxPeriodNumber) => {
 	
@@ -3975,58 +4403,67 @@ const loadData = (taxPeriodNumber) => {
 		if(request.readyState ==4 && request.status ==200){
 			let response = JSON.parse(this.responseText);
 			loadResponseData(response, taxPeriodNumber, true);
-			loadImageMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
-			loadMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
-			loadImageCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
-			loadCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
-			
+			loadImageMainTable.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding hidden");
+			loadMainTable.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding");
+			loadImageCalendar.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding hidden");
+			loadCalendar.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding");
+			$("#paymentsPieChart").fadeIn(1000);
+			$("#deductionsPieChart").fadeIn(1000);
+			$("#yearToDatePieChart").fadeIn(1000);
+			$("#yearToDatePercentagePieChart").fadeIn(1000);
+			$("#dayStatisticsPieChart").fadeIn(1000);
+			$("#las3MonthsPieChart").fadeIn(1000);
+			$("#paymentsUnitsDiv").fadeIn(1000);
+			$("#paymentsRateDiv").fadeIn(1000);
+			$("#paymentsAmountDiv").fadeIn(1000);
+			//$("#paymentsNamesDiv").fadeIn(1000);
+			$("#totalGrossPaymentsAmountText").fadeIn(1000);
+			$("#taxFreeDeductions").fadeIn(1000);
+			$("#totalTaxablePaymentsAmountText").fadeIn(1000);
+			$("#deductionsAmountDiv").fadeIn(1000);
+			$("#totalDeductionsAmount").fadeIn(1000);
+			$("#netPayAmount").fadeIn(1000);
+			$("#yearToDateAmount").fadeIn(1000);
+			$("#yearToDatePercentageAmount").fadeIn(1000);
+			$("#yearToDateAmountII").fadeIn(1000);
+			$("#yearToDateAmountHours").fadeIn(1000);
+			$("#dayStatisticsAmount").fadeIn(1000);
+			$("#weeklyAveragesAmount").fadeIn(1000);
+			$("#dailyAveragesAmount").fadeIn(1000);
+			$("#hourlyAveragesAmount").fadeIn(1000);
+			$("#yearToDateLast12WeeksAmount").fadeIn(1000);
 			}
 		}
-	loadImageMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
-	loadMainTable.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
-	loadImageCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding");
-	loadCalendar.setAttribute("class", "col-sm-12 col-xs-12 noPadding hidden");
-	
+	loadImageMainTable.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding");
+	loadMainTable.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding hidden");
+	loadImageCalendar.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding");
+	loadCalendar.setAttribute("class", "col-sm-12 col-xs-12 boxShadow noPadding hidden");
+	$("#paymentsPieChart").fadeOut();
+	$("#deductionsPieChart").fadeOut();
+	$("#yearToDatePieChart").fadeOut();
+	$("#yearToDatePercentagePieChart").fadeOut();
+	$("#dayStatisticsPieChart").fadeOut();
+	$("#las3MonthsPieChart").fadeOut();
+	$("#paymentsUnitsDiv").fadeOut();
+	$("#paymentsRateDiv").fadeOut();
+	$("#paymentsAmountDiv").fadeOut();
+	//$("#paymentsNamesDiv").fadeOut(100);
+	$("#totalGrossPaymentsAmountText").fadeOut();
+	$("#taxFreeDeductions").fadeOut();
+	$("#totalTaxablePaymentsAmountText").fadeOut();
+	$("#deductionsAmountDiv").fadeOut();
+	$("#totalDeductionsAmount").fadeOut();
+	$("#netPayAmount").fadeOut();
+	$("#yearToDateAmount").fadeOut();
+	$("#yearToDatePercentageAmount").fadeOut();
+	$("#yearToDateAmountII").fadeOut();
+	$("#yearToDateAmountHours").fadeOut();
+	$("#dayStatisticsAmount").fadeOut();
+	$("#weeklyAveragesAmount").fadeOut();
+	$("#dailyAveragesAmount").fadeOut();
+	$("#hourlyAveragesAmount").fadeOut();
+	$("#yearToDateLast12WeeksAmount").fadeOut();
 	//document.getElementById("paymentsUnitsDiv").innerHTML =" - ";
-	$("#paymentsPieChart").fadeOut(100);
-	$("#paymentsPieChart").fadeIn(1000);
-	$("#deductionsPieChart").fadeOut(100);
-	$("#deductionsPieChart").fadeIn(1000);
-	$("#yearToDatePieChart").fadeOut(100);
-	$("#yearToDatePieChart").fadeIn(1000);
-	$("#yearToDatePercentagePieChart").fadeOut(100);
-	$("#yearToDatePercentagePieChart").fadeIn(1000);
-	$("#dayStatisticsPieChart").fadeOut(100);
-	$("#dayStatisticsPieChart").fadeIn(1000);
-	$("#las3MonthsPieChart").fadeOut(100);
-	$("#las3MonthsPieChart").fadeIn(1000);
-		
-	$("#paymentsUnitsDiv").fadeOut(100);
-	$("#paymentsUnitsDiv").fadeIn(1000);
-	$("#paymentsRateDiv").fadeOut(100);
-	$("#paymentsRateDiv").fadeIn(1000);
-	$("#paymentsAmountDiv").fadeOut(100);
-	$("#paymentsAmountDiv").fadeIn(1000);
-	$("#paymentsNamesDiv").fadeOut(100);
-	$("#paymentsNamesDiv").fadeIn(1000);
-	$("#totalGrossPaymentsAmountText").fadeOut(100);
-	$("#totalGrossPaymentsAmountText").fadeIn(1000);
-
-	$("#taxFreeDeductions").fadeOut(100);
-	$("#taxFreeDeductions").fadeIn(1000);
-	$("#totalTaxablePaymentsAmountText").fadeOut(100);
-	$("#totalTaxablePaymentsAmountText").fadeIn(1000);
-	
-	$("#deductionsNamesDiv").fadeOut(100);
-	$("#deductionsNamesDiv").fadeIn(1000);
-	$("#deductionsAmountDiv").fadeOut(100);
-	$("#deductionsAmountDiv").fadeIn(1000);
-	$("#totalDeductionsAmount").fadeOut(100);
-	$("#totalDeductionsAmount").fadeIn(1000);
-	$("#netPayAmount").fadeOut(100);
-	$("#netPayAmount").fadeIn(1000);
-	
-	
 	
 }
 
@@ -4188,6 +4625,464 @@ function loadSelectTaxPeriod(){
 	submitSuccess.text("Loading...");
 }
 
+const redrawChartsOnResize = () => {
+	google.charts.load('current', {'packages':['corechart']});
+	
+	if (resizeChartValues.holidaysPieChartVis === 1){
+		if(resizeChartValues.totalHolidaysUsed>0||resizeChartValues.totalHolidaysBooked>0||resizeChartValues.holidaysNotUsed>0){
+			google.charts.setOnLoadCallback(drawChartHolidays);
+			function drawChartHolidays() {
+
+			var data = google.visualization.arrayToDataTable([
+				['Type', 'Days'],
+				['Used', resizeChartValues.totalHolidaysUsed],
+				['Booked', resizeChartValues.totalHolidaysBooked],
+				['Available', resizeChartValues.holidaysNotUsed],
+				]);
+
+				var options = {
+				backgroundColor: insideBoxColor,
+				title: 'Holidays Pie Chart',
+				slices: {  0: {offset: 0.1},
+							1: {offset: 0.1},
+							2: {offset: 0.1},
+					},
+				colors: [holidayColor, holidaysBookedColor, holidaysAvailableColor],
+				is3D: true,
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('holidayStatisticsPieChart'));
+
+				chart.draw(data, options);
+			}
+		}else{
+			document.getElementById('holidayStatisticsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	if (resizeChartValues.daysPieChartVis === 1){
+		if(resizeChartValues.daysNotSelected>0||resizeChartValues.daysIn>0||resizeChartValues.daysOff>0||resizeChartValues.daysHoliday>0||
+		resizeChartValues.daysHalfInHalfHol>0||resizeChartValues.daysUnpaidHoliday>0||resizeChartValues.daysInSick>0||
+		resizeChartValues.daysSickness>0||resizeChartValues.daysAbsence>0||resizeChartValues.daysParental>0||resizeChartValues.daysBereavement>0||
+		resizeChartValues.daysCompassionate>0){
+			google.charts.setOnLoadCallback(drawChartDays);
+			function drawChartDays() {
+
+			var data = google.visualization.arrayToDataTable([
+				['Type', 'Days'],
+				['Not Defined', resizeChartValues.daysNotSelected],
+				['Days In', resizeChartValues.daysIn],
+				['Days Off', resizeChartValues.daysOff],
+				['Holidays', resizeChartValues.daysHoliday],
+				['Half In/Hals Off', resizeChartValues.daysHalfInHalfHol],
+				['Unpaid Holiday', resizeChartValues.daysUnpaidHoliday],
+				['Day In/Sick', resizeChartValues.daysInSick],
+				['Sickness', resizeChartValues.daysSickness],
+				['Absence', resizeChartValues.daysAbsence],
+				['Paternal', resizeChartValues.daysParental],
+				['Bereavement', resizeChartValues.daysBereavement],
+				['Compassionate', resizeChartValues.daysCompassionate],
+				]);
+
+				var options = {
+				backgroundColor: insideBoxColor,
+				title: 'Days Statistics',
+				slices: {  1: {offset: 0.2},
+					},
+				colors: [notSelectedColor, dayInColor, dayOffColor, holidayColor, halfInHalfOffColor, unpaidHolColor, dayInSickColor, sicknessColor, absenceColor, familyLeaveColor, bereavementColor, compassionateColor],
+				is3D: true,
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('dayStatisticsPieChart'));
+
+				chart.draw(data, options);
+			}
+		}
+		else{
+			document.getElementById('dayStatisticsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}	
+	if (resizeChartValues.paymentsPieChartVis === 1){
+		
+		//var deletechart = document.getElementById('paymentsPieChart').innerHTML = " ";
+		//remove negative values for chart
+		resizeChartValues.taxReturn = 0;
+		if (resizeChartValues.additionalPayment < 0){resizeChartValues.additionalPayment = 0};
+		if (resizeChartValues.additionalPayment2 < 0){resizeChartValues.additionalPayment2 = 0};
+		if (resizeChartValues.additionalPayment3 < 0){resizeChartValues.additionalPayment3 = 0};
+		if (resizeChartValues.taxAmount < 0 ) {taxReturn = -taxAmount};
+		if (resizeChartValues.basicHoursPay >0||resizeChartValues.unsocial_prem>0||resizeChartValues.unsocial_prem_hol>0||resizeChartValues.unsocial_prem_sick>0||
+		resizeChartValues.unsocial_prem_family>0|| resizeChartValues.unsocial_prem_bereavement>0||resizeChartValues.unsocial_prem_compassionate>0||
+		resizeChartValues.OT1Pay>0||resizeChartValues.OT2Pay>0||resizeChartValues.enhancedHolidayPay>0||resizeChartValues.holidayPay>0||
+		resizeChartValues.holidayPayment>0||resizeChartValues.saturdayExtraPay>0||resizeChartValues.sundayExtraPay>0||resizeChartValues.sicknessPay>0||
+		resizeChartValues.familyPay>0||resizeChartValues.bereavementPay>0||resizeChartValues.compassionatePay>0||resizeChartValues.bankHolidayHoursPay>0||
+		resizeChartValues.bankHolidayClockInBonus>0||resizeChartValues.payBack>0||resizeChartValues.pieceWork>0||resizeChartValues.SSP>0||resizeChartValues.SPP>0||
+		resizeChartValues.additionalPayment>0||resizeChartValues.additionalPayment2>0||resizeChartValues.additionalPayment3>0||resizeChartValues.christmasSavingsPayment>0||
+		resizeChartValues.summerSavingsPayment>0||resizeChartValues.SAP>0||resizeChartValues.salary>0||resizeChartValues.bonus>0||resizeChartValues.commissions>0)
+		{
+			google.charts.setOnLoadCallback(drawChartPayments);
+			function drawChartPayments() {
+
+			var data = google.visualization.arrayToDataTable([
+				['Type', 'Payments'],
+				['Basic Pay', resizeChartValues.basicHoursPay],
+				['Uns. Premium', resizeChartValues.unsocial_prem],
+				['Uns Prem. Holidays', resizeChartValues.unsocial_prem_hol],
+				['Uns Prem. Sickness', resizeChartValues.unsocial_prem_sick],
+				['Uns Prem. Paternity', resizeChartValues.unsocial_prem_family],
+				['Uns Prem. Bereav.', resizeChartValues.unsocial_prem_bereavement],
+				['Uns Prem. Compass.', resizeChartValues.unsocial_prem_compassionate],
+				['Overtime 1 Pay', resizeChartValues.OT1Pay],
+				['Overtime 2 Pay', resizeChartValues.OT2Pay],
+				['Enhanced Holiday Pay', resizeChartValues.enhancedHolidayPay],
+				['Holiday Pay', resizeChartValues.holidayPay],
+				['Holiday Pay', resizeChartValues.holidayPayment],
+				['Saturday Extra Pay', resizeChartValues.saturdayExtraPay],
+				['Sunday Extra Pay', resizeChartValues.sundayExtraPay],
+				['Sickness Pay', resizeChartValues.sicknessPay],
+				['Paternity Pay', resizeChartValues.familyPay],
+				['Bereavement Pay', resizeChartValues.bereavementPay],
+				['Compassionate Pay', resizeChartValues.compassionatePay],
+				['Bank Holiday Pay', resizeChartValues.bankHolidayHoursPay],
+				['Bank Holiday Bonus', resizeChartValues.bankHolidayClockInBonus],
+				['Back Pay', resizeChartValues.payBack],
+				['Piece Work', resizeChartValues.pieceWork],
+				['SSP', resizeChartValues.SSP],
+				['SPP', resizeChartValues.SPP],
+				['Add. Payment 1', resizeChartValues.additionalPayment],
+				['Add. Payment 2', resizeChartValues.additionalPayment2],
+				['Add. Payment 3', resizeChartValues.additionalPayment3],
+				['Christmas Sav. Payment', resizeChartValues.christmasSavingsPayment],
+				['Summer Sav. Payment', resizeChartValues.summerSavingsPayment],
+				['SAP', resizeChartValues.SAP],
+				['Salary', resizeChartValues.salary],
+				['Bonus', resizeChartValues.bonus],
+				['Commissions', resizeChartValues.commissions],
+				['Tax Return', resizeChartValues.taxReturn],
+				]);
+
+				var options = {
+				backgroundColor: insideBoxColor,
+				colors: paymentsColorArray,
+				slices: {  0: {offset: 0.2},
+						10: {offset: 0.1},
+						9: {offset: 0.1},
+						13: {offset: 0.1},
+						14: {offset: 0.1},
+						15: {offset: 0.1},
+						16: {offset: 0.1},
+					},
+				title: 'Payments Pie Chart',
+				is3D: true,
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('paymentsPieChart'));
+
+				chart.draw(data, options);
+			}
+		}
+		else{
+			 document.getElementById("paymentsPieChart").innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	
+	if (resizeChartValues.deductionsPieChartVis === 1){
+		
+		//no negative values for chart
+		if (resizeChartValues.taxAmount < 0 ){resizeChartValues.taxAmount = 0;}
+		
+		if (resizeChartValues.christmasSavingsDeduction<0){resizeChartValues.christmasSavingsDeduction = 0;}
+		if (resizeChartValues.summerSavingsDeduction<0){resizeChartValues.summerSavingsDeduction = 0;}
+		if (resizeChartValues.taxAmount>0||resizeChartValues.NIAmount>0||resizeChartValues.unionDeduction>0||resizeChartValues.pensionAmountChart>0||
+		resizeChartValues.christmasSavingsDeduction>0||resizeChartValues.summerSavingsDeduction>0||resizeChartValues.companyLoan>0||
+		resizeChartValues.studentLoanDeduction>0||resizeChartValues.otherDeduction>0||resizeChartValues.otherDeduction2>0||resizeChartValues.otherDeduction3>0||
+		resizeChartValues.netPay>0 || resizeChartValues.travelDeduction>0 ||resizeChartValues.taxFreeDeduction1>0 || resizeChartValues.taxFreeDeduction2 >0 || 
+		resizeChartValues.taxFreeDeduction3 >0){
+			google.charts.setOnLoadCallback(drawChartDeductions);
+			function drawChartDeductions() {
+			var data = google.visualization.arrayToDataTable([
+				['Type', 'Chart'],
+				['Tax', resizeChartValues.taxAmount],
+				['NI', resizeChartValues.NIAmount],
+				['Union', resizeChartValues.unionDeduction],
+				['Pension', resizeChartValues.pensionAmountChart],
+				['Christmas savings', resizeChartValues.christmasSavingsDeduction],
+				['Summer savings.', resizeChartValues.summerSavingsDeduction],
+				['Company Loan', resizeChartValues.companyLoan],
+				['Student Loan', resizeChartValues.studentLoanDeduction],
+				[resizeChartValues.otherDeductionName, resizeChartValues.otherDeduction],
+				[resizeChartValues.otherDeduction2Name, resizeChartValues.otherDeduction2],
+				[resizeChartValues.otherDeduction3Name, resizeChartValues.otherDeduction3],
+				['Travel', resizeChartValues.travelDeductionSum ],
+				[resizeChartValues.taxFreeDeduction1Name, resizeChartValues.taxFreeDeduction1],
+				[resizeChartValues.taxFreeDeduction2Name, resizeChartValues.taxFreeDeduction2],
+				[resizeChartValues.taxFreeDeduction3Name, resizeChartValues.taxFreeDeduction3],
+				['Net Pay', resizeChartValues.netPay],
+				]);
+
+				var options = {
+				backgroundColor: insideBoxColor,
+				colors: deductionsColorArray,
+				slices: {  15: {offset: 0.2},
+					},
+				title: 'Deductions Pie Chart',
+				is3D: true,
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('deductionsPieChart'));
+
+				chart.draw(data, options);
+			}
+		}
+		else{
+			document.getElementById('deductionsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	if (resizeChartValues.yearToDatePieChartVis === 1){
+		if(resizeChartValues.taxSum>0||resizeChartValues.NISum>0||resizeChartValues.union_deSum>0||resizeChartValues.pensionSumChart>0||resizeChartValues.chris_savSum>0||
+		resizeChartValues.summer_savSum>0||resizeChartValues.companyLoanSum>0||resizeChartValues.studentLoanDeductionSum>0||resizeChartValues.other_de>0||
+		resizeChartValues.resizeChartValues.add_deSum2>0||resizeChartValues.add_deSum3>0||resizeChartValues.netPaySum>0 || resizeChartValues.travelDeductionSum>0 ||
+		resizeChartValues.taxFreeDeduction1Sum>0 || resizeChartValues.taxFreeDeduction2Sum >0 || resizeChartValues.taxFreeDeduction3Sum >0){
+			google.charts.setOnLoadCallback(drawChartYearToDate);
+			function drawChartYearToDate() {
+			var data = google.visualization.arrayToDataTable([
+				['Type', 'Chart'],
+				['Tax', resizeChartValues.taxSum ],
+				['NI', resizeChartValues.NISum ],
+				['Union', resizeChartValues.union_deSum],
+				['Pension', resizeChartValues.pensionSumChart],
+				['Christmas savings', resizeChartValues.chris_savSum ],
+				['Summeer savings.', resizeChartValues.summer_savSum ],
+				['Company Loan', resizeChartValues.companyLoanSum ],
+				['Student Loan', resizeChartValues.studentLoanDeductionSum],
+				['Add. Deduction', resizeChartValues.other_de ],
+				['Add. Deduction 2', resizeChartValues.add_deSum2 ],
+				['Add. Deduction 3', resizeChartValues.add_deSum3 ],
+				['Travel', resizeChartValues.travelDeductionSum ],
+				['Tax Free Ded. 1', resizeChartValues.taxFreeDeduction1Sum ],
+				['Tax Free Ded. 2', resizeChartValues.taxFreeDeduction2Sum ],
+				['Tax Free Ded. 3', resizeChartValues.taxFreeDeduction3Sum ],
+				['Net Pay', resizeChartValues.netPaySum ],
+				]);
+
+				var options = {
+				backgroundColor: insideBoxColor,
+				colors: deductionsColorArray,
+				slices: {  15: {offset: 0.2},
+					},
+				title: 'Year To Date Pie Chart',
+				is3D: true,
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('yearToDatePieChart'));
+
+				chart.draw(data, options);
+			}
+		}
+		else{
+			document.getElementById('yearToDatePieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	
+	if (resizeChartValues.payStructurePieChartVis === 1){
+		if (resizeChartValues.basicPaymentsPercentage>0||resizeChartValues.holidaysPercentage>0||resizeChartValues.sicknessPercentage>0||
+		resizeChartValues.overtimePercentage>0||resizeChartValues.bankHolidayPercentge>0||resizeChartValues.parentalPercentage>0||
+		resizeChartValues.otherPercentage>0){
+			google.charts.setOnLoadCallback(drawChartYearToDatePercentages);
+			function drawChartYearToDatePercentages() {
+			var data = google.visualization.arrayToDataTable([
+				['Name', 'Value'],
+				['Basic Payments', resizeChartValues.basicPaymentsPercentage],
+				['Holiday Payments', resizeChartValues.holidaysPercentage],
+				['Sick Payments', resizeChartValues.sicknessPercentage],
+				['Overtime Payments', resizeChartValues.overtimePercentage],
+				['Bank Holiday Payments', resizeChartValues.bankHolidayPercentge],
+				['Paternity Payments', resizeChartValues.parentalPercentage],
+				['Other Payments', resizeChartValues.otherPercentage],
+				]);
+
+				var options = {
+				slices: {  0: {offset: 0.2},
+					},
+				backgroundColor: insideBoxColor,
+				title: 'Year To Date Percentage Pie Chart',
+				is3D: true,
+				colors: ['#e6e600', '#d5ff80', '#ff9999', '#cccc00', '#88cc00', '#ffcc99', '#c299ff'],
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('yearToDatePercentagePieChart'));
+
+				chart.draw(data, options);
+			}
+		}
+		else
+		{
+			document.getElementById('yearToDatePercentagePieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	
+	if (resizeChartValues.last3MonthsPieChartVis === 1){
+		if (resizeChartValues.chris_savSumLast12Weeks<0){resizeChartValues.chris_savSumLast12Weeks = 0;}
+		if (resizeChartValues.summer_savSumLast12Weeks<0){resizeChartValues.summer_savSumLast12Weeks = 0;}
+		if(resizeChartValues.taxSumLast12Weeks>0||resizeChartValues.NISumLast12Weeks>0||resizeChartValues.union_deSumLast12Weeks>0||
+		resizeChartValues.pensionSumLast12WeeksChart>0||resizeChartValues.chris_savSumLast12Weeks>0||resizeChartValues.summer_savSumLast12Weeks>0||
+		resizeChartValues.companyLoanSumLast12Weeks>0||resizeChartValues.studentLoanDeductionSumLast12Weeks>0||other_deLast12Weeks>0||
+		resizeChartValues.add_deSum2Last12Weeks>0||resizeChartValues.add_deSum3Last12Weeks>0||resizeChartValues.netPaySumLast12Weeks>0 || 
+		resizeChartValues.travelDeductionSumLast12Weeks>0 || resizeChartValues.taxFreeDeduction1SumLast12Weeks>0 || 
+		resizeChartValues.taxFreeDeduction2SumLast12Weeks>0|| resizeChartValues.taxFreeDeduction3SumLast12Weeks>0){
+			google.charts.setOnLoadCallback(drawChartLast3Months);
+			function drawChartLast3Months() {
+			var data = google.visualization.arrayToDataTable([
+				['Type', 'Chart'],
+				['Tax', resizeChartValues.taxSumLast12Weeks],
+				['NI', resizeChartValues.NISumLast12Weeks],
+				['Union', resizeChartValues.union_deSumLast12Weeks],
+				['Pension', resizeChartValues.pensionSumLast12WeeksChart],
+				['Christmas savings', resizeChartValues.chris_savSumLast12Weeks],
+				['Summer savings.', resizeChartValues.summer_savSumLast12Weeks],
+				['Company Loan', resizeChartValues.companyLoanSumLast12Weeks],
+				['Student Loan', resizeChartValues.studentLoanDeductionSumLast12Weeks],
+				['Add. Deduction', resizeChartValues.other_deLast12Weeks],
+				['Add. Deduction 2', resizeChartValues.add_deSum2Last12Weeks],
+				['Add. Deduction 3', resizeChartValues.add_deSum3Last12Weeks],
+				['Travel', resizeChartValues.travelDeductionSumLast12Weeks ],
+				['Tax Free Ded. 1', resizeChartValues.taxFreeDeduction1SumLast12Weeks ],
+				['Tax Free Ded. 2', resizeChartValues.taxFreeDeduction2SumLast12Weeks ],
+				['Tax Free Ded. 3', resizeChartValues.taxFreeDeduction3SumLast12Weeks ],
+				['Net Pay', resizeChartValues.netPaySumLast12Weeks],
+				]);
+
+				var options = {
+				//animation: {startup: true, duration: 1000},	
+				backgroundColor: insideBoxColor,
+				colors: deductionsColorArray,
+				slices: {  15: {offset: 0.2},
+					},
+				title: 'Last 3 Months Averages Pie Chart',
+				is3D: true,
+				};
+
+				var chart = new google.visualization.PieChart(document.getElementById('las3MonthsPieChart'));
+
+				chart.draw(data, options);
+			}
+		}
+		else{
+			document.getElementById('las3MonthsPieChart').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	//document.getElementById('columnChartNetPay').innerHTML = "";
+	if (resizeChartValues.last10WeeksNetChartVis === 1){
+		
+		if(Number(resizeChartValues.last10NetPayArray[9])>0||Number(resizeChartValues.last10DeductionsArray[9])>0||
+		Number(resizeChartValues.last10NetPayArray[8])>0||Number(resizeChartValues.last10DeductionsArray[8])>0||
+		Number(resizeChartValues.last10NetPayArray[7])>0||Number(resizeChartValues.last10DeductionsArray[7])>0||
+		Number(resizeChartValues.last10NetPayArray[6])>0||Number(resizeChartValues.last10DeductionsArray[6])>0||
+		Number(resizeChartValues.last10NetPayArray[5])>0||Number(resizeChartValues.last10DeductionsArray[5])>0||
+		Number(resizeChartValues.last10NetPayArray[4])>0||Number(resizeChartValues.last10DeductionsArray[4])>0||
+		Number(resizeChartValues.last10NetPayArray[3])>0||Number(resizeChartValues.last10DeductionsArray[3])>0||
+		Number(resizeChartValues.last10NetPayArray[2])>0||Number(resizeChartValues.last10DeductionsArray[2])>0||
+		Number(resizeChartValues.last10NetPayArray[1])>0||Number(resizeChartValues.last10DeductionsArray[1])>0||
+		Number(resizeChartValues.last10NetPayArray[0])>0||Number(resizeChartValues.last10DeductionsArray[0])>0){
+			google.charts.setOnLoadCallback(drawChartColumnPaidHours);
+			function drawChartColumnPaidHours() {
+
+			var data = google.visualization.arrayToDataTable([
+
+				['TAX Period Nr.', 'Net Pay', 'Deductions' ],
+				["10", Number(resizeChartValues.last10NetPayArray[9]), Number(resizeChartValues.last10DeductionsArray[9])],
+				["9", Number(resizeChartValues.last10NetPayArray[8]), Number(resizeChartValues.last10DeductionsArray[8])],
+				["8", Number(resizeChartValues.last10NetPayArray[7]), Number(resizeChartValues.last10DeductionsArray[7])],
+				["7", Number(resizeChartValues.last10NetPayArray[6]), Number(resizeChartValues.last10DeductionsArray[6])],
+				["6", Number(resizeChartValues.last10NetPayArray[5]), Number(resizeChartValues.last10DeductionsArray[5])],
+				["5", Number(resizeChartValues.last10NetPayArray[4]), Number(resizeChartValues.last10DeductionsArray[4])],
+				["4", Number(resizeChartValues.last10NetPayArray[3]), Number(resizeChartValues.last10DeductionsArray[3])],
+				["3", Number(resizeChartValues.last10NetPayArray[2]), Number(resizeChartValues.last10DeductionsArray[2])],
+				["2", Number(resizeChartValues.last10NetPayArray[1]), Number(resizeChartValues.last10DeductionsArray[1])],
+				["Current", Number(resizeChartValues.last10NetPayArray[0]), Number(resizeChartValues.last10DeductionsArray[0])],
+				]);
+
+				var options = {
+				animation: {startup: true, duration: 1000},	
+				bar: {groupWidth: '95%'},
+				colors: [netPayColor, taxAmuntColor],
+				backgroundColor: insideBoxColor,
+				title: 'Last 10 Weeks Net Pay and Deductions Chart',
+				isStacked: true,
+				};
+
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnChartNetPay'));
+				chart.draw(data, options);
+			}
+		}
+		else{
+			document.getElementById('columnChartNetPay').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+	
+	if (resizeChartValues.last10WeeksPaidHoursChartVis === 1){
+		var last10weeksHoursSum = 0;
+		for (i=0;i<10;i++)
+		{
+			last10weeksHoursSum += Number(resizeChartValues.last10WorkingHoursArray[i]);
+			last10weeksHoursSum += Number(resizeChartValues.last10AllHolidayHoursArray[i]);
+			last10weeksHoursSum += Number(resizeChartValues.last10SickHoursArray[i]);
+			last10weeksHoursSum += Number(resizeChartValues.last10FamHoursArray[i]);
+			last10weeksHoursSum += Number(resizeChartValues.last10BerHoursArray[i]);
+			last10weeksHoursSum += Number(resizeChartValues.last10CompHoursArray[i]);
+		}
+
+		if(last10weeksHoursSum>0){
+			google.charts.setOnLoadCallback(drawChartColumn);
+			function drawChartColumn() {
+
+			var data = google.visualization.arrayToDataTable([
+
+				['TAX Period Nr.', 'Working Hours', 'Holiday Hours', 'Sickness Hours', 'Parental Hours', 'Bereavement Hours', 'Compassionate Hours' ],
+				["10", Number(resizeChartValues.last10WorkingHoursArray[9]), Number(resizeChartValues.last10AllHolidayHoursArray[9]), Number(resizeChartValues.last10SickHoursArray[9]), Number(resizeChartValues.last10FamHoursArray[9]), Number(resizeChartValues.last10BerHoursArray[9]), Number(resizeChartValues.last10CompHoursArray[9])],
+				["9", Number(resizeChartValues.last10WorkingHoursArray[8]), Number(resizeChartValues.last10AllHolidayHoursArray[8]), Number(resizeChartValues.last10SickHoursArray[8]), Number(resizeChartValues.last10FamHoursArray[8]), Number(resizeChartValues.last10BerHoursArray[8]), Number(resizeChartValues.last10CompHoursArray[8])],
+				["8", Number(resizeChartValues.last10WorkingHoursArray[7]), Number(resizeChartValues.last10AllHolidayHoursArray[7]), Number(resizeChartValues.last10SickHoursArray[7]), Number(resizeChartValues.last10FamHoursArray[7]), Number(resizeChartValues.last10BerHoursArray[7]), Number(resizeChartValues.last10CompHoursArray[7])],
+				["7", Number(resizeChartValues.last10WorkingHoursArray[6]), Number(resizeChartValues.last10AllHolidayHoursArray[6]), Number(resizeChartValues.last10SickHoursArray[6]), Number(resizeChartValues.last10FamHoursArray[6]), Number(resizeChartValues.last10BerHoursArray[6]), Number(resizeChartValues.last10CompHoursArray[6])],
+				["6", Number(resizeChartValues.last10WorkingHoursArray[5]), Number(resizeChartValues.last10AllHolidayHoursArray[5]), Number(resizeChartValues.last10SickHoursArray[5]), Number(resizeChartValues.last10FamHoursArray[5]), Number(resizeChartValues.last10BerHoursArray[5]), Number(resizeChartValues.last10CompHoursArray[5])],
+				["5", Number(resizeChartValues.last10WorkingHoursArray[4]), Number(resizeChartValues.last10AllHolidayHoursArray[4]), Number(resizeChartValues.last10SickHoursArray[4]), Number(resizeChartValues.last10FamHoursArray[4]), Number(resizeChartValues.last10BerHoursArray[4]), Number(resizeChartValues.last10CompHoursArray[4])],
+				["4", Number(resizeChartValues.last10WorkingHoursArray[3]), Number(resizeChartValues.last10AllHolidayHoursArray[3]), Number(resizeChartValues.last10SickHoursArray[3]), Number(resizeChartValues.last10FamHoursArray[3]), Number(resizeChartValues.last10BerHoursArray[3]), Number(resizeChartValues.last10CompHoursArray[3])],
+				["3", Number(resizeChartValues.last10WorkingHoursArray[2]), Number(resizeChartValues.last10AllHolidayHoursArray[2]), Number(resizeChartValues.last10SickHoursArray[2]), Number(resizeChartValues.last10FamHoursArray[2]), Number(resizeChartValues.last10BerHoursArray[2]), Number(resizeChartValues.last10CompHoursArray[2])],
+				["2", Number(resizeChartValues.last10WorkingHoursArray[1]), Number(resizeChartValues.last10AllHolidayHoursArray[1]), Number(resizeChartValues.last10SickHoursArray[1]), Number(resizeChartValues.last10FamHoursArray[1]), Number(resizeChartValues.last10BerHoursArray[1]), Number(resizeChartValues.last10CompHoursArray[1])],
+				["Current", Number(resizeChartValues.last10WorkingHoursArray[0]), Number(resizeChartValues.last10AllHolidayHoursArray[0]), Number(resizeChartValues.last10SickHoursArray[0]), Number(resizeChartValues.last10FamHoursArray[0]), Number(resizeChartValues.last10BerHoursArray[0]), Number(resizeChartValues.last10CompHoursArray[0])],
+				]);
+
+				var options = {
+				animation: {startup: true, duration: 1000},	
+				bar: {groupWidth: '95%'},
+					
+				backgroundColor: insideBoxColor,
+				title: 'Last 10 Weeks Paid Hours Chart',
+				colors: ['#e6e600', '#d5ff80','#ff9999','#ffcc99', '#4d4d4d', '#ffe6cc'],
+				isStacked: true,
+				};
+
+				var chart = new google.visualization.ColumnChart(document.getElementById('columnChartPaidHours'));
+				chart.draw(data, options);
+			}
+		}
+		else{
+			document.getElementById('columnChartPaidHours').innerHTML = "<br><br>No Data Provided<br>For Chart.";
+		}
+	}
+
+	
+}
+//function to show current date on the select menus
+const showCurrentDateValues = () => {
+	let date = new Date();
+	let currentMonth = date.getMonth();
+	let currentDay = date.getDate();
+	
+	let selectTaxPeriodMonth = document.getElementById("selectTaxPeriodMonth");
+	let selectTaxPeriodDay = document.getElementById("selectTaxPeriodDay");
+	
+	selectTaxPeriodMonth.options.selectedIndex = currentMonth;
+	selectTaxPeriodDay.options.selectedIndex = currentDay;
+}
 const start = () => {
 	callWeekStart().then(function(myJson) {
 		taxPeriodLimit = myJson.taxPeriodLimit;
@@ -4207,6 +5102,7 @@ const start = () => {
 	generateCalendar (taxPeriodNumber,timeSinceEpoch);
 	createPayoutButtons(taxPeriodNumber);
 	generateStartDay();
+	showCurrentDateValues();
 	
 	let selectTaxPeriodButton = document.getElementById("selectTaxPeriodButton");
 	selectTaxPeriodButton.onclick = function () {loadSelectTaxPeriod();}
@@ -4236,6 +5132,8 @@ const start = () => {
 
 	var deleteTaxPeriodButton = document.getElementById("delete");
 	deleteTaxPeriodButton.onclick = function(){deleteTaxPeriod(taxPeriodNumber);}
+	
+	document.getElementsByTagName("BODY")[0].onresize = function() {redrawChartsOnResize()};
 
 	})
 }
@@ -4247,4 +5145,7 @@ $(function () {
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
+
+
 document.addEventListener("DOMContentLoaded",start,false);
+//document.addEventListener("onresize", redrawChartsOnResize);

@@ -1,26 +1,63 @@
 .taxPeriodNumberContainer {
 	position: relative;
-	z-index: 3;
+	z-index: 4;
 	width: 100%;
 }
-#taxPeriodNumberMenu {
+#taxPeriodNumberMenu, #taxPeriodNumberMenuGuide {
 	margin-top: 50px;
 	background-color: $themeColor;
 	font-size: 25px;
-	color: white;
+	color: $textColor;
 	height: 40px;
 	text-align: center;
 	padding: 0px;
+	z-index: 3;
 	position: fixed;
 	width: 100%;
 	border-bottom: 1px solid $bgHighlight;
 }
-.clickable{
-	font-size: 35px;
+.slectPeriodNumberMenu {
+	background-color: $themeColor;
+	font-size: 25px;
+	color: $textColor;
+	height: 45px;
+	text-align: center;
+	padding: 0px;
+	z-index: 2;
+	border-bottom: 1px solid $bgHighlight;
+}
+.larger {
+	height: 45px;
+}
+.noborderLeft{
+	border-left: 0px;
+}
+.paddindTopLoadButton{
+	padding-top: 5px;
+}
+.noPaddingFromSides {
+	margin-top: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.marginTopMain {
+	margin-top: 50px;
+}
+.marginTop90 {
+	margin-top: 80px;
+}
+.marginTop902 {
+	margin-top: 93px;
+}
+.paddingTop5{
+	padding-top: 5px;
 }
 
 @media (max-width: 767px) {
-	#taxPeriodNumberMenu{
+	#taxPeriodNumberMenu, .slectPeriodNumberMenu{
 		font-size: 22px;
+	}
+	.paddingTop5{
+		padding-top: 50px;
 	}
 }
