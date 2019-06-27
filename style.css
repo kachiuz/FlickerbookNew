@@ -19,16 +19,16 @@ select {
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg); }
 
+.heightFormControl {
+  height: 16px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 1%;
+  text-align: right; }
+
 /*.glyphicon-info-sign{
   font-size: 18px;
 }*/
-.fixedBottom {
-  position: fixed;
-  bottom: 0px; }
-
-.removeFixedPos {
-  position: static; }
-
 .boxShadow {
   -webkit-box-shadow: 0 8px 6px -6px #4d4d33;
   box-shadow: 0 8px 6px -6px #4d4d33; }
@@ -300,6 +300,21 @@ footer {
   padding-top: 10px;
   padding-right: 20px; }
 
+.errorFixed {
+  position: fixed;
+  top: 55px;
+  left: 0px;
+  z-index: 5;
+  opacity: 0.8; }
+
+.errorBorder {
+  border: 2px solid red;
+  padding: 10px; }
+
+.errorBorderRecaptcha {
+  border: 2px solid red;
+  padding: 2px; }
+
 .taxPeriodNumberContainer {
   position: relative;
   z-index: 4;
@@ -334,6 +349,10 @@ footer {
 .noborderLeft {
   border-left: 0px; }
 
+.noborderSides {
+  border-left: 0px;
+  border-right: 0px; }
+
 .paddindTopLoadButton {
   padding-top: 5px; }
 
@@ -353,6 +372,12 @@ footer {
 
 .paddingTop5 {
   padding-top: 5px; }
+
+.paddingTopMenuTitle {
+  padding-top: 1%; }
+
+#tableCaptionTitle {
+  overflow: hidden; }
 
 @media (max-width: 767px) {
   #taxPeriodNumberMenu, .slectPeriodNumberMenu {
@@ -498,7 +523,22 @@ footer {
 
 .fixedBottom {
   position: fixed;
-  bottom: 0px; }
+  background: white;
+  left: 2%;
+  bottom: 0px;
+  width: 96%;
+  background: #f2f2f2;
+  -webkit-box-shadow: 0px -1px 1px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: 0px -1px 1px rgba(50, 50, 50, 0.2);
+  box-shadow: 0px -1px 1px rgba(50, 50, 50, 0.2); }
+
+.paddingBottom2 {
+  padding-bottom: 15px; }
+
+@media (min-width: 992px) {
+  .fixedBottom {
+    width: 46%;
+    left: 27%; } }
 
 .removeFixedPos {
   position: static; }
@@ -760,6 +800,14 @@ footer {
   cursor: pointer;
   font-size: 35px; }
 
+.login-modal-color {
+  background: white;
+  color: #33cc00; }
+
+.login-modal-title {
+  font-size: 25px;
+  font-weight: 999; }
+
 .error-modal-color {
   font-size: 25px;
   background: #ffe6e6;
@@ -800,7 +848,7 @@ footer {
 .savingsButtons {
   font-size: 18px;
   margin-top: -5px;
-  background: #b3ff99;
+  background: #d9d9d9;
   padding: 3px;
   color: #33331a;
   border: 1px solid #cccccc;
@@ -858,6 +906,9 @@ a {
 .marginTopOther {
   margin-top: 50px; }
 
+.marginTopError {
+  margin-top: 90px; }
+
 .border-bottom-other {
   border-bottom: 1px solid #cccccc; }
 
@@ -905,6 +956,50 @@ label {
 
 .textSize {
   font-size: 19px; }
+
+.paddingTopBottom {
+  padding-bottom: 1%;
+  padding-top: 1%; }
+
+.footerToBottom {
+  position: fixed;
+  bottom: 0px;
+  width: 100%; }
+
+.linkColor {
+  font-weight: bold;
+  color: green;
+  text-decoration: none; }
+
+.errorFixed {
+  position: fixed;
+  top: 55px;
+  left: 0px;
+  z-index: 5;
+  opacity: 0.9; }
+
+.errorBorder {
+  border: 2px solid red;
+  padding: 5px; }
+
+.errorBorderRecaptcha {
+  border: 2px solid red;
+  padding: 2px; }
+
+.successBorder {
+  opacity: 0.95;
+  border: 2px solid green;
+  padding: 5px;
+  background: #33cc00;
+  color: white; }
+
+.passwordInfo {
+  opacity: 0.8;
+  border: 1px solid green;
+  padding: 1px;
+  background: #33cc00;
+  color: white;
+  font-size: 14px; }
 
 @media (max-width: 576px) {
   .containerOther {
@@ -998,7 +1093,8 @@ label {
   border-radius: 50%;
   width: 50px;
   border: 5px solid #33cc00;
-  margin: auto; }
+  margin: auto;
+  margin-top: -4px; }
 
 .roundBorder3 {
   border-radius: 5%;
@@ -1009,7 +1105,8 @@ label {
   border-radius: 50%;
   width: 140px;
   border: 5px solid #33cc00;
-  margin: auto; }
+  margin: auto;
+  margin-top: -4px; }
 
 .landingTextStyle {
   font-size: 40px;
@@ -1028,7 +1125,7 @@ label {
 .forgotPassword {
   font-size: 18px;
   padding-top: 5px;
-  color: blue; }
+  color: grey; }
 
 .sample {
   position: absolute;
@@ -1037,3 +1134,17 @@ label {
   width: 100%;
   height: 100%;
   z-index: 44; }
+
+.remeberMe {
+  font-size: 18px;
+  padding-top: 2px;
+  text-align: left;
+  color: grey; }
+
+#loginForm {
+  padding: 2%;
+  margin-right: 2%;
+  width: 100%; }
+
+.dropdown-toggle {
+  background-color: #e6e6e6; }
